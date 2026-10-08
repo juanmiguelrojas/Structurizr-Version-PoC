@@ -1,0 +1,59 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - App Móvil - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    3["<div style='font-weight: bold'>Operario de Equipo Abastecedor</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Único rol que usa la app<br />móvil. Opera en campo<br />(plataforma/rampa) con o sin<br />cobertura de red.</div>"]
+    style 3 fill:#c8102e,stroke:#8c0b20,color:#ffffff
+    5["<div style='font-weight: bold'>Microsoft Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo (empleados y<br />operarios). SSO · MFA · RBAC<br />por grupos. OIDC / OAuth 2.0<br />+ PKCE. Transversal al hub.</div>"]
+    style 5 fill:#5c2d91,stroke:#401f65,color:#ffffff
+    8["<div style='font-weight: bold'>ZTNA Netskope</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Acceso Zero Trust para<br />dispositivos gestionados:<br />posture check (Intune),<br />GlobalProtect/Zscaler, split<br />tunneling controlado. Único<br />camino de red de la app<br />móvil.</div>"]
+    style 8 fill:#f48120,stroke:#aa5a16,color:#ffffff
+    82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+    style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+
+    subgraph 42 ["App Móvil"]
+      style 42 fill:#ffffff,stroke:#7e0c12,color:#7e0c12
+
+      43["<div style='font-weight: bold'>Navegación</div><div style='font-size: 70%; margin-top: 0px'>[Component: React Navigation]</div><div style='font-size: 80%; margin-top:10px'>Pantallas del operario:<br />turnos, checklist, PQDA,<br />firma, historial.</div>"]
+      style 43 fill:#f2a1a6,stroke:#a97074,color:#000000
+      44["<div style='font-weight: bold'>Módulo de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: MSAL]</div><div style='font-size: 80%; margin-top:10px'>Flujo OAuth2 Authorization<br />Code + PKCE (solo Entra ID).<br />Token en memoria (no<br />localStorage).</div>"]
+      style 44 fill:#f2a1a6,stroke:#5c2d91,color:#000000
+      45[("<div style='font-weight: bold'>Base de Datos Local</div><div style='font-size: 70%; margin-top: 0px'>[Component: WatermelonDB (SQLite)]</div><div style='font-size: 80%; margin-top:10px'>Réplica funcional: turnos,<br />operaciones, catálogos.<br />Fuente de verdad offline.</div>")]
+      style 45 fill:#f2a1a6,stroke:#a97074,color:#000000
+      46["<div style='font-weight: bold'>Cifrado Local en Reposo</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLCipher + Android Keystore]</div><div style='font-size: 80%; margin-top:10px'>Cifra la base local. Clave<br />derivada del hardware del<br />dispositivo, no exportable.<br />Protege datos si el<br />dispositivo se pierde o es<br />robado.</div>"]
+      style 46 fill:#f2a1a6,stroke:#5c2d91,color:#000000
+      47["<div style='font-weight: bold'>Motor de Sincronización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cola + UUID (TypeScript)]</div><div style='font-size: 80%; margin-top:10px'>Cola de escritura local con<br />UUID por acción. Delta pull /<br />push al reconectar. Aplica<br />HU-050.</div>"]
+      style 47 fill:#f2a1a6,stroke:#a97074,color:#000000
+      48["<div style='font-weight: bold'>Gestor de Estados de Sincronización</div><div style='font-size: 70%; margin-top: 0px'>[Component: State Machine (local)]</div><div style='font-size: 80%; margin-top:10px'>Por ítem de cola: PENDIENTE →<br />ENVIANDO → CONFIRMADO |<br />CONFLICTO | ERROR. Backoff<br />exponencial (base 5 s, máx 5<br />min).</div>"]
+      style 48 fill:#f2a1a6,stroke:#a97074,color:#000000
+      49["<div style='font-weight: bold'>Detector de Conflictos Locales</div><div style='font-size: 70%; margin-top: 0px'>[Component: Kotlin/TS — reglas locales]</div><div style='font-size: 80%; margin-top:10px'>Antes de reenviar detecta<br />turno reasignado, recurso<br />bloqueado o catálogo<br />desactualizado. Marca<br />CONFLICTO_LOCAL sin descartar<br />el dato (hecho físico) y<br />espera resolución.</div>"]
+      style 49 fill:#f2a1a6,stroke:#a97074,color:#000000
+      50["<div style='font-weight: bold'>Captura de Evidencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cámara + canvas táctil]</div><div style='font-size: 80%; margin-top:10px'>Fotos PQDA/checklist y firma.<br />Guardado primero en<br />filesystem local.</div>"]
+      style 50 fill:#f2a1a6,stroke:#a97074,color:#000000
+      51["<div style='font-weight: bold'>Disparador de Sync</div><div style='font-size: 70%; margin-top: 0px'>[Component: NetInfo listener]</div><div style='font-size: 80%; margin-top:10px'>Detecta reconexión y dispara<br />el Motor de Sincronización.</div>"]
+      style 51 fill:#f2a1a6,stroke:#a97074,color:#000000
+      52["<div style='font-weight: bold'>Cliente API</div><div style='font-size: 70%; margin-top: 0px'>[Component: Fetch + Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Sube la cola pendiente,<br />descarga delta y sube media<br />con reanudación.</div>"]
+      style 52 fill:#f2a1a6,stroke:#a97074,color:#000000
+      53["<div style='font-weight: bold'>Netskope Client (ZTNA)</div><div style='font-size: 70%; margin-top: 0px'>[Component: Netskope Agent]</div><div style='font-size: 80%; margin-top:10px'>Agente ZTNA / perfil de<br />dispositivo. Verifica posture<br />(Intune) antes de habilitar<br />el túnel hacia el BFF Móvil.<br />Sin él no hay salida de red.</div>"]
+      style 53 fill:#f2a1a6,stroke:#5c2d91,color:#000000
+    end
+
+    3-. "<div>Opera en campo: turnos,<br />checklist, PQDA, firma</div><div style='font-size: 70%'>[UI nativa Android]</div>" .->43
+    44-. "<div>Login SSO (solo Entra ID)</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->5
+    53-. "<div>Túnel gestionado (MDM /<br />posture Intune)</div><div style='font-size: 70%'>[ZTNA · mTLS]</div>" .->8
+    53-. "<div>Sync, delta y media (lógico:<br />Netskope → Apigee → ILB)</div><div style='font-size: 70%'>[REST/JSON · JWT · mTLS]</div>" .->82
+    43-. "<div>Usa</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->44
+    43-. "<div>Lee / escribe</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->45
+    50-. "<div>Referencia archivo</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->45
+    45-. "<div>Cifra en reposo</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->46
+    45-. "<div>Cola pendiente</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->47
+    51-. "<div>Dispara sync</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->47
+    51-. "<div>Notifica conectividad</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->50
+    47-. "<div>Actualiza estado / backoff<br />exponencial</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->48
+    47-. "<div>Detecta conflicto local</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->49
+    49-. "<div>Bloquea reintento hasta<br />revisión</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->48
+    47-. "<div>Al reconectar</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->52
+    52-. "<div>Sync (online)</div><div style='font-size: 70%'>[Llamada in-process (TypeScript)]</div>" .->53
+  end

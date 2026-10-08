@@ -1,0 +1,17 @@
+# L3 · Svc Operación  (contenedor: svcOperacion)
+soRouter = component "API Router" "Endpoints de turnos, posición, inventario de calidad y estado de operación." "FastAPI" "BackendComponent"
+soShifts = component "Gestor de Turnos" "Ventana de inicio y autorización de excepción por supervisor (S05/S08, HU-056)." "Python — S05/S08 HU-056" "BackendComponent"
+soPosition = component "Rastreador de Posición" "Determina posición del equipo vs. geocerca de Datos Maestros (HU-044 / HU-145)." "Python — HU-044/HU-145" "BackendComponent"
+soQuality = component "Inventario de Calidad" "Decremento de insumos (pastillas PQDA) por prueba ejecutada (IR-06 reservada)." "Python — IR-06" "BackendComponent"
+soTrackingSub = component "Suscriptor de Tracking" "Procesa eventos de tracking entrantes (si el topic está activo)." "Pub/Sub push endpoint" "BackendComponent"
+soConciliationSub = component "Suscriptor de Conciliación" "Finaliza o anula operaciones pendientes según conciliacion-resuelta / operacion-cerrada." "Pub/Sub push endpoint" "BackendComponent"
+soDbClient = component "Cliente de Base de Datos" "Estado dinámico y persistencia de tablas operacionales." "SQLAlchemy" "BackendComponent"
+
+soRouter -> soShifts "Enruta" "Llamada in-process (Python)"
+soRouter -> soPosition "Enruta" "Llamada in-process (Python)"
+soRouter -> soQuality "Enruta" "Llamada in-process (Python)"
+soTrackingSub -> soPosition "Actualiza" "Llamada in-process (Python)"
+soShifts -> soDbClient "Persiste" "Llamada in-process (Python)"
+soPosition -> soDbClient "Persiste" "Llamada in-process (Python)"
+soQuality -> soDbClient "Persiste" "Llamada in-process (Python)"
+soConciliationSub -> soDbClient "Finaliza / anula operación" "Llamada in-process (Python)"

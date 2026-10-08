@@ -1,0 +1,39 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Gestor Documental - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#7b1fa2,stroke:#561571,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+    181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+    style 181 fill:#4285f4,stroke:#2e5daa,color:#ffffff
+
+    subgraph 148 ["Gestor Documental"]
+      style 148 fill:#ffffff,stroke:#1250a2,color:#1250a2
+
+      149["<div style='font-weight: bold'>Suscriptor Pub/Sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI Push endpoint]</div><div style='font-size: 80%; margin-top:10px'>Recibe el evento<br />operacion-cerrada /<br />doc-publicacion. Retry + DLQ.</div>"]
+      style 149 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      150["<div style='font-weight: bold'>Generador de Documento</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — ex S07]</div><div style='font-size: 80%; margin-top:10px'>Ensambla contenido: partes,<br />cantidades, firmas y datos de<br />la operación.</div>"]
+      style 150 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      151["<div style='font-weight: bold'>Motor de Plantillas</div><div style='font-size: 70%; margin-top: 0px'>[Component: PDF / AIDX XML]</div><div style='font-size: 80%; margin-top:10px'>Renderiza el formato final<br />según lo que el cliente<br />requiera.</div>"]
+      style 151 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      152["<div style='font-weight: bold'>Asignador de Numeración</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Numeración secuencial, única<br />y auditable.</div>"]
+      style 152 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      153["<div style='font-weight: bold'>Publicador</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — HU-055]</div><div style='font-size: 80%; margin-top:10px'>Idempotente: un reintento no<br />genera un segundo documento.<br />Retorna ID inmutable.</div>"]
+      style 153 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      154["<div style='font-weight: bold'>Cliente GCS</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Sube el documento final al<br />bucket.</div>"]
+      style 154 fill:#85bbf0,stroke:#5d82a8,color:#000000
+    end
+
+    149-. "<div>Genera</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->150
+    150-. "<div>Renderiza</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->151
+    150-. "<div>Asigna número</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->152
+    150-. "<div>Publica</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->153
+    153-. "<div>Sube</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->154
+    160-. "<div>Push: dispara publicación<br />documental</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->149
+    152-. "<div>Persiste número / metadata<br />documental</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    154-. "<div>Sube documento final (único<br />escritor)</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+  end

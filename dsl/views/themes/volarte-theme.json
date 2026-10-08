@@ -1,0 +1,215 @@
+{
+  "name": "Volarte Terpel",
+  "description": "Tema C4 corporativo Volarte (Terpel - Dirección de Arquitectura). Generado desde styles.dsl.",
+  "elements": [
+    {
+      "tag": "Element",
+      "fontSize": 22,
+      "strokeWidth": 2
+    },
+    {
+      "tag": "Person",
+      "shape": "Person",
+      "background": "#0B3D91",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "External",
+      "background": "#6B7280",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "FieldOperator",
+      "background": "#C8102E",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Software System",
+      "background": "#1168BD",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Volarte",
+      "background": "#C8102E",
+      "color": "#ffffff",
+      "stroke": "#7A0A1C"
+    },
+    {
+      "tag": "ExternalSystem",
+      "background": "#8C8C8C",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Reference",
+      "background": "#B0B7C3",
+      "color": "#1F2937",
+      "border": "Dashed"
+    },
+    {
+      "tag": "Pending",
+      "border": "Dashed",
+      "stroke": "#F59E0B",
+      "strokeWidth": 4
+    },
+    {
+      "tag": "IdentityProvider",
+      "shape": "Hexagon",
+      "background": "#5C2D91",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Infrastructure",
+      "shape": "Pipe",
+      "background": "#374151",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Edge",
+      "background": "#F48120",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "APIGateway",
+      "shape": "Hexagon",
+      "background": "#34A853",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Security",
+      "stroke": "#5C2D91",
+      "strokeWidth": 4
+    },
+    {
+      "tag": "Observability",
+      "shape": "Ellipse",
+      "background": "#1496FF",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Container",
+      "background": "#438DD5",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Frontend",
+      "background": "#E0473F",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "WebBrowser",
+      "shape": "WebBrowser"
+    },
+    {
+      "tag": "Mobile",
+      "shape": "MobileDevicePortrait",
+      "background": "#B5121B",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "BFF",
+      "shape": "RoundedBox",
+      "background": "#EA8600",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "DomainService",
+      "shape": "RoundedBox",
+      "background": "#1A73E8",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "GKE",
+      "shape": "Hexagon"
+    },
+    {
+      "tag": "Database",
+      "shape": "Cylinder",
+      "background": "#0F9D58",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Cache",
+      "background": "#DC382D",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Storage",
+      "shape": "Folder",
+      "background": "#4285F4",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Queue",
+      "shape": "Pipe",
+      "background": "#7B1FA2",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Component",
+      "background": "#85BBF0",
+      "color": "#000000"
+    },
+    {
+      "tag": "WebComponent",
+      "background": "#F6B4AE",
+      "color": "#000000"
+    },
+    {
+      "tag": "MobileComponent",
+      "background": "#F2A1A6",
+      "color": "#000000"
+    },
+    {
+      "tag": "LocalDatabase",
+      "shape": "Cylinder"
+    },
+    {
+      "tag": "Topic",
+      "shape": "Pipe",
+      "background": "#CE93D8",
+      "color": "#000000"
+    },
+    {
+      "tag": "Subscription",
+      "shape": "RoundedBox",
+      "background": "#E1BEE7",
+      "color": "#000000"
+    },
+    {
+      "tag": "DLQ",
+      "background": "#B71C1C",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "StorageComponent",
+      "background": "#AECBFA",
+      "color": "#000000"
+    },
+    {
+      "tag": "Infrastructure Node",
+      "background": "#F3F4F6",
+      "color": "#111827"
+    },
+    {
+      "tag": "Deployment Node",
+      "color": "#374151"
+    }
+  ],
+  "relationships": [
+    {
+      "tag": "Relationship",
+      "thickness": 2,
+      "color": "#4B5563",
+      "routing": "Orthogonal"
+    },
+    {
+      "tag": "Logical",
+      "style": "Dashed",
+      "color": "#9CA3AF"
+    },
+    {
+      "tag": "Asynchronous",
+      "style": "Dotted"
+    }
+  ]
+}

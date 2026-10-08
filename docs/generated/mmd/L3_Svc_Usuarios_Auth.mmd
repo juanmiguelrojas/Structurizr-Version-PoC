@@ -1,0 +1,40 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Svc: Usuarios / Auth - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    5["<div style='font-weight: bold'>Microsoft Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo (empleados y<br />operarios). SSO · MFA · RBAC<br />por grupos. OIDC / OAuth 2.0<br />+ PKCE. Transversal al hub.</div>"]
+    style 5 fill:#5c2d91,stroke:#401f65,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+    180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+    style 180 fill:#dc382d,stroke:#9a271f,color:#ffffff
+
+    subgraph 104 ["Svc: Usuarios / Auth"]
+      style 104 fill:#ffffff,stroke:#1250a2,color:#1250a2
+
+      105["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints /roles ·<br />/permissions · /mapping ·<br />/audit.</div>"]
+      style 105 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      106["<div style='font-weight: bold'>Resolver GroupToRoleMapping</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Deriva el rol efectivo desde<br />grupo(s) de Entra ID. RN-007<br />/ RN-008.</div>"]
+      style 106 fill:#85bbf0,stroke:#5c2d91,color:#000000
+      107["<div style='font-weight: bold'>Adaptador de Sincronización Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Component: Microsoft Graph API SDK]</div><div style='font-size: 80%; margin-top:10px'>Consulta pertenencia a grupos<br />cuando el claim 'groups' se<br />trunca.</div>"]
+      style 107 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      108["<div style='font-weight: bold'>Invalidador de Cache</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Notifica a Redis cuando<br />cambia un rol, sin esperar al<br />TTL.</div>"]
+      style 108 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      109["<div style='font-weight: bold'>Cliente Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Acceso a datos de usuarios /<br />roles / mapping.</div>"]
+      style 109 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      110["<div style='font-weight: bold'>Auditor</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Registra toda decisión de<br />autorización, concedida o<br />denegada.</div>"]
+      style 110 fill:#85bbf0,stroke:#5c2d91,color:#000000
+    end
+
+    105-. "<div>Resuelve</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->106
+    106-. "<div>Consulta grupos</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->107
+    106-. "<div>Registra decisión</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->110
+    106-. "<div>Persiste / consulta mapping</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->109
+    110-. "<div>Persiste auditoría</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->109
+    110-. "<div>Invalida en cambio de rol</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->108
+    107-. "<div>Sincroniza pertenencia a<br />grupos</div><div style='font-size: 70%'>[Microsoft Graph API · HTTPS · OAuth2 client credentials]</div>" .->5
+    108-. "<div>Invalida decisiones cacheadas</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    109-. "<div>Lee / escribe usuarios, roles<br />y mapping</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+  end

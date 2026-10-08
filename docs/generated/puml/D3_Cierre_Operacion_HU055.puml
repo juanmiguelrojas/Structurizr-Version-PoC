@@ -1,0 +1,56 @@
+@startuml
+set separator none
+title Volarte - Dynamic
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+System_Boundary("Volarte_boundary", "Volarte", $tags="") {
+  AddBoundaryTag("Backends for Frontend", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_1, "Backends for Frontend", $tags="Backends for Frontend") {
+    Container(Volarte.BFFMóvil, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Canales (Clientes)", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_2, "Canales (Clientes)", $tags="Canales (Clientes)") {
+    Container(Volarte.AppMóvil, "App Móvil", $techn="React Native · Android exclusivo", $descr="Offline-first: SQLite local (WatermelonDB) + cola de escritura con UUID por acción. Fotos/firma al filesystem local. Sync bidireccional al reconectar (delta + resumable upload). Solo operarios; distribución vía Intune / Managed Play. NO se despliega en GCP.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Datos", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_3, "Datos", $tags="Datos") {
+    ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+    Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Google Cloud Storage", $descr="Almacenamiento WORM/versionado de documentos de entrega, fotos y firmas. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Mensajería", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_4, "Mensajería", $tags="Mensajería") {
+    ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Servicios de Dominio", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_5, "Servicios de Dominio", $tags="Servicios de Dominio") {
+    Container(Volarte.SvcComercial, "Svc: Comercial", $techn="Python · FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider) y crédito disponible. Suscriptor de operacion-cerrada para actualizar saldo/crédito.", $tags="", $link="")
+    Container(Volarte.SvcOperación, "Svc: Operación", $techn="Python · FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición e inventario de calidad. Suscriptor de tracking-eventos y conciliacion-resuelta.", $tags="", $link="")
+    Container(Volarte.GestorDocumental, "Gestor Documental", $techn="Python · FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación y retorna un ID inmutable vinculado. Cola + reintento sin duplicar (HU-055). S07 define contenido y numeración del documento canónico; el Gestor solo lo publica.", $tags="", $link="")
+  }
+
+}
+
+Rel(Volarte.AppMóvil, Volarte.BFFMóvil, "1. Sincroniza cierre de operación", $techn="REST/JSON · JWT · mTLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.ColadeMensajería, "2. Publica operacion-cerrada", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.GestorDocumental, "3. Push gestor-documental-sub (retry + DLQ)", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcComercial, "3. Push comercial-sub: actualiza saldo/crédito", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación, "3. Push operacion-conciliacion-sub", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.GestorDocumental, Volarte.CloudSQL, "4. Asigna numeración secuencial", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.CloudSQL, "4. Actualiza tablas operacionales", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcComercial, Volarte.CloudSQL, "4. Persiste saldo", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.GestorDocumental, Volarte.DocumentosGCS, "5. Publica documento WORM (ID inmutable)", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

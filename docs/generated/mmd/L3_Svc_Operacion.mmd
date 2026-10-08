@@ -1,0 +1,62 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Svc: Operación - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    66("<div style='font-weight: bold'>BFF Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>BFF — Backend Volarte. Valida<br />JWT (issuer/audience, 2a<br />validación), resuelve<br />GroupToRoleMapping →<br />Role/Permission/Capability y<br />orquesta los servicios de<br />dominio. Publica<br />conciliacion-resuelta.<br />Auto-scaling · pay-per-use.</div>")
+    style 66 fill:#ea8600,stroke:#a35d00,color:#ffffff
+    82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+    style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+    117("<div style='font-weight: bold'>Svc: Datos Maestros</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S02: Customer,<br />AircraftOperator,<br />AircraftType,<br />AircraftRegistration,<br />FuellingEquipment,<br />NegotiationProfile, geocercas<br />(HU-145).</div>")
+    style 117 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+    147["<div style='font-weight: bold'>Svc: Asignación / Optimización</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · MILP Solver · GKE]</div><div style='font-size: 80%; margin-top:10px'>S06: motor MILP +<br />recomendación Skypredict con<br />degradación controlada. GKE<br />por cómputo sostenido (P-025<br />PENDING: owner/runtime final<br />los confirma Arquitectura).</div>"]
+    style 147 fill:#1a73e8,stroke:#f59e0b,color:#ffffff
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#7b1fa2,stroke:#561571,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+
+    subgraph 131 ["Svc: Operación"]
+      style 131 fill:#ffffff,stroke:#1250a2,color:#1250a2
+
+      132["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints de turnos,<br />posición, inventario de<br />calidad y estado de<br />operación.</div>"]
+      style 132 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      133["<div style='font-weight: bold'>Gestor de Turnos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S05/S08 HU-056]</div><div style='font-size: 80%; margin-top:10px'>Ventana de inicio y<br />autorización de excepción por<br />supervisor (S05/S08, HU-056).</div>"]
+      style 133 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      134["<div style='font-weight: bold'>Rastreador de Posición</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — HU-044/HU-145]</div><div style='font-size: 80%; margin-top:10px'>Determina posición del equipo<br />vs. geocerca de Datos<br />Maestros (HU-044 / HU-145).</div>"]
+      style 134 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      135["<div style='font-weight: bold'>Inventario de Calidad</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — IR-06]</div><div style='font-size: 80%; margin-top:10px'>Decremento de insumos<br />(pastillas PQDA) por prueba<br />ejecutada (IR-06 reservada).</div>"]
+      style 135 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      136["<div style='font-weight: bold'>Suscriptor de Tracking</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub push endpoint]</div><div style='font-size: 80%; margin-top:10px'>Procesa eventos de tracking<br />entrantes (si el topic está<br />activo).</div>"]
+      style 136 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      137["<div style='font-weight: bold'>Suscriptor de Conciliación</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub push endpoint]</div><div style='font-size: 80%; margin-top:10px'>Finaliza o anula operaciones<br />pendientes según<br />conciliacion-resuelta /<br />operacion-cerrada.</div>"]
+      style 137 fill:#85bbf0,stroke:#5d82a8,color:#000000
+      138["<div style='font-weight: bold'>Cliente de Base de Datos</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Estado dinámico y<br />persistencia de tablas<br />operacionales.</div>"]
+      style 138 fill:#85bbf0,stroke:#5d82a8,color:#000000
+    end
+
+    132-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->133
+    132-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->134
+    132-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->135
+    136-. "<div>Actualiza</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->134
+    133-. "<div>Persiste</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->138
+    134-. "<div>Persiste</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->138
+    135-. "<div>Persiste</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->138
+    137-. "<div>Finaliza / anula operación</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->138
+    66-. "<div>Consulta datos maestros</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    66-. "<div>Consulta estado de operación<br />/ turnos</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->132
+    66-. "<div>Solicita recomendación de<br />asignación</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->147
+    66-. "<div>Consultas varias (Proxy SQL)</div><div style='font-size: 70%'>[Cloud SQL Auth Proxy · TLS]</div>" .->179
+    66-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    82-. "<div>Escribe / lee tablas de<br />Sincronización</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    82-. "<div>Publica cierre de operación</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    82-. "<div>Obtiene turnos / estado<br />operativo</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->132
+    82-. "<div>Obtiene catálogos versionados</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    160-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->137
+    160-. "<div>Push: eventos de tracking</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->136
+    134-. "<div>Consulta geocerca (S02 /<br />HU-145)</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    138-. "<div>Lee / escribe tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    117-. "<div>Lee / escribe datos maestros</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    147-. "<div>Lee estado dinámico de<br />equipos / operadores</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->132
+  end

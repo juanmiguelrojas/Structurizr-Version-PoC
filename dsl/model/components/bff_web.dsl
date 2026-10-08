@@ -1,0 +1,17 @@
+# L3 · BFF Web  (contenedor: bffWeb)
+bwRouter = component "API Router / Controllers" "Endpoints REST por feature. Punto de entrada del contenedor (detrás de Apigee)." "FastAPI" "BackendComponent"
+bwJwt = component "Middleware de Autenticación" "Valida issuer/audience/expiración del token (segunda validación tras Apigee)." "JWT Middleware (FastAPI)" "BackendComponent,Security"
+bwAuthz = component "Servicio de Autorización" "Resuelve GroupToRoleMapping → Role/Permission/Capability." "Python" "BackendComponent,Security"
+bwCache = component "Cliente de Cache" "Cache de decisión de autorización (TTL corto)." "Redis SDK" "BackendComponent"
+bwOrchestrator = component "Orquestador de Dominio" "Enruta la petición al servicio de dominio correspondiente." "Python" "BackendComponent"
+bwSecrets = component "Cliente de Secretos" "Obtiene credenciales de servicios downstream." "Secret Manager SDK" "BackendComponent,Security"
+bwSvcClients = component "Clientes de Servicios" "Clientes tipados hacia cada servicio interno (Cloud Run → Cloud Run) con ID Token IAM." "HTTP + ID Token (IAM Invoker)" "BackendComponent"
+bwConciliation = component "Servicio de Conciliación" "Revisión manual HU-050: el supervisor confirma o anula operaciones PENDING_REVIEW y se publica conciliacion-resuelta." "Python · Pub/Sub Publisher" "BackendComponent"
+
+bwRouter -> bwJwt "Valida" "Llamada in-process (Python)"
+bwJwt -> bwAuthz "Resuelve rol" "Llamada in-process (Python)"
+bwAuthz -> bwCache "Lee / escribe cache" "Llamada in-process (Python)"
+bwAuthz -> bwOrchestrator "Autorizado →" "Llamada in-process (Python)"
+bwOrchestrator -> bwSecrets "Lee secretos" "Llamada in-process (Python)"
+bwOrchestrator -> bwSvcClients "Orquesta" "Llamada in-process (Python)"
+bwOrchestrator -> bwConciliation "Resolución de conciliación" "Llamada in-process (Python)"

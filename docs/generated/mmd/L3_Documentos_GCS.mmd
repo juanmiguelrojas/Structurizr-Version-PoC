@@ -1,0 +1,36 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Documentos (GCS) - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    14["<div style='font-weight: bold'>Cloud KMS</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestión de llaves de cifrado<br />(CMEK, HSM, rotación). Cifra<br />Cloud SQL, GCS, Firestore y<br />los secretos de Secret<br />Manager.</div>"]
+    style 14 fill:#1168bd,stroke:#5c2d91,color:#ffffff
+    82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+    style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+    148("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación y retorna un ID<br />inmutable vinculado. Cola +<br />reintento sin duplicar<br />(HU-055). S07 define<br />contenido y numeración del<br />documento canónico; el Gestor<br />solo lo publica.</div>")
+    style 148 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+
+    subgraph 181 ["Documentos (GCS)"]
+      style 181 fill:#ffffff,stroke:#2e5daa,color:#2e5daa
+
+      182["<div style='font-weight: bold'>Estructura de Carpetas</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS object prefixes]</div><div style='font-size: 80%; margin-top:10px'>Organización por año, mes e<br />ID de operación:<br />gs://.../{anio}/{mes}/{op_id}.</div>"]
+      style 182 fill:#aecbfa,stroke:#798eaf,color:#000000
+      183["<div style='font-weight: bold'>Política de Ciclo de Vida</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Lifecycle Rules]</div><div style='font-size: 80%; margin-top:10px'>Transición a<br />Nearline/Coldline según<br />antigüedad. Retención<br />definida por política<br />vigente.</div>"]
+      style 183 fill:#aecbfa,stroke:#798eaf,color:#000000
+      184["<div style='font-weight: bold'>Versionado / WORM</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Object Versioning + Retention Lock]</div><div style='font-size: 80%; margin-top:10px'>Inmutabilidad: un objeto<br />nunca se sobrescribe.</div>"]
+      style 184 fill:#aecbfa,stroke:#798eaf,color:#000000
+      185["<div style='font-weight: bold'>IAM del Bucket</div><div style='font-size: 70%; margin-top: 0px'>[Component: Service Account bindings]</div><div style='font-size: 80%; margin-top:10px'>Write: SA Gestor Documental<br />(y BFF Móvil para media).<br />Read: signed URLs temporales.</div>"]
+      style 185 fill:#aecbfa,stroke:#5c2d91,color:#000000
+      186["<div style='font-weight: bold'>Cifrado en Reposo</div><div style='font-size: 70%; margin-top: 0px'>[Component: CMEK (Cloud KMS)]</div><div style='font-size: 80%; margin-top:10px'>Cada objeto cifrado con llave<br />gestionada por Terpel (no por<br />Google).</div>"]
+      style 186 fill:#aecbfa,stroke:#5c2d91,color:#000000
+    end
+
+    182-. "<div>Organiza</div><div style='font-size: 70%'>[Configuración de bucket GCS]</div>" .->183
+    182-. "<div>Aplica</div><div style='font-size: 70%'>[Configuración de bucket GCS]</div>" .->184
+    182-. "<div>Controla acceso</div><div style='font-size: 70%'>[Configuración de bucket GCS]</div>" .->185
+    185-. "<div>Cifra</div><div style='font-size: 70%'>[Configuración de bucket GCS]</div>" .->186
+    82-. "<div>Resumable upload de fotos /<br />firma</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->182
+    148-. "<div>Sube documento final (único<br />escritor)</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->182
+    186-. "<div>Cifra objetos con CMEK</div><div style='font-size: 70%'>[Cloud KMS API · TLS]</div>" .->14
+  end
