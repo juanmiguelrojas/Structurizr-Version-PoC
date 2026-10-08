@@ -1,0 +1,62 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Dynamic"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 29 ["Volarte"]
+      style 29 fill:#ffffff,stroke:#7a0a1c,color:#7a0a1c
+
+      subgraph group1 ["Backends for Frontend"]
+        style group1 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+        style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+      end
+
+      subgraph group2 ["Canales (Clientes)"]
+        style group2 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        42["<div style='font-weight: bold'>App Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: React Native · Android exclusivo]</div><div style='font-size: 80%; margin-top:10px'>Offline-first: SQLite local<br />(WatermelonDB) + cola de<br />escritura con UUID por<br />acción. Fotos/firma al<br />filesystem local. Sync<br />bidireccional al reconectar<br />(delta + resumable upload).<br />Solo operarios; distribución<br />vía Intune / Managed Play. NO<br />se despliega en GCP.</div>"]
+        style 42 fill:#b5121b,stroke:#7e0c12,color:#ffffff
+      end
+
+      subgraph group3 ["Datos"]
+        style group3 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+        style 179 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+        181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+        style 181 fill:#4285f4,stroke:#2e5daa,color:#ffffff
+      end
+
+      subgraph group4 ["Mensajería"]
+        style group4 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+        style 160 fill:#7b1fa2,stroke:#561571,color:#ffffff
+      end
+
+      subgraph group5 ["Servicios de Dominio"]
+        style group5 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        118("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider) y crédito<br />disponible. Suscriptor de<br />operacion-cerrada para<br />actualizar saldo/crédito.</div>")
+        style 118 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+        131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+        style 131 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+        148("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación y retorna un ID<br />inmutable vinculado. Cola +<br />reintento sin duplicar<br />(HU-055). S07 define<br />contenido y numeración del<br />documento canónico; el Gestor<br />solo lo publica.</div>")
+        style 148 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+      end
+
+    end
+
+    42-. "<div>1. Sincroniza cierre de<br />operación</div><div style='font-size: 70%'>[REST/JSON · JWT · mTLS]</div>" .->82
+    82-. "<div>2. Publica operacion-cerrada</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    160-. "<div>3. Push gestor-documental-sub<br />(retry + DLQ)</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->148
+    160-. "<div>3. Push comercial-sub:<br />actualiza saldo/crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->118
+    160-. "<div>3. Push<br />operacion-conciliacion-sub</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    148-. "<div>4. Asigna numeración<br />secuencial</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    131-. "<div>4. Actualiza tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    118-. "<div>4. Persiste saldo</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    148-. "<div>5. Publica documento WORM (ID<br />inmutable)</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+  end

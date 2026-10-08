@@ -1,0 +1,61 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Cola de Mensajería - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    66("<div style='font-weight: bold'>BFF Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>BFF — Backend Volarte. Valida<br />JWT (issuer/audience, 2a<br />validación), resuelve<br />GroupToRoleMapping →<br />Role/Permission/Capability y<br />orquesta los servicios de<br />dominio. Publica<br />conciliacion-resuelta.<br />Auto-scaling · pay-per-use.</div>")
+    style 66 fill:#ea8600,stroke:#a35d00,color:#ffffff
+    82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+    style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+    118("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider) y crédito<br />disponible. Suscriptor de<br />operacion-cerrada para<br />actualizar saldo/crédito.</div>")
+    style 118 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+    131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+    style 131 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+    148("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación y retorna un ID<br />inmutable vinculado. Cola +<br />reintento sin duplicar<br />(HU-055). S07 define<br />contenido y numeración del<br />documento canónico; el Gestor<br />solo lo publica.</div>")
+    style 148 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+
+    subgraph 160 ["Cola de Mensajería"]
+      style 160 fill:#ffffff,stroke:#561571,color:#561571
+
+      161["<div style='font-weight: bold'>Topic: operacion-cerrada</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Se dispara al cerrar una<br />operación en campo. Fan-out a<br />3 suscriptores.</div>"]
+      style 161 fill:#ce93d8,stroke:#906697,color:#000000
+      162["<div style='font-weight: bold'>Topic: conciliacion-resuelta</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Se publica cuando un<br />supervisor resuelve desde la<br />Web una operación<br />PENDING_REVIEW (HU-050):<br />confirmar o anular.</div>"]
+      style 162 fill:#ce93d8,stroke:#906697,color:#000000
+      163["<div style='font-weight: bold'>Topic: doc-publicacion</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Solicitudes de publicación<br />documental (HU-055) con retry<br />+ DLQ.</div>"]
+      style 163 fill:#ce93d8,stroke:#906697,color:#000000
+      164["<div style='font-weight: bold'>Topic: tracking-eventos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Ingesta asíncrona de alta<br />frecuencia de eventos de<br />tracking (posición de<br />equipos).</div>"]
+      style 164 fill:#ce93d8,stroke:#906697,color:#000000
+      165("<div style='font-weight: bold'>Sub: gestor-documental-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Dispara generación y<br />publicación del documento<br />(HU-055).</div>")
+      style 165 fill:#e1bee7,stroke:#9d85a1,color:#000000
+      166("<div style='font-weight: bold'>Sub: comercial-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Actualiza saldo/crédito tras<br />el cierre de operación.</div>")
+      style 166 fill:#e1bee7,stroke:#9d85a1,color:#000000
+      167("<div style='font-weight: bold'>Sub: operacion-conciliacion-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Aplica la resolución<br />(finaliza o anula) sobre la<br />operación en tablas<br />operacionales.</div>")
+      style 167 fill:#e1bee7,stroke:#9d85a1,color:#000000
+      168("<div style='font-weight: bold'>Sub: tracking-eventos-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry]</div><div style='font-size: 80%; margin-top:10px'>Entrega eventos de tracking<br />al Svc: Operación (si el<br />topic está activo).</div>")
+      style 168 fill:#e1bee7,stroke:#9d85a1,color:#000000
+      169["<div style='font-weight: bold'>Dead Letter Topic</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub DLQ]</div><div style='font-size: 80%; margin-top:10px'>Mensajes que agotaron<br />reintentos (5 intentos,<br />backoff 10 s–600 s). Requiere<br />revisión manual.</div>"]
+      style 169 fill:#b71c1c,stroke:#801313,color:#ffffff
+    end
+
+    161-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->165
+    161-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->166
+    161-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->167
+    163-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->165
+    162-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->167
+    164-. "<div>Entrega</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->168
+    165-. "<div>Tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->169
+    166-. "<div>Tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->169
+    167-. "<div>Tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'>[Pub/Sub delivery (at-least-once)]</div>" .->169
+    66-. "<div>Consulta elegibilidad, precio<br />y crédito</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->118
+    66-. "<div>Consulta estado de operación<br />/ turnos</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    66-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->162
+    82-. "<div>Publica cierre de operación</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->161
+    82-. "<div>Publica solicitud de<br />documento</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->163
+    82-. "<div>Obtiene turnos / estado<br />operativo</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    82-. "<div>Publica eventos de tracking<br />de alta frecuencia</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->164
+    165-. "<div>Push: dispara publicación<br />documental</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->148
+    166-. "<div>Push: actualiza saldo /<br />crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->118
+    167-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    168-. "<div>Push: eventos de tracking</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+  end

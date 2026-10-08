@@ -1,0 +1,21 @@
+# L3 · Pub/Sub · Mensajería  (contenedor: pubsub)
+topicOperacionCerrada = component "Topic: operacion-cerrada" "Se dispara al cerrar una operación en campo. Fan-out a 3 suscriptores." "Pub/Sub Topic" "Topic"
+topicConciliacionResuelta = component "Topic: conciliacion-resuelta" "Se publica cuando un supervisor resuelve desde la Web una operación PENDING_REVIEW (HU-050): confirmar o anular." "Pub/Sub Topic" "Topic"
+topicDocPublicacion = component "Topic: doc-publicacion" "Solicitudes de publicación documental (HU-055) con retry + DLQ." "Pub/Sub Topic" "Topic"
+topicTracking = component "Topic: tracking-eventos" "Ingesta asíncrona de alta frecuencia de eventos de tracking (posición de equipos)." "Pub/Sub Topic" "Topic"
+
+subGestorDocumental = component "Sub: gestor-documental-sub" "Dispara generación y publicación del documento (HU-055)." "Push · retry + DLQ" "Subscription"
+subComercial = component "Sub: comercial-sub" "Actualiza saldo/crédito tras el cierre de operación." "Push · retry + DLQ" "Subscription"
+subOperacionConciliacion = component "Sub: operacion-conciliacion-sub" "Aplica la resolución (finaliza o anula) sobre la operación en tablas operacionales." "Push · retry + DLQ" "Subscription"
+subTracking = component "Sub: tracking-eventos-sub" "Entrega eventos de tracking al Svc: Operación (si el topic está activo)." "Push · retry" "Subscription"
+deadLetterTopic = component "Dead Letter Topic" "Mensajes que agotaron reintentos (5 intentos, backoff 10 s–600 s). Requiere revisión manual." "Pub/Sub DLQ" "Topic,DLQ"
+
+topicOperacionCerrada -> subGestorDocumental "Entrega" "Pub/Sub delivery (at-least-once)"
+topicOperacionCerrada -> subComercial "Entrega" "Pub/Sub delivery (at-least-once)"
+topicOperacionCerrada -> subOperacionConciliacion "Entrega" "Pub/Sub delivery (at-least-once)"
+topicDocPublicacion -> subGestorDocumental "Entrega" "Pub/Sub delivery (at-least-once)"
+topicConciliacionResuelta -> subOperacionConciliacion "Entrega" "Pub/Sub delivery (at-least-once)"
+topicTracking -> subTracking "Entrega" "Pub/Sub delivery (at-least-once)"
+subGestorDocumental -> deadLetterTopic "Tras 5 reintentos (backoff 10s-600s)" "Pub/Sub delivery (at-least-once)"
+subComercial -> deadLetterTopic "Tras 5 reintentos (backoff 10s-600s)" "Pub/Sub delivery (at-least-once)"
+subOperacionConciliacion -> deadLetterTopic "Tras 5 reintentos (backoff 10s-600s)" "Pub/Sub delivery (at-least-once)"

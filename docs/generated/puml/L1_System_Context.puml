@@ -1,0 +1,71 @@
+@startuml
+set separator none
+title Volarte - System Context
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+AddBoundaryTag("API Management (terpel-gtic-apigee)", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_1, "API Management (terpel-gtic-apigee)", $tags="API Management (terpel-gtic-apigee)") {
+  System(ApigeeAPIGateway, "Apigee API Gateway", $descr="Plataforma de administración de APIs nativa de GCP (Proxy instance + Gateway). Valida firma/issuer/audience del JWT contra el JWKS de Entra ID, aplica cuotas y políticas.", $tags="", $link="")
+}
+
+AddBoundaryTag("Datos y Analítica Corporativa", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_2, "Datos y Analítica Corporativa", $tags="Datos y Analítica Corporativa") {
+  System(DatalakeBigQuery, "Datalake BigQuery", $descr="Repositorio analítico corporativo de datos tabulares. Recibe información transformada por los ETL (Cloud Data Fusion).", $tags="", $link="")
+}
+
+AddBoundaryTag("Ecosistema de Portales (Referencia L0)", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_3, "Ecosistema de Portales (Referencia L0)", $tags="Ecosistema de Portales (Referencia L0)") {
+  System(HUBCorporativoPortal, "HUB Corporativo (Portal)", $descr="Portal interno/externo de referencia (L0): wiki de conocimiento, catálogo de web apps, SSO federado y shell MFE. Comparte la plataforma transversal con Volarte.", $tags="", $link="")
+}
+
+AddBoundaryTag("Identidad", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_4, "Identidad", $tags="Identidad") {
+  System(MicrosoftEntraID, "Microsoft Entra ID", $descr="Proveedor de identidad corporativo (empleados y operarios). SSO · MFA · RBAC por grupos. OIDC / OAuth 2.0 + PKCE. Transversal al hub.", $tags="", $link="")
+  System(CIAMPingIdentity, "CIAM Ping Identity", $descr="Gestiona identidad y acceso de usuarios externos: autenticación, autorización, registro y ciclo de vida de identidades.", $tags="", $link="")
+}
+
+AddBoundaryTag("Observabilidad", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_5, "Observabilidad", $tags="Observabilidad") {
+  System(DynatraceTenantTerpel, "Dynatrace (Tenant Terpel)", $descr="Fuente única de verdad corporativa de observabilidad: APM, Infra Monitoring, DEM/RUM, RASP y Business Analytics.", $tags="", $link="")
+}
+
+AddBoundaryTag("Sistemas Transaccionales Corporativos", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+Boundary(group_6, "Sistemas Transaccionales Corporativos", $tags="Sistemas Transaccionales Corporativos") {
+  System(Salesforce, "Salesforce", $descr="Dato maestro de clientes.", $tags="", $link="")
+  System(PriceProviderExterno, "PriceProvider Externo", $descr="Fuente autoritativa de precios de combustible (decisión P-072 PENDING). Volarte no inventa la fuente de precio.", $tags="", $link="")
+  System(Skypredict, "Skypredict", $descr="Motor externo de recomendación/predicción usado por el servicio de Asignación/Optimización.", $tags="", $link="")
+}
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo (tenant Terpel) que accede a Volarte vía web con SSO de Entra ID: comercial, supervisión y administración.", $tags="", $link="")
+Person(UsuarioExterno, "Usuario Externo", $descr="Usuario que no está dentro del tenant de Terpel. Se autentica a través del CIAM (Ping Identity).", $tags="", $link="")
+System(Volarte, "Volarte", $descr="Sistema de operación de abastecimiento: web (comercial, supervisión, admin) y app móvil offline-first para operarios en campo. Orquesta datos maestros, comercial, operación, asignación y publicación documental sobre GCP.", $tags="", $link="")
+Person(OperariodeEquipoAbastecedor, "Operario de Equipo Abastecedor", $descr="Único rol que usa la app móvil. Opera en campo (plataforma/rampa) con o sin cobertura de red.", $tags="", $link="")
+Person(AdminDevTeam, "Admin / Dev Team", $descr="Gestiona módulos, publica versiones, administra permisos (GroupToRoleMapping) y monitorea el uso de la plataforma.", $tags="", $link="")
+
+Rel(EmpleadoInterno, Volarte, "Accede a Volarte con SSO (navega, consulta, concilia)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(UsuarioExterno, Volarte, "Accede a Volarte (portal externo)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(OperariodeEquipoAbastecedor, Volarte, "Opera en campo: turnos, checklist, PQDA, firma", $techn="UI nativa Android", $tags="", $link="")
+Rel(AdminDevTeam, Volarte, "Administra módulos, permisos y publica versiones", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(Volarte, MicrosoftEntraID, "Login SSO / tokens (Authorization Code + PKCE)", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte, CIAMPingIdentity, "Login de usuarios externos", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte, ApigeeAPIGateway, "Consume APIs del BFF Web (sin caché)", $techn="REST/JSON · JWT · HTTPS", $tags="", $link="")
+Rel(Volarte, DynatraceTenantTerpel, "Envía eventos RUM de uso / error", $techn="Dynatrace RUM · HTTPS", $tags="", $link="")
+Rel(Volarte, DatalakeBigQuery, "Exporta eventos al datalake (BigQuery subscription)", $techn="Pub/Sub BigQuery subscription", $tags="", $link="")
+Rel(MicrosoftEntraID, Volarte, "Provisiona identidades / grupos", $techn="SCIM / OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte, PriceProviderExterno, "Consulta precio (cuando se confirme P-072)", $techn="REST · HTTPS", $tags="", $link="")
+Rel(Volarte, Salesforce, "Sincroniza dato maestro de clientes", $techn="REST · HTTPS · OAuth2", $tags="", $link="")
+Rel(Volarte, Skypredict, "Solicita recomendación (degradación controlada)", $techn="REST · HTTPS", $tags="", $link="")
+Rel(EmpleadoInterno, HUBCorporativoPortal, "Navega wiki, lanza apps y federa sesión", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(HUBCorporativoPortal, MicrosoftEntraID, "Delega autenticación", $techn="OIDC / OAuth 2.0", $tags="", $link="")
+Rel(HUBCorporativoPortal, ApigeeAPIGateway, "Consume APIs corporativas", $techn="REST · JWT · HTTPS", $tags="", $link="")
+Rel(HUBCorporativoPortal, Volarte, "Lanza Volarte desde el catálogo de web apps (SSO)", $techn="HTTPS · OIDC token exchange", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

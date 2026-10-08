@@ -1,0 +1,15 @@
+{
+  "name": "volarte-architecture-as-code",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Architecture as Code (Structurizr DSL) para Volarte - Terpel Dirección de Arquitectura",
+  "scripts": {
+    "build": "bash scripts/aac-build.sh",
+    "review": "python3 scripts/architecture_reviewer.py"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "11.4.2",
+    "marked": "14.1.4",
+    "puppeteer": "23.11.1"
+  }
+}

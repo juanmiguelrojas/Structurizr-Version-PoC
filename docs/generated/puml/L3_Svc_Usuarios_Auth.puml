@@ -1,0 +1,39 @@
+@startuml
+set separator none
+title Volarte - Svc: Usuarios / Auth - Components
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(MicrosoftEntraID, "Microsoft Entra ID", $descr="Proveedor de identidad corporativo (empleados y operarios). SSO · MFA · RBAC por grupos. OIDC / OAuth 2.0 + PKCE. Transversal al hub.", $tags="", $link="")
+ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+ContainerDb(Volarte.Memorystore, "Memorystore", $techn="Redis · Memorystore", $descr="Cache de sesiones, tokens, queries, decisiones de autorización (TTL corto) y llaves de idempotencia por UUID.", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcUsuariosAuth_boundary", "Svc: Usuarios / Auth", $tags="") {
+  Component(Volarte.SvcUsuariosAuth.APIRouter, "API Router", $techn="FastAPI", $descr="Endpoints /roles · /permissions · /mapping · /audit.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, "Resolver GroupToRoleMapping", $techn="Python", $descr="Deriva el rol efectivo desde grupo(s) de Entra ID. RN-007 / RN-008.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.AdaptadordeSincronizaciónEntraID, "Adaptador de Sincronización Entra ID", $techn="Microsoft Graph API SDK", $descr="Consulta pertenencia a grupos cuando el claim 'groups' se trunca.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.InvalidadordeCache, "Invalidador de Cache", $techn="Python", $descr="Notifica a Redis cuando cambia un rol, sin esperar al TTL.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.ClienteCloudSQL, "Cliente Cloud SQL", $techn="SQLAlchemy", $descr="Acceso a datos de usuarios / roles / mapping.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.Auditor, "Auditor", $techn="Python", $descr="Registra toda decisión de autorización, concedida o denegada.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcUsuariosAuth.APIRouter, Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, "Resuelve", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, Volarte.SvcUsuariosAuth.AdaptadordeSincronizaciónEntraID, "Consulta grupos", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, Volarte.SvcUsuariosAuth.Auditor, "Registra decisión", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, Volarte.SvcUsuariosAuth.ClienteCloudSQL, "Persiste / consulta mapping", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.Auditor, Volarte.SvcUsuariosAuth.ClienteCloudSQL, "Persiste auditoría", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.Auditor, Volarte.SvcUsuariosAuth.InvalidadordeCache, "Invalida en cambio de rol", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.AdaptadordeSincronizaciónEntraID, MicrosoftEntraID, "Sincroniza pertenencia a grupos", $techn="Microsoft Graph API · HTTPS · OAuth2 client credentials", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.InvalidadordeCache, Volarte.Memorystore, "Invalida decisiones cacheadas", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ClienteCloudSQL, Volarte.CloudSQL, "Lee / escribe usuarios, roles y mapping", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

@@ -1,0 +1,190 @@
+name: Architecture Pipeline (AaC · Volarte)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "dsl/**"
+      - "docs/CHANGELOG_DSL.md"
+      - "docs/adr/**"
+      - "docs/workspace/**"
+      - "scripts/**"
+      - "package*.json"
+      - ".github/workflows/architecture-pipeline.yml"
+  push:
+    branches: [main]
+    paths:
+      - "dsl/**"
+      - "docs/CHANGELOG_DSL.md"
+      - "docs/adr/**"
+      - "docs/workspace/**"
+      - "scripts/**"
+      - "package*.json"
+      - ".github/workflows/architecture-pipeline.yml"
+  workflow_dispatch:
+    inputs:
+      ai_review:
+        description: "Ejecutar revisión narrativa con Claude (requiere secret ANTHROPIC_API_KEY)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: aac-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  STRUCTURIZR_CLI_VERSION: "2025.05.28"
+  JAVA_VERSION: "21"
+  NODE_VERSION: "22"
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1) Validación de sintaxis DSL + Agente Revisor (bloqueante para el PR)
+  # ---------------------------------------------------------------------------
+  validate-and-review:
+    name: Validar DSL y Agente Revisor
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # requerido por R4-Trazabilidad (diff contra la rama base)
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache structurizr-cli
+        uses: actions/cache@v4
+        with:
+          path: .aac/structurizr-cli-${{ env.STRUCTURIZR_CLI_VERSION }}
+          key: structurizr-cli-${{ env.STRUCTURIZR_CLI_VERSION }}
+
+      - name: Pruebas unitarias del Agente Revisor
+        run: python3 -m unittest discover -s scripts/tests -v
+
+      - name: Instalar SDK de Anthropic (revisión IA opcional)
+        if: ${{ github.event_name == 'pull_request' || inputs.ai_review }}
+        run: pip install --quiet anthropic
+
+      - name: Determinar rama base para R4-Trazabilidad
+        id: base
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "args=--base origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event_name }}" == "push" && "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
+            echo "args=--base ${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "args=--skip-traceability" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validar sintaxis + ejecutar Agente Revisor
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          AI=""
+          if [[ -n "${ANTHROPIC_API_KEY}" ]]; then AI="--ai"; fi
+          bash scripts/aac-build.sh --validate-only ${{ steps.base.outputs.args }} $AI
+
+      - name: Publicar resumen en el job
+        if: always()
+        run: |
+          [[ -f docs/generated/review/review-report.md ]] && cat docs/generated/review/review-report.md >> "$GITHUB_STEP_SUMMARY"
+          [[ -f docs/generated/inspect-report.txt ]] && { echo '### structurizr inspect'; echo '```'; cat docs/generated/inspect-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Comentar reporte en el PR
+        if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'docs/generated/review/review-report.md';
+            if (!fs.existsSync(path)) return;
+            const marker = '<!-- aac-architecture-review -->';
+            let body = `${marker}\n${fs.readFileSync(path, 'utf8')}`;
+            if (body.length > 60000) body = body.slice(0, 60000) + '\n\n_(reporte truncado; ver artefacto del workflow)_';
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number });
+            const previous = comments.find(c => c.body && c.body.includes(marker));
+            if (previous) await github.rest.issues.updateComment({ owner, repo, comment_id: previous.id, body });
+            else await github.rest.issues.createComment({ owner, repo, issue_number, body });
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: architecture-review
+          path: |
+            docs/generated/review/
+            docs/generated/inspect-report.txt
+
+  # ---------------------------------------------------------------------------
+  # 2) Compilación de artefactos gráficos + PDF
+  # ---------------------------------------------------------------------------
+  build-artifacts:
+    name: Compilar diagramas y PDF
+    needs: validate-and-review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Cache structurizr-cli
+        uses: actions/cache@v4
+        with:
+          path: .aac/structurizr-cli-${{ env.STRUCTURIZR_CLI_VERSION }}
+          key: structurizr-cli-${{ env.STRUCTURIZR_CLI_VERSION }}
+
+      - name: Instalar dependencias Node (Mermaid CLI + Puppeteer)
+        run: npm ci --no-audit --no-fund
+
+      - name: Compilar (SVG, PNG, PNG alta resolución, Mermaid, PlantUML, PDF)
+        run: bash scripts/aac-build.sh --skip-traceability
+
+      - name: Resumen de compilación
+        run: cat docs/generated/BUILD_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: volarte-architecture-${{ github.sha }}
+          path: docs/generated/
+          retention-days: 30
+
+      # En main la documentación estática se versiona junto al DSL.
+      - name: Publicar docs/generated en main
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          git config user.name  "aac-pipeline[bot]"
+          git config user.email "aac-pipeline[bot]@users.noreply.github.com"
+          git add docs/generated
+          if git diff --cached --quiet; then
+            echo "Sin cambios en docs/generated"
+          else
+            git commit -m "docs(aac): regenerar artefactos de arquitectura [skip ci]"
+            git push
+          fi

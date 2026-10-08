@@ -1,0 +1,123 @@
+@startuml
+set separator none
+title Volarte - Containers
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo (tenant Terpel) que accede a Volarte vía web con SSO de Entra ID: comercial, supervisión y administración.", $tags="", $link="")
+Person(UsuarioExterno, "Usuario Externo", $descr="Usuario que no está dentro del tenant de Terpel. Se autentica a través del CIAM (Ping Identity).", $tags="", $link="")
+Person(OperariodeEquipoAbastecedor, "Operario de Equipo Abastecedor", $descr="Único rol que usa la app móvil. Opera en campo (plataforma/rampa) con o sin cobertura de red.", $tags="", $link="")
+Person(AdminDevTeam, "Admin / Dev Team", $descr="Gestiona módulos, publica versiones, administra permisos (GroupToRoleMapping) y monitorea el uso de la plataforma.", $tags="", $link="")
+System(MicrosoftEntraID, "Microsoft Entra ID", $descr="Proveedor de identidad corporativo (empleados y operarios). SSO · MFA · RBAC por grupos. OIDC / OAuth 2.0 + PKCE. Transversal al hub.", $tags="", $link="")
+System(CIAMPingIdentity, "CIAM Ping Identity", $descr="Gestiona identidad y acceso de usuarios externos: autenticación, autorización, registro y ciclo de vida de identidades.", $tags="", $link="")
+System(Cloudflare, "Cloudflare", $descr="Plataforma de protección de tráfico (WAF, DDoS) y CDN para el acceso web desde red pública. DNS apunta a la IP del LB externo (pass-through).", $tags="", $link="")
+System(ZTNANetskope, "ZTNA Netskope", $descr="Acceso Zero Trust para dispositivos gestionados: posture check (Intune), GlobalProtect/Zscaler, split tunneling controlado. Único camino de red de la app móvil.", $tags="", $link="")
+System(InternalLoadBalancer, "Internal Load Balancer", $descr="GCP Cloud Load Balancing interno. Re-cifra TLS y enruta hacia la instancia proxy de Apigee y hacia los BFF en Cloud Run.", $tags="", $link="")
+System(ApigeeAPIGateway, "Apigee API Gateway", $descr="Plataforma de administración de APIs nativa de GCP (Proxy instance + Gateway). Valida firma/issuer/audience del JWT contra el JWKS de Entra ID, aplica cuotas y políticas.", $tags="", $link="")
+System(GCPSecretManager, "GCP Secret Manager", $descr="Almacena secretos de todos los servicios (credenciales DB, API keys, client secrets). Acceso vía Service Account (IAM). Rotación automática y audit log.", $tags="", $link="")
+System(OTelCollector, "OTel Collector", $descr="OpenTelemetry Collector (Cloud Run). Recibe OTLP gRPC/HTTP, enmascara datos personales y exporta trazas, métricas y logs a Dynatrace (estrategia 'OTel First').", $tags="", $link="")
+System(DatalakeBigQuery, "Datalake BigQuery", $descr="Repositorio analítico corporativo de datos tabulares. Recibe información transformada por los ETL (Cloud Data Fusion).", $tags="", $link="")
+System(Salesforce, "Salesforce", $descr="Dato maestro de clientes.", $tags="", $link="")
+System(PriceProviderExterno, "PriceProvider Externo", $descr="Fuente autoritativa de precios de combustible (decisión P-072 PENDING). Volarte no inventa la fuente de precio.", $tags="", $link="")
+System(Skypredict, "Skypredict", $descr="Motor externo de recomendación/predicción usado por el servicio de Asignación/Optimización.", $tags="", $link="")
+
+System_Boundary("Volarte_boundary", "Volarte", $tags="") {
+  AddBoundaryTag("Backends for Frontend", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_1, "Backends for Frontend", $tags="Backends for Frontend") {
+    Container(Volarte.BFFWeb, "BFF Web", $techn="Python · FastAPI · Cloud Run", $descr="BFF — Backend Volarte. Valida JWT (issuer/audience, 2a validación), resuelve GroupToRoleMapping → Role/Permission/Capability y orquesta los servicios de dominio. Publica conciliacion-resuelta. Auto-scaling · pay-per-use.", $tags="", $link="")
+    Container(Volarte.BFFMóvil, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Canales (Clientes)", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_2, "Canales (Clientes)", $tags="Canales (Clientes)") {
+    Container(Volarte.FrontendWeb, "Frontend Web", $techn="React (CSR) + Vite · SPA", $descr="SPA sin MFE: un solo bundle con code-splitting por módulo (React.lazy). Login SSO vía MSAL.js contra Entra ID / CIAM. Deploy: CDN Cloudflare + GCS (terpel-gtic-front).", $tags="", $link="")
+    Container(Volarte.AppMóvil, "App Móvil", $techn="React Native · Android exclusivo", $descr="Offline-first: SQLite local (WatermelonDB) + cola de escritura con UUID por acción. Fotos/firma al filesystem local. Sync bidireccional al reconectar (delta + resumable upload). Solo operarios; distribución vía Intune / Managed Play. NO se despliega en GCP.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Datos", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_3, "Datos", $tags="Datos") {
+    ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+    ContainerDb(Volarte.Memorystore, "Memorystore", $techn="Redis · Memorystore", $descr="Cache de sesiones, tokens, queries, decisiones de autorización (TTL corto) y llaves de idempotencia por UUID.", $tags="", $link="")
+    Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Google Cloud Storage", $descr="Almacenamiento WORM/versionado de documentos de entrega, fotos y firmas. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Mensajería", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_4, "Mensajería", $tags="Mensajería") {
+    ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Servicios de Dominio", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_5, "Servicios de Dominio", $tags="Servicios de Dominio") {
+    Container(Volarte.SvcUsuariosAuth, "Svc: Usuarios / Auth", $techn="Python · FastAPI · Cloud Run", $descr="S01: roles, permisos, perfil y GroupToRoleMapping. Sincroniza grupos con Entra ID (Microsoft Graph). Auditoría de decisiones de autorización.", $tags="", $link="")
+    Container(Volarte.SvcDatosMaestros, "Svc: Datos Maestros", $techn="Python · FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile, geocercas (HU-145).", $tags="", $link="")
+    Container(Volarte.SvcComercial, "Svc: Comercial", $techn="Python · FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider) y crédito disponible. Suscriptor de operacion-cerrada para actualizar saldo/crédito.", $tags="", $link="")
+    Container(Volarte.SvcOperación, "Svc: Operación", $techn="Python · FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición e inventario de calidad. Suscriptor de tracking-eventos y conciliacion-resuelta.", $tags="", $link="")
+    Container(Volarte.SvcAsignaciónOptimización, "Svc: Asignación / Optimización", $techn="Python · MILP Solver · GKE", $descr="S06: motor MILP + recomendación Skypredict con degradación controlada. GKE por cómputo sostenido (P-025 PENDING: owner/runtime final los confirma Arquitectura).", $tags="", $link="")
+    Container(Volarte.GestorDocumental, "Gestor Documental", $techn="Python · FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación y retorna un ID inmutable vinculado. Cola + reintento sin duplicar (HU-055). S07 define contenido y numeración del documento canónico; el Gestor solo lo publica.", $tags="", $link="")
+  }
+
+}
+
+Rel(EmpleadoInterno, Volarte.FrontendWeb, "Accede a Volarte con SSO (navega, consulta, concilia)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(UsuarioExterno, Volarte.FrontendWeb, "Accede a Volarte (portal externo)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(OperariodeEquipoAbastecedor, Volarte.AppMóvil, "Opera en campo: turnos, checklist, PQDA, firma", $techn="UI nativa Android", $tags="", $link="")
+Rel(AdminDevTeam, Volarte.FrontendWeb, "Administra módulos, permisos y publica versiones", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(EmpleadoInterno, Cloudflare, "Resuelve DNS y tráfico web", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(UsuarioExterno, Cloudflare, "Resuelve DNS y tráfico web", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(InternalLoadBalancer, ApigeeAPIGateway, "Enruta a Proxy instance de Apigee", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(ApigeeAPIGateway, InternalLoadBalancer, "Enruta peticiones autorizadas hacia los BFF", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(InternalLoadBalancer, Volarte.BFFWeb, "Resuelve peticiones Web (JWT ya validado por Apigee)", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(InternalLoadBalancer, Volarte.BFFMóvil, "Resuelve peticiones Móviles (JWT ya validado por Apigee)", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(ZTNANetskope, ApigeeAPIGateway, "Acceso privado ZTNA (sin Cloudflare)", $techn="mTLS · Red corporativa privada", $tags="", $link="")
+Rel(Volarte.FrontendWeb, MicrosoftEntraID, "Login SSO / tokens (Authorization Code + PKCE)", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb, CIAMPingIdentity, "Login de usuarios externos", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb, ApigeeAPIGateway, "Consume APIs del BFF Web (sin caché)", $techn="REST/JSON · JWT · HTTPS", $tags="", $link="")
+Rel(Cloudflare, Volarte.FrontendWeb, "Sirve el bundle estático (CDN + GCS)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(Volarte.AppMóvil, MicrosoftEntraID, "Login SSO (solo Entra ID)", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.AppMóvil, ZTNANetskope, "Túnel gestionado (MDM / posture Intune)", $techn="ZTNA · mTLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.Memorystore, "Cache de decisión de autorización", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.BFFWeb, GCPSecretManager, "Lee secretos (IAM Service Account)", $techn="gRPC · TLS · IAM", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcUsuariosAuth, "Consulta roles / mapping", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcDatosMaestros, "Consulta datos maestros", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcComercial, "Consulta elegibilidad, precio y crédito", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcOperación, "Consulta estado de operación / turnos", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcAsignaciónOptimización, "Solicita recomendación de asignación", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.CloudSQL, "Consultas varias (Proxy SQL)", $techn="Cloud SQL Auth Proxy · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.ColadeMensajería, "Publica resolución del supervisor (HU-050)", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, OTelCollector, "Exporta trazas, métricas y logs", $techn="OTLP gRPC · TLS · IAM Invoker", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.Memorystore, "Dedupe por UUID de acción", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.CloudSQL, "Escribe / lee tablas de Sincronización", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.DocumentosGCS, "Resumable upload de fotos / firma", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.ColadeMensajería, "Publica cierre de operación", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcOperación, "Obtiene turnos / estado operativo", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcDatosMaestros, "Obtiene catálogos versionados", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFMóvil, GCPSecretManager, "Lee secretos (IAM Service Account)", $techn="gRPC · TLS · IAM", $tags="", $link="")
+Rel(Volarte.BFFMóvil, OTelCollector, "Exporta trazas, métricas y logs", $techn="OTLP gRPC · TLS · IAM Invoker", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.GestorDocumental, "Push: dispara publicación documental", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcComercial, "Push: actualiza saldo / crédito", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación, "Push: finaliza / anula operación pendiente", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, DatalakeBigQuery, "Exporta eventos al datalake (BigQuery subscription)", $techn="Pub/Sub BigQuery subscription", $tags="", $link="")
+Rel(Volarte.GestorDocumental, Volarte.CloudSQL, "Persiste número / metadata documental", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.GestorDocumental, Volarte.DocumentosGCS, "Sube documento final (único escritor)", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth, MicrosoftEntraID, "Sincroniza pertenencia a grupos", $techn="Microsoft Graph API · HTTPS · OAuth2 client credentials", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth, Volarte.Memorystore, "Invalida decisiones cacheadas", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth, Volarte.CloudSQL, "Lee / escribe usuarios, roles y mapping", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(MicrosoftEntraID, Volarte.SvcUsuariosAuth, "Provisiona identidades / grupos", $techn="SCIM / OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.SvcDatosMaestros, "Consulta geocerca (S02 / HU-145)", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.CloudSQL, "Lee / escribe tablas operacionales", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcComercial, PriceProviderExterno, "Consulta precio (cuando se confirme P-072)", $techn="REST · HTTPS", $tags="", $link="")
+Rel(Volarte.SvcComercial, Volarte.CloudSQL, "Lee / escribe estado comercial", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcDatosMaestros, Volarte.CloudSQL, "Lee / escribe datos maestros", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcDatosMaestros, Salesforce, "Sincroniza dato maestro de clientes", $techn="REST · HTTPS · OAuth2", $tags="", $link="")
+Rel(Volarte.SvcAsignaciónOptimización, Skypredict, "Solicita recomendación (degradación controlada)", $techn="REST · HTTPS", $tags="", $link="")
+Rel(Volarte.SvcAsignaciónOptimización, Volarte.SvcOperación, "Lee estado dinámico de equipos / operadores", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

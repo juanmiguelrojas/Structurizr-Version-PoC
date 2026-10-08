@@ -1,0 +1,147 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["System Landscape"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph group1 ["API Management (terpel-gtic-apigee)"]
+      style group1 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      12["<div style='font-weight: bold'>Apigee API Gateway</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de APIs nativa de GCP (Proxy<br />instance + Gateway). Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID,<br />aplica cuotas y políticas.</div>"]
+      style 12 fill:#34a853,stroke:#24753a,color:#ffffff
+    end
+
+    subgraph group2 ["Borde y Red Corporativa (terpel-infra-vpc-transversal)"]
+      style group2 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      10["<div style='font-weight: bold'>Firewall Palo Alto</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Firewall de red que<br />inspecciona y controla el<br />tráfico de entrada y salida,<br />aplicando políticas de<br />seguridad y NAT.</div>"]
+      style 10 fill:#374151,stroke:#262d38,color:#ffffff
+      11["<div style='font-weight: bold'>Internal Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GCP Cloud Load Balancing<br />interno. Re-cifra TLS y<br />enruta hacia la instancia<br />proxy de Apigee y hacia los<br />BFF en Cloud Run.</div>"]
+      style 11 fill:#374151,stroke:#262d38,color:#ffffff
+      7["<div style='font-weight: bold'>Cloudflare</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de protección de<br />tráfico (WAF, DDoS) y CDN<br />para el acceso web desde red<br />pública. DNS apunta a la IP<br />del LB externo<br />(pass-through).</div>"]
+      style 7 fill:#f48120,stroke:#aa5a16,color:#ffffff
+      8["<div style='font-weight: bold'>ZTNA Netskope</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Acceso Zero Trust para<br />dispositivos gestionados:<br />posture check (Intune),<br />GlobalProtect/Zscaler, split<br />tunneling controlado. Único<br />camino de red de la app<br />móvil.</div>"]
+      style 8 fill:#f48120,stroke:#aa5a16,color:#ffffff
+      9["<div style='font-weight: bold'>External Regional Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GCP Cloud Load Balancing<br />externo. Termina SSL/TLS en<br />el borde y enruta hacia el<br />firewall corporativo.</div>"]
+      style 9 fill:#374151,stroke:#262d38,color:#ffffff
+    end
+
+    subgraph group3 ["Datos y Analítica Corporativa"]
+      style group3 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      19[("<div style='font-weight: bold'>Datalake BigQuery</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Repositorio analítico<br />corporativo de datos<br />tabulares. Recibe información<br />transformada por los ETL<br />(Cloud Data Fusion).</div>")]
+      style 19 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+      20["<div style='font-weight: bold'>Cloud Data Fusion</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Integración de datos (ETL) e<br />ingesta al datalake<br />corporativo.</div>"]
+      style 20 fill:#8c8c8c,stroke:#626262,color:#ffffff
+    end
+
+    subgraph group4 ["Ecosistema de Portales (Referencia L0)"]
+      style group4 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      27["<div style='font-weight: bold'>HUB Corporativo (Portal)</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Portal interno/externo de<br />referencia (L0): wiki de<br />conocimiento, catálogo de web<br />apps, SSO federado y shell<br />MFE. Comparte la plataforma<br />transversal con Volarte.</div>"]
+      style 27 fill:#b0b7c3,stroke:#7b8088,color:#1f2937
+      28["<div style='font-weight: bold'>Power BI Service</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Servicio de BI de Microsoft<br />(Embed API, REST API,<br />dashboards y reports)<br />consumido por el HUB vía<br />Power BI Proxy.</div>"]
+      style 28 fill:#8c8c8c,stroke:#626262,color:#ffffff
+    end
+
+    subgraph group5 ["Identidad"]
+      style group5 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      5["<div style='font-weight: bold'>Microsoft Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo (empleados y<br />operarios). SSO · MFA · RBAC<br />por grupos. OIDC / OAuth 2.0<br />+ PKCE. Transversal al hub.</div>"]
+      style 5 fill:#5c2d91,stroke:#401f65,color:#ffffff
+      6["<div style='font-weight: bold'>CIAM Ping Identity</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestiona identidad y acceso<br />de usuarios externos:<br />autenticación, autorización,<br />registro y ciclo de vida de<br />identidades.</div>"]
+      style 6 fill:#5c2d91,stroke:#401f65,color:#ffffff
+    end
+
+    subgraph group6 ["Observabilidad"]
+      style group6 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      15["<div style='font-weight: bold'>OTel Collector</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>OpenTelemetry Collector<br />(Cloud Run). Recibe OTLP<br />gRPC/HTTP, enmascara datos<br />personales y exporta trazas,<br />métricas y logs a Dynatrace<br />(estrategia 'OTel First').</div>"]
+      style 15 fill:#1496ff,stroke:#0e69b2,color:#ffffff
+      16["<div style='font-weight: bold'>Dynatrace (Tenant Terpel)</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente única de verdad<br />corporativa de<br />observabilidad: APM, Infra<br />Monitoring, DEM/RUM, RASP y<br />Business Analytics.</div>"]
+      style 16 fill:#1496ff,stroke:#0e69b2,color:#ffffff
+      17["<div style='font-weight: bold'>GCP Cloud Logging</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Logs centralizados y audit<br />logs (IAP, Secret Manager,<br />KMS). Retención configurable<br />y alertas.</div>"]
+      style 17 fill:#1496ff,stroke:#0e69b2,color:#ffffff
+      18["<div style='font-weight: bold'>GCP Cloud Monitoring</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Métricas de Cloud Run,<br />alertas de errores/latencia,<br />dashboards, uptime checks y<br />SLO tracking.</div>"]
+      style 18 fill:#1496ff,stroke:#0e69b2,color:#ffffff
+    end
+
+    subgraph group7 ["Seguridad Transversal"]
+      style group7 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      13["<div style='font-weight: bold'>GCP Secret Manager</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Almacena secretos de todos<br />los servicios (credenciales<br />DB, API keys, client<br />secrets). Acceso vía Service<br />Account (IAM). Rotación<br />automática y audit log.</div>"]
+      style 13 fill:#1168bd,stroke:#5c2d91,color:#ffffff
+      14["<div style='font-weight: bold'>Cloud KMS</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestión de llaves de cifrado<br />(CMEK, HSM, rotación). Cifra<br />Cloud SQL, GCS, Firestore y<br />los secretos de Secret<br />Manager.</div>"]
+      style 14 fill:#1168bd,stroke:#5c2d91,color:#ffffff
+    end
+
+    subgraph group8 ["Sistemas Transaccionales Corporativos"]
+      style group8 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+      21["<div style='font-weight: bold'>SAP ERP</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>ERP corporativo de Terpel.</div>"]
+      style 21 fill:#8c8c8c,stroke:#626262,color:#ffffff
+      22["<div style='font-weight: bold'>Salesforce</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Dato maestro de clientes.</div>"]
+      style 22 fill:#8c8c8c,stroke:#626262,color:#ffffff
+      23["<div style='font-weight: bold'>Zenput</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Sistema corporativo<br />referenciado en L0 (el<br />Draw.io no trae descripción;<br />pendiente de confirmar por<br />Arquitectura).</div>"]
+      style 23 fill:#8c8c8c,stroke:#626262,color:#ffffff
+      24["<div style='font-weight: bold'>GuruSoft</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Servicio externo de<br />facturación electrónica.</div>"]
+      style 24 fill:#8c8c8c,stroke:#626262,color:#ffffff
+      25["<div style='font-weight: bold'>PriceProvider Externo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente autoritativa de<br />precios de combustible<br />(decisión P-072 PENDING).<br />Volarte no inventa la fuente<br />de precio.</div>"]
+      style 25 fill:#8c8c8c,stroke:#f59e0b,color:#ffffff
+      26["<div style='font-weight: bold'>Skypredict</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Motor externo de<br />recomendación/predicción<br />usado por el servicio de<br />Asignación/Optimización.</div>"]
+      style 26 fill:#8c8c8c,stroke:#626262,color:#ffffff
+    end
+
+    1["<div style='font-weight: bold'>Empleado Interno</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario corporativo (tenant<br />Terpel) que accede a Volarte<br />vía web con SSO de Entra ID:<br />comercial, supervisión y<br />administración.</div>"]
+    style 1 fill:#0b3d91,stroke:#072a65,color:#ffffff
+    2["<div style='font-weight: bold'>Usuario Externo</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario que no está dentro<br />del tenant de Terpel. Se<br />autentica a través del CIAM<br />(Ping Identity).</div>"]
+    style 2 fill:#6b7280,stroke:#4a4f59,color:#ffffff
+    29["<div style='font-weight: bold'>Volarte</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Sistema de operación de<br />abastecimiento: web<br />(comercial, supervisión,<br />admin) y app móvil<br />offline-first para operarios<br />en campo. Orquesta datos<br />maestros, comercial,<br />operación, asignación y<br />publicación documental sobre<br />GCP.</div>"]
+    style 29 fill:#c8102e,stroke:#7a0a1c,color:#ffffff
+    3["<div style='font-weight: bold'>Operario de Equipo Abastecedor</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Único rol que usa la app<br />móvil. Opera en campo<br />(plataforma/rampa) con o sin<br />cobertura de red.</div>"]
+    style 3 fill:#c8102e,stroke:#8c0b20,color:#ffffff
+    4["<div style='font-weight: bold'>Admin / Dev Team</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Gestiona módulos, publica<br />versiones, administra<br />permisos (GroupToRoleMapping)<br />y monitorea el uso de la<br />plataforma.</div>"]
+    style 4 fill:#0b3d91,stroke:#072a65,color:#ffffff
+
+    1-. "<div>Accede a Volarte con SSO<br />(navega, consulta, concilia)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->29
+    2-. "<div>Accede a Volarte (portal<br />externo)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->29
+    3-. "<div>Opera en campo: turnos,<br />checklist, PQDA, firma</div><div style='font-size: 70%'>[UI nativa Android]</div>" .->29
+    4-. "<div>Administra módulos, permisos<br />y publica versiones</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->29
+    1-. "<div>Resuelve DNS y tráfico web</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->7
+    2-. "<div>Resuelve DNS y tráfico web</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->7
+    7-. "<div>Proxy pass-through (DNS<br />apunta a IP del LB externo)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->9
+    9-. "<div>Reenvía tráfico; resuelve NAT</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->10
+    10-. "<div>Reenvía tráfico inspeccionado</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->11
+    11-. "<div>Enruta a Proxy instance de<br />Apigee</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->12
+    12-. "<div>Enruta peticiones autorizadas<br />hacia los BFF</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->11
+    11-. "<div>Resuelve peticiones Web (JWT<br />ya validado por Apigee)</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->29
+    8-. "<div>Acceso privado ZTNA (sin<br />Cloudflare)</div><div style='font-size: 70%'>[mTLS · Red corporativa privada]</div>" .->12
+    29-. "<div>Login SSO / tokens<br />(Authorization Code + PKCE)</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->5
+    29-. "<div>Login de usuarios externos</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->6
+    29-. "<div>Consume APIs del BFF Web (sin<br />caché)</div><div style='font-size: 70%'>[REST/JSON · JWT · HTTPS]</div>" .->12
+    29-. "<div>Envía eventos RUM de uso /<br />error</div><div style='font-size: 70%'>[Dynatrace RUM · HTTPS]</div>" .->16
+    7-. "<div>Sirve el bundle estático (CDN<br />+ GCS)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->29
+    29-. "<div>Túnel gestionado (MDM /<br />posture Intune)</div><div style='font-size: 70%'>[ZTNA · mTLS]</div>" .->8
+    29-. "<div>Lee secretos (IAM Service<br />Account)</div><div style='font-size: 70%'>[gRPC · TLS · IAM]</div>" .->13
+    29-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    29-. "<div>Exporta eventos al datalake<br />(BigQuery subscription)</div><div style='font-size: 70%'>[Pub/Sub BigQuery subscription]</div>" .->19
+    29-. "<div>Cifra objetos con CMEK</div><div style='font-size: 70%'>[Cloud KMS API · TLS]</div>" .->14
+    5-. "<div>Provisiona identidades /<br />grupos</div><div style='font-size: 70%'>[SCIM / OIDC · HTTPS]</div>" .->29
+    29-. "<div>Consulta precio (cuando se<br />confirme P-072)</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->25
+    29-. "<div>Sincroniza dato maestro de<br />clientes</div><div style='font-size: 70%'>[REST · HTTPS · OAuth2]</div>" .->22
+    29-. "<div>Solicita recomendación<br />(degradación controlada)</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->26
+    13-. "<div>Cifra secretos con CMEK</div><div style='font-size: 70%'>[Cloud KMS API · TLS]</div>" .->14
+    20-. "<div>Ingesta datos transformados<br />(ETL)</div><div style='font-size: 70%'>[BigQuery API · TLS]</div>" .->19
+    20-. "<div>Extrae datos transaccionales<br />(ERP)</div><div style='font-size: 70%'>[SAP OData · TLS]</div>" .->21
+    20-. "<div>Extrae dato maestro de<br />clientes</div><div style='font-size: 70%'>[Salesforce Bulk API · HTTPS]</div>" .->22
+    20-. "<div>Extrae datos operativos</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->23
+    20-. "<div>Extrae datos de facturación</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->24
+    15-. "<div>Exporta telemetría<br />enmascarada</div><div style='font-size: 70%'>[OTLP HTTPS · API Token]</div>" .->16
+    17-. "<div>Métricas basadas en logs ·<br />alertas</div><div style='font-size: 70%'>[GCP internal]</div>" .->18
+    1-. "<div>Navega wiki, lanza apps y<br />federa sesión</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->27
+    27-. "<div>Delega autenticación</div><div style='font-size: 70%'>[OIDC / OAuth 2.0]</div>" .->5
+    27-. "<div>Consume APIs corporativas</div><div style='font-size: 70%'>[REST · JWT · HTTPS]</div>" .->12
+    27-. "<div>Embebe reportes vía Power BI<br />Proxy</div><div style='font-size: 70%'>[Power BI REST API · AAD]</div>" .->28
+    27-. "<div>Exporta telemetría</div><div style='font-size: 70%'>[OTLP gRPC · TLS]</div>" .->15
+    27-. "<div>Lanza Volarte desde el<br />catálogo de web apps (SSO)</div><div style='font-size: 70%'>[HTTPS · OIDC token exchange]</div>" .->29
+  end

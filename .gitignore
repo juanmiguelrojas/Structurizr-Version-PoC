@@ -1,0 +1,5 @@
+node_modules/
+.aac/
+__pycache__/
+*.pyc
+docs/generated/png-hires/

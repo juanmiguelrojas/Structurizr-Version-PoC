@@ -1,0 +1,71 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Containers"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    19[("<div style='font-weight: bold'>Datalake BigQuery</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Repositorio analítico<br />corporativo de datos<br />tabulares. Recibe información<br />transformada por los ETL<br />(Cloud Data Fusion).</div>")]
+    style 19 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+
+    subgraph 29 ["Volarte"]
+      style 29 fill:#ffffff,stroke:#7a0a1c,color:#7a0a1c
+
+      subgraph group1 ["Backends for Frontend"]
+        style group1 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        66("<div style='font-weight: bold'>BFF Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>BFF — Backend Volarte. Valida<br />JWT (issuer/audience, 2a<br />validación), resuelve<br />GroupToRoleMapping →<br />Role/Permission/Capability y<br />orquesta los servicios de<br />dominio. Publica<br />conciliacion-resuelta.<br />Auto-scaling · pay-per-use.</div>")
+        style 66 fill:#ea8600,stroke:#a35d00,color:#ffffff
+        82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+        style 82 fill:#ea8600,stroke:#a35d00,color:#ffffff
+      end
+
+      subgraph group2 ["Datos"]
+        style group2 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+        style 179 fill:#0f9d58,stroke:#0a6d3d,color:#ffffff
+        180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+        style 180 fill:#dc382d,stroke:#9a271f,color:#ffffff
+        181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+        style 181 fill:#4285f4,stroke:#2e5daa,color:#ffffff
+      end
+
+      subgraph group3 ["Mensajería"]
+        style group3 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+        style 160 fill:#7b1fa2,stroke:#561571,color:#ffffff
+      end
+
+      subgraph group4 ["Servicios de Dominio"]
+        style group4 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        118("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider) y crédito<br />disponible. Suscriptor de<br />operacion-cerrada para<br />actualizar saldo/crédito.</div>")
+        style 118 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+        131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+        style 131 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+        148("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación y retorna un ID<br />inmutable vinculado. Cola +<br />reintento sin duplicar<br />(HU-055). S07 define<br />contenido y numeración del<br />documento canónico; el Gestor<br />solo lo publica.</div>")
+        style 148 fill:#1a73e8,stroke:#1250a2,color:#ffffff
+      end
+
+    end
+
+    66-. "<div>Cache de decisión de<br />autorización</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    66-. "<div>Consulta elegibilidad, precio<br />y crédito</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->118
+    66-. "<div>Consulta estado de operación<br />/ turnos</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    66-. "<div>Consultas varias (Proxy SQL)</div><div style='font-size: 70%'>[Cloud SQL Auth Proxy · TLS]</div>" .->179
+    66-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    82-. "<div>Dedupe por UUID de acción</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    82-. "<div>Escribe / lee tablas de<br />Sincronización</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    82-. "<div>Resumable upload de fotos /<br />firma</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    82-. "<div>Publica cierre de operación</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    82-. "<div>Obtiene turnos / estado<br />operativo</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    160-. "<div>Push: dispara publicación<br />documental</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->148
+    160-. "<div>Push: actualiza saldo /<br />crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->118
+    160-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    160-. "<div>Exporta eventos al datalake<br />(BigQuery subscription)</div><div style='font-size: 70%'>[Pub/Sub BigQuery subscription]</div>" .->19
+    148-. "<div>Persiste número / metadata<br />documental</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    148-. "<div>Sube documento final (único<br />escritor)</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    131-. "<div>Lee / escribe tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    118-. "<div>Lee / escribe estado<br />comercial</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+  end

@@ -1,0 +1,127 @@
+{
+  "stats": {
+    "generated_at": "2026-10-08 23:25:55",
+    "elements": 117,
+    "explicit_relationships": 152,
+    "counts": {
+      "ERROR": 0,
+      "WARN": 12,
+      "INFO": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "GCP Cloud Logging → GCP Cloud Monitoring",
+      "message": "Tramo sin cifrado explícito en la tecnología: 'GCP internal'.",
+      "recommendation": "Declare el protocolo seguro (TLS 1.2+, mTLS, IAM) o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "HUB Corporativo (Portal) → Power BI Service",
+      "message": "Tramo sin cifrado explícito en la tecnología: 'Power BI REST API · AAD'.",
+      "recommendation": "Declare el protocolo seguro (TLS 1.2+, mTLS, IAM) o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "Volarte › Cola de Mensajería → Datalake BigQuery",
+      "message": "Tramo sin cifrado explícito en la tecnología: 'Pub/Sub BigQuery subscription'.",
+      "recommendation": "Declare el protocolo seguro (TLS 1.2+, mTLS, IAM) o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Gestor Documental",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Asignación / Optimización",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Comercial",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Datos Maestros",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Operación",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Usuarios / Auth",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Resiliencia",
+      "severity": "WARN",
+      "element": "Volarte › Cola de Mensajería › Sub: tracking-eventos-sub",
+      "message": "Suscripción Pub/Sub sin Dead Letter Topic.",
+      "recommendation": "Configure dead_letter_policy (max_delivery_attempts) hacia el Dead Letter Topic."
+    },
+    {
+      "rule": "R5-SPOF",
+      "severity": "WARN",
+      "element": "Volarte › Cloud SQL",
+      "message": "Posible Single Point of Failure: 7 contenedor(es) dependen de él y su nodo de despliegue no declara alta disponibilidad (ha=true / instances>1).",
+      "recommendation": "Configure HA regional (Cloud SQL HA, Memorystore Standard Tier, réplicas) y declare la propiedad \"ha\" \"true\" en el deploymentNode."
+    },
+    {
+      "rule": "R5-SPOF",
+      "severity": "WARN",
+      "element": "Volarte › Memorystore",
+      "message": "Posible Single Point of Failure: 3 contenedor(es) dependen de él y su nodo de despliegue no declara alta disponibilidad (ha=true / instances>1).",
+      "recommendation": "Configure HA regional (Cloud SQL HA, Memorystore Standard Tier, réplicas) y declare la propiedad \"ha\" \"true\" en el deploymentNode."
+    },
+    {
+      "rule": "R4-Trazabilidad",
+      "severity": "INFO",
+      "element": "docs/CHANGELOG_DSL.md",
+      "message": "22 archivo(s) DSL modificados y cubiertos por la bitácora.",
+      "recommendation": ""
+    },
+    {
+      "rule": "R5-Decisión Pendiente",
+      "severity": "INFO",
+      "element": "PriceProvider Externo",
+      "message": "Elemento marcado como decisión PENDING.",
+      "recommendation": "Cierre la decisión con un ADR (Accepted) y retire el tag Pending."
+    },
+    {
+      "rule": "R5-Decisión Pendiente",
+      "severity": "INFO",
+      "element": "Volarte › Svc: Asignación / Optimización",
+      "message": "Elemento marcado como decisión PENDING.",
+      "recommendation": "Cierre la decisión con un ADR (Accepted) y retire el tag Pending."
+    },
+    {
+      "rule": "R5-Decisión Pendiente",
+      "severity": "INFO",
+      "element": "Volarte › Svc: Comercial › Resolutor PriceProvider",
+      "message": "Elemento marcado como decisión PENDING.",
+      "recommendation": "Cierre la decisión con un ADR (Accepted) y retire el tag Pending."
+    }
+  ],
+  "ai_review": null
+}

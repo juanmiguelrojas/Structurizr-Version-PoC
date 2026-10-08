@@ -1,0 +1,57 @@
+@startuml
+set separator none
+title Volarte - Svc: Operación - Components
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+Container(Volarte.BFFWeb, "BFF Web", $techn="Python · FastAPI · Cloud Run", $descr="BFF — Backend Volarte. Valida JWT (issuer/audience, 2a validación), resuelve GroupToRoleMapping → Role/Permission/Capability y orquesta los servicios de dominio. Publica conciliacion-resuelta. Auto-scaling · pay-per-use.", $tags="", $link="")
+Container(Volarte.BFFMóvil, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+Container(Volarte.SvcDatosMaestros, "Svc: Datos Maestros", $techn="Python · FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile, geocercas (HU-145).", $tags="", $link="")
+Container(Volarte.SvcAsignaciónOptimización, "Svc: Asignación / Optimización", $techn="Python · MILP Solver · GKE", $descr="S06: motor MILP + recomendación Skypredict con degradación controlada. GKE por cómputo sostenido (P-025 PENDING: owner/runtime final los confirma Arquitectura).", $tags="", $link="")
+ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcOperación_boundary", "Svc: Operación", $tags="") {
+  Component(Volarte.SvcOperación.APIRouter, "API Router", $techn="FastAPI", $descr="Endpoints de turnos, posición, inventario de calidad y estado de operación.", $tags="", $link="")
+  Component(Volarte.SvcOperación.GestordeTurnos, "Gestor de Turnos", $techn="Python — S05/S08 HU-056", $descr="Ventana de inicio y autorización de excepción por supervisor (S05/S08, HU-056).", $tags="", $link="")
+  Component(Volarte.SvcOperación.RastreadordePosición, "Rastreador de Posición", $techn="Python — HU-044/HU-145", $descr="Determina posición del equipo vs. geocerca de Datos Maestros (HU-044 / HU-145).", $tags="", $link="")
+  Component(Volarte.SvcOperación.InventariodeCalidad, "Inventario de Calidad", $techn="Python — IR-06", $descr="Decremento de insumos (pastillas PQDA) por prueba ejecutada (IR-06 reservada).", $tags="", $link="")
+  Component(Volarte.SvcOperación.SuscriptordeTracking, "Suscriptor de Tracking", $techn="Pub/Sub push endpoint", $descr="Procesa eventos de tracking entrantes (si el topic está activo).", $tags="", $link="")
+  Component(Volarte.SvcOperación.SuscriptordeConciliación, "Suscriptor de Conciliación", $techn="Pub/Sub push endpoint", $descr="Finaliza o anula operaciones pendientes según conciliacion-resuelta / operacion-cerrada.", $tags="", $link="")
+  Component(Volarte.SvcOperación.ClientedeBasedeDatos, "Cliente de Base de Datos", $techn="SQLAlchemy", $descr="Estado dinámico y persistencia de tablas operacionales.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.GestordeTurnos, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.RastreadordePosición, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.InventariodeCalidad, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.SuscriptordeTracking, Volarte.SvcOperación.RastreadordePosición, "Actualiza", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.GestordeTurnos, Volarte.SvcOperación.ClientedeBasedeDatos, "Persiste", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.RastreadordePosición, Volarte.SvcOperación.ClientedeBasedeDatos, "Persiste", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.InventariodeCalidad, Volarte.SvcOperación.ClientedeBasedeDatos, "Persiste", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcOperación.SuscriptordeConciliación, Volarte.SvcOperación.ClientedeBasedeDatos, "Finaliza / anula operación", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcDatosMaestros, "Consulta datos maestros", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcOperación.APIRouter, "Consulta estado de operación / turnos", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcAsignaciónOptimización, "Solicita recomendación de asignación", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.CloudSQL, "Consultas varias (Proxy SQL)", $techn="Cloud SQL Auth Proxy · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.ColadeMensajería, "Publica resolución del supervisor (HU-050)", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.CloudSQL, "Escribe / lee tablas de Sincronización", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.ColadeMensajería, "Publica cierre de operación", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcOperación.APIRouter, "Obtiene turnos / estado operativo", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcDatosMaestros, "Obtiene catálogos versionados", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación.SuscriptordeConciliación, "Push: finaliza / anula operación pendiente", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación.SuscriptordeTracking, "Push: eventos de tracking", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.SvcOperación.RastreadordePosición, Volarte.SvcDatosMaestros, "Consulta geocerca (S02 / HU-145)", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.SvcOperación.ClientedeBasedeDatos, Volarte.CloudSQL, "Lee / escribe tablas operacionales", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcDatosMaestros, Volarte.CloudSQL, "Lee / escribe datos maestros", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcAsignaciónOptimización, Volarte.SvcOperación.APIRouter, "Lee estado dinámico de equipos / operadores", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

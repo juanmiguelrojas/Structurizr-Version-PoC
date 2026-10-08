@@ -1,0 +1,43 @@
+@startuml
+set separator none
+title Volarte - Svc: Comercial - Components
+
+skinparam {
+  defaultFontName "Open Sans"
+}
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(PriceProviderExterno, "PriceProvider Externo", $descr="Fuente autoritativa de precios de combustible (decisión P-072 PENDING). Volarte no inventa la fuente de precio.", $tags="", $link="")
+Container(Volarte.BFFWeb, "BFF Web", $techn="Python · FastAPI · Cloud Run", $descr="BFF — Backend Volarte. Valida JWT (issuer/audience, 2a validación), resuelve GroupToRoleMapping → Role/Permission/Capability y orquesta los servicios de dominio. Publica conciliacion-resuelta. Auto-scaling · pay-per-use.", $tags="", $link="")
+ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcComercial_boundary", "Svc: Comercial", $tags="") {
+  Component(Volarte.SvcComercial.APIRouter, "API Router", $techn="FastAPI", $descr="Endpoints de elegibilidad, precio y crédito.", $tags="", $link="")
+  Component(Volarte.SvcComercial.MotordeElegibilidad, "Motor de Elegibilidad", $techn="Python — S04/HU-128", $descr="Cliente activo, acuerdo vigente, negociación existente (S02 → S04, HU-128).", $tags="", $link="")
+  Component(Volarte.SvcComercial.ResolutorPriceProvider, "Resolutor PriceProvider", $techn="Python — P-072 PENDING", $descr="No inventa fuente de precio; delega a la autoridad cuando se confirme (P-072 PENDING).", $tags="", $link="")
+  Component(Volarte.SvcComercial.ServiciodeCréditoDisponible, "Servicio de Crédito Disponible", $techn="Python — S04", $descr="Calcula crédito disponible según saldo y órdenes abiertas.", $tags="", $link="")
+  Component(Volarte.SvcComercial.Suscriptoroperacioncerrada, "Suscriptor operacion-cerrada", $techn="Pub/Sub push endpoint", $descr="Actualiza saldo/crédito tras cada cierre de operación.", $tags="", $link="")
+  Component(Volarte.SvcComercial.ClientedeBasedeDatos, "Cliente de Base de Datos", $techn="SQLAlchemy", $descr="Estado comercial y persistencia.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.MotordeElegibilidad, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.ResolutorPriceProvider, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.ServiciodeCréditoDisponible, "Enruta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcComercial.Suscriptoroperacioncerrada, Volarte.SvcComercial.ServiciodeCréditoDisponible, "Actualiza saldo", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcComercial.ServiciodeCréditoDisponible, Volarte.SvcComercial.ClientedeBasedeDatos, "Persiste", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.SvcComercial.MotordeElegibilidad, Volarte.SvcComercial.ClientedeBasedeDatos, "Consulta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.SvcComercial.APIRouter, "Consulta elegibilidad, precio y crédito", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.CloudSQL, "Consultas varias (Proxy SQL)", $techn="Cloud SQL Auth Proxy · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.ColadeMensajería, "Publica resolución del supervisor (HU-050)", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcComercial.Suscriptoroperacioncerrada, "Push: actualiza saldo / crédito", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.SvcComercial.ResolutorPriceProvider, PriceProviderExterno, "Consulta precio (cuando se confirme P-072)", $techn="REST · HTTPS", $tags="", $link="")
+Rel(Volarte.SvcComercial.ClientedeBasedeDatos, Volarte.CloudSQL, "Lee / escribe estado comercial", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml
