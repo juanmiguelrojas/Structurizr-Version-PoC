@@ -1,0 +1,15 @@
+{
+  "proyecto": "__PROYECTO__",
+  "nombre": "__NOMBRE__",
+  "version": "v1",
+  "estado": "borrador",
+  "fecha": "__FECHA__",
+  "basadaEn": null,
+  "reemplazadaPor": null,
+  "autores": [],
+  "aprobadores": [],
+  "fuente": null,
+  "workspace": "dsl/workspace.dsl",
+  "changelog": ["AAC-__ID__-01"],
+  "descripcion": "Versión inicial."
+}

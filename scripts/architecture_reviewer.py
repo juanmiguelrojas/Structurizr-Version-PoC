@@ -9,15 +9,22 @@ diff de Git para aplicar las reglas de gobierno de arquitectura:
   R2  Tecnologías     Todo Container y Component declara su tecnología.                         [ERROR]
   R3  Aislamiento     Frontend / Móvil no acceden a datos, colas ni servicios de dominio sin
                       pasar por un BFF / API Gateway.                                            [ERROR]
-  R4  Trazabilidad    Todo cambio en dsl/ va acompañado de una entrada en docs/CHANGELOG_DSL.md
-                      que referencia los archivos modificados y trae los campos obligatorios.    [ERROR]
+  R4  Trazabilidad    Todo cambio en <versión>/dsl/ va acompañado de una entrada en el
+                      CHANGELOG_DSL.md del proyecto que referencia los archivos y trae los
+                      campos obligatorios.                                                       [ERROR]
   R5  Sugerencias     SPOF, tramos no cifrados, falta de observabilidad (OTel / Dynatrace),
                       suscripciones sin DLQ y decisiones pendientes.                       [WARN / INFO]
+  R6  Inmutabilidad   Una versión aprobada / reemplazada / obsoleta no se modifica: los cambios
+                      van en una versión nueva (solo se permite actualizar su version.json).     [ERROR]
+  R7  Leyenda C4      Solo los 6 tags de la leyenda oficial C4 definen colores, con los valores
+                      corporativos; personas y sistemas externos usan sus tags de leyenda.       [ERROR]
+  R8  Metadatos       version.json existe, tiene los campos obligatorios y un estado válido.     [ERROR]
 
 Opcional (--ai): si hay credenciales de la API de Anthropic, envía un resumen del
 modelo + hallazgos a Claude para una revisión narrativa (no bloqueante).
 
-Salida: log en consola, docs/generated/review/review-report.{md,json}.
+Uso:  python3 scripts/architecture_reviewer.py --version-dir proyectos/volarte/v2 [--base origin/main]
+Salida: log en consola, <versión>/docs/generated/review/review-report.{md,json}.
 Código de salida: 1 si hay ERRORES (rechaza el PR), 0 en caso contrario.
 """
 from __future__ import annotations
@@ -34,11 +41,22 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_WORKSPACE_JSON = ROOT / ".aac" / "workspace.json"
-CHANGELOG = "docs/CHANGELOG_DSL.md"
-DSL_DIR = "dsl/"
-# Archivos generados dentro de dsl/ que no requieren entrada propia en la bitácora.
-GENERATED_IN_DSL = {"dsl/views/themes/volarte-theme.json"}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import aac_versions  # noqa: E402
+
+# Leyenda oficial C4 (docs/lineamientos/03-leyenda-c4.md · estandares/c4/estilos-c4.dsl)
+C4_LEGEND = {
+    "Person": "#083F75",
+    "Software System": "#1061B0",
+    "Container": "#23A2D9",
+    "Component": "#63BEF2",
+    "External Person": "#6C6477",
+    "External Software System": "#8C8496",
+}
+# Tags que pueden fijar colores además de la leyenda (neutros: texto base y despliegue).
+COLOR_ALLOWED_TAGS = set(C4_LEGEND) | {"Element", "Deployment Node", "Infrastructure Node"}
+# Tags que solo pueden fijar el color del BORDE (stroke), nunca el fondo.
+STROKE_ONLY_TAGS = {"Pending"}
 
 # ---------------------------------------------------------------- Taxonomía de tags
 FRONTEND_TAGS = {"Frontend", "Mobile"}
@@ -53,6 +71,7 @@ ENCRYPTED_PATTERN = re.compile(
     re.IGNORECASE,
 )
 CHANGELOG_REQUIRED_FIELDS = [
+    ("Versión", re.compile(r"versi[oó]n", re.I)),
     ("Fecha", re.compile(r"fecha", re.I)),
     ("Autor", re.compile(r"autor|arquitect", re.I)),
     ("Ref (HU / Jira)", re.compile(r"\bref\b|ticket|jira|historia|\bHU\b", re.I)),
@@ -211,62 +230,126 @@ def rule_layer_isolation(relationships):
                           "Enrute la llamada por Apigee → BFF del canal correspondiente.")
 
 
-def git(*args: str) -> str:
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True, check=True).stdout
-
-
-def changed_files(base: str | None) -> list[str]:
-    if base:
-        out = git("diff", "--name-only", f"{base}...HEAD")
-    else:  # local: cambios sin commit (staged + unstaged + untracked) frente a HEAD
-        out = git("diff", "--name-only", "HEAD") + git("ls-files", "--others", "--exclude-standard")
-    return sorted({line.strip() for line in out.splitlines() if line.strip()})
-
-
-def changelog_added_text(base: str | None) -> str:
+def changelog_added_text(base: str | None, changelog: str) -> str:
+    git = aac_versions.git
     try:
-        diff = git("diff", f"{base}...HEAD", "--", CHANGELOG) if base else git("diff", "HEAD", "--", CHANGELOG)
+        diff = git("diff", f"{base}...HEAD", "--", changelog) if base else git("diff", "HEAD", "--", changelog)
     except subprocess.CalledProcessError:
         diff = ""
     added = [l[1:] for l in diff.splitlines() if l.startswith("+") and not l.startswith("+++")]
-    if not added and CHANGELOG in git("ls-files", "--others", "--exclude-standard").split():
-        added = (ROOT / CHANGELOG).read_text(encoding="utf-8").splitlines()
+    if not added and changelog in git("ls-files", "--others", "--exclude-standard").split():
+        added = (ROOT / changelog).read_text(encoding="utf-8").splitlines()
     return "\n".join(added)
 
 
-def rule_traceability(base: str | None, skip: bool):
+def rule_traceability(version_dir: str, files: list[str] | None, base: str | None, skip: bool):
+    changelog = f"{version_dir.rsplit('/', 1)[0]}/CHANGELOG_DSL.md"
     if skip:
-        yield Finding("R4-Trazabilidad", "INFO", CHANGELOG, "Regla de trazabilidad omitida (--skip-traceability).")
+        yield Finding("R4-Trazabilidad", "INFO", changelog, "Regla de trazabilidad omitida (--skip-traceability).")
         return
-    try:
-        files = changed_files(base)
-    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
-        yield Finding("R4-Trazabilidad", "WARN", CHANGELOG, f"No fue posible calcular el diff de Git: {exc}")
+    if files is None:
+        yield Finding("R4-Trazabilidad", "WARN", changelog, "No fue posible calcular el diff de Git.")
         return
-    dsl_changes = [f for f in files if f.startswith(DSL_DIR) and f not in GENERATED_IN_DSL]
+    dsl_changes = [f for f in files if f.startswith(f"{version_dir}/dsl/")]
     if not dsl_changes:
-        yield Finding("R4-Trazabilidad", "INFO", CHANGELOG, "Sin cambios en dsl/ para este diff.")
+        yield Finding("R4-Trazabilidad", "INFO", changelog, f"Sin cambios en {version_dir}/dsl/ para este diff.")
         return
-    if CHANGELOG not in files:
-        yield Finding("R4-Trazabilidad", "ERROR", CHANGELOG,
+    if changelog not in files:
+        yield Finding("R4-Trazabilidad", "ERROR", changelog,
                       f"Se modificaron {len(dsl_changes)} archivo(s) DSL sin entrada en la bitácora: {', '.join(dsl_changes)}.",
-                      f"Agregue una entrada en {CHANGELOG} siguiendo la plantilla obligatoria.")
+                      f"Agregue una entrada en {changelog} siguiendo la plantilla obligatoria.")
         return
-    added = changelog_added_text(base)
-    referenced = set(re.findall(r"`(dsl/[^`]+)`", added))
+    added = changelog_added_text(base, changelog)
+    referenced = set(re.findall(r"`(proyectos/[^`]+)`", added))
     uncovered = [f for f in dsl_changes if not any(fnmatch.fnmatch(f, pat) for pat in referenced)]
     if uncovered:
-        yield Finding("R4-Trazabilidad", "ERROR", CHANGELOG,
+        yield Finding("R4-Trazabilidad", "ERROR", changelog,
                       f"La nueva entrada de la bitácora no referencia: {', '.join(uncovered)}.",
-                      "Liste cada archivo (o un patrón glob) entre backticks en el campo 'Módulo / Archivo'.")
+                      "Liste cada archivo (o un patrón glob) con su ruta completa entre backticks en 'Módulo / Archivo'.")
     missing = [name for name, pat in CHANGELOG_REQUIRED_FIELDS if not pat.search(added)]
     if missing:
-        yield Finding("R4-Trazabilidad", "ERROR", CHANGELOG,
+        yield Finding("R4-Trazabilidad", "ERROR", changelog,
                       f"La nueva entrada no contiene los campos obligatorios: {', '.join(missing)}.",
                       "Use la plantilla de entrada definida al inicio de la bitácora.")
     if not uncovered and not missing:
-        yield Finding("R4-Trazabilidad", "INFO", CHANGELOG,
+        yield Finding("R4-Trazabilidad", "INFO", changelog,
                       f"{len(dsl_changes)} archivo(s) DSL modificados y cubiertos por la bitácora.")
+
+
+def rule_immutability(version_dir: str, files: list[str] | None, base: str | None):
+    if files is None:
+        return
+    touched = [f for f in files if f.startswith(f"{version_dir}/")]
+    if not touched:
+        return
+    # En CI el estado se evalúa en la rama base: congelar y modificar en el mismo PR no evade la regla.
+    before = aac_versions.meta_at(base, version_dir) if base else aac_versions.meta_at("HEAD", version_dir)
+    if not aac_versions.is_locked(before):
+        return
+    illegal = [f for f in touched if f != f"{version_dir}/version.json"]
+    if illegal:
+        yield Finding("R6-Inmutabilidad", "ERROR", version_dir,
+                      f"La versión está '{before.get('estado')}' y no admite cambios: {', '.join(illegal[:8])}"
+                      + (" …" if len(illegal) > 8 else ""),
+                      "Cree una versión nueva con scripts/aac-nueva-version.sh y aplique allí el cambio.")
+    else:
+        yield Finding("R6-Inmutabilidad", "INFO", version_dir,
+                      "Versión congelada: solo se actualizó version.json (cambio de estado permitido).")
+
+
+def rule_c4_legend(workspace: dict, elements):
+    styles = workspace.get("views", {}).get("configuration", {}).get("styles", {}).get("elements", []) or []
+    by_tag = {s.get("tag"): s for s in styles}
+    for tag, expected in C4_LEGEND.items():
+        actual = (by_tag.get(tag, {}).get("background") or "").upper()
+        if actual != expected.upper():
+            yield Finding("R7-Leyenda C4", "ERROR", f'estilo "{tag}"',
+                          f"El fondo debe ser {expected} (leyenda oficial C4) y es '{actual or 'no definido'}'.",
+                          "Incluya estandares/c4/estilos-c4.dsl en el bloque views y no redefina colores.")
+    for style in styles:
+        tag = style.get("tag")
+        if tag in COLOR_ALLOWED_TAGS:
+            continue
+        keys = {"background", "color"} | ({"stroke"} if tag not in STROKE_ONLY_TAGS else set())
+        bad = sorted(k for k in keys if style.get(k))
+        if bad:
+            yield Finding("R7-Leyenda C4", "ERROR", f'estilo "{tag}"',
+                          f"El tag '{tag}' redefine {', '.join(bad)}: solo los tags de la leyenda C4 pueden asignar colores.",
+                          "Use el tag solo para la forma (shape) o el borde (border / strokeWidth).")
+    for el in elements.values():
+        if el.type == "Person" and "External" in el.tags and "External Person" not in el.tags:
+            yield Finding("R7-Leyenda C4", "ERROR", el.path, "Persona externa sin el tag de leyenda 'External Person'.",
+                          'Use el tag "External Person".')
+        if el.type == "SoftwareSystem" and "External Software System" not in el.tags:
+            if not any(child.parent is el for child in elements.values()):
+                yield Finding("R7-Leyenda C4", "WARN", el.path,
+                              "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+                              'Si está fuera del alcance del proyecto, agregue el tag "External Software System".')
+
+
+def rule_version_metadata(version_dir: str):
+    meta_path = ROOT / version_dir / "version.json"
+    if not meta_path.exists():
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json", "La versión no tiene version.json.",
+                      "Copie estandares/plantillas/version.json y complételo.")
+        return
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json", f"JSON inválido: {exc}")
+        return
+    missing = [f for f in aac_versions.REQUIRED_FIELDS if f not in meta]
+    if missing:
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json", f"Faltan campos: {', '.join(missing)}.")
+    if meta.get("estado") not in aac_versions.STATES:
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json",
+                      f"Estado '{meta.get('estado')}' inválido. Valores: {', '.join(sorted(aac_versions.STATES))}.")
+    if meta.get("version") != version_dir.rsplit("/", 1)[-1]:
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json",
+                      f"El campo version ('{meta.get('version')}') no coincide con la carpeta.")
+    if meta.get("estado") == "aprobada" and not meta.get("aprobadores"):
+        yield Finding("R8-Metadatos", "ERROR", f"{version_dir}/version.json",
+                      "Una versión aprobada debe registrar sus aprobadores.")
 
 
 def rule_suggestions(elements, relationships, deployment_nodes):
@@ -407,7 +490,7 @@ def write_reports(out_dir: Path, findings: list[Finding], stats: dict, ai_text: 
     counts = stats["counts"]
     verdict = "❌ RECHAZADO" if counts["ERROR"] else "✅ APROBADO"
     md = [
-        "# Reporte del Agente Revisor de Arquitectura · Volarte", "",
+        f"# Reporte del Agente Revisor de Arquitectura · {stats['version_dir']}", "",
         f"- **Resultado:** {verdict}",
         f"- **Fecha (UTC):** {stats['generated_at']}",
         f"- **Elementos analizados:** {stats['elements']} · **Relaciones explícitas:** {stats['explicit_relationships']}",
@@ -417,8 +500,11 @@ def write_reports(out_dir: Path, findings: list[Finding], stats: dict, ai_text: 
         "| R1-Descripciones | ERROR | Todo Person, SoftwareSystem, Container y Component tiene descripción |",
         "| R2-Tecnologías | ERROR | Todo Container y Component declara tecnología |",
         "| R3-Aislamiento de Capas | ERROR | Frontend/Móvil no acceden a datos, colas ni servicios de dominio sin BFF/API Gateway |",
-        "| R4-Trazabilidad | ERROR | Cambios en `dsl/` acompañados de entrada completa en `docs/CHANGELOG_DSL.md` |",
-        "| R5-* (Sugerencias) | WARN/INFO | SPOF, cifrado, observabilidad, DLQ, decisiones pendientes |", "",
+        "| R4-Trazabilidad | ERROR | Cambios en `<versión>/dsl/` acompañados de entrada completa en el `CHANGELOG_DSL.md` del proyecto |",
+        "| R5-* (Sugerencias) | WARN/INFO | SPOF, cifrado, observabilidad, DLQ, decisiones pendientes |",
+        "| R6-Inmutabilidad | ERROR | Versiones aprobadas / reemplazadas / obsoletas no se modifican |",
+        "| R7-Leyenda C4 | ERROR | Colores solo desde la leyenda oficial C4; tags External Person / External Software System |",
+        "| R8-Metadatos | ERROR | `version.json` completo y con estado válido |", "",
         "## Hallazgos", "",
         "| # | Severidad | Regla | Elemento | Hallazgo | Recomendación |", "|---|---|---|---|---|---|",
     ]
@@ -432,31 +518,53 @@ def write_reports(out_dir: Path, findings: list[Finding], stats: dict, ai_text: 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--workspace-json", type=Path, default=DEFAULT_WORKSPACE_JSON,
-                        help="workspace.json exportado por structurizr-cli (export -format json)")
+    parser.add_argument("--version-dir", required=True, type=Path,
+                        help="carpeta de la versión a revisar (p. ej. proyectos/volarte/v2)")
+    parser.add_argument("--workspace-json", type=Path,
+                        help="workspace.json exportado (por defecto .aac/<proyecto>-<versión>/workspace.json)")
     parser.add_argument("--base", default=os.environ.get("AAC_BASE_REF"),
-                        help="ref Git base para R4 (p. ej. origin/main). Sin valor: cambios locales vs HEAD")
+                        help="ref Git base para R4/R6 (p. ej. origin/main). Sin valor: cambios locales vs HEAD")
     parser.add_argument("--skip-traceability", action="store_true", help="omite R4 (builds de main/release)")
-    parser.add_argument("--warnings-as-errors", action="store_true", help="las advertencias R5 también rechazan")
+    parser.add_argument("--warnings-as-errors", action="store_true", help="las advertencias también rechazan")
     parser.add_argument("--ai", action="store_true", help="agrega revisión narrativa con Claude (requiere credenciales)")
-    parser.add_argument("--out", type=Path, default=ROOT / "docs" / "generated" / "review")
+    parser.add_argument("--out", type=Path, help="carpeta de reportes (por defecto <versión>/docs/generated/review)")
+    parser.add_argument("--frozen", action="store_true",
+                        help="versión congelada: solo R6 (inmutabilidad) y R8 (metadatos)")
     args = parser.parse_args()
 
-    if not args.workspace_json.exists():
-        print(f"[reviewer] No existe {args.workspace_json}. Ejecute primero: scripts/aac-build.sh --validate-only")
+    version_dir = aac_versions.rel(args.version_dir)
+    project, version = version_dir.split("/")[1:3]
+    workspace_json = args.workspace_json or ROOT / ".aac" / f"{project}-{version}" / "workspace.json"
+    out_dir = args.out or ROOT / version_dir / "docs" / "generated" / "review"
+    if not workspace_json.exists():
+        print(f"[reviewer] No existe {workspace_json}. Ejecute primero: scripts/aac-build.sh {version_dir} --validate-only")
         return 2
-    _, elements, relationships, deployment_nodes = load_model(args.workspace_json)
+    workspace, elements, relationships, deployment_nodes = load_model(workspace_json)
+    try:
+        files = aac_versions.changed_files(args.base)
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        files = None
 
-    findings: list[Finding] = [
-        *rule_descriptions(elements),
-        *rule_technologies(elements),
-        *rule_layer_isolation(relationships),
-        *rule_traceability(args.base, args.skip_traceability),
-        *rule_suggestions(elements, relationships, deployment_nodes),
-    ]
+    if args.frozen:
+        findings: list[Finding] = [
+            *rule_version_metadata(version_dir),
+            *rule_immutability(version_dir, files, args.base),
+        ]
+    else:
+        findings = [
+            *rule_version_metadata(version_dir),
+            *rule_descriptions(elements),
+            *rule_technologies(elements),
+            *rule_layer_isolation(relationships),
+            *rule_traceability(version_dir, files, args.base, args.skip_traceability),
+            *rule_immutability(version_dir, files, args.base),
+            *rule_c4_legend(workspace, elements),
+            *rule_suggestions(elements, relationships, deployment_nodes),
+        ]
     findings.sort(key=lambda f: (SEVERITY_ORDER[f.severity], f.rule, f.element))
     counts = {s: sum(1 for f in findings if f.severity == s) for s in SEVERITY_ORDER}
     stats = {
+        "version_dir": version_dir,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "elements": len(elements),
         "explicit_relationships": sum(1 for r in relationships if not r.implied),
@@ -465,7 +573,7 @@ def main() -> int:
 
     icons = {"ERROR": "✖", "WARN": "⚠", "INFO": "ℹ"}
     print("=" * 78)
-    print(" Agente Revisor de Arquitectura · Volarte")
+    print(f" Agente Revisor de Arquitectura · {version_dir}")
     print("=" * 78)
     for f in findings:
         print(f"{icons[f.severity]} [{f.severity:5}] {f.rule:24} {f.element}\n      {f.message}")
@@ -475,8 +583,8 @@ def main() -> int:
     print(f" Errores: {counts['ERROR']}  ·  Advertencias: {counts['WARN']}  ·  Info: {counts['INFO']}")
 
     ai_text = ai_review(elements, relationships, findings) if args.ai else None
-    write_reports(args.out, findings, stats, ai_text)
-    print(f" Reporte: {args.out.relative_to(ROOT) if args.out.is_relative_to(ROOT) else args.out}/review-report.md")
+    write_reports(out_dir, findings, stats, ai_text)
+    print(f" Reporte: {out_dir.relative_to(ROOT) if out_dir.is_relative_to(ROOT) else out_dir}/review-report.md")
 
     failed = counts["ERROR"] > 0 or (args.warnings_as_errors and counts["WARN"] > 0)
     print(" RESULTADO:", "RECHAZADO ❌" if failed else "APROBADO ✅")

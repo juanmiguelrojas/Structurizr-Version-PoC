@@ -1,0 +1,73 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - BFF Móvil - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    11["<div style='font-weight: bold'>Internal Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GCP Cloud Load Balancing<br />interno. Re-cifra TLS y<br />enruta hacia la instancia<br />proxy de Apigee y hacia los<br />BFF en Cloud Run.</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    42["<div style='font-weight: bold'>App Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: React Native · Android exclusivo]</div><div style='font-size: 80%; margin-top:10px'>Offline-first: SQLite local<br />(WatermelonDB) + cola de<br />escritura con UUID por<br />acción. Fotos/firma al<br />filesystem local. Sync<br />bidireccional al reconectar<br />(delta + resumable upload).<br />Solo operarios; distribución<br />vía Intune / Managed Play. NO<br />se despliega en GCP.</div>"]
+    style 42 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    117("<div style='font-weight: bold'>Svc: Datos Maestros</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S02: Customer,<br />AircraftOperator,<br />AircraftType,<br />AircraftRegistration,<br />FuellingEquipment,<br />NegotiationProfile, geocercas<br />(HU-145).</div>")
+    style 117 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+    style 131 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+    style 180 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+    style 181 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 82 ["BFF Móvil"]
+      style 82 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      83["<div style='font-weight: bold'>API Router / Controllers</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints REST por feature<br />(sync, delta, media). Punto<br />de entrada del contenedor.</div>"]
+      style 83 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      84["<div style='font-weight: bold'>Middleware de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: JWT Middleware (FastAPI)]</div><div style='font-size: 80%; margin-top:10px'>Valida<br />issuer/audience/expiración<br />del token (segunda validación<br />tras Apigee).</div>"]
+      style 84 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      85["<div style='font-weight: bold'>Servicio de Autorización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Resuelve GroupToRoleMapping →<br />Role/Permission/Capability.</div>"]
+      style 85 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      86["<div style='font-weight: bold'>Motor de Reconciliación</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — regla HU-050]</div><div style='font-size: 80%; margin-top:10px'>Regla HU-050: compara<br />timestamp de captura vs.<br />histórico de revocación.<br />Auto-acepta o marca<br />PENDING_REVIEW.</div>"]
+      style 86 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      87["<div style='font-weight: bold'>Servicio de Idempotencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python + Redis]</div><div style='font-size: 80%; margin-top:10px'>Evita procesar dos veces la<br />misma acción reenviada<br />(dedupe por UUID).</div>"]
+      style 87 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      88["<div style='font-weight: bold'>Validador de Orden / Secuencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Reordena acciones offline por<br />timestamp de captura (no de<br />llegada). Evita que una<br />acción vieja reenviada tarde<br />sobrescriba un estado más<br />reciente.</div>"]
+      style 88 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      89["<div style='font-weight: bold'>Proveedor de Delta</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — patrón HU-007]</div><div style='font-size: 80%; margin-top:10px'>Versión + diferencias de<br />catálogos/turnos para<br />descarga incremental (patrón<br />HU-007).</div>"]
+      style 89 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      90["<div style='font-weight: bold'>Manejador de Subida</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Orquesta la subida de<br />fotos/firma tolerando cortes<br />de red.</div>"]
+      style 90 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      91["<div style='font-weight: bold'>Publicador de Eventos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Publisher]</div><div style='font-size: 80%; margin-top:10px'>Publica operacion-cerrada y<br />doc-publicacion.</div>"]
+      style 91 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      92["<div style='font-weight: bold'>Cliente Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cloud SQL Python Connector]</div><div style='font-size: 80%; margin-top:10px'>Escribe la cola de acciones<br />offline recibidas y el estado<br />de conciliación (PENDIENTE /<br />CONFIRMADO / PENDING_REVIEW)<br />en tablas de Sincronización.</div>"]
+      style 92 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    86-. "<div>Fotos / firma</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->90
+    86-. "<div>Al cerrar operación</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->91
+    90-. "<div>Publica eventos de media</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->91
+    86-. "<div>Persiste offline_actions_log<br />/ PENDING_REVIEW</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->92
+    11-. "<div>Resuelve peticiones Móviles<br />(JWT ya validado por Apigee)</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->83
+    42-. "<div>Sync, delta y media (lógico:<br />Netskope → Apigee → ILB)</div><div style='font-size: 70%'>[REST/JSON · JWT · mTLS]</div>" .->83
+    87-. "<div>Dedupe por UUID de acción</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    85-. "<div>Cache de decisión de<br />autorización</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    92-. "<div>Escribe / lee tablas de<br />Sincronización</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    90-. "<div>Resumable upload de fotos /<br />firma</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    91-. "<div>Publica cierre de operación</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    89-. "<div>Obtiene turnos / estado<br />operativo</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    89-. "<div>Obtiene catálogos versionados</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    160-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    131-. "<div>Consulta geocerca (S02 /<br />HU-145)</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    131-. "<div>Lee / escribe tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    117-. "<div>Lee / escribe datos maestros</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    83-. "<div>Valida</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->84
+    84-. "<div>Resuelve rol</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->85
+    85-. "<div>Reconcilia</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->86
+    86-. "<div>Dedupe</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->87
+    87-. "<div>Aplica en orden (timestamp de<br />captura)</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->88
+    88-. "<div>Secuencia validada</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->86
+    86-. "<div>Catálogos / turnos</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->89
+  end

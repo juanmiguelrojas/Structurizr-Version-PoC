@@ -1,0 +1,42 @@
+@startuml
+set separator none
+title Volarte - Frontend Web - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo (tenant Terpel) que accede a Volarte vía web con SSO de Entra ID: comercial, supervisión y administración.", $tags="", $link="")
+Person(UsuarioExterno, "Usuario Externo", $descr="Usuario que no está dentro del tenant de Terpel. Se autentica a través del CIAM (Ping Identity).", $tags="", $link="")
+Person(AdminDevTeam, "Admin / Dev Team", $descr="Gestiona módulos, publica versiones, administra permisos (GroupToRoleMapping) y monitorea el uso de la plataforma.", $tags="", $link="")
+System(MicrosoftEntraID, "Microsoft Entra ID", $descr="Proveedor de identidad corporativo (empleados y operarios). SSO · MFA · RBAC por grupos. OIDC / OAuth 2.0 + PKCE. Transversal al hub.", $tags="", $link="")
+System(CIAMPingIdentity, "CIAM Ping Identity", $descr="Gestiona identidad y acceso de usuarios externos: autenticación, autorización, registro y ciclo de vida de identidades.", $tags="", $link="")
+System(ApigeeAPIGateway, "Apigee API Gateway", $descr="Plataforma de administración de APIs nativa de GCP (Proxy instance + Gateway). Valida firma/issuer/audience del JWT contra el JWKS de Entra ID, aplica cuotas y políticas.", $tags="", $link="")
+System(DynatraceTenantTerpel, "Dynatrace (Tenant Terpel)", $descr="Fuente única de verdad corporativa de observabilidad: APM, Infra Monitoring, DEM/RUM, RASP y Business Analytics.", $tags="", $link="")
+
+Container_Boundary("Volarte.FrontendWeb_boundary", "Frontend Web", $tags="") {
+  Component(Volarte.FrontendWeb.AppShellRouter, "App Shell / Router", $techn="React Router", $descr="Layout, navbar y enrutamiento client-side. Punto de entrada único de la SPA.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.MódulodeAutenticación, "Módulo de Autenticación", $techn="MSAL.js", $descr="Flujo OAuth2 Authorization Code + PKCE. Token en memoria (no localStorage).", $tags="", $link="")
+  Component(Volarte.FrontendWeb.VistasporRol, "Vistas por Rol", $techn="React (code-splitting)", $descr="Módulos cargados con React.lazy() según rol: comercial, supervisión, admin. Incluye la bandeja de conciliación PENDING_REVIEW (HU-050).", $tags="", $link="")
+  Component(Volarte.FrontendWeb.ClienteAPI, "Cliente API", $techn="Fetch / Axios", $descr="Inyecta el Bearer token en cada request. Reintentos con backoff.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.CachedeEstadoServidor, "Cache de Estado Servidor", $techn="React Query", $descr="Cache y revalidación de datos de servidor. Evita refetch innecesario.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.ErrorBoundaryTelemetría, "Error Boundary / Telemetría", $techn="React ErrorBoundary + Dynatrace RUM", $descr="Captura errores de render y envía eventos de uso/error (RUM).", $tags="", $link="")
+}
+
+Rel(EmpleadoInterno, Volarte.FrontendWeb.AppShellRouter, "Accede a Volarte con SSO (navega, consulta, concilia)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(UsuarioExterno, Volarte.FrontendWeb.AppShellRouter, "Accede a Volarte (portal externo)", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(AdminDevTeam, Volarte.FrontendWeb.AppShellRouter, "Administra módulos, permisos y publica versiones", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(Volarte.FrontendWeb.MódulodeAutenticación, MicrosoftEntraID, "Login SSO / tokens (Authorization Code + PKCE)", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb.MódulodeAutenticación, CIAMPingIdentity, "Login de usuarios externos", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ClienteAPI, ApigeeAPIGateway, "Consume APIs del BFF Web (sin caché)", $techn="REST/JSON · JWT · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ErrorBoundaryTelemetría, DynatraceTenantTerpel, "Envía eventos RUM de uso / error", $techn="Dynatrace RUM · HTTPS", $tags="", $link="")
+Rel(Volarte.FrontendWeb.AppShellRouter, Volarte.FrontendWeb.MódulodeAutenticación, "Usa", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.FrontendWeb.AppShellRouter, Volarte.FrontendWeb.VistasporRol, "Autenticado → enruta a", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.FrontendWeb.VistasporRol, Volarte.FrontendWeb.ClienteAPI, "Solicita datos", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ClienteAPI, Volarte.FrontendWeb.CachedeEstadoServidor, "Cachea respuestas", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.FrontendWeb.VistasporRol, Volarte.FrontendWeb.ErrorBoundaryTelemetría, "Reporta errores", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

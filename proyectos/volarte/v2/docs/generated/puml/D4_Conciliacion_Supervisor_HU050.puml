@@ -1,0 +1,52 @@
+@startuml
+set separator none
+title Volarte - Dynamic
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+System_Boundary("Volarte_boundary", "Volarte", $tags="") {
+  AddBoundaryTag("Backends for Frontend", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_1, "Backends for Frontend", $tags="Backends for Frontend") {
+    Container(Volarte.BFFWeb, "BFF Web", $techn="Python · FastAPI · Cloud Run", $descr="BFF — Backend Volarte. Valida JWT (issuer/audience, 2a validación), resuelve GroupToRoleMapping → Role/Permission/Capability y orquesta los servicios de dominio. Publica conciliacion-resuelta. Auto-scaling · pay-per-use.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Canales (Clientes)", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_2, "Canales (Clientes)", $tags="Canales (Clientes)") {
+    Container(Volarte.FrontendWeb, "Frontend Web", $techn="React (CSR) + Vite · SPA", $descr="SPA sin MFE: un solo bundle con code-splitting por módulo (React.lazy). Login SSO vía MSAL.js contra Entra ID / CIAM. Deploy: CDN Cloudflare + GCS (terpel-gtic-front).", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Datos", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_3, "Datos", $tags="Datos") {
+    ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Mensajería", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_4, "Mensajería", $tags="Mensajería") {
+    ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+  }
+
+  AddBoundaryTag("Servicios de Dominio", $borderColor="#cccccc", $fontColor="#cccccc", $borderStyle="dashed")
+  Boundary(group_5, "Servicios de Dominio", $tags="Servicios de Dominio") {
+    Container(Volarte.SvcOperación, "Svc: Operación", $techn="Python · FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición e inventario de calidad. Suscriptor de tracking-eventos y conciliacion-resuelta.", $tags="", $link="")
+  }
+
+}
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo (tenant Terpel) que accede a Volarte vía web con SSO de Entra ID: comercial, supervisión y administración.", $tags="", $link="")
+System(InternalLoadBalancer, "Internal Load Balancer", $descr="GCP Cloud Load Balancing interno. Re-cifra TLS y enruta hacia la instancia proxy de Apigee y hacia los BFF en Cloud Run.", $tags="", $link="")
+System(ApigeeAPIGateway, "Apigee API Gateway", $descr="Plataforma de administración de APIs nativa de GCP (Proxy instance + Gateway). Valida firma/issuer/audience del JWT contra el JWKS de Entra ID, aplica cuotas y políticas.", $tags="", $link="")
+
+Rel(EmpleadoInterno, Volarte.FrontendWeb, "1. Abre bandeja PENDING_REVIEW", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(Volarte.FrontendWeb, ApigeeAPIGateway, "2. POST /conciliacion/{op_id} (confirmar | anular)", $techn="REST/JSON · JWT · HTTPS", $tags="", $link="")
+Rel(ApigeeAPIGateway, InternalLoadBalancer, "3. Reenvía petición validada", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(InternalLoadBalancer, Volarte.BFFWeb, "4. Enruta al BFF Web", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb, Volarte.ColadeMensajería, "5. Publica conciliacion-resuelta", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación, "6. Push operacion-conciliacion-sub", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.CloudSQL, "7. Finaliza / anula la operación", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

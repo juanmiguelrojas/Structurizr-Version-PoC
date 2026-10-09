@@ -2,6 +2,16 @@
   "theme": "base",
   "maxTextSize": 500000,
   "maxEdges": 2000,
-  "flowchart": { "htmlLabels": true, "curve": "basis", "nodeSpacing": 40, "rankSpacing": 60, "useMaxWidth": false },
-  "themeVariables": { "fontFamily": "Open Sans, Arial, sans-serif", "fontSize": "14px" }
+  "flowchart": {
+    "htmlLabels": true,
+    "curve": "basis",
+    "nodeSpacing": 40,
+    "rankSpacing": 60,
+    "useMaxWidth": false
+  },
+  "themeVariables": {
+    "fontFamily": "Open Sans, Arial, sans-serif",
+    "fontSize": "14px",
+    "edgeLabelBackground": "#ffffff"
+  }
 }

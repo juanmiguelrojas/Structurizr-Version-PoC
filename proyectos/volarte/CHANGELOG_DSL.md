@@ -1,14 +1,23 @@
-# CHANGELOG_DSL · Bitácora de Cambios de Arquitectura (Volarte)
+# CHANGELOG_DSL · Bitácora de Cambios de Arquitectura · Proyecto Volarte
 
-Bitácora **obligatoria** de todo cambio sobre el modelo Structurizr DSL (`dsl/`).
-El Agente Revisor (`scripts/architecture_reviewer.py`, regla **R4-Trazabilidad**) rechaza
-cualquier PR que modifique `dsl/` sin una entrada nueva en este archivo que:
+Bitácora **única y obligatoria** del proyecto: registra todo cambio sobre el modelo Structurizr DSL de
+**cualquier versión** (`proyectos/volarte/v<N>/dsl/`). Estándar completo en
+[`docs/lineamientos/04-versionamiento-y-trazabilidad.md`](../../docs/lineamientos/04-versionamiento-y-trazabilidad.md).
 
-1. Referencie **cada archivo `.dsl` modificado** (ruta completa o patrón glob) entre backticks.
-2. Contenga los campos obligatorios de la plantilla.
+El Agente Revisor (regla **R4-Trazabilidad**) rechaza cualquier PR que modifique `dsl/` sin una entrada nueva aquí que:
+
+1. Referencie **cada archivo modificado** con su ruta completa (o un patrón glob) entre backticks, p. ej. `` `proyectos/volarte/v2/dsl/model/*.dsl` ``.
+2. Contenga los campos obligatorios de la plantilla (Versión, Fecha, Autor, Ref, Módulo/Archivo, Contexto, Impacto/ADR).
 
 Las entradas se agregan **arriba** (orden cronológico inverso). No se editan entradas históricas:
 una corrección se registra como una nueva entrada que referencia la anterior.
+
+## Índice de versiones
+
+| Versión | Estado | Entradas | Resumen |
+|---|---|---|---|
+| [`v2`](v2/) | en-revision | AAC-20261009-01 | Leyenda oficial C4, observabilidad OTel completa, especificaciones y documentación ampliada |
+| [`v1`](v1/) | reemplazada | AAC-20261008-01 | Conversión inicial del Draw.io a Structurizr DSL (paleta propia, congelada) |
 
 ## Plantilla de entrada (copiar y completar)
 
@@ -17,13 +26,15 @@ una corrección se registra como una nueva entrada que referencia la anterior.
 
 | Campo | Valor |
 |---|---|
+| **Versión** | `vN` |
 | **Fecha y Hora** | AAAA-MM-DD HH:MM UTC · HH:MM COT (UTC-5) |
 | **Autor / Arquitecto** | Nombre Apellido (@usuario-github) |
 | **Ref (HU / Jira / Ticket)** | HU-XXX · VOL-XXXX · P-XXX |
-| **Módulo / Archivo .dsl** | `dsl/model/...dsl`, `dsl/views/...dsl` |
-| **Tipo de cambio** | Nuevo elemento · Modificación · Eliminación · Refactor · Vista · Estilo |
+| **Módulo / Archivo .dsl** | `proyectos/volarte/vN/dsl/model/...dsl`, `proyectos/volarte/vN/dsl/views/...dsl` |
+| **Tipo de cambio** | Nuevo elemento · Modificación · Eliminación · Refactor · Vista · Estilo · Nueva versión |
 | **Contexto & Justificación** | ¿Por qué se hizo el cambio? (p. ej. incorporación de resiliencia en Pub/Sub, ajuste de autenticación mTLS…) |
-| **Impacto Técnico / ADR asociado** | Contenedores/vistas afectados, riesgos, `docs/adr/NNNN-...md` |
+| **Impacto Técnico / ADR asociado** | Contenedores/vistas afectados, riesgos, `proyectos/volarte/vN/docs/adr/NNNN-...md` |
+| **Sugerencias del revisor** | Advertencias R5 atendidas / aceptadas como riesgo (con justificación) |
 | **Revisores** | @arquitecto-revisor |
 ```
 
@@ -38,17 +49,33 @@ una corrección se registra como una nueva entrada que referencia la anterior.
 
 ## Registro
 
+### [AAC-20261009-01] v2 · Leyenda oficial C4, observabilidad completa y especificaciones
+
+| Campo | Valor |
+|---|---|
+| **Versión** | `v2` (nueva, basada en `v1`) |
+| **Fecha y Hora** | 2026-10-09 00:10 UTC · 2026-10-08 19:10 COT (UTC-5) |
+| **Autor / Arquitecto** | Juan Miguel Rojas (@juanmiguelrojas) · asistido por Claude Code |
+| **Ref (HU / Jira / Ticket)** | AAC-LINEAMIENTOS-C4 · Revisión Dirección de Arquitectura sobre v1 |
+| **Módulo / Archivo .dsl** | `proyectos/volarte/v2/dsl/*` (copia de v1 con cambios en `proyectos/volarte/v2/dsl/workspace.dsl`, `proyectos/volarte/v2/dsl/model/people.dsl`, `proyectos/volarte/v2/dsl/model/systems.dsl`, `proyectos/volarte/v2/dsl/model/relationships.dsl`, `proyectos/volarte/v2/dsl/views/styles.dsl`) |
+| **Tipo de cambio** | Nueva versión · Estilo · Modificación |
+| **Contexto & Justificación** | La Dirección de Arquitectura exige la **leyenda oficial C4** (Person `#083F75`, Software System `#1061B0`, Container `#23A2D9`, Component `#63BEF2`, External Person `#6C6477`, External Software System `#8C8496`) en todos los diagramas, imágenes y PDF, y trazabilidad por versiones. v1 usaba una paleta propia por tag. Se crea v2: (1) estilos desde `estandares/c4/estilos-c4.dsl`, tags semánticos solo de forma; (2) tags `External Person` / `External Software System` en actores y sistemas fuera de alcance; (3) relaciones de los 5 servicios de dominio y el Gestor Documental hacia el OTel Collector, tal como indica el L0 del Draw.io ("se conecta a todas las Cloud Run de Backend y Servicios"); (4) leyenda embebida en cada diagrama, fichas técnicas, catálogo de tecnologías y `docs/workspace/03-stack-tecnologico.md`. |
+| **Impacto Técnico / ADR asociado** | Sin cambios de contenedores ni componentes (14 / 74). +6 relaciones de observabilidad. Cambio visual en las 19 vistas. ADR `proyectos/volarte/v2/docs/adr/0006-leyenda-oficial-c4-y-versionamiento.md`. v1 pasa a estado `reemplazada` (congelada). |
+| **Sugerencias del revisor** | R5-Observabilidad (6 advertencias de v1) **atendidas**. Se mantienen como riesgo abierto, pendientes de decisión: SPOF Cloud SQL / Memorystore (HA no declarada en la fuente), `tracking-eventos-sub` sin DLQ, 3 tramos sin cifrado explícito (Pub/Sub→BigQuery, HUB→Power BI, Logging→Monitoring). |
+| **Revisores** | Dirección de Arquitectura Terpel (pendiente) |
+
 ### [AAC-20261008-01] Baseline inicial · Conversión de Draw.io Volarte v1 a Structurizr DSL
 
 | Campo | Valor |
 |---|---|
+| **Versión** | `v1` (estado actual: reemplazada por v2) |
 | **Fecha y Hora** | 2026-10-08 23:17 UTC · 2026-10-08 18:17 COT (UTC-5) |
 | **Autor / Arquitecto** | Juan Miguel Rojas (@juanmiguelrojas) · asistido por Claude Code · Modelo origen: Kevin Montoya (Draw.io v1, 17/08/2026) |
 | **Ref (HU / Jira / Ticket)** | AAC-BASELINE · Volarte Fase I · HU-007, HU-044, HU-050, HU-055, HU-056, HU-128, HU-145 · P-025, P-072 |
 | **Módulo / Archivo .dsl** | `dsl/workspace.dsl`, `dsl/model/people.dsl`, `dsl/model/systems.dsl`, `dsl/model/volarte_containers.dsl`, `dsl/model/relationships.dsl`, `dsl/model/deployment.dsl`, `dsl/model/components/*.dsl`, `dsl/views/*.dsl`, `dsl/views/themes/*` |
-| **Tipo de cambio** | Nuevo (baseline) |
+| **Tipo de cambio** | Nuevo (baseline) · *Rutas previas a la reestructuración por proyectos: hoy en `proyectos/volarte/v1/dsl/`* |
 | **Contexto & Justificación** | Adopción de la estrategia corporativa de Architecture as Code. Se traduce el diagrama `Arquitectura_volarte_1.drawio` (13 páginas: L0 Referencia, L1 Context, L2 Container y 10 diagramas L3) a un modelo C4 único y modular en Structurizr DSL, que pasa a ser la fuente de verdad versionada. |
-| **Impacto Técnico / ADR asociado** | 4 personas · 25 sistemas (Volarte + 24 externos/transversales) · 14 contenedores · 74 componentes · 19 vistas (L0, L1, 2×L2, 10×L3, 4 dinámicas, 1 despliegue). ADRs: `docs/adr/0001` (AaC), `0002` (BFF por canal + Apigee), `0003` (offline-first HU-050), `0004` (Pub/Sub + DLQ HU-055), `0005` (GKE para Asignación, *Proposed*). |
+| **Impacto Técnico / ADR asociado** | 4 personas · 25 sistemas (Volarte + 24 externos/transversales) · 14 contenedores · 74 componentes · 19 vistas (L0, L1, 2×L2, 10×L3, 4 dinámicas, 1 despliegue). ADRs: `proyectos/volarte/v1/docs/adr/0001` (AaC), `0002` (BFF por canal + Apigee), `0003` (offline-first HU-050), `0004` (Pub/Sub + DLQ HU-055), `0005` (GKE para Asignación, *Proposed*). |
 | **Revisores** | Dirección de Arquitectura Terpel |
 
 **Decisiones de modelado y hallazgos de la conversión (requieren validación de Arquitectura):**

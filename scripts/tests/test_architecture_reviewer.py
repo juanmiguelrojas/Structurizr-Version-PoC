@@ -75,5 +75,52 @@ class ReviewerRules(unittest.TestCase):
         self.assertIn("R5-Observabilidad", rules)
 
 
+    def test_r7_legend_ok_and_wrong_color(self):
+        good = [{"tag": t, "background": c} for t, c in ar.C4_LEGEND.items()] + [{"tag": "Database", "shape": "Cylinder"}]
+        elements, _, _ = run(workspace([]))
+        errors = [f for f in ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": good}}}}, elements) if f.severity == "ERROR"]
+        self.assertEqual(errors, [])
+        bad = good + [{"tag": "Database", "background": "#0F9D58"}]
+        findings = list(ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": bad}}}}, elements))
+        self.assertTrue(any(f.rule == "R7-Leyenda C4" and f.severity == "ERROR" for f in findings))
+
+    def test_r7_pending_may_only_set_stroke(self):
+        styles = [{"tag": t, "background": c} for t, c in ar.C4_LEGEND.items()] + [{"tag": "Pending", "stroke": "#F59E0B"}]
+        elements, _, _ = run(workspace([]))
+        errors = [f for f in ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": styles}}}}, elements) if f.severity == "ERROR"]
+        self.assertEqual(errors, [])
+
+    def test_r7_external_person_tag_required(self):
+        styles = [{"tag": t, "background": c} for t, c in ar.C4_LEGEND.items()]
+        ws = workspace([], people=[{"id": "9", "name": "Cliente", "description": "d", "tags": "Element,Person,External"}])
+        elements, _, _ = run(ws)
+        findings = list(ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": styles}}}}, elements))
+        self.assertTrue(any("External Person" in f.message for f in findings))
+
+    def test_r6_locked_version_rejects_changes(self):
+        original = ar.aac_versions.meta_at
+        ar.aac_versions.meta_at = lambda ref, vdir: {"estado": "aprobada"}
+        try:
+            findings = list(ar.rule_immutability("proyectos/x/v1", ["proyectos/x/v1/dsl/workspace.dsl"], "origin/main"))
+            self.assertEqual(findings[0].severity, "ERROR")
+            only_meta = list(ar.rule_immutability("proyectos/x/v1", ["proyectos/x/v1/version.json"], "origin/main"))
+            self.assertEqual(only_meta[0].severity, "INFO")
+        finally:
+            ar.aac_versions.meta_at = original
+
+    def test_r6_editable_version_allows_changes(self):
+        original = ar.aac_versions.meta_at
+        ar.aac_versions.meta_at = lambda ref, vdir: {"estado": "en-revision"}
+        try:
+            self.assertEqual(list(ar.rule_immutability("proyectos/x/v2", ["proyectos/x/v2/dsl/a.dsl"], "origin/main")), [])
+        finally:
+            ar.aac_versions.meta_at = original
+
+    def test_r8_metadata_of_real_versions(self):
+        for vdir in ar.aac_versions.list_versions():
+            rel = ar.aac_versions.rel(vdir)
+            self.assertEqual([f for f in ar.rule_version_metadata(rel) if f.severity == "ERROR"], [], rel)
+
+
 if __name__ == "__main__":
     unittest.main()

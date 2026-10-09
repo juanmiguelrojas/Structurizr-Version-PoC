@@ -1,0 +1,130 @@
+@startuml
+set separator none
+title Volarte - Deployment - Produccion
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Deployment>
+
+Deployment_Node(Produccion.DispositivoAndroidGestionado, "Dispositivo Android Gestionado", $type="Android · Intune / Managed Play", $descr="Dispositivo corporativo del operario (posture Intune, perfil de trabajo).", $tags="", $link="") {
+  Container(Produccion.DispositivoAndroidGestionado.AppMóvil_1, "App Móvil", $techn="React Native · Android exclusivo", $descr="Offline-first: SQLite local (WatermelonDB) + cola de escritura con UUID por acción. Fotos/firma al filesystem local. Sync bidireccional al reconectar (delta + resumable upload). Solo operarios; distribución vía Intune / Managed Play. NO se despliega en GCP.", $tags="", $link="")
+  Deployment_Node(Produccion.DispositivoAndroidGestionado.NetskopeClient, "Netskope Client", $type="Netskope Agent", $descr="Agente ZTNA del dispositivo; habilita el túnel solo con posture válido.", $tags="", $link="")
+}
+
+Deployment_Node(Produccion.NavegadorWeb, "Navegador Web", $type="Chrome · Edge", $descr="Navegador del empleado / usuario externo.", $tags="", $link="") {
+  Container(Produccion.NavegadorWeb.FrontendWeb_1, "Frontend Web", $techn="React (CSR) + Vite · SPA", $descr="SPA sin MFE: un solo bundle con code-splitting por módulo (React.lazy). Login SSO vía MSAL.js contra Entra ID / CIAM. Deploy: CDN Cloudflare + GCS (terpel-gtic-front).", $tags="", $link="")
+}
+
+Deployment_Node(Produccion.Cloudflare, "Cloudflare", $type="Cloudflare Edge", $descr="Red de borde global de Cloudflare.", $tags="", $link="") {
+  Deployment_Node(Produccion.Cloudflare.CloudflareWAFCDN, "Cloudflare WAF / CDN", $type="Cloudflare", $descr="WAF, protección DDoS y CDN del bundle web.", $tags="", $link="")
+}
+
+Deployment_Node(Produccion.NetskopeCloud, "Netskope Cloud", $type="Netskope Private Access", $descr="Plataforma ZTNA SaaS.", $tags="", $link="") {
+  Deployment_Node(Produccion.NetskopeCloud.NetskopePrivateAccessGateway, "Netskope Private Access Gateway", $type="Netskope NPA", $descr="Publica el acceso privado a Apigee solo para dispositivos con posture válido.", $tags="", $link="")
+}
+
+Deployment_Node(Produccion.GoogleCloudPlatform, "Google Cloud Platform", $type="GCP", $descr="Organización GCP de Terpel.", $tags="", $link="") {
+  Deployment_Node(Produccion.GoogleCloudPlatform.terpelinfravpctransversal, "terpel-infra-vpc-transversal", $type="Shared VPC", $descr="VPC compartida transversal.", $tags="", $link="") {
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.ExternalRegionalLoadBalancer, "External Regional Load Balancer", $type="GCP Cloud Load Balancing", $descr="Termina TLS en el borde.", $tags="", $link="")
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.FirewallPaloAlto, "Firewall Palo Alto", $type="Palo Alto VM-Series", $descr="Inspección y NAT de tráfico norte-sur.", $tags="", $link="")
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.InternalLoadBalancer, "Internal Load Balancer", $type="GCP Internal HTTP(S) LB", $descr="Enrutamiento interno a Apigee y Cloud Run.", $tags="", $link="")
+  }
+
+  Deployment_Node(Produccion.GoogleCloudPlatform.terpelgticapigeeprd, "terpel-gtic-apigee-prd", $type="Apigee X", $descr="Proyecto de API Management.", $tags="", $link="") {
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelgticapigeeprd.ProxyinstanceApigee, "Proxy instance (Apigee)", $type="Compute Engine MIG", $descr="Puente de conexión VPC ↔ Apigee.", $tags="", $link="")
+    System(Produccion.GoogleCloudPlatform.terpelgticapigeeprd.ApigeeAPIGateway_1, "Apigee API Gateway", $descr="Plataforma de administración de APIs nativa de GCP (Proxy instance + Gateway). Valida firma/issuer/audience del JWT contra el JWKS de Entra ID, aplica cuotas y políticas.", $tags="", $link="")
+  }
+
+  Deployment_Node(Produccion.GoogleCloudPlatform.terpelgticfrontprd, "terpel-gtic-front-prd", $type="GCP Project", $descr="Proyecto de hosting de frontends.", $tags="", $link="") {
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelgticfrontprd.BucketSPAVolarte, "Bucket SPA Volarte", $type="Google Cloud Storage", $descr="Origen estático del bundle React servido por Cloudflare CDN.", $tags="", $link="")
+  }
+
+  Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd, "terpel-org-col-volarte-prd", $type="GCP Project", $descr="Proyecto GCP de Volarte (equivalente en dev y qa).", $tags="", $link="") {
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF, "Cloud Run · BFF", $type="Cloud Run (serverless)", $descr="Servicios serverless de borde de aplicación.", $tags="", $link="") {
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, "BFF Web", $techn="Python · FastAPI · Cloud Run", $descr="BFF — Backend Volarte. Valida JWT (issuer/audience, 2a validación), resuelve GroupToRoleMapping → Role/Permission/Capability y orquesta los servicios de dominio. Publica conciliacion-resuelta. Auto-scaling · pay-per-use.", $tags="", $link="")
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio, "Cloud Run · Servicios de Dominio", $type="Cloud Run (serverless)", $descr="Servicios de dominio serverless (ingress interno, IAM Invoker).", $tags="", $link="") {
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcUsuariosAuth_1, "Svc: Usuarios / Auth", $techn="Python · FastAPI · Cloud Run", $descr="S01: roles, permisos, perfil y GroupToRoleMapping. Sincroniza grupos con Entra ID (Microsoft Graph). Auditoría de decisiones de autorización.", $tags="", $link="")
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcDatosMaestros_1, "Svc: Datos Maestros", $techn="Python · FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile, geocercas (HU-145).", $tags="", $link="")
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcComercial_1, "Svc: Comercial", $techn="Python · FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider) y crédito disponible. Suscriptor de operacion-cerrada para actualizar saldo/crédito.", $tags="", $link="")
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, "Svc: Operación", $techn="Python · FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición e inventario de calidad. Suscriptor de tracking-eventos y conciliacion-resuelta.", $tags="", $link="")
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.GestorDocumental_1, "Gestor Documental", $techn="Python · FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación y retorna un ID inmutable vinculado. Cola + reintento sin duplicar (HU-055). S07 define contenido y numeración del documento canónico; el Gestor solo lo publica.", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.GKE, "GKE", $type="GKE Autopilot", $descr="Cómputo sostenido para optimización (P-025 PENDING).", $tags="", $link="") {
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.GKE.SvcAsignaciónOptimización_1, "Svc: Asignación / Optimización", $techn="Python · MILP Solver · GKE", $descr="S06: motor MILP + recomendación Skypredict con degradación controlada. GKE por cómputo sostenido (P-025 PENDING: owner/runtime final los confirma Arquitectura).", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL, "Cloud SQL", $type="Cloud SQL for PostgreSQL", $descr="Instancia PostgreSQL gestionada (CMEK). Configuración HA pendiente de confirmar.", $tags="", $link="") {
+      ContainerDb(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.Memorystore, "Memorystore", $type="Memorystore for Redis", $descr="Redis gestionado. Tier pendiente de confirmar (Basic = sin réplica).", $tags="", $link="") {
+      ContainerDb(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.Memorystore.Memorystore_1, "Memorystore", $techn="Redis · Memorystore", $descr="Cache de sesiones, tokens, queries, decisiones de autorización (TTL corto) y llaves de idempotencia por UUID.", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub, "Pub/Sub", $type="Google Cloud Pub/Sub", $descr="Servicio global gestionado de mensajería.", $tags="", $link="") {
+      ContainerQueue(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudStorage, "Cloud Storage", $type="Google Cloud Storage", $descr="Bucket de documentos WORM (regional / dual-region).", $tags="", $link="") {
+      Container(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudStorage.DocumentosGCS_1, "Documentos (GCS)", $techn="Google Cloud Storage", $descr="Almacenamiento WORM/versionado de documentos de entrega, fotos y firmas. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+    }
+
+    Deployment_Node(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto, "Seguridad del Proyecto", $type="GCP Managed Services", $descr="Servicios gestionados de seguridad.", $tags="", $link="") {
+      System(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.GCPSecretManager_1, "GCP Secret Manager", $descr="Almacena secretos de todos los servicios (credenciales DB, API keys, client secrets). Acceso vía Service Account (IAM). Rotación automática y audit log.", $tags="", $link="")
+      System(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.CloudKMS_1, "Cloud KMS", $descr="Gestión de llaves de cifrado (CMEK, HSM, rotación). Cifra Cloud SQL, GCS, Firestore y los secretos de Secret Manager.", $tags="", $link="")
+    }
+
+  }
+
+}
+
+Rel(Produccion.NavegadorWeb.FrontendWeb_1, Produccion.GoogleCloudPlatform.terpelgticapigeeprd.ApigeeAPIGateway_1, "Consume APIs del BFF Web (sin caché)", $techn="REST/JSON · JWT · HTTPS", $tags="", $link="")
+Rel(Produccion.DispositivoAndroidGestionado.AppMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, "Sync, delta y media (lógico: Netskope → Apigee → ILB)", $techn="REST/JSON · JWT · mTLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcUsuariosAuth_1, "Consulta roles / mapping", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcDatosMaestros_1, "Consulta datos maestros", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcDatosMaestros_1, "Obtiene catálogos versionados", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcComercial_1, "Consulta elegibilidad, precio y crédito", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, "Consulta estado de operación / turnos", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, "Obtiene turnos / estado operativo", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcDatosMaestros_1, "Consulta geocerca (S02 / HU-145)", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.GKE.SvcAsignaciónOptimización_1, "Solicita recomendación de asignación", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.GKE.SvcAsignaciónOptimización_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, "Lee estado dinámico de equipos / operadores", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Consultas varias (Proxy SQL)", $techn="Cloud SQL Auth Proxy · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Escribe / lee tablas de Sincronización", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcUsuariosAuth_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Lee / escribe usuarios, roles y mapping", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcDatosMaestros_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Lee / escribe datos maestros", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcComercial_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Lee / escribe estado comercial", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Lee / escribe tablas operacionales", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.GestorDocumental_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, "Persiste número / metadata documental", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.Memorystore.Memorystore_1, "Cache de decisión de autorización", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.Memorystore.Memorystore_1, "Dedupe por UUID de acción", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcUsuariosAuth_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.Memorystore.Memorystore_1, "Invalida decisiones cacheadas", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, "Publica resolución del supervisor (HU-050)", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, "Publica cierre de operación", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcComercial_1, "Push: actualiza saldo / crédito", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.SvcOperación_1, "Push: finaliza / anula operación pendiente", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.PubSub.ColadeMensajería_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.GestorDocumental_1, "Push: dispara publicación documental", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudStorage.DocumentosGCS_1, "Resumable upload de fotos / firma", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunServiciosdeDominio.GestorDocumental_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudStorage.DocumentosGCS_1, "Sube documento final (único escritor)", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFWeb_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.GCPSecretManager_1, "Lee secretos (IAM Service Account)", $techn="gRPC · TLS · IAM", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudRunBFF.BFFMóvil_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.GCPSecretManager_1, "Lee secretos (IAM Service Account)", $techn="gRPC · TLS · IAM", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudSQL.CloudSQL_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.CloudKMS_1, "Cifrado en reposo (CMEK)", $techn="Cloud KMS API · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.CloudStorage.DocumentosGCS_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.CloudKMS_1, "Cifra objetos con CMEK", $techn="Cloud KMS API · TLS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.GCPSecretManager_1, Produccion.GoogleCloudPlatform.terpelorgcolvolarteprd.SeguridaddelProyecto.CloudKMS_1, "Cifra secretos con CMEK", $techn="Cloud KMS API · TLS", $tags="", $link="")
+Rel(Produccion.Cloudflare.CloudflareWAFCDN, Produccion.GoogleCloudPlatform.terpelinfravpctransversal.ExternalRegionalLoadBalancer, "Pass-through", $techn="HTTPS · TLS 1.3", $tags="", $link="")
+Rel(Produccion.Cloudflare.CloudflareWAFCDN, Produccion.GoogleCloudPlatform.terpelgticfrontprd.BucketSPAVolarte, "Origen del bundle estático", $techn="HTTPS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.ExternalRegionalLoadBalancer, Produccion.GoogleCloudPlatform.terpelinfravpctransversal.FirewallPaloAlto, "Reenvía tráfico", $techn="HTTPS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.FirewallPaloAlto, Produccion.GoogleCloudPlatform.terpelinfravpctransversal.InternalLoadBalancer, "Reenvía tráfico inspeccionado", $techn="HTTPS", $tags="", $link="")
+Rel(Produccion.GoogleCloudPlatform.terpelinfravpctransversal.InternalLoadBalancer, Produccion.GoogleCloudPlatform.terpelgticapigeeprd.ProxyinstanceApigee, "Reenvía tráfico", $techn="HTTPS", $tags="", $link="")
+Rel(Produccion.DispositivoAndroidGestionado.NetskopeClient, Produccion.NetskopeCloud.NetskopePrivateAccessGateway, "Túnel ZTNA", $techn="mTLS", $tags="", $link="")
+Rel(Produccion.NetskopeCloud.NetskopePrivateAccessGateway, Produccion.GoogleCloudPlatform.terpelgticapigeeprd.ProxyinstanceApigee, "Acceso privado", $techn="mTLS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml
