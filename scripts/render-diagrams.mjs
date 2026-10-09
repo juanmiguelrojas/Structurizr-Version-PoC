@@ -10,7 +10,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import puppeteer from "puppeteer";
+import { launchBrowser } from "./browser.mjs";
 import { renderMermaid } from "@mermaid-js/mermaid-cli";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -81,9 +81,7 @@ async function rasterize(browser, svg, file, scale) {
 }
 
 for (const dir of ["svg", "png", "png-hires"]) fs.mkdirSync(path.join(outDir, dir), { recursive: true });
-const launch = { headless: true, args: ["--no-sandbox", "--disable-dev-shm-usage"] };
-if (process.env.PUPPETEER_EXECUTABLE_PATH) launch.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
-const browser = await puppeteer.launch(launch);
+const browser = await launchBrowser();
 let failures = 0;
 try {
   const files = fs.readdirSync(mmdDir).filter((f) => f.endsWith(".mmd")).sort();

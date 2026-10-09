@@ -12,7 +12,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import puppeteer from "puppeteer";
+import { launchBrowser } from "./browser.mjs";
 import { marked } from "marked";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -263,9 +263,7 @@ ${viewSections}
 <div class="page"><h2>10. Reporte del Agente Revisor</h2>${md(path.join(versionDir, "docs", "generated", "review", "review-report.md"))}</div>
 </body></html>`;
 
-const launch = { args: ["--no-sandbox", "--disable-dev-shm-usage"] };
-if (process.env.PUPPETEER_EXECUTABLE_PATH) launch.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
-const browser = await puppeteer.launch(launch);
+const browser = await launchBrowser();
 try {
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "load" });

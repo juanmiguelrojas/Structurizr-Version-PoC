@@ -21,6 +21,11 @@ arquitectura de cada proyecto se registran en `proyectos/<proyecto>/CHANGELOG_DS
   congeladas solo se validan.
 - Pipeline CI compila solo las versiones modificadas y publica sus artefactos en `main`.
 
+### Corregido
+- Render en CI: `aac-build.sh` usaba el Chrome del sistema del runner (`/usr/bin/google-chrome`), de versión distinta a
+  la de Puppeteer, y su arranque excedía el timeout de 30 s (`Timed out … waiting for the WS endpoint URL`).
+  Ahora se usa el `chrome-headless-shell` fijado por Puppeteer mediante `scripts/browser.mjs` (timeout 120 s).
+
 ### Migración
 - El contenido previo (raíz `dsl/`, `docs/`) se movió a `proyectos/volarte/v1/` sin modificaciones y quedó congelado.
 

@@ -95,8 +95,10 @@ prepare_render() {
   [[ -n "${RENDER_READY:-}" ]] && return 0
   command -v node >/dev/null || fail "Se requiere Node.js 18+ para el render"
   if [[ -z "${PUPPETEER_EXECUTABLE_PATH:-}" ]]; then
-    # Chromium preinstalado (p. ej. Playwright) si existe; si no, el que descarga Puppeteer.
-    for c in /opt/pw-browsers/chromium-*/chrome-linux/chrome /usr/bin/chromium /usr/bin/google-chrome; do
+    # Chromium de Playwright si está preinstalado (entornos de desarrollo); si no, el
+    # chrome-headless-shell que Puppeteer descarga con `npm ci` (versión fijada).
+    # No se usa el Chrome del sistema: su versión no coincide con Puppeteer (ver scripts/browser.mjs).
+    for c in /opt/pw-browsers/chromium-*/chrome-linux/chrome; do
       [[ -x "$c" ]] && export PUPPETEER_EXECUTABLE_PATH="$c" && break
     done
   fi

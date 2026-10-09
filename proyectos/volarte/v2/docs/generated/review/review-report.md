@@ -1,7 +1,7 @@
 # Reporte del Agente Revisor de Arquitectura · proyectos/volarte/v2
 
 - **Resultado:** ✅ APROBADO
-- **Fecha (UTC):** 2026-10-09 00:17:30
+- **Fecha (UTC):** 2026-10-09 00:24:53
 - **Elementos analizados:** 117 · **Relaciones explícitas:** 158
 - **Hallazgos:** 0 errores · 6 advertencias · 4 informativos
 
@@ -28,7 +28,7 @@
 | 4 | WARN | R5-Resiliencia | Volarte › Cola de Mensajería › Sub: tracking-eventos-sub | Suscripción Pub/Sub sin Dead Letter Topic. | Configure dead_letter_policy (max_delivery_attempts) hacia el Dead Letter Topic. |
 | 5 | WARN | R5-SPOF | Volarte › Cloud SQL | Posible Single Point of Failure: 7 contenedor(es) dependen de él y su nodo de despliegue no declara alta disponibilidad (ha=true / instances>1). | Configure HA regional (Cloud SQL HA, Memorystore Standard Tier, réplicas) y declare la propiedad "ha" "true" en el deploymentNode. |
 | 6 | WARN | R5-SPOF | Volarte › Memorystore | Posible Single Point of Failure: 3 contenedor(es) dependen de él y su nodo de despliegue no declara alta disponibilidad (ha=true / instances>1). | Configure HA regional (Cloud SQL HA, Memorystore Standard Tier, réplicas) y declare la propiedad "ha" "true" en el deploymentNode. |
-| 7 | INFO | R4-Trazabilidad | proyectos/volarte/CHANGELOG_DSL.md | 22 archivo(s) DSL modificados y cubiertos por la bitácora. |  |
+| 7 | INFO | R4-Trazabilidad | proyectos/volarte/CHANGELOG_DSL.md | Regla de trazabilidad omitida (--skip-traceability). |  |
 | 8 | INFO | R5-Decisión Pendiente | PriceProvider Externo | Elemento marcado como decisión PENDING. | Cierre la decisión con un ADR (Accepted) y retire el tag Pending. |
 | 9 | INFO | R5-Decisión Pendiente | Volarte › Svc: Asignación / Optimización | Elemento marcado como decisión PENDING. | Cierre la decisión con un ADR (Accepted) y retire el tag Pending. |
 | 10 | INFO | R5-Decisión Pendiente | Volarte › Svc: Comercial › Resolutor PriceProvider | Elemento marcado como decisión PENDING. | Cierre la decisión con un ADR (Accepted) y retire el tag Pending. |

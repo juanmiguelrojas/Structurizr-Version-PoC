@@ -1,7 +1,7 @@
 {
   "stats": {
     "version_dir": "proyectos/volarte/v2",
-    "generated_at": "2026-10-09 00:17:30",
+    "generated_at": "2026-10-09 00:24:53",
     "elements": 117,
     "explicit_relationships": 158,
     "counts": {
@@ -57,7 +57,7 @@
       "rule": "R4-Trazabilidad",
       "severity": "INFO",
       "element": "proyectos/volarte/CHANGELOG_DSL.md",
-      "message": "22 archivo(s) DSL modificados y cubiertos por la bitácora.",
+      "message": "Regla de trazabilidad omitida (--skip-traceability).",
       "recommendation": ""
     },
     {
