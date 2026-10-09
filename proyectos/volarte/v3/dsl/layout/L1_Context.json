@@ -1,0 +1,811 @@
+{
+ "vista": "L1_Context",
+ "pagina": "L1 · Context",
+ "titulo": "L1 · Context — Diagrama de contexto",
+ "boundaries": [
+  {
+   "drawioId": "v0mWydjAFtp2PQiesWX0-1",
+   "nombre": "Diagrama Context",
+   "etiqueta": "Volarte\nAutor: Kevin Montoya\nTERPEL - DIRECCION DE ARQUITECTURA\nVersion: 1\nFase: I\nFecha: 17/08/2026",
+   "tipo": "ContainerScopeBoundary",
+   "x": 30.0,
+   "y": 40.0,
+   "w": 1580.0,
+   "h": 1110.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];strokeWidth=3;"
+  }
+ ],
+ "nodos": [
+  {
+   "ref": "pe_adminDevTeam",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-1",
+   "x": 80.0,
+   "y": 686.0,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "Person",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "shape=mxgraph.c4.person2;html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;align=center;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 14,
+    "tipoPx": 10,
+    "descPx": 9,
+    "color": "#FFFFFF",
+    "colorTipo": "#BBDEFB",
+    "colorDesc": "#E0E0E0"
+   },
+   "descripcionDrawio": "Gestiona módulos, publica web apps,\nadministra permisos, monitorea uso\ny registra nuevas herramientas"
+  },
+  {
+   "ref": "ss_googleCloudPlatform",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-6",
+   "x": 490.0,
+   "y": 846.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Cloud Run · Cloud SQL · Firestore\nGCS · BigQuery · Secret Manager\nCloudflare CDN / WAF"
+  },
+  {
+   "ref": "ss_sistemasExternosFuturos",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-7",
+   "x": 1003.0,
+   "y": 546.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "SAP · SALESFORCE · COUPA\no cualquier sistema transaccional que necesite el portal"
+  },
+  {
+   "ref": "portal",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-8",
+   "x": 490.0,
+   "y": 516.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Portal interno/externo corporativo con:\n• Wiki de conocimiento\n• Catálogo de Web Apps\n• SSO federado a portales externos\n• Shell + módulos independientes"
+  },
+  {
+   "ref": "entraId",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-9",
+   "x": 490.0,
+   "y": 180.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Proveedor de identidad corporativo.\nSSO · MFA · RBAC.\nTransversal al hub",
+   "texto": {
+    "nombre": "EntraID / Azure AD"
+   }
+  },
+  {
+   "ref": "ss_webappsExternosFuturos",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-12",
+   "x": 1003.0,
+   "y": 706.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "sistemas o cualquier portal que acepte\nfederación SAML 2.0 / OIDC o comunicacion API REST"
+  },
+  {
+   "ref": "pe_usuarioExterno",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-31",
+   "x": 90.0,
+   "y": 70.0,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "External Person",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#6C6477;strokeColor=#4D4D4D;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Usuario que no esta dentro del tenant de terpel"
+  },
+  {
+   "ref": "ss_ciam",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-34",
+   "x": 790.0,
+   "y": 180.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Gestiona la identidad y acceso de usuarios externos, proporcionando autenticación, autorización, registro de usuarios y gestión del ciclo de vida de identidades."
+  },
+  {
+   "ref": "datalake",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-38",
+   "x": 990.0,
+   "y": 883.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "cilindro",
+   "clase": "Container",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Repositorio analítico y estructurado de datos tabulares. Recibe información transformada por los ETL."
+  },
+  {
+   "ref": "pe_empleadoInterno",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-39",
+   "x": 80.0,
+   "y": 370.0,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "Person",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "shape=mxgraph.c4.person2;html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;align=center;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 14,
+    "tipoPx": 10,
+    "descPx": 9,
+    "color": "#FFFFFF",
+    "colorTipo": "#BBDEFB",
+    "colorDesc": "#E0E0E0"
+   },
+   "descripcionDrawio": "Usuario corporativo que accede a la wiki,\nlanza web apps y navega a portales externos\ndesde un único punto de entrada"
+  },
+  {
+   "ref": "ce_capacidadesTransversales",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-15",
+   "x": 1110.0,
+   "y": 156.0,
+   "w": 480.0,
+   "h": 240.0,
+   "forma": "nota",
+   "clase": null,
+   "fill": "#fffde7",
+   "boundary": "v0mWydjAFtp2PQiesWX0-1",
+   "style": "text;html=1;strokeColor=#d4ac0d;fillColor=#fffde7;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;rounded=1;arcSize=4;fontSize=11;fontColor=#5a4000;",
+   "textoDrawio": "Capacidades Transversales\nAplicables a todos los portales del ecosistema.\n• Seguridad: OAuth2/OIDC · RBAC/ABAC · Zero Trust\n• Observabilidad: Logs · Tracing · Métricas · SLOs\n• Resiliencia: Circuit Breaker · Retry · Timeout\n• Escalabilidad: Auto-scaling · Event-driven\n• Gobernanza: API versioning · Data contracts · ADRs",
+   "fuente": {
+    "px": 18
+   }
+  }
+ ],
+ "notas": [
+  {
+   "drawioId": null,
+   "x": 490.0,
+   "y": 846.0,
+   "w": 240.0,
+   "h": 120.0,
+   "texto": "",
+   "fill": "#1061B0",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-18",
+   "x": 1390.0,
+   "y": 910.0,
+   "w": 180.0,
+   "h": 210.0,
+   "texto": "Legend",
+   "fill": "none",
+   "fuente": {},
+   "forma": "table",
+   "style": "shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fontSize=16;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#4D4D4D;fontStyle=1;spacingLeft=6;spacing=0;resizable=0;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-20",
+   "x": 1390.0,
+   "y": 940.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "Person",
+   "fill": "#1E4074",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#1E4074;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-22",
+   "x": 1390.0,
+   "y": 970.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "Software System",
+   "fill": "#3162AF",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#3162AF;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-24",
+   "x": 1390.0,
+   "y": 1000.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "Container",
+   "fill": "#52a2d8",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#52a2d8;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-26",
+   "x": 1390.0,
+   "y": 1030.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "Component",
+   "fill": "#7dbef2",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#7dbef2;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-28",
+   "x": 1390.0,
+   "y": 1060.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "External Person",
+   "fill": "#6b6477",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#6b6477;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-30",
+   "x": 1390.0,
+   "y": 1090.0,
+   "w": 180.0,
+   "h": 30.0,
+   "texto": "External Software System",
+   "fill": "#8b8496",
+   "fuente": {},
+   "forma": "partialRectangle",
+   "style": "shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=#8b8496;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=12;align=left;fontColor=#FFFFFF;gradientColor=none;spacingLeft=10;spacingRight=4;"
+  }
+ ],
+ "conectores": [
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-2",
+   "origen": "jBqDDpGHMn_ggPszUGn9-1",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-8",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_adminDevTeam",
+     "destino": "portal",
+     "descripcion": "Administra módulos y permisos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Administra módulos y permisos",
+   "etiquetaLineas": "Administra módulos y permisos",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [],
+   "extremos": {
+    "targetPoint": {
+     "x": 680.0,
+     "y": 611.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=9;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-3",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-9",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "entraId",
+     "descripcion": "Delega autenticación",
+     "tecnologia": "OIDC / OAuth 2.0"
+    }
+   ],
+   "etiqueta": "Delega autenticación [OIDC / OAuth 2.0]",
+   "etiquetaLineas": "Delega autenticación\n[OIDC / OAuth 2.0]",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 770.0,
+     "y": 546.0
+    },
+    "targetPoint": {
+     "x": 970.0,
+     "y": 386.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#0D47A1;fontSize=9;html=1;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-4",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-7",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "ss_sistemasExternosFuturos",
+     "descripcion": "Consulta / Actualiza REST API",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Consulta / Actualiza REST API",
+   "etiquetaLineas": "Consulta / Actualiza\nREST API",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "px": 10,
+    "color": "#000000"
+   },
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 770.0,
+     "y": 636.0
+    },
+    "targetPoint": {
+     "x": 1020.0,
+     "y": 661.0
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.0037,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#64748B;fontSize=9;html=1;dashed=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-5",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-6",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "ss_googleCloudPlatform",
+     "descripcion": "Desplegado en GCP",
+     "tecnologia": "Cloud Run · SQL · GCS · BigQuery"
+    }
+   ],
+   "etiqueta": "Desplegado en GCP [Cloud Run · SQL · GCS · BigQuery]",
+   "etiquetaLineas": "Desplegado en GCP\n[Cloud Run · SQL · GCS · BigQuery]",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 610.0,
+     "y": 666.0
+    },
+    "targetPoint": {
+     "x": 601.4999999999995,
+     "y": 836.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1A56DB;fontSize=9;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-10",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-12",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "ss_webappsExternosFuturos",
+     "descripcion": "Federa sesión (SSO seamless)",
+     "tecnologia": "SAML 2.0 / OIDC token exchange"
+    }
+   ],
+   "etiqueta": "Federa sesión (SSO seamless) [SAML 2.0 / OIDC token exchange]",
+   "etiquetaLineas": "Federa sesión (SSO seamless)\n[SAML 2.0 / OIDC token exchange]",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 9
+   },
+   "puntos": [],
+   "extremos": {
+    "targetPoint": {
+     "x": 1061.0,
+     "y": 726.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.1168,
+    "y": -2.0,
+    "dx": 1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.98;exitY=0.938;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-13",
+   "origen": "jBqDDpGHMn_ggPszUGn9-7",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-15",
+   "destinoTipo": "note",
+   "relaciones": [
+    {
+     "origen": "ss_sistemasExternosFuturos",
+     "destino": "ce_capacidadesTransversales",
+     "descripcion": "Todos los portales cumplen con",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Todos los portales cumplen con",
+   "etiquetaLineas": "Todos los portales\ncumplen con",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "targetPoint": {
+     "x": 1203.0,
+     "y": 776.0
+    },
+    "sourcePoint": {
+     "x": 973.0,
+     "y": 536.0
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.1447,
+    "y": -1.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-16",
+   "origen": "jBqDDpGHMn_ggPszUGn9-12",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-15",
+   "destinoTipo": "note",
+   "relaciones": [
+    {
+     "origen": "ss_webappsExternosFuturos",
+     "destino": "ce_capacidadesTransversales",
+     "descripcion": "Todos los portales cumplen con",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Todos los portales cumplen con",
+   "etiquetaLineas": "Todos los portales\ncumplen con",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "targetPoint": {
+     "x": 1483.0,
+     "y": 676.0
+    },
+    "sourcePoint": {
+     "x": 1453.0,
+     "y": 886.0
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.1447,
+    "y": -1.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-32",
+   "origen": "jBqDDpGHMn_ggPszUGn9-31",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-8",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_usuarioExterno",
+     "destino": "portal",
+     "descripcion": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+   "etiquetaLineas": "Accede al portal (HTTPS)\nNavega wiki, lanza apps, federa",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 9
+   },
+   "puntos": [
+    {
+     "x": 340.0,
+     "y": 160.0
+    },
+    {
+     "x": 340.0,
+     "y": 380.0
+    },
+    {
+     "x": 550.0,
+     "y": 380.0
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.1347,
+    "y": 2.0,
+    "dx": -1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-35",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-34",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "ss_ciam",
+     "descripcion": "Delega autenticación",
+     "tecnologia": "OIDC / OAuth 2.0"
+    }
+   ],
+   "etiqueta": "Delega autenticación [OIDC / OAuth 2.0]",
+   "etiquetaLineas": "Delega autenticación\n[OIDC / OAuth 2.0]",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 600.0,
+     "y": 566.0
+    },
+    "targetPoint": {
+     "x": 600.0,
+     "y": 350.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#0D47A1;fontSize=9;html=1;dashed=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-36",
+   "origen": "jBqDDpGHMn_ggPszUGn9-8",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-38",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "portal",
+     "destino": "datalake",
+     "descripcion": "Fuente de datos/ Entrega de data",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Fuente de datos/ Entrega de data",
+   "etiquetaLineas": "Fuente de datos/ Entrega de data",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontColor=#000000;",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 670.0,
+     "y": 680.0
+    },
+    {
+     "x": 710.0,
+     "y": 680.0
+    },
+    {
+     "x": 710.0,
+     "y": 793.0
+    },
+    {
+     "x": 870.0,
+     "y": 793.0
+    },
+    {
+     "x": 870.0,
+     "y": 943.0
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 940.0,
+     "y": 953.0
+    },
+    "sourcePoint": {
+     "x": 510.00000000000045,
+     "y": 528.9999999999998
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.3541,
+    "y": 0.0,
+    "dx": 144.0,
+    "dy": 53.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-40",
+   "origen": "jBqDDpGHMn_ggPszUGn9-39",
+   "origenTipo": "element",
+   "destino": "jBqDDpGHMn_ggPszUGn9-8",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_empleadoInterno",
+     "destino": "portal",
+     "descripcion": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+   "etiquetaLineas": "Accede al portal SSO (HTTPS)\nNavega wiki, lanza apps, federa",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": 183.0,
+     "y": 615.0
+    },
+    {
+     "x": 330.0,
+     "y": 615.0
+    },
+    {
+     "x": 330.0,
+     "y": 576.0
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 1150.0,
+     "y": 495.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.5215,
+    "y": 0.0,
+    "dx": 1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=9;html=1;exitX=0.516;exitY=1.001;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  }
+ ]
+}

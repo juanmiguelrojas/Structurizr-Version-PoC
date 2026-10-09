@@ -3,6 +3,25 @@
 Cambios del **marco de trabajo** (lineamientos, leyenda C4, plantillas, scripts, pipeline). Los cambios de
 arquitectura de cada proyecto se registran en `proyectos/<proyecto>/CHANGELOG_DSL.md`.
 
+## [3.0.0] · 2026-10-09
+
+### Agregado
+- **Importador Draw.io → Structurizr** (`scripts/drawio_inventory.py`, `scripts/drawio2structurizr.py`): inventario de la
+  fuente (formas, colores, geometría, boundaries, conectores con waypoints) y generación del DSL (modelo C4 deduplicado con
+  procedencia `drawio.ocurrencias`), una vista por página y la **presentación por vista** (`dsl/layout/<vista>.json`).
+- **Motor de render C4 con notación Draw.io** (`scripts/render-c4.mjs`): personas con **silueta de actor**, cilindros,
+  boundaries punteados con bloque de título, conectores ortogonales con los waypoints originales, leyenda oficial y
+  render de referencia de la página Draw.io original.
+- **Validación de fidelidad** (`scripts/c4_scene.py`) y regla **R9-Fidelidad Draw.io** del Agente Revisor.
+- `REVISION.md` por versión: comentarios de validación `REV-NN`.
+
+### Cambiado
+- R7 exige personas con silueta (estilo `Person` con `shape Person`).
+- R5-Cifrado agrupa los hallazgos por vista.
+- `aac-build.sh` elige el motor de render declarado en `version.json` (`render`: `mermaid` | `c4-drawio`).
+- PDF: por cada vista se incluye la página original del Draw.io y sus métricas de fidelidad; anexos de revisión,
+  fidelidad y trazabilidad.
+
 ## [2.0.0] · 2026-10-09
 
 ### Agregado

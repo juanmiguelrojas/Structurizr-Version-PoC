@@ -1,0 +1,49 @@
+@startuml
+set separator none
+title L3 · BFF Móvil — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(ApiGee, "ApiGee", $descr="Plataforma de administración de API nativa de Google Cloud. Valida firma/issuer/audience del JWT contra el JWKS de Entra ID.", $tags="", $link="")
+ContainerDb(Volarte.CloudSQLPostgreSQL, "Cloud SQL (PostgreSQL)", $techn="Database", $descr="Usuarios · Roles · Registry", $tags="", $link="")
+Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Cloud Storage", $descr="Almacenamiento WORM/versionado. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+Container(Volarte.SvcOperación, "Svc: Operación", $techn="FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición, inventario calidad.", $tags="", $link="")
+ContainerQueue(Volarte.Colademensajeria, "Cola de mensajeria", $techn="Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry+DLQ), operacion-cerrada (fan-out a 3 suscriptores), tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+
+Container_Boundary("Volarte.BFFMóvil_boundary", "BFF Móvil", $tags="") {
+  Component(Volarte.BFFMóvil.ServiciodeAutorización, "Servicio de Autorización", $techn="Python", $descr="Resuelve GroupToRoleMapping → Role/Permission/ Capability.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.MiddlewaredeAutenticación, "Middleware de Autenticación", $techn="JWT Middleware", $descr="Valida issuer/audience/ expiración del token (segunda validación).", $tags="", $link="")
+  Component(Volarte.BFFMóvil.APIRouterControllers, "API Router / Controllers", $techn="FastAPI", $descr="Endpoints REST por feature. Punto de entrada del contenedor.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.ServiciodeIdempotencia, "Servicio de Idempotencia", $techn="Redis (dedupe por UUID)", $descr="Evita procesar dos veces la misma acción reenviada.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.PublicadordeEventos, "Publicador de Eventos", $techn="Pub/Sub Publisher", $descr="Publica operacion-cerrada y doc-publicacion.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.ManejadordeSubida, "Manejador de Subida", $techn="GCS Resumable Uploa", $descr="Orquesta subida de fotos/firma, tolera cortes de red.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.ProveedordeDelta, "Proveedor de Delta", $techn="Python — patrón HU-007", $descr="Versión + diferencias de catálogos/turnos para descarga incremental.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.MotordeReconciliación, "Motor de Reconciliación", $techn="Python — regla HU-050", $descr="Compara timestamp de captura vs. histórico de revocación. Auto-acepta o PENDING_REVIEW.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.ValidadordeOrdenSecuencia, "Validador de Orden/Secuencia", $techn="Python", $descr="Reordena acciones offline por timestamp de captura (no de llegada). Evita que una acción vieja reenviada tarde sobrescriba un estado más reciente.", $tags="", $link="")
+  Component(Volarte.BFFMóvil.ClienteCloudSQL, "Cliente Cloud SQL", $techn="Cloud SQL Connector", $descr="Escribe la cola de acciones offline recibidas y el estado de conciliación (PENDIENTE/CONFIRMADO/ PENDING_REVIEW) en Tablas: Sincronizacion.", $tags="", $link="")
+}
+
+Rel(Volarte.BFFMóvil.ManejadordeSubida, Volarte.BFFMóvil.PublicadordeEventos, "Publica eventos", $techn="", $tags="", $link="")
+Rel(ApiGee, Volarte.BFFMóvil.APIRouterControllers, "recibe sync", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.APIRouterControllers, Volarte.BFFMóvil.MiddlewaredeAutenticación, "valida", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MiddlewaredeAutenticación, Volarte.BFFMóvil.ServiciodeAutorización, "resuelve rol", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.ServiciodeAutorización, Volarte.BFFMóvil.MotordeReconciliación, "reconcilia", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MotordeReconciliación, Volarte.BFFMóvil.ServiciodeIdempotencia, "dedupe", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MotordeReconciliación, Volarte.BFFMóvil.ProveedordeDelta, "catálogos/turnos", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.SvcOperación, "orquesta operación", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MotordeReconciliación, Volarte.BFFMóvil.ManejadordeSubida, "fotos/firma", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.DocumentosGCS, "resumable upload", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MotordeReconciliación, Volarte.BFFMóvil.PublicadordeEventos, "al cerrar operación", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.PublicadordeEventos, Volarte.Colademensajeria, "publica", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.ServiciodeIdempotencia, Volarte.BFFMóvil.ValidadordeOrdenSecuencia, "aplica en orden (timestamp captura)", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.ValidadordeOrdenSecuencia, Volarte.BFFMóvil.MotordeReconciliación, "secuencia validada", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.MotordeReconciliación, Volarte.BFFMóvil.ClienteCloudSQL, "persiste offline_actions_log / PENDING_REVIEW", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil.ClienteCloudSQL, Volarte.CloudSQLPostgreSQL, "escribe/lee", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

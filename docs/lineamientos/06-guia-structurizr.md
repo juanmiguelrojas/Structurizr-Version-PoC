@@ -119,7 +119,40 @@ Referencia completa: <https://docs.structurizr.com/dsl/language>.
 
 Los artefactos **no se editan a mano**: se regeneran con el build y el CI los vuelve a publicar en `main`.
 
-## 7. Problemas frecuentes
+## 7. Motores de render
+
+| `version.json` → `render` | Motor | Resultado |
+|---|---|---|
+| `c4-drawio` | `scripts/c4_scene.py` + `scripts/render-c4.mjs` | Notación Draw.io C4: personas con silueta, cilindros, boundaries, waypoints, posiciones de `dsl/layout/`, colores por vista, leyenda oficial, referencia Draw.io y fidelidad (R9). **Recomendado.** |
+| `mermaid` (por defecto) | `structurizr export -f mermaid` + `scripts/render-diagrams.mjs` | Layout automático; personas como cajas. Solo para versiones antiguas. |
+
+En ambos casos se exportan también JSON, Mermaid y C4-PlantUML desde el mismo DSL.
+
+## 8. Importar un Draw.io (nuevo proyecto o nueva fuente)
+
+```bash
+# 1) Copiar el Draw.io aprobado a la versión
+cp Arquitectura.drawio proyectos/<p>/v1/fuente/
+
+# 2) Inventario de la fuente (formas, colores, geometría, boundaries, conectores)
+python3 scripts/drawio_inventory.py proyectos/<p>/v1/fuente/Arquitectura.drawio proyectos/<p>/v1/fuente/drawio-inventario.json
+
+# 3) Mapa curado: páginas → vistas, elementos compartidos, excepciones (ver proyectos/volarte/v3/fuente/mapeo-drawio.json)
+code proyectos/<p>/v1/fuente/mapeo-drawio.json
+
+# 4) Generar DSL + presentación + trazabilidad
+python3 scripts/drawio2structurizr.py proyectos/<p>/v1/fuente/drawio-inventario.json \
+        proyectos/<p>/v1/fuente/mapeo-drawio.json proyectos/<p>/v1
+
+# 5) version.json: "render": "c4-drawio", "fidelidad": {"fuente": "fuente/Arquitectura.drawio"}
+# 6) Validar (incluye fidelidad R9) y compilar
+scripts/aac-build.sh proyectos/<p>/v1
+```
+
+Cada decisión del mapa se documenta como `REV-NN` en `REVISION.md`. Después de la importación, el DSL es la fuente de
+verdad: los cambios se hacen en el DSL (y en `dsl/layout/` para mover elementos), no en el Draw.io.
+
+## 9. Problemas frecuentes
 
 | Síntoma | Causa / solución |
 |---|---|
@@ -127,5 +160,6 @@ Los artefactos **no se editan a mano**: se regeneran con el build y el CI los vu
 | `The destination element … does not exist` | Identificador no definido **antes** de la relación; mover la relación a `relationships.dsl` |
 | R4 rechaza el PR | Falta entrada en `CHANGELOG_DSL.md` o no lista la ruta completa de los archivos `.dsl` |
 | R6 rechaza el PR | Se modificó una versión congelada: crear `v<N+1>` con `aac-nueva-version.sh` |
-| R7 rechaza el PR | Un tag no-leyenda define color, o falta `External Person` / `External Software System` |
+| R7 rechaza el PR | Un tag no-leyenda define color, falta `External Person` / `External Software System`, o `Person` no usa `shape Person` |
+| R9 rechaza el PR | La vista ya no coincide con su página Draw.io: ver `docs/generated/fidelidad/fidelidad-drawio.md` (campo y id de la forma) |
 | Render falla por Chromium | Definir `PUPPETEER_EXECUTABLE_PATH` o dejar que `npm ci` descargue Chrome |

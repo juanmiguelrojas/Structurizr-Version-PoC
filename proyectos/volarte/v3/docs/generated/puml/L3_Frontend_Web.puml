@@ -1,0 +1,32 @@
+@startuml
+set separator none
+title L3 · Frontend Web — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+System(ApiGee, "ApiGee", $descr="Plataforma de administración de API nativa de Google Cloud. Valida firma/issuer/audience del JWT contra el JWKS de Entra ID.", $tags="", $link="")
+System(EntraIDCIAM, "EntraID / CIAM", $descr="Proveedor de identidad corporativo. SSO · MFA · RBAC. Transversal al hub", $tags="", $link="")
+
+Container_Boundary("Volarte.FrontendWeb_boundary", "Frontend Web", $tags="") {
+  Component(Volarte.FrontendWeb.AppShellRouter, "App Shell / Router", $techn="React Router", $descr="Layout, navbar, enrutamiento client-side. Punto de entrada único de la SPA.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.Vistasporrol, "Vistas por rol", $techn="React (code-splitting)", $descr="Módulos cargados con React.lazy() según rol: comercial, supervisión, admin.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.ClienteAPI, "Cliente API", $techn="Fetch/Axios", $descr="Inyecta Bearer token en cada request. Reintentos con backoff.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.Cachedeestadoservidor, "Cache de estado servidor", $techn="React Query", $descr="Cache y revalidación de datos de servidor. Evita refetch innecesario.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.ErrorBoundaryTelemetría, "Error Boundary / Telemetría", $techn="React ErrorBoundary", $descr="Captura errores de render. Envía eventos de uso/error.", $tags="", $link="")
+  Component(Volarte.FrontendWeb.ModulodeAutenticacion, "Modulo de Autenticacion", $techn="MSAL.js", $descr="Flujo OAuth2 Authorization Code + PKCE. Token en memoria (no localStorage).", $tags="", $link="")
+}
+
+Rel(Volarte.FrontendWeb.AppShellRouter, Volarte.FrontendWeb.ModulodeAutenticacion, "usa", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ModulodeAutenticacion, EntraIDCIAM, "login SSO/tokens (PKCE)", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.AppShellRouter, Volarte.FrontendWeb.Vistasporrol, "autenticado →", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.Vistasporrol, Volarte.FrontendWeb.ClienteAPI, "solicita datos", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ClienteAPI, ApiGee, "REST/JSON · JWT", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.ClienteAPI, Volarte.FrontendWeb.Cachedeestadoservidor, "cachea respuestas", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb.Vistasporrol, Volarte.FrontendWeb.ErrorBoundaryTelemetría, "reporta errores", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

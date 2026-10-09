@@ -1,0 +1,465 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3040" height="2586" viewBox="90 40 3040 2586" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="90" y="40" width="3040" height="2586" fill="#ffffff"/>
+<rect x="180" y="410" width="441" height="1910" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="190" y="2296.25" font-size="16" font-weight="bold" fill="#333333">Transversal</text><text x="190" y="2310" font-size="11"  fill="#333333">[Sistemas externos/Sistemas internos]</text>
+<rect x="670" y="2010" width="1850" height="300" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="680" y="2286.25" font-size="16" font-weight="bold" fill="#333333">Datos</text><text x="680" y="2300" font-size="11"  fill="#333333">[GKE/Cloud run]</text>
+<rect x="910" y="350" width="1800" height="290" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="920" y="616.25" font-size="16" font-weight="bold" fill="#333333">Frontend</text><text x="920" y="630" font-size="11"  fill="#333333">[Canales]</text>
+<rect x="680" y="1090" width="2040" height="250" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="690" y="1316.25" font-size="16" font-weight="bold" fill="#333333">Api Management y Seguridad</text><text x="690" y="1330" font-size="11"  fill="#333333">[Capa]</text>
+<rect x="670" y="1440" width="1850" height="250" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="680" y="1666.25" font-size="16" font-weight="bold" fill="#333333">Servicios</text><text x="680" y="1680" font-size="11"  fill="#333333">[GKE/Cloud run]</text>
+<rect x="1070" y="680" width="1120" height="360" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="1080" y="1016.25" font-size="16" font-weight="bold" fill="#333333">Backend</text><text x="1080" y="1030" font-size="11"  fill="#333333">[Capa]</text>
+<rect x="1050" y="115" width="1360" height="200" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="1060" y="291.25" font-size="16" font-weight="bold" fill="#333333">Ingress Corporativo</text><text x="1060" y="305" font-size="11"  fill="#333333">[Edge Privado/ Publico]</text>
+<rect x="210" y="640" width="381" height="600" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="220" y="1216.25" font-size="16" font-weight="bold" fill="#333333">Observabilidad</text><text x="220" y="1230" font-size="11"  fill="#333333">[GCP Operations Suite]</text>
+<rect x="1860" y="1730" width="660" height="220" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="1870" y="1926.25" font-size="16" font-weight="bold" fill="#333333">Mensajeria</text><text x="1870" y="1940" font-size="11"  fill="#333333">[PUB/SUB]</text>
+<rect x="2065" y="395" width="540" height="230" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="2075" y="601.25" font-size="16" font-weight="bold" fill="#333333">Modulos</text><text x="2075" y="615" font-size="11"  fill="#333333">[Cloud run]</text>
+<rect x="1890" y="2100" width="240" height="120" rx="0" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+
+<text x="935" y="1018.6" font-size="12"  fill="#000000" text-anchor="middle">Se conecta a todas las</text><text x="935" y="1033" font-size="12"  fill="#000000" text-anchor="middle">Cloud runs de</text><text x="935" y="1047.4" font-size="12"  fill="#000000" text-anchor="middle">Backend y Servicios</text>
+<path d="M1820,590 L1820,650 Q1820,660 1810,660 L1730,660 Q1720,660 1720,670 L1720,750 Q1720,760 1730,760 L1795,760" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2204,560 L2204,650 Q2204,660 2194,660 L1925,660 Q1915,660 1905,660 L1865,660 Q1855,660 1855,670 L1855,730" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1795,820 L1711,820 Q1701,820 1701,830 L1701,1149.5 Q1701,1150 1700.5,1150 L1700,1150" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M840,1620 L840,1740 Q840,1750 830,1750 L730,1750 Q720,1750 720,1760 L720,2145 Q720,2155 730,2155 L820,2155" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1090,1620 L1090,2150 Q1090,2160 1100,2160 L1150,2160" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1210,1620 L1210,1950 Q1210,1960 1220,1960 L1810,1960 Q1820,1960 1820,1970 L1820,2150 Q1820,2160 1830,2160 L1890,2160" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1915,850 L1915,887.5 Q1915,890 1912.5,890 L1912.5,890 Q1910,890 1910,887.5 L1910,882.5 Q1910,880 1912.5,880 L1912.5,880 Q1915,880 1915,882.5 L1915,900" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M280.5,530 L130,530 Q120,530 120,540 L120,1580 Q120,1590 130,1590 L710,1590 Q720,1590 720,1580 L720,1560" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M1150,1620 L1150,2040 L1620,2040 L1620,2095" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1795,790 L1160,790 L620,790" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1793.36,469.88 L1793,380 L1160,380 L1160,195 L1175,195" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1860,195 L1720,195" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" marker-start="url(#aOpen)"/>
+<path d="M1600,255 L1600,270 Q1600,280 1610,280 L1870,280 Q1880,280 1880,290 L1880,470" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1235,255 L1235,320 Q1235,330 1245,330 L1810,330 Q1820,330 1820,340 L1820,470" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1295,135 L1295,80 Q1295,70 1285,70 L410,70 Q400,70 400.0124999902344,79.99999218750915 L400.5,470" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M510.5,920 L395.25,920 L395.25,760 L280,760" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2340,1180 L2369.5,1180 L2369.5,1240 L2399,1240" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M940,2215 L940,2290 L3100,2290 L3100,1180 L2639,1180" fill="none" stroke="#000000" stroke-width="1"   marker-start="url(#aClassic)"/>
+<path d="M2639,1240 L3050,1240 L3050,2260 L1620,2260 L1620,2215" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2035,760 L2220,760 L2220,1150" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2230,135 L2230,110 Q2230,100 2220,100 L1610,100 Q1600,100 1600,110 L1600,135" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" marker-start="url(#aOpen)"/>
+<path d="M2264,440 L2264,415 L2464,415 L2464,440" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1940,470 L1940,425 Q1940,415 1950,415 L2194,415 Q2204,415 2204,425 L2204,440" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1914.56,468.44 L1915,365 L2524,365 L2524,440" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2584,500 L2647.5,500 Q2650,500 2650,502.5 L2650,502.5 Q2650,505 2652.5,505 L2780,505" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2500,1560 L2550,1560 Q2560,1560 2570,1560 L2630,1560" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M1040,477.5 L940,477.5 L940,420 L460,420 L460.5,470" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1180,820 L990,820 L990,1150" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1460,1620 L1500,1620 L1500,1930 L2340,1930 L2340,2095" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M840,1500 L840,1350 L1606,1350 L1605.92,1270" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1150,1500 L1150,1380 L1640,1380 L1640,1270" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1460,1500 L1470,1500 L1470,1420 L1760,1420 L1760,1270" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2380,1500 L2380,1390 L1802,1390 L1802,1267.96" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1770,1500 L2029,1500" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2089,1620 L2089,1720 L2089,1774 L2090,1774 L2029.5,1774 L2029.5,1834 L1969,1834" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" marker-start="url(#aClassic)"/>
+<path d="M2089,1774 L2089,1697 L1770,1697 L1770,1620" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" marker-start="url(#aClassic)"/>
+<path d="M1420,820 L1630,820 Q1640,820 1640,830 L1640,1150" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1300,850 L1300,860 Q1300,870 1300,880 L1300,900" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M1050,1150 L1370,1150" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1580,1210 L1535,1210 L1535,1300 L1370,1300 L1370,1270" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M793.2,625.18 L793.0805775613019,640.000324642439 Q793,650 803,650 L1315,650 Q1325,650 1325,640 L1325,540 Q1325,530 1335,530 L1760,530" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M890,510 L1040,510" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1100,575 L1100,740 L580,740 L580,1050 L520,1050" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M870,285 L930,285 L930,380 L1100,380 L1100,445" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M870,240 L990,240 Q1000,240 1000,250 L1000,330 Q1000,340 1010,340 L1110,340 Q1120,340 1120,350 L1120,410 Q1120,420 1130,420 L1640,420 Q1650,420 1650,430 L1650,490 Q1650,500 1660,500 L1760,500" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1160,575 L1160,620 L1300,620 L1300,730" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1180,790 L690,790 L620,790" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2089,1774 L2089,2155 L2460,2155" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M870,950 L870,1030" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M730,890 L700,890 L700,1080 L520,1080" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1760,560 L1540,560 L1540,670 L550,670 L550,1000 L460,1000 L460,1020" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M2035,790 L2080,790 L2080,1070 L1022,1070 L1022.4,1155.64" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1890,2115 A120,15 0 0 1 2130,2115 L2130,2205 A120,15 0 0 1 1890,2205 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1890,2115 A120,15 0 0 0 2130,2115" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="2010" y="2158.9759999999997" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Search</text>
+<text x="2010" y="2174.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Elasticsearch]</text>
+<text x="2010" y="2201.0959999999995" font-size="11"  fill="#E6E6E6" text-anchor="middle">Full-text Wiki · Apps</text>
+<path d="M1500,2110 A120,15 0 0 1 1740,2110 L1740,2200 A120,15 0 0 1 1500,2200 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1500,2110 A120,15 0 0 0 1740,2110" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1620" y="2153.9759999999997" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Storage</text>
+<text x="1620" y="2169.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Cloud Storage (GCS)]</text>
+<text x="1620" y="2196.0959999999995" font-size="11"  fill="#E6E6E6" text-anchor="middle">Adjuntos Wiki · MFE builds</text>
+<path d="M1150,2115 A120,15 0 0 1 1390,2115 L1390,2205 A120,15 0 0 1 1150,2205 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1150,2115 A120,15 0 0 0 1390,2115" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1270" y="2158.9759999999997" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Database</text>
+<text x="1270" y="2174.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Firestore]</text>
+<text x="1270" y="2201.0959999999995" font-size="11"  fill="#E6E6E6" text-anchor="middle">Páginas Wiki · Versiones</text>
+<path d="M820,2110 A120,15 0 0 1 1060,2110 L1060,2200 A120,15 0 0 1 820,2200 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M820,2110 A120,15 0 0 0 1060,2110" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="940" y="2153.9759999999997" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cloud SQL (PostgreSQL)</text>
+<text x="940" y="2169.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Database]</text>
+<text x="940" y="2196.0959999999995" font-size="11"  fill="#E6E6E6" text-anchor="middle">Usuarios · Roles · Registry</text>
+<path d="M1795,915 A120,15 0 0 1 2035,915 L2035,1005 A120,15 0 0 1 1795,1005 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1795,915 A120,15 0 0 0 2035,915" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1915" y="958.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Memorystore (Redis)</text>
+<text x="1915" y="974.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Cache]</text>
+<text x="1915" y="1001.0960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Sesiones · Tokens · Queries</text>
+<rect x="1030" y="1500" width="240" height="120" rx="12" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1150" y="1538.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Wiki</text>
+<text x="1150" y="1553.496" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Cloud Run]</text>
+<text x="1150" y="1579.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">CRUD páginas · Versiones</text>
+<text x="1150" y="1593.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Búsqueda Elasticsearch</text>
+<rect x="720" y="1500" width="240" height="120" rx="12" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="840" y="1538.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Usuarios / Auth</text>
+<text x="840" y="1553.496" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Cloud Run]</text>
+<text x="840" y="1579.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Roles · Permisos · Perfil</text>
+<text x="840" y="1593.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Sincroniza con Azure AD</text>
+<rect x="2780" y="445" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="2900" y="483.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">+ Portales Externos Futuros</text>
+<text x="2900" y="498.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">[[Sistemas Externos — Portales]]</text>
+<text x="2900" y="525.496" font-size="11"  fill="#cccccc" text-anchor="middle">Cualquier portal que acepte</text>
+<text x="2900" y="538.696" font-size="11"  fill="#cccccc" text-anchor="middle">federación SAML 2.0 / OIDC</text>
+<rect x="1795" y="730" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1915" y="749.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Backend — HUB Web</text>
+<text x="1915" y="763.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Node.js / FastAPI · Cloud Run]</text>
+<text x="1915" y="790.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Orquesta todas las llamadas del Shell</text>
+<text x="1915" y="803.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">y los remotes MFE. Agrega:</text>
+<text x="1915" y="816.4960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">Wiki API + Apps Registry + User Profile</text>
+<text x="1915" y="829.6960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">Valida JWT · Propaga tokens</text>
+<text x="1915" y="842.8960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">Auto-scaling · Pay-per-use</text>
+<rect x="1760" y="470" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1880" y="489.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">HUB Front</text>
+<text x="1880" y="503.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: React + Vite · SPA]</text>
+<text x="1880" y="530.096" font-size="11"  fill="#E6E6E6" text-anchor="middle">App contenedora MFE. Orquesta</text>
+<text x="1880" y="543.296" font-size="11"  fill="#E6E6E6" text-anchor="middle">routing global, layout, navbar.</text>
+<text x="1880" y="556.4960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Carga remotes MFE según módulo.</text>
+<text x="1880" y="569.6960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Inyecta JWT a todos los remotes.</text>
+<text x="1880" y="582.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Deploy: CDN Cloudflare + GCS</text>
+<rect x="280.5" y="470" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="400.5" y="501.776" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">EntraID / CIAM</text>
+<text x="400.5" y="517.232" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Sistema Externo — Identidad]</text>
+<text x="400.5" y="543.8960000000001" font-size="11"  fill="#FFFFFF" text-anchor="middle">Proveedor de identidad corporativo.</text>
+<text x="400.5" y="557.0960000000001" font-size="11"  fill="#FFFFFF" text-anchor="middle">SSO · MFA · RBAC.</text>
+<text x="400.5" y="570.2960000000002" font-size="11"  fill="#FFFFFF" text-anchor="middle">Transversal al hub</text>
+<rect x="1860" y="135" width="220" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1970" y="160.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">ZTNA</text>
+<text x="1970" y="175.63199999999998" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Netscope]</text>
+<text x="1970" y="202.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">GlobalProtect · Zscaler</text>
+<text x="1970" y="215.49599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">Device posture check · Intune</text>
+<text x="1970" y="228.69599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">Split tunneling controlado</text>
+<text x="1970" y="241.89599999999993" font-size="11"  fill="#ffffff" text-anchor="middle">Solo acceso desde red corporativa</text>
+<rect x="1480" y="135" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1600" y="173.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Global Load Balancer</text>
+<text x="1600" y="188.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: GCP Cloud Load Balancing]</text>
+<text x="1600" y="215.49599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">SSL/TLS terminado en el borde.</text>
+<text x="1600" y="228.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">Enrutamiento al IAP y Cloud Run.</text>
+<rect x="1175" y="135" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1295" y="153.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Identity-Aware Proxy (IAP)</text>
+<text x="1295" y="169.03199999999998" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: GCP IAP · OIDC]</text>
+<text x="1295" y="195.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">Capa de seguridad nativa GCP.</text>
+<text x="1295" y="208.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Valida identidad antes de llegar</text>
+<text x="1295" y="222.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">a cualquier servicio interno.</text>
+<text x="1295" y="235.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">Integrado con EntraID via OIDC.</text>
+<text x="1295" y="248.49599999999992" font-size="11"  fill="#ffffff" text-anchor="middle">Sin VPN requerida para el acceso web.</text>
+<rect x="280" y="700" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="400" y="725.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cloud Monitoring</text>
+<text x="400" y="740.296" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: GCP Cloud Monitoring]</text>
+<text x="400" y="766.6960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Métricas de todos los Cloud Run.</text>
+<text x="400" y="779.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Alertas: errores · latencia · anomalías.</text>
+<text x="400" y="793.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Dashboards operacionales.</text>
+<text x="400" y="806.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">Uptime checks · SLO tracking.</text>
+<rect x="270.5" y="860" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="390.5" y="885.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cloud Logging</text>
+<text x="390.5" y="900.296" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: GCP Cloud Logging]</text>
+<text x="390.5" y="926.6960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Logs centralizados de todos los servicios.</text>
+<text x="390.5" y="939.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Audit logs: IAP · Secret Manager · KMS.</text>
+<text x="390.5" y="953.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Request logs: BFF · Svc · Federation Bridge.</text>
+<text x="390.5" y="966.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">Retención configurable · alertas.</text>
+<rect x="2399" y="1150" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="2519" y="1175.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cloud KMS</text>
+<text x="2519" y="1190.296" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: GCP Key Management Service]</text>
+<text x="2519" y="1216.6960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Gestión de claves de cifrado (CMEK).</text>
+<text x="2519" y="1229.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Cifra: Cloud SQL · GCS · Firestore.</text>
+<text x="2519" y="1243.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Cifra secretos en Secret Manager.</text>
+<text x="2519" y="1256.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">HSM · rotación de claves.</text>
+<rect x="2100" y="1150" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="2220" y="1175.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Secret Manager</text>
+<text x="2220" y="1190.296" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: GCP Secret Manager]</text>
+<text x="2220" y="1216.6960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Almacena secretos de todos los servicios:</text>
+<text x="2220" y="1229.8960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">credenciales DB · API keys · client secrets.</text>
+<text x="2220" y="1243.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Acceso via Service Account (IAM).</text>
+<text x="2220" y="1256.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">Rotación automática · audit log.</text>
+<rect x="2110" y="135" width="240" height="120" rx="7.2" fill="#8C8496" stroke="none" stroke-width="1"/>
+<text x="2230" y="166.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cloudflare</text>
+<text x="2230" y="182.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Cloudflare]</text>
+<text x="2230" y="208.896" font-size="11"  fill="#ffffff" text-anchor="middle">Plataforma de protección de tráfico y</text>
+<text x="2230" y="222.09599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">optimización de acceso web para servicios</text>
+<text x="2230" y="235.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">externos.</text>
+<rect x="2084" y="440" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="2204" y="457.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Portales Remote Modulo</text>
+<text x="2204" y="473.43199999999996" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: React + Vite · Module · Cloud</text>
+<text x="2204" y="487.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">run]</text>
+<text x="2204" y="514.496" font-size="11"  fill="#ffffff" text-anchor="middle">Catálogo de herramientas internas.</text>
+<text x="2204" y="527.696" font-size="11"  fill="#ffffff" text-anchor="middle">Lanza apps: iframe / sub-remote</text>
+<text x="2204" y="540.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Estado: prod / poc / draft / deprecated</text>
+<text x="2204" y="554.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">RBAC por herramienta · Registry API</text>
+<rect x="2344" y="440" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="2464" y="457.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Federation Bridge</text>
+<text x="2464" y="473.43199999999996" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: React + Vite · Module · Cloud</text>
+<text x="2464" y="487.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">run]</text>
+<text x="2464" y="514.496" font-size="11"  fill="#ffffff" text-anchor="middle">Adaptador de tokens para portales externos.</text>
+<text x="2464" y="527.696" font-size="11"  fill="#ffffff" text-anchor="middle">SAML 2.0 assertion · OIDC token exchange</text>
+<text x="2464" y="540.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">On-Behalf-Of flow · SSO silencioso</text>
+<text x="2464" y="554.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Propaga sesión sin re-login</text>
+<rect x="2630" y="1500" width="220" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="2740" y="1531.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Power BI Service</text>
+<text x="2740" y="1547.2320000000002" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistema Externo — Microsoft]</text>
+<text x="2740" y="1573.8960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">Servicio de BI en la nube.</text>
+<text x="2740" y="1587.0960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">Embed API · REST API</text>
+<text x="2740" y="1600.2960000000003" font-size="11"  fill="#cccccc" text-anchor="middle">Dashboards · Reports · Datasets</text>
+<rect x="2260" y="1500" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="2380" y="1531.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Power BI Proxy</text>
+<text x="2380" y="1547.2320000000002" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Cloud Run · FastAPI]</text>
+<text x="2380" y="1573.8960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Genera embed tokens via AAD.</text>
+<text x="2380" y="1587.0960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Proxy seguro a Power BI REST API.</text>
+<text x="2380" y="1600.2960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">Controla acceso por rol/workspace.</text>
+<rect x="1180" y="730" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1300" y="746.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Backend — HUB Web</text>
+<text x="1300" y="761.4960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Node.js / FastAPI / Python · Cloud</text>
+<text x="1300" y="774.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Run]</text>
+<text x="1300" y="801.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Mismo patrón que BFF Web. Orquesta Wiki</text>
+<text x="1300" y="814.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">API + Registry + Perfil. Payload</text>
+<text x="1300" y="827.4960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">liviano/paginado para móvil. Valida JWT ·</text>
+<text x="1300" y="840.6960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">Propaga tokens. Instancia Cloud Run</text>
+<text x="1300" y="853.8960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">independiente.</text>
+<path d="M2220,2110 A120,15 0 0 1 2460,2110 L2460,2200 A120,15 0 0 1 2220,2200 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M2220,2110 A120,15 0 0 0 2460,2110" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="2340" y="2140.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Datalake</text>
+<text x="2340" y="2156.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Big Query]</text>
+<text x="2340" y="2182.8959999999997" font-size="11"  fill="#E6E6E6" text-anchor="middle">Repositorio analítico y estructurado de datos</text>
+<text x="2340" y="2196.0959999999995" font-size="11"  fill="#E6E6E6" text-anchor="middle">tabulares. Recibe información transformada</text>
+<text x="2340" y="2209.2959999999994" font-size="11"  fill="#E6E6E6" text-anchor="middle">por los ETL.</text>
+<rect x="1340" y="1500" width="240" height="120" rx="12" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1460" y="1545.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Analitica</text>
+<text x="1460" y="1560.096" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Cloud Run]</text>
+<text x="1460" y="1586.496" font-size="11"  fill="#E6E6E6" text-anchor="middle">Entrega y consulta de data analitica</text>
+<rect x="1580" y="1150" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1700" y="1188.3760000000002" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">API Management</text>
+<text x="1700" y="1203.8320000000003" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: ApiGee]</text>
+<text x="1700" y="1230.4960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">Plataforma de administración de API nativa de</text>
+<text x="1700" y="1243.6960000000004" font-size="11"  fill="#ffffff" text-anchor="middle">Google Cloud</text>
+<rect x="270" y="1305" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="390" y="1330.1760000000002" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Firewall</text>
+<text x="390" y="1345.6320000000003" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Palo alto]</text>
+<text x="390" y="1372.2960000000003" font-size="11"  fill="#FFFFFF" text-anchor="middle">Firewall de red encargado de inspeccionar y</text>
+<text x="390" y="1385.4960000000003" font-size="11"  fill="#FFFFFF" text-anchor="middle">controlar el tráfico de entrada y salida,</text>
+<text x="390" y="1398.6960000000004" font-size="11"  fill="#FFFFFF" text-anchor="middle">aplicando políticas de seguridad y NAT según</text>
+<text x="390" y="1411.8960000000004" font-size="11"  fill="#FFFFFF" text-anchor="middle">las reglas definidas.</text>
+<rect x="270" y="1455" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="390" y="1500.576" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Cloud Data Fusion</text>
+<text x="390" y="1515.096" font-size="11"  fill="#FFFFFF" text-anchor="middle">[Container: Data Integration]</text>
+<text x="390" y="1541.496" font-size="11"  fill="#FFFFFF" text-anchor="middle">Ingesta al datalake corporativo</text>
+<rect x="270" y="1615" width="240" height="120" rx="7.2" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="390" y="1659.976" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SalesForce</text>
+<text x="390" y="1675.4320000000002" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Component: Software System]</text>
+<text x="390" y="1702.0960000000002" font-size="11"  fill="#FFFFFF" text-anchor="middle">Dato maestro de los clientes</text>
+<rect x="270.5" y="1775" width="240" height="120" rx="7.2" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="390.5" y="1819.976" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SAP ERP</text>
+<text x="390.5" y="1835.4320000000002" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Component: Software System]</text>
+<text x="390.5" y="1862.0960000000002" font-size="11"  fill="#FFFFFF" text-anchor="middle">ERP de terpel</text>
+<rect x="270.5" y="1935" width="240" height="120" rx="7.2" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="390.5" y="1993.1760000000002" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">ZENPUT</text>
+<text x="390.5" y="2008.6320000000003" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Component: Software System]</text>
+<rect x="270" y="2095" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="390" y="2139.9759999999997" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">GuruSoft</text>
+<text x="390" y="2155.432" font-size="12"  fill="#FFFFFF" text-anchor="middle">[Servicio externo]</text>
+<text x="390" y="2182.0959999999995" font-size="11"  fill="#FFFFFF" text-anchor="middle">Servicio de facturacion</text>
+<rect x="1650" y="1500" width="240" height="120" rx="12" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1770" y="1545.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Notificacion</text>
+<text x="1770" y="1560.096" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Cloud Run]</text>
+<text x="1770" y="1586.496" font-size="11"  fill="#E6E6E6" text-anchor="middle">Gestiona notificaciones</text>
+<rect x="1969" y="1500" width="240" height="120" rx="12" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="2089" y="1545.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Pagos</text>
+<text x="2089" y="1560.096" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: Cloud Run]</text>
+<text x="2089" y="1586.496" font-size="11"  fill="#E6E6E6" text-anchor="middle">Gestiona pagos</text>
+<path d="M1969,1789 A120,15 0 0 1 2209,1789 L2209,1879 A120,15 0 0 1 1969,1879 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1969,1789 A120,15 0 0 0 2209,1789" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="2089" y="1832.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cola de mensajeria</text>
+<text x="2089" y="1848.4320000000002" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Pub/Sub]</text>
+<text x="2089" y="1875.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Serivico para subir las solicitudes asincronas</text>
+<path d="M1180,915 A120,15 0 0 1 1420,915 L1420,1005 A120,15 0 0 1 1180,1005 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M1180,915 A120,15 0 0 0 1420,915" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1300" y="958.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Memorystore (Redis free)</text>
+<text x="1300" y="974.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Cache]</text>
+<text x="1300" y="1001.0960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Sesiones · Tokens · Queries</text>
+<rect x="930" y="1150" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1050" y="1188.3760000000002" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Internal Load Balancer</text>
+<text x="1050" y="1203.8320000000003" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: GCP Cloud Load Balancing]</text>
+<text x="1050" y="1230.4960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">SSL/TLS terminado en el borde.</text>
+<text x="1050" y="1243.6960000000004" font-size="11"  fill="#ffffff" text-anchor="middle">Enrutamiento al IAP y Cloud Run.</text>
+<rect x="1250" y="1150" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1370" y="1194.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Proxy instance</text>
+<text x="1370" y="1210.4320000000002" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Apigge]</text>
+<text x="1370" y="1237.0960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Puente de conexion</text>
+<rect x="690" y="523" width="200" height="102" rx="28.560000000000002" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<circle cx="790" cy="495" r="50" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<text x="790" y="552.1039999999999" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Empleado Interno</text>
+<text x="790" y="565.16" font-size="10"  fill="#BBDEFB" text-anchor="middle">[Persona]</text>
+<text x="790" y="587.0239999999999" font-size="9"  fill="#E0E0E0" text-anchor="middle">Usuario corporativo que accede a la wiki,</text>
+<text x="790" y="597.8239999999998" font-size="9"  fill="#E0E0E0" text-anchor="middle">lanza web apps y navega a portales externos</text>
+<text x="790" y="608.6239999999998" font-size="9"  fill="#E0E0E0" text-anchor="middle">desde un único punto de entrada</text>
+<rect x="1040" y="445" width="240" height="130" rx="13" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="1160" y="467.976" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">App Móvil</text>
+<text x="1160" y="483.43199999999996" font-size="12"  fill="#FFFFFF" text-anchor="middle">[React native — Cliente: iOS / Android ·</text>
+<text x="1160" y="497.83199999999994" font-size="12"  fill="#FFFFFF" text-anchor="middle">App Store / Play Store]</text>
+<text x="1160" y="524.496" font-size="11"  fill="#E6E6E6" text-anchor="middle">NO se despliega en GCP. Corre en el</text>
+<text x="1160" y="537.696" font-size="11"  fill="#E6E6E6" text-anchor="middle">dispositivo del usuario. Se distribuye vía</text>
+<text x="1160" y="550.8960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">tiendas de apps. Consume su backend (BFF</text>
+<text x="1160" y="564.0960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Mobile) por HTTPS.</text>
+<rect x="670" y="228" width="200" height="102" rx="28.560000000000002" fill="#6C6477" stroke="#4D4D4D" stroke-width="1"/>
+<circle cx="770" cy="200" r="50" fill="#6C6477" stroke="#4D4D4D" stroke-width="1"/>
+<text x="770" y="258.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Usuario externo</text>
+<text x="770" y="273.496" font-size="11"  fill="#ffffff" text-anchor="middle">[Person]</text>
+<text x="770" y="299.89599999999996" font-size="11"  fill="#cccccc" text-anchor="middle">Usuario que no esta dentro del tenant</text>
+<text x="770" y="313.09599999999995" font-size="11"  fill="#cccccc" text-anchor="middle">de terpel</text>
+<rect x="280" y="1020" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="400" y="1045.1760000000002" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Dynatrace (Tenant Terpel)</text>
+<text x="400" y="1060.6320000000003" font-size="12"  fill="#ffffff" text-anchor="middle">[SaaS Dynatrace]</text>
+<text x="400" y="1087.2960000000003" font-size="11"  fill="#cccccc" text-anchor="middle">Fuente unica de verdad corporativa (Politica</text>
+<text x="400" y="1100.4960000000003" font-size="11"  fill="#cccccc" text-anchor="middle">de Observabilidad Terpel).</text>
+<text x="400" y="1113.6960000000004" font-size="11"  fill="#cccccc" text-anchor="middle">APM . Infra Monitoring . DEM . RASP .</text>
+<text x="400" y="1126.8960000000004" font-size="11"  fill="#cccccc" text-anchor="middle">Business Analytics.</text>
+<rect x="730" y="830" width="240" height="120" rx="12" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<text x="850" y="846.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">OTel Collector</text>
+<text x="850" y="861.4960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">[Container: OpenTelemetry Collector . Cloud</text>
+<text x="850" y="874.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Run]</text>
+<text x="850" y="901.0960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">Recibe OTLP (gRPC/HTTP) de todos los</text>
+<text x="850" y="914.2960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">servicios. Enmascara datos personales antes</text>
+<text x="850" y="927.4960000000003" font-size="11"  fill="#E6E6E6" text-anchor="middle">de exportar. Exporta trazas, metricas y logs a</text>
+<text x="850" y="940.6960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">Dynatrace. Materializa la estrategia 'OTel First'</text>
+<text x="850" y="953.8960000000004" font-size="11"  fill="#E6E6E6" text-anchor="middle">de la politica.</text>
+<rect x="1700.444046875" y="654.2" width="72.44140625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1736.66475" y="661.8000000000001" font-size="8" fill="#000000" text-anchor="middle">REST/JSON · JWT</text>
+<rect x="2020.05859375" y="654.2" width="48.8828125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2044.5" y="661.8000000000001" font-size="8" fill="#000000" text-anchor="middle">REST · JWT</text>
+<rect x="1675.328125" y="1048.0025" width="53.34375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1702" y="1055.6025" font-size="8" fill="#000000" text-anchor="middle">gRPC / REST</text>
+<rect x="709.99609375" y="1871.7" width="20.0078125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="720" y="1879.3" font-size="8" fill="#000000" text-anchor="middle">SQL</text>
+<rect x="1062.8828125" y="1914.2" width="54.234375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1090" y="1921.8" font-size="8" fill="#000000" text-anchor="middle">Firestore SDK</text>
+<rect x="1281.503296875" y="1954.2" width="66.69140625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1314.849" y="1961.8" font-size="8" fill="#000000" text-anchor="middle">Elasticsearch API</text>
+<rect x="1893.4375" y="884.2" width="43.125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1915" y="891.8000000000001" font-size="8" fill="#000000" text-anchor="middle">Redis SDK</text>
+<rect x="85.330078125" y="1070.2209" width="69.33984375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="120" y="1077.8209" font-size="8" fill="#000000" text-anchor="middle">OIDC / SCIM sync</text>
+<rect x="1294.07684375" y="2031.4" width="77.3828125" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="1332.76825" y="2039" font-size="8" fill="#000000" text-anchor="middle">Almacen de</text>
+<text x="1332.76825" y="2048.6" font-size="8" fill="#000000" text-anchor="middle">data no estructurada</text>
+<rect x="1382.2659128598825" y="367.8" width="70.04296875" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1417.2873972348825" y="378.25" font-size="11" fill="#000000" text-anchor="middle">Verifica</text>
+<text x="1417.2873972348825" y="391.45" font-size="11" fill="#000000" text-anchor="middle">Autenticacion</text>
+<rect x="1744.201171875" y="184.4" width="91.59765625" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="1790" y="192" font-size="8" fill="#000000" text-anchor="middle">Sync</text>
+<text x="1790" y="201.6" font-size="8" fill="#000000" text-anchor="middle">Red Corporativa Privada</text>
+<rect x="1789.826171875" y="274.2" width="65.34765625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1822.5" y="281.8" font-size="8" fill="#000000" text-anchor="middle">HTTPS · TLS 1.3</text>
+<rect x="1526.891015625" y="324.2" width="65.41796875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1559.6" y="331.8" font-size="8" fill="#000000" text-anchor="middle">Sirve SPA + JWT</text>
+<rect x="653.550625000061" y="64.2" width="52.8984375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="679.999843750061" y="71.8" font-size="8" fill="#000000" text-anchor="middle">OIDC redirect</text>
+<rect x="360.576171875" y="852.924475" width="65.34765625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="393.25" y="860.524475" font-size="8" fill="#000000" text-anchor="middle">Métricas · alertas</text>
+<rect x="2344.826171875" y="1198.3854000000001" width="53.34765625" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="2371.5" y="1205.9854" font-size="8" fill="#000000" text-anchor="middle">Cifra secretos</text>
+<text x="2371.5" y="1215.5854000000002" font-size="8" fill="#000000" text-anchor="middle">con CMEK</text>
+<rect x="2392.1564656250002" y="2285.2" width="100.48046875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2442.3967000000002" y="2292.7999999999997" font-size="8" fill="#000000" text-anchor="middle">Lee client secrets · IAM SA</text>
+<rect x="2554.671428125" y="2260.2" width="91.15234375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2600.2476" y="2267.7999999999997" font-size="8" fill="#000000" text-anchor="middle">CMEK cifrado en reposo</text>
+<rect x="2204.09765625" y="803.4499999999999" width="49.8046875" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="2229" y="811.05" font-size="8" fill="#000000" text-anchor="middle">Lee secretos</text>
+<text x="2229" y="820.65" font-size="8" fill="#000000" text-anchor="middle">· IAM SA</text>
+<rect x="1891.431640625" y="89.4" width="47.13671875" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="1915" y="97" font-size="8" fill="#000000" text-anchor="middle">Sync</text>
+<text x="1915" y="106.60000000000001" font-size="8" fill="#000000" text-anchor="middle">Red Publica</text>
+<rect x="2337.263671875" y="409.2" width="77.59765625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2376.0625" y="416.8" font-size="8" fill="#000000" text-anchor="middle">Redirect + token hint</text>
+<rect x="2024.759765625" y="409.2" width="64.48046875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2057" y="416.8" font-size="8" fill="#000000" text-anchor="middle">Enruta al modulo</text>
+<rect x="2216.317014134346" y="361.2" width="143.08984375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2287.861936009346" y="368.8" font-size="8" fill="#000000" text-anchor="middle">POST /federar {token, destino: &quot;portal&quot;}</text>
+<rect x="2632.787678125" y="499.2" width="106.02734375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2685.80135" y="506.8" font-size="8" fill="#000000" text-anchor="middle">Redirect + JWT (token relay)</text>
+<rect x="2510.655796875" y="1554.2" width="98.69140625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="2560.0015" y="1561.8" font-size="8" fill="#000000" text-anchor="middle">Power BI REST API · AAD</text>
+<rect x="631.3465378931928" y="398.8" width="70.04296875" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="666.3680222681928" y="409.25" font-size="11" fill="#000000" text-anchor="middle">Verifica</text>
+<text x="666.3680222681928" y="422.45" font-size="11" fill="#000000" text-anchor="middle">Autenticacion</text>
+<rect x="1583.6477871093748" y="1923.4" width="167.89892578125" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1667.5972499999998" y="1933.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Fuente de datos/ Entrega de data</text>
+<rect x="1339.3554183142433" y="1342.4" width="41.3076171875" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1360.0092269079933" y="1352.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Expone</text>
+<rect x="1397.35419140625" y="1366.4" width="41.3076171875" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1418.008" y="1376.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Expone</text>
+<rect x="1579.34919140625" y="1408.4" width="41.3076171875" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1600.003" y="1418.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Expone</text>
+<rect x="1911.35013740625" y="1382.4" width="41.3076171875" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1932.003946" y="1392.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Expone</text>
+<rect x="1876.130100390625" y="1496.4" width="40.67919921875" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1896.4697" y="1506.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Notifica</text>
+<rect x="2020.330078125" y="1738.6696000000002" width="129.33984375" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="2085" y="1749.1196000000002" font-size="11" fill="#000000" text-anchor="middle">Consume y publica topics</text>
+<rect x="1790.2852781249999" y="1690.4" width="129.33984375" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="1854.9551999999999" y="1700.8500000000001" font-size="11" fill="#000000" text-anchor="middle">Consume y publica topics</text>
+<rect x="1613.328125" y="884.1875" width="53.34375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1640" y="891.7875" font-size="8" fill="#000000" text-anchor="middle">gRPC / REST</text>
+<rect x="1278.4375" y="869.2" width="43.125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1300" y="876.8000000000001" font-size="8" fill="#000000" text-anchor="middle">Redis SDK</text>
+<rect x="1171.61958203125" y="1136.8" width="71.2568359375" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1207.248" y="1147.25" font-size="11" fill="#000000" text-anchor="middle">Enruta la</text>
+<text x="1207.248" y="1160.45" font-size="11" fill="#000000" text-anchor="middle">comunicacion</text>
+<rect x="1456.35958203125" y="1286.8" width="71.2568359375" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1491.988" y="1297.25" font-size="11" fill="#000000" text-anchor="middle">Enruta la</text>
+<text x="1491.988" y="1310.45" font-size="11" fill="#000000" text-anchor="middle">comunicacion</text>
+<rect x="1429.2102511213052" y="518.2" width="131.5732421875" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="1494.9968722150552" y="526.75" font-size="9" fill="#000000" text-anchor="middle">Accede al portal SSO (HTTPS)</text>
+<text x="1494.9968722150552" y="537.5500000000001" font-size="9" fill="#000000" text-anchor="middle">Navega wiki, lanza apps, federa</text>
+<rect x="909.550673828125" y="494.8" width="106.74365234375" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="962.9225" y="505.25" font-size="11" fill="#000000" text-anchor="middle">Accede desde la app</text>
+<text x="962.9225" y="518.45" font-size="11" fill="#000000" text-anchor="middle">en el movil por sso</text>
+<rect x="741.573486328125" y="732.1679999999999" width="60.85302734375" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="772" y="742.6179999999999" font-size="11" fill="#000000" text-anchor="middle">RUM Agent</text>
+<rect x="956.484173828125" y="365.8" width="106.74365234375" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1009.856" y="376.25" font-size="11" fill="#000000" text-anchor="middle">Accede desde la app</text>
+<text x="1009.856" y="389.45" font-size="11" fill="#000000" text-anchor="middle">en el movil por sso</text>
+<rect x="1500.0758789062502" y="408.2" width="131.5732421875" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="1565.8625000000002" y="416.75" font-size="9" fill="#000000" text-anchor="middle">Accede al portal (HTTPS)</text>
+<text x="1565.8625000000002" y="427.55" font-size="9" fill="#000000" text-anchor="middle">Navega wiki, lanza apps, federa</text>
+<rect x="1245.55078125" y="685.1980000000001" width="112.8984375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1302" y="692.7980000000001" font-size="8" fill="#000000" text-anchor="middle">HTTPS · Bearer JWT (sin IAP)</text>
+<rect x="905.127734375" y="770.4" width="54.14453125" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="932.2" y="780.85" font-size="11" fill="#000000" text-anchor="middle">Se integra</text>
+<rect x="663.078857421875" y="986.74" width="71.84228515625" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="699" y="997.19" font-size="11" fill="#000000" text-anchor="middle">OTLP HTTPS</text>
+<text x="699" y="1010.39" font-size="11" fill="#000000" text-anchor="middle">Api Token</text>
+<rect x="757.1993535156248" y="652.8" width="91.42529296875" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="802.9119999999998" y="663.25" font-size="11" fill="#000000" text-anchor="middle">OTLP gRPC</text>
+<text x="802.9119999999998" y="676.4499999999999" font-size="11" fill="#000000" text-anchor="middle">Auth: IAM Invoker</text>
+<text x="2860" y="2402" font-size="16" font-weight="bold" fill="#4D4D4D">Legend</text>
+<rect x="2860" y="2414" width="260" height="30" fill="#083F75"/>
+<text x="2870" y="2434" font-size="13" fill="#ffffff">Person</text>
+<rect x="2860" y="2444" width="260" height="30" fill="#1061B0"/>
+<text x="2870" y="2464" font-size="13" fill="#ffffff">Software System</text>
+<rect x="2860" y="2474" width="260" height="30" fill="#23A2D9"/>
+<text x="2870" y="2494" font-size="13" fill="#ffffff">Container</text>
+<rect x="2860" y="2504" width="260" height="30" fill="#63BEF2"/>
+<text x="2870" y="2524" font-size="13" fill="#ffffff">Component</text>
+<rect x="2860" y="2534" width="260" height="30" fill="#6C6477"/>
+<text x="2870" y="2554" font-size="13" fill="#ffffff">External Person</text>
+<rect x="2860" y="2564" width="260" height="30" fill="#8C8496"/>
+<text x="2870" y="2584" font-size="13" fill="#ffffff">External Software System</text>
+<text x="100" y="2617" font-size="11" fill="#9CA3AF">Arquitectura Volarte v3 · Structurizr · vista L0_Referencia · fuente Draw.io: 'L0 · Referencia'</text>
+</svg>

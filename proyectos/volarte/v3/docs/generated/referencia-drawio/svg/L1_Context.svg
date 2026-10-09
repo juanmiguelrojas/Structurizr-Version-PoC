@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1196" viewBox="0 10 1640 1196" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="0" y="10" width="1640" height="1196" fill="#ffffff"/>
+<rect x="30" y="40" width="1580" height="1110" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="40" y="1057.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Context</text><text x="40" y="1071.25" font-size="11"  fill="#333333">[Volarte</text><text x="40" y="1085" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="40" y="1098.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="40" y="1112.5" font-size="11"  fill="#333333">Version: 1</text><text x="40" y="1126.25" font-size="11"  fill="#333333">Fase: I</text><text x="40" y="1140" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="490" y="846" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+
+<text x="1394" y="930" font-size="18" font-weight="bold" fill="#4D4D4D" text-anchor="start">Legend</text>
+<rect x="1390" y="940" width="180" height="30" rx="0" fill="#1E4074" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="959" font-size="12"  fill="#FFFFFF" text-anchor="start">Person</text>
+<rect x="1390" y="970" width="180" height="30" rx="0" fill="#3162AF" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="989" font-size="12"  fill="#FFFFFF" text-anchor="start">Software System</text>
+<rect x="1390" y="1000" width="180" height="30" rx="0" fill="#52a2d8" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="1019" font-size="12"  fill="#FFFFFF" text-anchor="start">Container</text>
+<rect x="1390" y="1030" width="180" height="30" rx="0" fill="#7dbef2" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="1049" font-size="12"  fill="#FFFFFF" text-anchor="start">Component</text>
+<rect x="1390" y="1060" width="180" height="30" rx="0" fill="#6b6477" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="1079" font-size="12"  fill="#FFFFFF" text-anchor="start">External Person</text>
+<rect x="1390" y="1090" width="180" height="30" rx="0" fill="#8b8496" stroke="inherit" stroke-width="1"/>
+<text x="1398" y="1109" font-size="12"  fill="#FFFFFF" text-anchor="start">External Software System</text>
+<path d="M280,776 L375,776 Q385,776 385,766 L385,616 Q385,606 395,606 L490,606" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M610,516 L610,300" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M730,606 L1003,606" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M610,636 L610,846" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M725.2,628.56 L864.1,628.56 L864.1,766 L1003,766" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1123,546 L1123,471 L1230,471 L1230,396" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1243,766 L1350,766 L1350,396" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M290,160 L340,160 L340,380 L550,380 L550,516" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M730,546 L900,546 Q910,546 910,536 L910,300" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M670,636 L670,680 L710,680 L710,793 L870,793 L870,943 L990,943" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M183.2,550.18 L183.03085452761428,605.000047600207 Q183,615 193,615 L320,615 Q330,615 330,605 L330,586 Q330,576 340,576 L490,576" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<rect x="80" y="764" width="200" height="102" rx="28.560000000000002" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<circle cx="180" cy="736" r="50" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<text x="180" y="793.1039999999999" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Admin / Dev Team</text>
+<text x="180" y="806.16" font-size="10"  fill="#BBDEFB" text-anchor="middle">[Persona]</text>
+<text x="180" y="828.0239999999999" font-size="9"  fill="#E0E0E0" text-anchor="middle">Gestiona módulos, publica web apps,</text>
+<text x="180" y="838.8239999999998" font-size="9"  fill="#E0E0E0" text-anchor="middle">administra permisos, monitorea uso</text>
+<text x="180" y="849.6239999999998" font-size="9"  fill="#E0E0E0" text-anchor="middle">y registra nuevas herramientas</text>
+<rect x="490" y="846" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="610" y="877.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Google Cloud Platform</text>
+<text x="610" y="893.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistema Externo — Infra]</text>
+<text x="610" y="919.8960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Cloud Run · Cloud SQL · Firestore</text>
+<text x="610" y="933.0960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">GCS · BigQuery · Secret Manager</text>
+<text x="610" y="946.2960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">Cloudflare CDN / WAF</text>
+<rect x="1003" y="546" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="1123" y="577.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">+ Sistemas Externos Futuros</text>
+<text x="1123" y="593.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistemas Externos]</text>
+<text x="1123" y="619.8960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">SAP · SALESFORCE · COUPA</text>
+<text x="1123" y="633.0960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">o cualquier sistema transaccional que necesite</text>
+<text x="1123" y="646.2960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">el portal</text>
+<rect x="490" y="516" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="610" y="534.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Portal</text>
+<text x="610" y="550.032" font-size="12"  fill="#ffffff" text-anchor="middle">[Software System]</text>
+<text x="610" y="576.6960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Portal interno/externo corporativo con:</text>
+<text x="610" y="589.8960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">• Wiki de conocimiento</text>
+<text x="610" y="603.0960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">• Catálogo de Web Apps</text>
+<text x="610" y="616.2960000000003" font-size="11"  fill="#cccccc" text-anchor="middle">• SSO federado a portales externos</text>
+<text x="610" y="629.4960000000003" font-size="11"  fill="#cccccc" text-anchor="middle">• Shell + módulos independientes</text>
+<rect x="490" y="180" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="610" y="211.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">EntraID / Azure AD</text>
+<text x="610" y="227.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistema Externo — Identidad]</text>
+<text x="610" y="253.89600000000002" font-size="11"  fill="#cccccc" text-anchor="middle">Proveedor de identidad corporativo.</text>
+<text x="610" y="267.096" font-size="11"  fill="#cccccc" text-anchor="middle">SSO · MFA · RBAC.</text>
+<text x="610" y="280.296" font-size="11"  fill="#cccccc" text-anchor="middle">Transversal al hub</text>
+<rect x="1003" y="706" width="240" height="120" rx="12" fill="#1061B0" stroke="#0D5091" stroke-width="1"/>
+<text x="1123" y="730.576" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">+ Webapps Externos Futuros</text>
+<text x="1123" y="746.032" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistemas internos — Portales/</text>
+<text x="1123" y="760.432" font-size="12"  fill="#ffffff" text-anchor="middle">aplicaciones]</text>
+<text x="1123" y="787.0960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">sistemas o cualquier portal que acepte</text>
+<text x="1123" y="800.2960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">federación SAML 2.0 / OIDC o comunicacion</text>
+<text x="1123" y="813.4960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">API REST</text>
+<rect x="90" y="148" width="200" height="102" rx="28.560000000000002" fill="#6C6477" stroke="#4D4D4D" stroke-width="1"/>
+<circle cx="190" cy="120" r="50" fill="#6C6477" stroke="#4D4D4D" stroke-width="1"/>
+<text x="190" y="178.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Usuario externo</text>
+<text x="190" y="193.49599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">[Person]</text>
+<text x="190" y="219.89599999999996" font-size="11"  fill="#cccccc" text-anchor="middle">Usuario que no esta dentro del tenant</text>
+<text x="190" y="233.09599999999995" font-size="11"  fill="#cccccc" text-anchor="middle">de terpel</text>
+<rect x="790" y="180" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="910" y="205.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">CIAM</text>
+<text x="910" y="220.63199999999998" font-size="12"  fill="#ffffff" text-anchor="middle">[Ping Identity]</text>
+<text x="910" y="247.29599999999996" font-size="11"  fill="#cccccc" text-anchor="middle">Gestiona la identidad y acceso de usuarios</text>
+<text x="910" y="260.496" font-size="11"  fill="#cccccc" text-anchor="middle">externos, proporcionando autenticación,</text>
+<text x="910" y="273.69599999999997" font-size="11"  fill="#cccccc" text-anchor="middle">autorización, registro de usuarios y gestión del</text>
+<text x="910" y="286.89599999999996" font-size="11"  fill="#cccccc" text-anchor="middle">ciclo de vida de identidades.</text>
+<path d="M990,898 A120,15 0 0 1 1230,898 L1230,988 A120,15 0 0 1 990,988 Z" fill="#23A2D9" stroke="#0E7DAD" stroke-width="1"/>
+<path d="M990,898 A120,15 0 0 0 1230,898" fill="none" stroke="#0E7DAD" stroke-width="1"/>
+<text x="1110" y="928.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Datalake</text>
+<text x="1110" y="944.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Container: Big Query]</text>
+<text x="1110" y="970.8960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">Repositorio analítico y estructurado de datos</text>
+<text x="1110" y="984.0960000000001" font-size="11"  fill="#E6E6E6" text-anchor="middle">tabulares. Recibe información transformada</text>
+<text x="1110" y="997.2960000000002" font-size="11"  fill="#E6E6E6" text-anchor="middle">por los ETL.</text>
+<rect x="80" y="448" width="200" height="102" rx="28.560000000000002" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<circle cx="180" cy="420" r="50" fill="#083F75" stroke="#06315C" stroke-width="1"/>
+<text x="180" y="477.104" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Empleado Interno</text>
+<text x="180" y="490.16" font-size="10"  fill="#BBDEFB" text-anchor="middle">[Persona]</text>
+<text x="180" y="512.024" font-size="9"  fill="#E0E0E0" text-anchor="middle">Usuario corporativo que accede a la wiki,</text>
+<text x="180" y="522.824" font-size="9"  fill="#E0E0E0" text-anchor="middle">lanza web apps y navega a portales externos</text>
+<text x="180" y="533.6239999999999" font-size="9"  fill="#E0E0E0" text-anchor="middle">desde un único punto de entrada</text>
+<rect x="1110" y="156" width="480" height="240" rx="8" fill="#fffde7" stroke="#d4ac0d" stroke-width="1"/>
+<text x="1124" y="182" font-size="18" font-weight="bold" fill="#5a4000" text-anchor="start">Capacidades Transversales</text><text x="1124" y="203.6" font-size="18"  fill="#5a4000" text-anchor="start">Aplicables a todos los portales del ecosistema.</text><text x="1124" y="225.2" font-size="18"  fill="#5a4000" text-anchor="start">• Seguridad: OAuth2/OIDC · RBAC/ABAC · Zero Trust</text><text x="1124" y="246.8" font-size="18"  fill="#5a4000" text-anchor="start">• Observabilidad: Logs · Tracing · Métricas · SLOs</text><text x="1124" y="268.4" font-size="18"  fill="#5a4000" text-anchor="start">• Resiliencia: Circuit Breaker · Retry · Timeout</text><text x="1124" y="290" font-size="18"  fill="#5a4000" text-anchor="start">• Escalabilidad: Auto-scaling · Event-driven</text><text x="1124" y="311.6" font-size="18"  fill="#5a4000" text-anchor="start">• Gobernanza: API versioning · Data contracts · ADRs</text>
+<rect x="320.47900390625" y="684.6" width="129.0419921875" height="12.799999999999999" fill="#ffffff" opacity="0.92"/>
+<text x="385" y="693.15" font-size="9" fill="#000000" text-anchor="middle">Administra módulos y permisos</text>
+<rect x="565.970703125" y="396.2" width="88.05859375" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="610" y="404.75" font-size="9" fill="#000000" text-anchor="middle">Delega autenticación</text>
+<text x="610" y="415.55" font-size="9" fill="#000000" text-anchor="middle">[OIDC / OAuth 2.0]</text>
+<rect x="819.805496875" y="593" width="92.37890625" height="26" fill="#ffffff" opacity="0.92"/>
+<text x="865.99495" y="602.5" font-size="10" fill="#000000" text-anchor="middle">Consulta / Actualiza</text>
+<text x="865.99495" y="614.5" font-size="10" fill="#000000" text-anchor="middle">REST API</text>
+<rect x="534.7255859375" y="729.2" width="150.548828125" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="610" y="737.75" font-size="9" fill="#000000" text-anchor="middle">Desplegado en GCP</text>
+<text x="610" y="748.5500000000001" font-size="9" fill="#000000" text-anchor="middle">[Cloud Run · SQL · GCS · BigQuery]</text>
+<rect x="794.8138671875" y="709.730016" width="144.572265625" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="867.1" y="718.2800159999999" font-size="9" fill="#000000" text-anchor="middle">Federa sesión (SSO seamless)</text>
+<text x="867.1" y="729.080016" font-size="9" fill="#000000" text-anchor="middle">[SAML 2.0 / OIDC token exchange]</text>
+<rect x="1111.575727734375" y="455.8" width="92.66064453125" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1157.90605" y="466.25" font-size="11" fill="#000000" text-anchor="middle">Todos los portales</text>
+<text x="1157.90605" y="479.45" font-size="11" fill="#000000" text-anchor="middle">cumplen con</text>
+<rect x="1302.669677734375" y="654.8109499999999" width="92.66064453125" height="28.4" fill="#ffffff" opacity="0.92"/>
+<text x="1349" y="665.26095" font-size="11" fill="#000000" text-anchor="middle">Todos los portales</text>
+<text x="1349" y="678.4609499999999" font-size="11" fill="#000000" text-anchor="middle">cumplen con</text>
+<rect x="352.70097890625" y="370.2" width="131.5732421875" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="418.4876" y="378.75" font-size="9" fill="#000000" text-anchor="middle">Accede al portal (HTTPS)</text>
+<text x="418.4876" y="389.55" font-size="9" fill="#000000" text-anchor="middle">Navega wiki, lanza apps, federa</text>
+<rect x="865.970703125" y="501.2" width="88.05859375" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="910" y="509.75" font-size="9" fill="#000000" text-anchor="middle">Delega autenticación</text>
+<text x="910" y="520.55" font-size="9" fill="#000000" text-anchor="middle">[OIDC / OAuth 2.0]</text>
+<rect x="775.540187109375" y="838.4" width="167.89892578125" height="15.2" fill="#ffffff" opacity="0.92"/>
+<text x="859.48965" y="848.85" font-size="11" fill="#000000" text-anchor="middle">Fuente de datos/ Entrega de data</text>
+<rect x="326.924620086617" y="564.2" width="131.5732421875" height="23.599999999999998" fill="#ffffff" opacity="0.92"/>
+<text x="392.711241180367" y="572.75" font-size="9" fill="#000000" text-anchor="middle">Accede al portal SSO (HTTPS)</text>
+<text x="392.711241180367" y="583.5500000000001" font-size="9" fill="#000000" text-anchor="middle">Navega wiki, lanza apps, federa</text>
+<text x="10" y="1197" font-size="11" fill="#9CA3AF">Referencia: página 'L1 · Context' del Draw.io original (render de la fuente, sin modelo).</text>
+</svg>

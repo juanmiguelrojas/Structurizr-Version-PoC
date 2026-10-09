@@ -155,6 +155,23 @@ build_version() {
   local VIEWS; VIEWS=$(ls "$OUT"/mmd/*.mmd | wc -l | tr -d ' ')
   ok "$VIEWS vistas exportadas (mmd + puml) · modelo en $OUT/json/workspace.json"
 
+  # Motor de render declarado por la versión: "mermaid" (por defecto) o "c4-drawio" (notación Draw.io C4
+  # con disposición de dsl/layout/ y validación de fidelidad contra la fuente Draw.io).
+  local RENDER; RENDER="$(python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get('render','mermaid'))" "$VDIR/version.json")"
+  if [[ "$RENDER" == "c4-drawio" ]]; then
+    step "4b · Escenas C4 y fidelidad contra la fuente Draw.io"
+    local FUENTE; FUENTE="$(python3 -c "import json,sys,os; m=json.load(open(sys.argv[1])); print(os.path.normpath(os.path.join(sys.argv[2], (m.get('fidelidad') or {}).get('fuente') or '')) if (m.get('fidelidad') or {}).get('fuente') else '')" "$VDIR/version.json" "$VDIR")"
+    local INV_ARGS=()
+    if [[ -n "$FUENTE" && -f "$FUENTE" ]]; then
+      python3 scripts/drawio_inventory.py "$FUENTE" "$WORK/drawio-inventario.json" >/dev/null
+      INV_ARGS=(--inventario "$WORK/drawio-inventario.json" --fidelidad "$OUT/fidelidad")
+    fi
+    rm -rf "$WORK/escenas" "$OUT/fidelidad"
+    python3 scripts/c4_scene.py --workspace "$WORK/workspace.json" --layouts "$VDIR/dsl/layout" \
+      --out "$WORK/escenas" "${INV_ARGS[@]}" || fail "No se pudieron construir las escenas C4"
+    ok "Escenas C4 listas${FUENTE:+ · informe de fidelidad en $OUT/fidelidad/fidelidad-drawio.md}"
+  fi
+
   step "5 · Agente Revisor de Arquitectura"
   set +e
   python3 scripts/architecture_reviewer.py --version-dir "$VDIR" --workspace-json "$WORK/workspace.json" "${REVIEW_ARGS[@]}"
@@ -167,11 +184,15 @@ build_version() {
     return 0
   fi
 
-  step "6 · Renderizando SVG / PNG / PNG alta resolución con leyenda C4"
+  step "6 · Renderizando SVG / PNG / PNG alta resolución con leyenda C4 (motor: $RENDER)"
   prepare_render
-  rm -rf "$OUT/svg" "$OUT/png" "$OUT/png-hires"
-  node scripts/render-diagrams.mjs "$OUT/mmd" "$OUT" "$HIRES_SCALE" \
-    || fail "Uno o más diagramas no se pudieron renderizar"
+  rm -rf "$OUT/svg" "$OUT/png" "$OUT/png-hires" "$OUT/referencia-drawio"
+  if [[ "$RENDER" == "c4-drawio" ]]; then
+    AAC_PIE="$(python3 -c "import json,sys; m=json.load(open(sys.argv[1])); print(m['nombre'] + ' ' + m['version'] + ' · Structurizr')" "$VDIR/version.json")" \
+      node scripts/render-c4.mjs "$WORK/escenas" "$OUT" "$HIRES_SCALE" || fail "Uno o más diagramas no se pudieron renderizar"
+  else
+    node scripts/render-diagrams.mjs "$OUT/mmd" "$OUT" "$HIRES_SCALE" || fail "Uno o más diagramas no se pudieron renderizar"
+  fi
   ok "$VIEWS diagramas × (SVG, PNG ×2, PNG ×$HIRES_SCALE)"
 
   step "7 · Generando PDF unificado"

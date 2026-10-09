@@ -27,6 +27,8 @@ Reglas para que todos los proyectos se lean igual y para decidir cuándo una ver
 - [ ] Build completo sin errores del Agente Revisor; advertencias R5 tratadas (ver 05 §5).
 - [ ] `docs/generated/` actualizado: diagramas con leyenda C4, PDF, reportes.
 - [ ] Entrada en la bitácora del proyecto y fila en la tabla de versiones del `README.md` del proyecto.
+- [ ] `REVISION.md` con los comentarios de validación `REV-NN` y la tabla de firma.
+- [ ] Si replica un Draw.io: informe de fidelidad sin diferencias (R9) y personas con silueta en todas las vistas.
 
 ## 3. Consistencia entre proyectos
 

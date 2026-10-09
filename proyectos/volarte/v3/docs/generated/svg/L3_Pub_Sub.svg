@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1330" height="1266" viewBox="-20 -20 1330 1266" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="-20" y="-20" width="1330" height="1266" fill="#ffffff"/>
+<rect x="10" y="10" width="1270" height="930" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="20" y="847.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Componente</text><text x="20" y="861.25" font-size="11"  fill="#333333">[Volarte</text><text x="20" y="875" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="20" y="888.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="20" y="902.5" font-size="11"  fill="#333333">Version: 1</text><text x="20" y="916.25" font-size="11"  fill="#333333">Fase: I</text><text x="20" y="930" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="630" y="533" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+
+<path d="M200,160 L200,176.5 Q200,186.5 210,186.5 L380,186.5 Q390,186.5 390,196.5 L390,213" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M510,273 L526,273 Q536,273 536,263 L536,163 Q536,153 546,153 L620,153" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M270,273 L210,273 Q200,273 200,283 L200,360" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M800,93 L800,140 Q800,150 810,150 L830,150 Q840,150 850,150 L1110,150 Q1120,150 1120,160 L1120,190" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M320,420 L360,420 Q370,420 370,410 L370,370 Q370,360 380,360 L530,360 Q540,360 540,370 L540,400" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M740,213 L740,383 Q740,393 750,393 L920,393 Q930,393 930,403 L930,576 Q930,583 930,576 L930,576 Q930,569 923,569 L870,569" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M200,480 L200,550 Q200,560 210,560 L500,560 Q510,560 510,570 L510,613 Q510,623 520,623 L630,623" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M200,700 L200,721.5 Q200,731.5 210,731.5 L520,731.5 Q530,731.5 530,741.5 L530,763" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M650,828 L780,828" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1020,828 L1120,828 Q1130,828 1130,818 L1130,520" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M900,768 L900,710 Q900,700 890,700 L820,700 Q810,700 810,690 L810,653" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<rect x="630" y="533" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="750" y="564.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Dead Letter Topic</text>
+<text x="750" y="580.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Pub/Sub DLQ]</text>
+<text x="750" y="606.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Mensajes que agotaron</text>
+<text x="750" y="620.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">reintentos. Requiere</text>
+<text x="750" y="633.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">revisión manual.</text>
+<rect x="80" y="360" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="200" y="398.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Sub: comercial-sub</text>
+<text x="200" y="413.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Push · retry + DLQ]</text>
+<text x="200" y="440.4959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Actualiza saldo/crédito</text>
+<text x="200" y="453.6959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">tras el cierre.</text>
+<path d="M270,228 A120,15 0 0 1 510,228 L510,318 A120,15 0 0 1 270,318 Z" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<path d="M270,228 A120,15 0 0 0 510,228" fill="none" stroke="#2086C9" stroke-width="1"/>
+<text x="390" y="265.37600000000003" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Topic: operacion-cerrada</text>
+<text x="390" y="280.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Pub/Sub Topic]</text>
+<text x="390" y="307.496" font-size="11"  fill="#ffffff" text-anchor="middle">Se dispara al cerrar una</text>
+<text x="390" y="320.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">operación en campo.</text>
+<rect x="620" y="93" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="740" y="124.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Sub: gestor-documental-sub</text>
+<text x="740" y="140.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Push · retry + DLQ]</text>
+<text x="740" y="166.896" font-size="11"  fill="#ffffff" text-anchor="middle">Dispara generación y</text>
+<text x="740" y="180.09599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">publicación del documento</text>
+<text x="740" y="193.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">(HU-055).</text>
+<rect x="420" y="400" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="540" y="444.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Comercial</text>
+<text x="540" y="460.43199999999996" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="540" y="487.09599999999995" font-size="11"  fill="#cccccc" text-anchor="middle">Suscriptor</text>
+<rect x="80" y="40" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="200" y="84.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">BFF Móvil</text>
+<text x="200" y="100.43199999999999" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="200" y="127.096" font-size="11"  fill="#cccccc" text-anchor="middle">Publicador principal</text>
+<rect x="1000" y="190" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="1120" y="234.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Gestor Documental</text>
+<text x="1120" y="250.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="1120" y="277.096" font-size="11"  fill="#cccccc" text-anchor="middle">Suscriptor</text>
+<rect x="80" y="580" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="200" y="618.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">BFF Web</text>
+<text x="200" y="633.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="200" y="660.4960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Publicador — Servicio de Conciliación</text>
+<text x="200" y="673.6960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">(revisión manual HU-050)</text>
+<path d="M410,778 A120,15 0 0 1 650,778 L650,878 A120,15 0 0 1 410,878 Z" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<path d="M410,778 A120,15 0 0 0 650,778" fill="none" stroke="#2086C9" stroke-width="1"/>
+<text x="530" y="807.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Topic: conciliacion-resuelta</text>
+<text x="530" y="823.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Pub/Sub Topic]</text>
+<text x="530" y="850.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Se publica cuando un</text>
+<text x="530" y="863.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">supervisor resuelve desde</text>
+<text x="530" y="876.4960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">la Web una operación</text>
+<text x="530" y="889.6960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">PENDING_REVIEW (HU-050):</text>
+<text x="530" y="902.8960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">confirmar o anular.</text>
+<rect x="1010" y="400" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="1130" y="444.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Svc: Operación</text>
+<text x="1130" y="460.43199999999996" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="1130" y="487.09599999999995" font-size="11"  fill="#cccccc" text-anchor="middle">Suscriptor</text>
+<rect x="780" y="768" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="900" y="796.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Sub:</text>
+<text x="900" y="815.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">operacion-conciliacion-sub</text>
+<text x="900" y="831.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Push · retry + DLQ]</text>
+<text x="900" y="858.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Aplica la resolución (finaliza o anula) sobre la</text>
+<text x="900" y="871.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">operación en Tablas: operacionales.</text>
+<rect x="280.32421875" y="180.7" width="29.3515625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="295" y="188.29999999999998" font-size="8" fill="#1E3A8A" text-anchor="middle">publica</text>
+<rect x="520.43359375" y="178.2" width="31.1328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="536" y="185.79999999999998" font-size="8" fill="#7C2D12" text-anchor="middle">entrega</text>
+<rect x="184.43359375" y="275.7" width="31.1328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="200" y="283.3" font-size="8" fill="#7C2D12" text-anchor="middle">entrega</text>
+<rect x="936.380859375" y="144.2" width="30.23828125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="951.5" y="151.79999999999998" font-size="8" fill="#7C2D12" text-anchor="middle">dispara</text>
+<rect x="404.880859375" y="354.2" width="30.23828125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="420" y="361.8" font-size="8" fill="#7C2D12" text-anchor="middle">dispara</text>
+<rect x="812.15234375" y="387.2" width="129.6953125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="877" y="394.8" font-size="8" fill="#4D4D4D" text-anchor="middle">tras 5 reintentos (backoff 10s-600s)</text>
+<rect x="341.65234375" y="554.2" width="129.6953125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="406.5" y="561.8000000000001" font-size="8" fill="#4D4D4D" text-anchor="middle">tras 5 reintentos (backoff 10s-600s)</text>
+<rect x="311.8671875" y="725.7" width="106.265625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="365" y="733.3000000000001" font-size="8" fill="#1E3A8A" text-anchor="middle">publica (supervisor resuelve)</text>
+<rect x="699.43359375" y="822.2" width="31.1328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="715" y="829.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">entrega</text>
+<rect x="1065.064453125" y="723.2" width="129.87109375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1130" y="730.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">finaliza / anula operación pendiente</text>
+<rect x="800.65234375" y="694.2" width="129.6953125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="865.5" y="701.8000000000001" font-size="8" fill="#4D4D4D" text-anchor="middle">tras 5 reintentos (backoff 10s-600s)</text>
+<text x="1040" y="1022" font-size="16" font-weight="bold" fill="#4D4D4D">Legend</text>
+<rect x="1040" y="1034" width="260" height="30" fill="#083F75"/>
+<text x="1050" y="1054" font-size="13" fill="#ffffff">Person</text>
+<rect x="1040" y="1064" width="260" height="30" fill="#1061B0"/>
+<text x="1050" y="1084" font-size="13" fill="#ffffff">Software System</text>
+<rect x="1040" y="1094" width="260" height="30" fill="#23A2D9"/>
+<text x="1050" y="1114" font-size="13" fill="#ffffff">Container</text>
+<rect x="1040" y="1124" width="260" height="30" fill="#63BEF2"/>
+<text x="1050" y="1144" font-size="13" fill="#ffffff">Component</text>
+<rect x="1040" y="1154" width="260" height="30" fill="#6C6477"/>
+<text x="1050" y="1174" font-size="13" fill="#ffffff">External Person</text>
+<rect x="1040" y="1184" width="260" height="30" fill="#8C8496"/>
+<text x="1050" y="1204" font-size="13" fill="#ffffff">External Software System</text>
+<text x="-10" y="1237" font-size="11" fill="#9CA3AF">Arquitectura Volarte v3 · Structurizr · vista L3_Pub_Sub · fuente Draw.io: 'L3 · Pub-Sub'</text>
+</svg>

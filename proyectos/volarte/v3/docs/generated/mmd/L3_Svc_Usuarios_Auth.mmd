@@ -1,0 +1,43 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Svc Usuarios / Auth — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    11["<div style='font-weight: bold'>EntraID / CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo. SSO · MFA ·<br />RBAC. Transversal al hub</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    32["<div style='font-weight: bold'>BFF Web / BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Contenedores externos]</div><div style='font-size: 80%; margin-top:10px'>Consumidores</div>"]
+    style 32 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    65[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cache]</div><div style='font-size: 80%; margin-top:10px'>Sesiones · Tokens · Queries</div>")]
+    style 65 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    75[("<div style='font-weight: bold'>Cloud SQL (PostgreSQL)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Database]</div><div style='font-size: 80%; margin-top:10px'>Usuarios · Roles · Registry</div>")]
+    style 75 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 76 ["Svc: Usuarios / Auth"]
+      style 76 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      77["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>/roles · /permissions ·<br />/mapping · /audit</div>"]
+      style 77 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      78["<div style='font-weight: bold'>Resolver GroupToRoleMapping</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Deriva rol efectivo desde<br />grupo(s) de Entra ID.<br />RN-007/RN-008.</div>"]
+      style 78 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      79["<div style='font-weight: bold'>Adaptador de sincronización Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Component: Microsoft Graph API]</div><div style='font-size: 80%; margin-top:10px'>Consulta pertenencia a grupos<br />cuando el claim 'groups' se<br />trunca.</div>"]
+      style 79 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      80["<div style='font-weight: bold'>Invalidador de Cache</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Notifica a Redis cuando<br />cambia un rol — no espera al<br />TTL.</div>"]
+      style 80 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      81["<div style='font-weight: bold'>Cliente Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Acceso a datos de<br />usuarios/roles/mapping.</div>"]
+      style 81 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      82["<div style='font-weight: bold'>Auditor</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Registra toda decisión de<br />autorización, concedida o<br />denegada.</div>"]
+      style 82 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    82-. "<div>consulta</div><div style='font-size: 70%'></div>" .->32
+    32-. "<div>recibe petición</div><div style='font-size: 70%'></div>" .->77
+    77-. "<div>resuelve</div><div style='font-size: 70%'></div>" .->78
+    78-. "<div>consulta grupos</div><div style='font-size: 70%'></div>" .->79
+    79-. "<div>sincroniza</div><div style='font-size: 70%'></div>" .->11
+    78-. "<div>registra</div><div style='font-size: 70%'></div>" .->82
+    82-. "<div>invalida en cambio de rol</div><div style='font-size: 70%'></div>" .->80
+    80-. "<div>notifica</div><div style='font-size: 70%'></div>" .->65
+    82-. "<div>persiste</div><div style='font-size: 70%'></div>" .->81
+    81-. "<div>lee/escribe</div><div style='font-size: 70%'></div>" .->75
+  end

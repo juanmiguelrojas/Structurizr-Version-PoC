@@ -1,0 +1,39 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · BFF Web — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    5["<div style='font-weight: bold'>ApiGee</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de API nativa de Google<br />Cloud. Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID.</div>"]
+    style 5 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    31["<div style='font-weight: bold'>Servicios de dominio</div><div style='font-size: 70%; margin-top: 0px'>[Contenedores externos]</div><div style='font-size: 80%; margin-top:10px'>S02, S04, S06, S01 (fuera de<br />este contenedor)</div>"]
+    style 31 fill:#8c8496,stroke:#6b6474,color:#ffffff
+
+    subgraph 66 ["BFF — Backend Volarte"]
+      style 66 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      67["<div style='font-weight: bold'>API Router / Controllers</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints REST por feature.<br />Punto de entrada del<br />contenedor.</div>"]
+      style 67 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      68["<div style='font-weight: bold'>Middleware de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: JWT Middleware]</div><div style='font-size: 80%; margin-top:10px'>Valida issuer/audience/<br />expiración del token (segunda<br />validación).</div>"]
+      style 68 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      69["<div style='font-weight: bold'>Servicio de Autorización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Resuelve GroupToRoleMapping →<br />Role/Permission/ Capability.</div>"]
+      style 69 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      70["<div style='font-weight: bold'>Orquestador de Dominio</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Enruta la petición al<br />servicio de dominio<br />correspondiente.</div>"]
+      style 70 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      71["<div style='font-weight: bold'>Clientes de Servicios</div><div style='font-size: 70%; margin-top: 0px'>[Component: HTTP + ID Token (IAM)]</div><div style='font-size: 80%; margin-top:10px'>Clientes tipados hacia cada<br />Svc: interno. Cloud Run →<br />Cloud Run.</div>"]
+      style 71 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      72["<div style='font-weight: bold'>Cliente de Secretos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Secret Manager SDK]</div><div style='font-size: 80%; margin-top:10px'>Credenciales de servicios<br />downstream.</div>"]
+      style 72 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      73["<div style='font-weight: bold'>Cliente de Cache</div><div style='font-size: 70%; margin-top: 0px'>[Component: Redis SDK]</div><div style='font-size: 80%; margin-top:10px'>Cache de decisión de<br />autorización (TTL corto).</div>"]
+      style 73 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    5-. "<div>recibe petición</div><div style='font-size: 70%'></div>" .->67
+    67-. "<div>valida</div><div style='font-size: 70%'></div>" .->68
+    68-. "<div>resuelve rol</div><div style='font-size: 70%'></div>" .->69
+    69-. "<div>lee/escribe cache</div><div style='font-size: 70%'></div>" .->73
+    69-. "<div>autorizado →</div><div style='font-size: 70%'></div>" .->70
+    70-. "<div>lee secretos</div><div style='font-size: 70%'></div>" .->72
+    70-. "<div>orquesta</div><div style='font-size: 70%'></div>" .->71
+    71-. "<div>llama (IAM Invoker)</div><div style='font-size: 70%'></div>" .->31
+  end
