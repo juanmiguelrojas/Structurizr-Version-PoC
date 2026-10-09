@@ -62,7 +62,7 @@
         "instances": "1",
         "name": "Dispositivo Android Gestionado",
         "properties": {
-          "structurizr.dsl.identifier": "777dc24c-1a73-47bf-a1ea-3ad54f292849"
+          "structurizr.dsl.identifier": "82d4e187-d353-4cd7-bc0d-eb777453df35"
         },
         "tags": "Element,Deployment Node,Device",
         "technology": "Android · Intune / Managed Play"
@@ -99,7 +99,7 @@
         "instances": "1",
         "name": "Navegador Web",
         "properties": {
-          "structurizr.dsl.identifier": "ddc2c7cc-e1c2-4cda-9cc6-b7e59c48ceb8"
+          "structurizr.dsl.identifier": "5613c63a-8ed2-41a9-8aaf-03c3c35cea17"
         },
         "tags": "Element,Deployment Node,Device",
         "technology": "Chrome · Edge"
@@ -142,7 +142,7 @@
         "instances": "1",
         "name": "Cloudflare",
         "properties": {
-          "structurizr.dsl.identifier": "54a64830-150b-4bdb-a380-7aae738b83c4"
+          "structurizr.dsl.identifier": "fc3ab356-429d-4c56-a429-4b6768a7001a"
         },
         "tags": "Element,Deployment Node,Edge",
         "technology": "Cloudflare Edge"
@@ -177,7 +177,7 @@
         "instances": "1",
         "name": "Netskope Cloud",
         "properties": {
-          "structurizr.dsl.identifier": "4a6df703-fb2e-45e8-a5f0-e64f9ac65e89"
+          "structurizr.dsl.identifier": "96095932-4fe9-4b2d-aa4b-40bc643945d7"
         },
         "tags": "Element,Deployment Node,Edge",
         "technology": "Netskope Private Access"
@@ -256,7 +256,7 @@
             "instances": "1",
             "name": "terpel-infra-vpc-transversal",
             "properties": {
-              "structurizr.dsl.identifier": "9e4cd62e-32c9-4ab8-847c-6f7f9fd92431"
+              "structurizr.dsl.identifier": "ce418624-2ab4-4845-a80f-19ae99467f75"
             },
             "tags": "Element,Deployment Node,VPC",
             "technology": "Shared VPC"
@@ -281,7 +281,7 @@
             "instances": "1",
             "name": "terpel-gtic-apigee-prd",
             "properties": {
-              "structurizr.dsl.identifier": "c3263ea4-bfd5-4cb1-8eac-b444d2e3c92b"
+              "structurizr.dsl.identifier": "6afbfb25-4624-424e-885d-7358e7583ca2"
             },
             "softwareSystemInstances": [
               {
@@ -321,7 +321,7 @@
             "instances": "1",
             "name": "terpel-gtic-front-prd",
             "properties": {
-              "structurizr.dsl.identifier": "93366e19-21a0-4d3b-b12c-9f3b8300448c"
+              "structurizr.dsl.identifier": "27ff4fc0-9c98-4e51-82cd-8b4f8ff59bd3"
             },
             "tags": "Element,Deployment Node,GCPProject",
             "technology": "GCP Project"
@@ -495,7 +495,7 @@
                 "instances": "1",
                 "name": "Cloud Run · BFF",
                 "properties": {
-                  "structurizr.dsl.identifier": "3d8c4188-01ba-4198-bd33-700a1a46ef81",
+                  "structurizr.dsl.identifier": "6573d9e9-2a41-4354-979b-052cc091b8c5",
                   "ha": "true",
                   "autoscaling": "1..N"
                 },
@@ -650,7 +650,7 @@
                 "instances": "1",
                 "name": "Cloud Run · Servicios de Dominio",
                 "properties": {
-                  "structurizr.dsl.identifier": "cb8b0069-6fb6-4e3c-a93e-f0e587cee4b1",
+                  "structurizr.dsl.identifier": "4e5637ef-6bac-4225-86b4-ceb98a48f529",
                   "ha": "true",
                   "autoscaling": "0..N"
                 },
@@ -689,7 +689,7 @@
                 "instances": "1",
                 "name": "GKE",
                 "properties": {
-                  "structurizr.dsl.identifier": "7ff63c06-d62c-4c8a-a376-db47283c00df"
+                  "structurizr.dsl.identifier": "304a182a-5954-46ec-9fcd-d85b1828145c"
                 },
                 "tags": "Element,Deployment Node,GKE",
                 "technology": "GKE Autopilot"
@@ -726,7 +726,7 @@
                 "instances": "1",
                 "name": "Cloud SQL",
                 "properties": {
-                  "structurizr.dsl.identifier": "50180919-d575-4165-a303-4eb5a9d02b2e"
+                  "structurizr.dsl.identifier": "75393f6b-c322-4673-a52a-b41a7376f072"
                 },
                 "tags": "Element,Deployment Node,Database",
                 "technology": "Cloud SQL for PostgreSQL"
@@ -753,7 +753,7 @@
                 "instances": "1",
                 "name": "Memorystore",
                 "properties": {
-                  "structurizr.dsl.identifier": "5303abc8-934c-40f8-ba63-931325255632"
+                  "structurizr.dsl.identifier": "ef5d1f73-3a15-4042-861f-938fc58bc5f3"
                 },
                 "tags": "Element,Deployment Node,Database",
                 "technology": "Memorystore for Redis"
@@ -806,7 +806,7 @@
                 "instances": "1",
                 "name": "Pub/Sub",
                 "properties": {
-                  "structurizr.dsl.identifier": "9a989660-0977-425f-9c2c-752d1bf1d64f",
+                  "structurizr.dsl.identifier": "b618b543-8578-4c7c-b3b7-247b00a46b9d",
                   "ha": "true"
                 },
                 "tags": "Element,Deployment Node,Queue",
@@ -844,7 +844,7 @@
                 "instances": "1",
                 "name": "Cloud Storage",
                 "properties": {
-                  "structurizr.dsl.identifier": "26363817-33b6-486a-b59f-42c2ef6a4a74",
+                  "structurizr.dsl.identifier": "13c276e2-51fd-466b-9e5b-c5be3008e7b7",
                   "ha": "true"
                 },
                 "tags": "Element,Deployment Node,Storage",
@@ -857,7 +857,7 @@
                 "instances": "1",
                 "name": "Seguridad del Proyecto",
                 "properties": {
-                  "structurizr.dsl.identifier": "bb4cbad2-bfb6-40e7-a544-dee492fbe973"
+                  "structurizr.dsl.identifier": "b247951e-661f-4c7a-ac4a-a82351beab89"
                 },
                 "softwareSystemInstances": [
                   {
@@ -907,7 +907,7 @@
             "instances": "1",
             "name": "terpel-org-col-volarte-prd",
             "properties": {
-              "structurizr.dsl.identifier": "24387e5b-fc38-409c-a471-e26216cd1bc5"
+              "structurizr.dsl.identifier": "125023a0-c691-4da5-8875-27d0085eb09c"
             },
             "tags": "Element,Deployment Node,GCPProject",
             "technology": "GCP Project"
@@ -919,7 +919,7 @@
         "instances": "1",
         "name": "Google Cloud Platform",
         "properties": {
-          "structurizr.dsl.identifier": "4440fa7e-9876-4c48-b31c-d25a9cf1375c"
+          "structurizr.dsl.identifier": "6aa25a4d-044e-46bc-b63d-10be08e04269"
         },
         "tags": "Element,Deployment Node,GCP",
         "technology": "GCP"
