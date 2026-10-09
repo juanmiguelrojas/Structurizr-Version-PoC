@@ -1,0 +1,145 @@
+{
+  "name": "C4 Terpel",
+  "description": "Leyenda oficial C4 · Terpel - Dirección de Arquitectura. Generado desde estilos-c4.dsl; no editar a mano.",
+  "elements": [
+    {
+      "tag": "Element",
+      "color": "#ffffff",
+      "fontSize": 22,
+      "strokeWidth": 2
+    },
+    {
+      "tag": "Person",
+      "shape": "Person",
+      "background": "#083F75",
+      "stroke": "#052E57",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Software System",
+      "background": "#1061B0",
+      "stroke": "#0B4884",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Container",
+      "background": "#23A2D9",
+      "stroke": "#0E7DAD",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "Component",
+      "background": "#63BEF2",
+      "stroke": "#2E8BC9",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "External Person",
+      "background": "#6C6477",
+      "stroke": "#4D4756",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "External Software System",
+      "background": "#8C8496",
+      "stroke": "#6B6474",
+      "color": "#ffffff"
+    },
+    {
+      "tag": "WebBrowser",
+      "shape": "WebBrowser"
+    },
+    {
+      "tag": "Mobile",
+      "shape": "MobileDevicePortrait"
+    },
+    {
+      "tag": "Database",
+      "shape": "Cylinder"
+    },
+    {
+      "tag": "LocalDatabase",
+      "shape": "Cylinder"
+    },
+    {
+      "tag": "Storage",
+      "shape": "Folder"
+    },
+    {
+      "tag": "Queue",
+      "shape": "Pipe"
+    },
+    {
+      "tag": "Topic",
+      "shape": "Pipe"
+    },
+    {
+      "tag": "IdentityProvider",
+      "shape": "Hexagon"
+    },
+    {
+      "tag": "APIGateway",
+      "shape": "Hexagon"
+    },
+    {
+      "tag": "BFF",
+      "shape": "RoundedBox"
+    },
+    {
+      "tag": "DomainService",
+      "shape": "RoundedBox"
+    },
+    {
+      "tag": "Subscription",
+      "shape": "RoundedBox"
+    },
+    {
+      "tag": "Infrastructure",
+      "shape": "Pipe"
+    },
+    {
+      "tag": "Observability",
+      "shape": "Ellipse"
+    },
+    {
+      "tag": "Pending",
+      "border": "Dashed",
+      "stroke": "#F59E0B",
+      "strokeWidth": 5
+    },
+    {
+      "tag": "Reference",
+      "border": "Dashed"
+    },
+    {
+      "tag": "DLQ",
+      "border": "Dotted",
+      "strokeWidth": 4
+    },
+    {
+      "tag": "Deployment Node",
+      "background": "#ffffff",
+      "color": "#1F2937",
+      "stroke": "#6B7280"
+    },
+    {
+      "tag": "Infrastructure Node",
+      "background": "#ffffff",
+      "color": "#1F2937",
+      "stroke": "#6B7280"
+    }
+  ],
+  "relationships": [
+    {
+      "tag": "Relationship",
+      "thickness": 2,
+      "color": "#707070",
+      "routing": "Orthogonal"
+    },
+    {
+      "tag": "Logical",
+      "style": "Dashed",
+      "color": "#9CA3AF"
+    }
+  ]
+}

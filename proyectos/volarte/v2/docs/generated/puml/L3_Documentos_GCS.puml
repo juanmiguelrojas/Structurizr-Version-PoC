@@ -1,0 +1,33 @@
+@startuml
+set separator none
+title Volarte - Documentos (GCS) - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(CloudKMS, "Cloud KMS", $descr="Gestión de llaves de cifrado (CMEK, HSM, rotación). Cifra Cloud SQL, GCS, Firestore y los secretos de Secret Manager.", $tags="", $link="")
+Container(Volarte.BFFMóvil, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+Container(Volarte.GestorDocumental, "Gestor Documental", $techn="Python · FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación y retorna un ID inmutable vinculado. Cola + reintento sin duplicar (HU-055). S07 define contenido y numeración del documento canónico; el Gestor solo lo publica.", $tags="", $link="")
+
+Container_Boundary("Volarte.DocumentosGCS_boundary", "Documentos (GCS)", $tags="") {
+  Component(Volarte.DocumentosGCS.EstructuradeCarpetas, "Estructura de Carpetas", $techn="GCS object prefixes", $descr="Organización por año, mes e ID de operación: gs://.../{anio}/{mes}/{op_id}.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.PolíticadeCiclodeVida, "Política de Ciclo de Vida", $techn="GCS Lifecycle Rules", $descr="Transición a Nearline/Coldline según antigüedad. Retención definida por política vigente.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.VersionadoWORM, "Versionado / WORM", $techn="GCS Object Versioning + Retention Lock", $descr="Inmutabilidad: un objeto nunca se sobrescribe.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.IAMdelBucket, "IAM del Bucket", $techn="Service Account bindings", $descr="Write: SA Gestor Documental (y BFF Móvil para media). Read: signed URLs temporales.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.CifradoenReposo, "Cifrado en Reposo", $techn="CMEK (Cloud KMS)", $descr="Cada objeto cifrado con llave gestionada por Terpel (no por Google).", $tags="", $link="")
+}
+
+Rel(Volarte.DocumentosGCS.EstructuradeCarpetas, Volarte.DocumentosGCS.PolíticadeCiclodeVida, "Organiza", $techn="Configuración de bucket GCS", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.EstructuradeCarpetas, Volarte.DocumentosGCS.VersionadoWORM, "Aplica", $techn="Configuración de bucket GCS", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.EstructuradeCarpetas, Volarte.DocumentosGCS.IAMdelBucket, "Controla acceso", $techn="Configuración de bucket GCS", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.IAMdelBucket, Volarte.DocumentosGCS.CifradoenReposo, "Cifra", $techn="Configuración de bucket GCS", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.DocumentosGCS.EstructuradeCarpetas, "Resumable upload de fotos / firma", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Volarte.GestorDocumental, Volarte.DocumentosGCS.EstructuradeCarpetas, "Sube documento final (único escritor)", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.CifradoenReposo, CloudKMS, "Cifra objetos con CMEK", $techn="Cloud KMS API · TLS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

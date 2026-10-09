@@ -1,23 +1,19 @@
-name: Architecture Pipeline (AaC · Volarte)
+name: Architecture Pipeline (AaC)
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - "dsl/**"
-      - "docs/CHANGELOG_DSL.md"
-      - "docs/adr/**"
-      - "docs/workspace/**"
+      - "proyectos/**"
+      - "estandares/**"
       - "scripts/**"
       - "package*.json"
       - ".github/workflows/architecture-pipeline.yml"
   push:
     branches: [main]
     paths:
-      - "dsl/**"
-      - "docs/CHANGELOG_DSL.md"
-      - "docs/adr/**"
-      - "docs/workspace/**"
+      - "proyectos/**"
+      - "estandares/**"
       - "scripts/**"
       - "package*.json"
       - ".github/workflows/architecture-pipeline.yml"
@@ -75,7 +71,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' || inputs.ai_review }}
         run: pip install --quiet anthropic
 
-      - name: Determinar rama base para R4-Trazabilidad
+      - name: Determinar rama base para R4-Trazabilidad / R6-Inmutabilidad
         id: base
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
@@ -86,19 +82,31 @@ jobs:
             echo "args=--skip-traceability" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Validar sintaxis + ejecutar Agente Revisor
+      - name: Validar todas las versiones + Agente Revisor
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           AI=""
           if [[ -n "${ANTHROPIC_API_KEY}" ]]; then AI="--ai"; fi
-          bash scripts/aac-build.sh --validate-only ${{ steps.base.outputs.args }} $AI
+          bash scripts/aac-build.sh --all --validate-only ${{ steps.base.outputs.args }} $AI
 
-      - name: Publicar resumen en el job
+      - name: Consolidar reportes del Agente Revisor
         if: always()
         run: |
-          [[ -f docs/generated/review/review-report.md ]] && cat docs/generated/review/review-report.md >> "$GITHUB_STEP_SUMMARY"
-          [[ -f docs/generated/inspect-report.txt ]] && { echo '### structurizr inspect'; echo '```'; cat docs/generated/inspect-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "# Revisión de arquitectura (AaC)"
+            echo
+            echo "| Versión | Estado |"
+            echo "|---|---|"
+            for v in $(python3 scripts/aac_versions.py list); do
+              echo "| \`$v\` | $(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['estado'])" "$v/version.json") |"
+            done
+            for v in $(python3 scripts/aac_versions.py list --editable); do
+              f="$v/docs/generated/review/review-report.md"
+              [[ -f "$f" ]] && { echo; cat "$f"; }
+            done
+          } > aac-review-summary.md
+          cat aac-review-summary.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Comentar reporte en el PR
         if: ${{ always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
@@ -106,7 +114,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const path = 'docs/generated/review/review-report.md';
+            const path = 'aac-review-summary.md';
             if (!fs.existsSync(path)) return;
             const marker = '<!-- aac-architecture-review -->';
             let body = `${marker}\n${fs.readFileSync(path, 'utf8')}`;
@@ -123,8 +131,9 @@ jobs:
         with:
           name: architecture-review
           path: |
-            docs/generated/review/
-            docs/generated/inspect-report.txt
+            aac-review-summary.md
+            proyectos/*/v*/docs/generated/review/
+            proyectos/*/v*/docs/generated/inspect-report.txt
 
   # ---------------------------------------------------------------------------
   # 2) Compilación de artefactos gráficos + PDF
@@ -163,16 +172,27 @@ jobs:
       - name: Instalar dependencias Node (Mermaid CLI + Puppeteer)
         run: npm ci --no-audit --no-fund
 
-      - name: Compilar (SVG, PNG, PNG alta resolución, Mermaid, PlantUML, PDF)
-        run: bash scripts/aac-build.sh --skip-traceability
+      - name: Compilar versiones modificadas (diagramas con leyenda C4, PDF)
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            bash scripts/aac-build.sh --changed "origin/${{ github.base_ref }}" --skip-traceability
+          elif [[ "${{ github.event_name }}" == "push" && "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
+            bash scripts/aac-build.sh --changed "${{ github.event.before }}" --skip-traceability
+          else
+            bash scripts/aac-build.sh --all --skip-traceability
+          fi
 
       - name: Resumen de compilación
-        run: cat docs/generated/BUILD_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          for f in proyectos/*/v*/docs/generated/BUILD_REPORT.md; do
+            [[ -n "$(git status --porcelain -- "$(dirname "$f")")" ]] && cat "$f" >> "$GITHUB_STEP_SUMMARY"
+          done
+          true
 
       - uses: actions/upload-artifact@v4
         with:
-          name: volarte-architecture-${{ github.sha }}
-          path: docs/generated/
+          name: architecture-${{ github.sha }}
+          path: proyectos/*/v*/docs/generated/
           retention-days: 30
 
       # En main la documentación estática se versiona junto al DSL.
@@ -181,7 +201,7 @@ jobs:
         run: |
           git config user.name  "aac-pipeline[bot]"
           git config user.email "aac-pipeline[bot]@users.noreply.github.com"
-          git add docs/generated
+          git add proyectos/*/v*/docs/generated
           if git diff --cached --quiet; then
             echo "Sin cambios en docs/generated"
           else

@@ -1,0 +1,35 @@
+@startuml
+set separator none
+title Volarte - Gestor Documental - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Google Cloud Storage", $descr="Almacenamiento WORM/versionado de documentos de entrega, fotos y firmas. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+
+Container_Boundary("Volarte.GestorDocumental_boundary", "Gestor Documental", $tags="") {
+  Component(Volarte.GestorDocumental.SuscriptorPubSub, "Suscriptor Pub/Sub", $techn="FastAPI Push endpoint", $descr="Recibe el evento operacion-cerrada / doc-publicacion. Retry + DLQ.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.GeneradordeDocumento, "Generador de Documento", $techn="Python — ex S07", $descr="Ensambla contenido: partes, cantidades, firmas y datos de la operación.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.MotordePlantillas, "Motor de Plantillas", $techn="PDF / AIDX XML", $descr="Renderiza el formato final según lo que el cliente requiera.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.AsignadordeNumeración, "Asignador de Numeración", $techn="Python", $descr="Numeración secuencial, única y auditable.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.Publicador, "Publicador", $techn="Python — HU-055", $descr="Idempotente: un reintento no genera un segundo documento. Retorna ID inmutable.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.ClienteGCS, "Cliente GCS", $techn="GCS Resumable Upload", $descr="Sube el documento final al bucket.", $tags="", $link="")
+}
+
+Rel(Volarte.GestorDocumental.SuscriptorPubSub, Volarte.GestorDocumental.GeneradordeDocumento, "Genera", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.GestorDocumental.GeneradordeDocumento, Volarte.GestorDocumental.MotordePlantillas, "Renderiza", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.GestorDocumental.GeneradordeDocumento, Volarte.GestorDocumental.AsignadordeNumeración, "Asigna número", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.GestorDocumental.GeneradordeDocumento, Volarte.GestorDocumental.Publicador, "Publica", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.GestorDocumental.Publicador, Volarte.GestorDocumental.ClienteGCS, "Sube", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.GestorDocumental.SuscriptorPubSub, "Push: dispara publicación documental", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.GestorDocumental.AsignadordeNumeración, Volarte.CloudSQL, "Persiste número / metadata documental", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.GestorDocumental.ClienteGCS, Volarte.DocumentosGCS, "Sube documento final (único escritor)", $techn="GCS JSON API · HTTPS", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

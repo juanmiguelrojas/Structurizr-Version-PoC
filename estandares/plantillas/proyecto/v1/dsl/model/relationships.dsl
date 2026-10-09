@@ -1,0 +1,5 @@
+# Relaciones: "propósito" "protocolo · seguridad"
+usuario -> app "Usa" "HTTPS · TLS 1.3"
+app -> entraId "Autentica usuarios" "OIDC · PKCE · HTTPS"
+app -> api "Consume APIs" "REST/JSON · JWT · HTTPS"
+api -> db "Lee y escribe datos" "SQL · TLS"

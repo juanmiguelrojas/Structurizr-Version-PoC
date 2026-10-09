@@ -1,0 +1,157 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Containers"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>Empleado Interno</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario corporativo (tenant<br />Terpel) que accede a Volarte<br />vía web con SSO de Entra ID:<br />comercial, supervisión y<br />administración.</div>"]
+    style 1 fill:#083f75,stroke:#052e57,color:#ffffff
+    2["<div style='font-weight: bold'>Usuario Externo</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario que no está dentro<br />del tenant de Terpel. Se<br />autentica a través del CIAM<br />(Ping Identity).</div>"]
+    style 2 fill:#6c6477,stroke:#4d4756,color:#ffffff
+    3["<div style='font-weight: bold'>Operario de Equipo Abastecedor</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Único rol que usa la app<br />móvil. Opera en campo<br />(plataforma/rampa) con o sin<br />cobertura de red.</div>"]
+    style 3 fill:#083f75,stroke:#052e57,color:#ffffff
+    4["<div style='font-weight: bold'>Admin / Dev Team</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Gestiona módulos, publica<br />versiones, administra<br />permisos (GroupToRoleMapping)<br />y monitorea el uso de la<br />plataforma.</div>"]
+    style 4 fill:#083f75,stroke:#052e57,color:#ffffff
+    5["<div style='font-weight: bold'>Microsoft Entra ID</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo (empleados y<br />operarios). SSO · MFA · RBAC<br />por grupos. OIDC / OAuth 2.0<br />+ PKCE. Transversal al hub.</div>"]
+    style 5 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    6["<div style='font-weight: bold'>CIAM Ping Identity</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestiona identidad y acceso<br />de usuarios externos:<br />autenticación, autorización,<br />registro y ciclo de vida de<br />identidades.</div>"]
+    style 6 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    7["<div style='font-weight: bold'>Cloudflare</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de protección de<br />tráfico (WAF, DDoS) y CDN<br />para el acceso web desde red<br />pública. DNS apunta a la IP<br />del LB externo<br />(pass-through).</div>"]
+    style 7 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    8["<div style='font-weight: bold'>ZTNA Netskope</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Acceso Zero Trust para<br />dispositivos gestionados:<br />posture check (Intune),<br />GlobalProtect/Zscaler, split<br />tunneling controlado. Único<br />camino de red de la app<br />móvil.</div>"]
+    style 8 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    11["<div style='font-weight: bold'>Internal Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GCP Cloud Load Balancing<br />interno. Re-cifra TLS y<br />enruta hacia la instancia<br />proxy de Apigee y hacia los<br />BFF en Cloud Run.</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    12["<div style='font-weight: bold'>Apigee API Gateway</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de APIs nativa de GCP (Proxy<br />instance + Gateway). Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID,<br />aplica cuotas y políticas.</div>"]
+    style 12 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    13["<div style='font-weight: bold'>GCP Secret Manager</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Almacena secretos de todos<br />los servicios (credenciales<br />DB, API keys, client<br />secrets). Acceso vía Service<br />Account (IAM). Rotación<br />automática y audit log.</div>"]
+    style 13 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    15["<div style='font-weight: bold'>OTel Collector</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>OpenTelemetry Collector<br />(Cloud Run). Recibe OTLP<br />gRPC/HTTP, enmascara datos<br />personales y exporta trazas,<br />métricas y logs a Dynatrace<br />(estrategia 'OTel First').</div>"]
+    style 15 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    19[("<div style='font-weight: bold'>Datalake BigQuery</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Repositorio analítico<br />corporativo de datos<br />tabulares. Recibe información<br />transformada por los ETL<br />(Cloud Data Fusion).</div>")]
+    style 19 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    22["<div style='font-weight: bold'>Salesforce</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Dato maestro de clientes.</div>"]
+    style 22 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    25["<div style='font-weight: bold'>PriceProvider Externo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente autoritativa de<br />precios de combustible<br />(decisión P-072 PENDING).<br />Volarte no inventa la fuente<br />de precio.</div>"]
+    style 25 fill:#8c8496,stroke:#f59e0b,color:#ffffff
+    26["<div style='font-weight: bold'>Skypredict</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Motor externo de<br />recomendación/predicción<br />usado por el servicio de<br />Asignación/Optimización.</div>"]
+    style 26 fill:#8c8496,stroke:#6b6474,color:#ffffff
+
+    subgraph 29 ["Volarte"]
+      style 29 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      subgraph group1 ["Backends for Frontend"]
+        style group1 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        66("<div style='font-weight: bold'>BFF Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>BFF — Backend Volarte. Valida<br />JWT (issuer/audience, 2a<br />validación), resuelve<br />GroupToRoleMapping →<br />Role/Permission/Capability y<br />orquesta los servicios de<br />dominio. Publica<br />conciliacion-resuelta.<br />Auto-scaling · pay-per-use.</div>")
+        style 66 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        82("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor único: App móvil<br />(operarios). Respuestas<br />ultra-livianas, vistas<br />exclusivas de operación en<br />campo (no comparte payloads<br />con BFF Web). Resuelve sync<br />offline: delta + cola +<br />reconciliación HU-050.</div>")
+        style 82 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      end
+
+      subgraph group2 ["Canales (Clientes)"]
+        style group2 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        30["<div style='font-weight: bold'>Frontend Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: React (CSR) + Vite · SPA]</div><div style='font-size: 80%; margin-top:10px'>SPA sin MFE: un solo bundle<br />con code-splitting por módulo<br />(React.lazy). Login SSO vía<br />MSAL.js contra Entra ID /<br />CIAM. Deploy: CDN Cloudflare<br />+ GCS (terpel-gtic-front).</div>"]
+        style 30 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        42["<div style='font-weight: bold'>App Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: React Native · Android exclusivo]</div><div style='font-size: 80%; margin-top:10px'>Offline-first: SQLite local<br />(WatermelonDB) + cola de<br />escritura con UUID por<br />acción. Fotos/firma al<br />filesystem local. Sync<br />bidireccional al reconectar<br />(delta + resumable upload).<br />Solo operarios; distribución<br />vía Intune / Managed Play. NO<br />se despliega en GCP.</div>"]
+        style 42 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      end
+
+      subgraph group3 ["Datos"]
+        style group3 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+        style 179 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+        style 180 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+        style 181 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      end
+
+      subgraph group4 ["Mensajería"]
+        style group4 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+        style 160 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      end
+
+      subgraph group5 ["Servicios de Dominio"]
+        style group5 fill:#ffffff,stroke:#cccccc,color:#cccccc,stroke-dasharray:5
+
+        104("<div style='font-weight: bold'>Svc: Usuarios / Auth</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S01: roles, permisos, perfil<br />y GroupToRoleMapping.<br />Sincroniza grupos con Entra<br />ID (Microsoft Graph).<br />Auditoría de decisiones de<br />autorización.</div>")
+        style 104 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        117("<div style='font-weight: bold'>Svc: Datos Maestros</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S02: Customer,<br />AircraftOperator,<br />AircraftType,<br />AircraftRegistration,<br />FuellingEquipment,<br />NegotiationProfile, geocercas<br />(HU-145).</div>")
+        style 117 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        118("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider) y crédito<br />disponible. Suscriptor de<br />operacion-cerrada para<br />actualizar saldo/crédito.</div>")
+        style 118 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+        style 131 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+        147("<div style='font-weight: bold'>Svc: Asignación / Optimización</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · MILP Solver · GKE]</div><div style='font-size: 80%; margin-top:10px'>S06: motor MILP +<br />recomendación Skypredict con<br />degradación controlada. GKE<br />por cómputo sostenido (P-025<br />PENDING: owner/runtime final<br />los confirma Arquitectura).</div>")
+        style 147 fill:#23a2d9,stroke:#f59e0b,color:#ffffff
+        148("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación y retorna un ID<br />inmutable vinculado. Cola +<br />reintento sin duplicar<br />(HU-055). S07 define<br />contenido y numeración del<br />documento canónico; el Gestor<br />solo lo publica.</div>")
+        style 148 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      end
+
+    end
+
+    1-. "<div>Accede a Volarte con SSO<br />(navega, consulta, concilia)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->30
+    2-. "<div>Accede a Volarte (portal<br />externo)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->30
+    3-. "<div>Opera en campo: turnos,<br />checklist, PQDA, firma</div><div style='font-size: 70%'>[UI nativa Android]</div>" .->42
+    4-. "<div>Administra módulos, permisos<br />y publica versiones</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->30
+    1-. "<div>Resuelve DNS y tráfico web</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->7
+    2-. "<div>Resuelve DNS y tráfico web</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->7
+    11-. "<div>Enruta a Proxy instance de<br />Apigee</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->12
+    12-. "<div>Enruta peticiones autorizadas<br />hacia los BFF</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->11
+    11-. "<div>Resuelve peticiones Web (JWT<br />ya validado por Apigee)</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->66
+    11-. "<div>Resuelve peticiones Móviles<br />(JWT ya validado por Apigee)</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->82
+    8-. "<div>Acceso privado ZTNA (sin<br />Cloudflare)</div><div style='font-size: 70%'>[mTLS · Red corporativa privada]</div>" .->12
+    30-. "<div>Login SSO / tokens<br />(Authorization Code + PKCE)</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->5
+    30-. "<div>Login de usuarios externos</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->6
+    30-. "<div>Consume APIs del BFF Web (sin<br />caché)</div><div style='font-size: 70%'>[REST/JSON · JWT · HTTPS]</div>" .->12
+    7-. "<div>Sirve el bundle estático (CDN<br />+ GCS)</div><div style='font-size: 70%'>[HTTPS · TLS 1.3]</div>" .->30
+    42-. "<div>Login SSO (solo Entra ID)</div><div style='font-size: 70%'>[OIDC · HTTPS]</div>" .->5
+    42-. "<div>Túnel gestionado (MDM /<br />posture Intune)</div><div style='font-size: 70%'>[ZTNA · mTLS]</div>" .->8
+    66-. "<div>Cache de decisión de<br />autorización</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    66-. "<div>Lee secretos (IAM Service<br />Account)</div><div style='font-size: 70%'>[gRPC · TLS · IAM]</div>" .->13
+    66-. "<div>Consulta roles / mapping</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->104
+    66-. "<div>Consulta datos maestros</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    66-. "<div>Consulta elegibilidad, precio<br />y crédito</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->118
+    66-. "<div>Consulta estado de operación<br />/ turnos</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    66-. "<div>Solicita recomendación de<br />asignación</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->147
+    66-. "<div>Consultas varias (Proxy SQL)</div><div style='font-size: 70%'>[Cloud SQL Auth Proxy · TLS]</div>" .->179
+    66-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    66-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    82-. "<div>Dedupe por UUID de acción</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    82-. "<div>Escribe / lee tablas de<br />Sincronización</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    82-. "<div>Resumable upload de fotos /<br />firma</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    82-. "<div>Publica cierre de operación</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    82-. "<div>Obtiene turnos / estado<br />operativo</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    82-. "<div>Obtiene catálogos versionados</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    82-. "<div>Lee secretos (IAM Service<br />Account)</div><div style='font-size: 70%'>[gRPC · TLS · IAM]</div>" .->13
+    82-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    160-. "<div>Push: dispara publicación<br />documental</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->148
+    160-. "<div>Push: actualiza saldo /<br />crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->118
+    160-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    160-. "<div>Exporta eventos al datalake<br />(BigQuery subscription)</div><div style='font-size: 70%'>[Pub/Sub BigQuery subscription]</div>" .->19
+    148-. "<div>Persiste número / metadata<br />documental</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    148-. "<div>Sube documento final (único<br />escritor)</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    104-. "<div>Sincroniza pertenencia a<br />grupos</div><div style='font-size: 70%'>[Microsoft Graph API · HTTPS · OAuth2 client credentials]</div>" .->5
+    104-. "<div>Invalida decisiones cacheadas</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    104-. "<div>Lee / escribe usuarios, roles<br />y mapping</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    5-. "<div>Provisiona identidades /<br />grupos</div><div style='font-size: 70%'>[SCIM / OIDC · HTTPS]</div>" .->104
+    131-. "<div>Consulta geocerca (S02 /<br />HU-145)</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    131-. "<div>Lee / escribe tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    118-. "<div>Consulta precio (cuando se<br />confirme P-072)</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->25
+    118-. "<div>Lee / escribe estado<br />comercial</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    117-. "<div>Lee / escribe datos maestros</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    117-. "<div>Sincroniza dato maestro de<br />clientes</div><div style='font-size: 70%'>[REST · HTTPS · OAuth2]</div>" .->22
+    147-. "<div>Solicita recomendación<br />(degradación controlada)</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->26
+    147-. "<div>Lee estado dinámico de<br />equipos / operadores</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    104-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    117-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    118-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    131-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    147-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+    148-. "<div>Exporta trazas, métricas y<br />logs</div><div style='font-size: 70%'>[OTLP gRPC · TLS · IAM Invoker]</div>" .->15
+  end

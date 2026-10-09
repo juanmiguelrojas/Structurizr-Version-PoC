@@ -1,0 +1,55 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["BFF Móvil - Dynamic"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    subgraph 82 ["BFF Móvil"]
+      style 82 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      83["<div style='font-weight: bold'>API Router / Controllers</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints REST por feature<br />(sync, delta, media). Punto<br />de entrada del contenedor.</div>"]
+      style 83 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      84["<div style='font-weight: bold'>Middleware de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: JWT Middleware (FastAPI)]</div><div style='font-size: 80%; margin-top:10px'>Valida<br />issuer/audience/expiración<br />del token (segunda validación<br />tras Apigee).</div>"]
+      style 84 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      85["<div style='font-weight: bold'>Servicio de Autorización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Resuelve GroupToRoleMapping →<br />Role/Permission/Capability.</div>"]
+      style 85 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      86["<div style='font-weight: bold'>Motor de Reconciliación</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — regla HU-050]</div><div style='font-size: 80%; margin-top:10px'>Regla HU-050: compara<br />timestamp de captura vs.<br />histórico de revocación.<br />Auto-acepta o marca<br />PENDING_REVIEW.</div>"]
+      style 86 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      87["<div style='font-weight: bold'>Servicio de Idempotencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python + Redis]</div><div style='font-size: 80%; margin-top:10px'>Evita procesar dos veces la<br />misma acción reenviada<br />(dedupe por UUID).</div>"]
+      style 87 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      88["<div style='font-weight: bold'>Validador de Orden / Secuencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Reordena acciones offline por<br />timestamp de captura (no de<br />llegada). Evita que una<br />acción vieja reenviada tarde<br />sobrescriba un estado más<br />reciente.</div>"]
+      style 88 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      90["<div style='font-weight: bold'>Manejador de Subida</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Orquesta la subida de<br />fotos/firma tolerando cortes<br />de red.</div>"]
+      style 90 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      91["<div style='font-weight: bold'>Publicador de Eventos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Publisher]</div><div style='font-size: 80%; margin-top:10px'>Publica operacion-cerrada y<br />doc-publicacion.</div>"]
+      style 91 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      92["<div style='font-weight: bold'>Cliente Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cloud SQL Python Connector]</div><div style='font-size: 80%; margin-top:10px'>Escribe la cola de acciones<br />offline recibidas y el estado<br />de conciliación (PENDIENTE /<br />CONFIRMADO / PENDING_REVIEW)<br />en tablas de Sincronización.</div>"]
+      style 92 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    42["<div style='font-weight: bold'>App Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: React Native · Android exclusivo]</div><div style='font-size: 80%; margin-top:10px'>Offline-first: SQLite local<br />(WatermelonDB) + cola de<br />escritura con UUID por<br />acción. Fotos/firma al<br />filesystem local. Sync<br />bidireccional al reconectar<br />(delta + resumable upload).<br />Solo operarios; distribución<br />vía Intune / Managed Play. NO<br />se despliega en GCP.</div>"]
+    style 42 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+    style 180 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    181["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado de documentos<br />de entrega, fotos y firmas.<br />Retención según política<br />vigente. Recuperable por<br />operación y cliente.</div>"]
+    style 181 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    42-. "<div>1. POST /sync (cola pendiente<br />con UUID por acción)</div><div style='font-size: 70%'>[REST/JSON · JWT · mTLS]</div>" .->83
+    83-. "<div>2. Valida token</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->84
+    84-. "<div>3. Resuelve rol del operario</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->85
+    85-. "<div>4. Entrega lote para<br />reconciliar</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->86
+    86-. "<div>5. Descarta acciones ya<br />procesadas</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->87
+    87-. "<div>6. SETNX uuid</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    87-. "<div>7. Ordena por timestamp de<br />captura</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->88
+    88-. "<div>8. Secuencia validada</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->86
+    86-. "<div>9. Persiste CONFIRMADO /<br />PENDING_REVIEW</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->92
+    92-. "<div>10. INSERT<br />offline_actions_log</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    86-. "<div>11. Fotos / firma pendientes</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->90
+    90-. "<div>12. Resumable upload</div><div style='font-size: 70%'>[GCS JSON API · HTTPS]</div>" .->181
+    86-. "<div>13. Operación cerrada</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->91
+    91-. "<div>14. Publica operacion-cerrada<br />/ doc-publicacion</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+  end

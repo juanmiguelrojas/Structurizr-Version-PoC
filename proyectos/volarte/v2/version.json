@@ -1,0 +1,15 @@
+{
+  "proyecto": "volarte",
+  "nombre": "Arquitectura Volarte",
+  "version": "v2",
+  "estado": "en-revision",
+  "fecha": "2026-10-09",
+  "basadaEn": "v1",
+  "reemplazadaPor": null,
+  "autores": ["Juan Miguel Rojas (@juanmiguelrojas)"],
+  "aprobadores": [],
+  "fuente": "../v1/fuente/Arquitectura_volarte_1.drawio",
+  "workspace": "dsl/workspace.dsl",
+  "changelog": ["AAC-20261009-01"],
+  "descripcion": "Corrección de v1: leyenda oficial C4 en todos los diagramas, imágenes y PDF; observabilidad OTel en todos los servicios (según L0); fichas técnicas por contenedor, catálogo de tecnologías y documentación ampliada."
+}

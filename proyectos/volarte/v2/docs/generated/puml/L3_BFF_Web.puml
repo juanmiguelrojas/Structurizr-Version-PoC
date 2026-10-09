@@ -1,0 +1,62 @@
+@startuml
+set separator none
+title Volarte - BFF Web - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(InternalLoadBalancer, "Internal Load Balancer", $descr="GCP Cloud Load Balancing interno. Re-cifra TLS y enruta hacia la instancia proxy de Apigee y hacia los BFF en Cloud Run.", $tags="", $link="")
+System(GCPSecretManager, "GCP Secret Manager", $descr="Almacena secretos de todos los servicios (credenciales DB, API keys, client secrets). Acceso vía Service Account (IAM). Rotación automática y audit log.", $tags="", $link="")
+Container(Volarte.SvcUsuariosAuth, "Svc: Usuarios / Auth", $techn="Python · FastAPI · Cloud Run", $descr="S01: roles, permisos, perfil y GroupToRoleMapping. Sincroniza grupos con Entra ID (Microsoft Graph). Auditoría de decisiones de autorización.", $tags="", $link="")
+Container(Volarte.SvcDatosMaestros, "Svc: Datos Maestros", $techn="Python · FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile, geocercas (HU-145).", $tags="", $link="")
+Container(Volarte.SvcComercial, "Svc: Comercial", $techn="Python · FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider) y crédito disponible. Suscriptor de operacion-cerrada para actualizar saldo/crédito.", $tags="", $link="")
+Container(Volarte.SvcOperación, "Svc: Operación", $techn="Python · FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición e inventario de calidad. Suscriptor de tracking-eventos y conciliacion-resuelta.", $tags="", $link="")
+Container(Volarte.SvcAsignaciónOptimización, "Svc: Asignación / Optimización", $techn="Python · MILP Solver · GKE", $descr="S06: motor MILP + recomendación Skypredict con degradación controlada. GKE por cómputo sostenido (P-025 PENDING: owner/runtime final los confirma Arquitectura).", $tags="", $link="")
+ContainerQueue(Volarte.ColadeMensajería, "Cola de Mensajería", $techn="Google Cloud Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry + DLQ), operacion-cerrada (fan-out a 3 suscriptores), conciliacion-resuelta (HU-050) y tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+ContainerDb(Volarte.CloudSQL, "Cloud SQL", $techn="PostgreSQL · Cloud SQL", $descr="Base transaccional: usuarios, roles, registry, tablas operacionales, tablas de Sincronización (offline_actions_log) y metadata/numeración documental. Cifrado CMEK.", $tags="", $link="")
+ContainerDb(Volarte.Memorystore, "Memorystore", $techn="Redis · Memorystore", $descr="Cache de sesiones, tokens, queries, decisiones de autorización (TTL corto) y llaves de idempotencia por UUID.", $tags="", $link="")
+
+Container_Boundary("Volarte.BFFWeb_boundary", "BFF Web", $tags="") {
+  Component(Volarte.BFFWeb.APIRouterControllers, "API Router / Controllers", $techn="FastAPI", $descr="Endpoints REST por feature. Punto de entrada del contenedor (detrás de Apigee).", $tags="", $link="")
+  Component(Volarte.BFFWeb.MiddlewaredeAutenticación, "Middleware de Autenticación", $techn="JWT Middleware (FastAPI)", $descr="Valida issuer/audience/expiración del token (segunda validación tras Apigee).", $tags="", $link="")
+  Component(Volarte.BFFWeb.ServiciodeAutorización, "Servicio de Autorización", $techn="Python", $descr="Resuelve GroupToRoleMapping → Role/Permission/Capability.", $tags="", $link="")
+  Component(Volarte.BFFWeb.ClientedeCache, "Cliente de Cache", $techn="Redis SDK", $descr="Cache de decisión de autorización (TTL corto).", $tags="", $link="")
+  Component(Volarte.BFFWeb.OrquestadordeDominio, "Orquestador de Dominio", $techn="Python", $descr="Enruta la petición al servicio de dominio correspondiente.", $tags="", $link="")
+  Component(Volarte.BFFWeb.ClientedeSecretos, "Cliente de Secretos", $techn="Secret Manager SDK", $descr="Obtiene credenciales de servicios downstream.", $tags="", $link="")
+  Component(Volarte.BFFWeb.ClientesdeServicios, "Clientes de Servicios", $techn="HTTP + ID Token (IAM Invoker)", $descr="Clientes tipados hacia cada servicio interno (Cloud Run → Cloud Run) con ID Token IAM.", $tags="", $link="")
+  Component(Volarte.BFFWeb.ServiciodeConciliación, "Servicio de Conciliación", $techn="Python · Pub/Sub Publisher", $descr="Revisión manual HU-050: el supervisor confirma o anula operaciones PENDING_REVIEW y se publica conciliacion-resuelta.", $tags="", $link="")
+}
+
+Rel(InternalLoadBalancer, Volarte.BFFWeb.APIRouterControllers, "Resuelve peticiones Web (JWT ya validado por Apigee)", $techn="HTTPS · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientedeCache, Volarte.Memorystore, "Cache de decisión de autorización", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientedeSecretos, GCPSecretManager, "Lee secretos (IAM Service Account)", $techn="gRPC · TLS · IAM", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientesdeServicios, Volarte.SvcUsuariosAuth, "Consulta roles / mapping", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientesdeServicios, Volarte.SvcDatosMaestros, "Consulta datos maestros", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientesdeServicios, Volarte.SvcComercial, "Consulta elegibilidad, precio y crédito", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientesdeServicios, Volarte.SvcOperación, "Consulta estado de operación / turnos", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ClientesdeServicios, Volarte.SvcAsignaciónOptimización, "Solicita recomendación de asignación", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.OrquestadordeDominio, Volarte.CloudSQL, "Consultas varias (Proxy SQL)", $techn="Cloud SQL Auth Proxy · TLS", $tags="", $link="")
+Rel(Volarte.BFFWeb.ServiciodeConciliación, Volarte.ColadeMensajería, "Publica resolución del supervisor (HU-050)", $techn="Pub/Sub API · gRPC TLS", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcComercial, "Push: actualiza saldo / crédito", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.ColadeMensajería, Volarte.SvcOperación, "Push: finaliza / anula operación pendiente", $techn="HTTPS push · OIDC token", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth, Volarte.Memorystore, "Invalida decisiones cacheadas", $techn="Redis RESP · TLS (in-transit encryption)", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth, Volarte.CloudSQL, "Lee / escribe usuarios, roles y mapping", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.SvcDatosMaestros, "Consulta geocerca (S02 / HU-145)", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.SvcOperación, Volarte.CloudSQL, "Lee / escribe tablas operacionales", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcComercial, Volarte.CloudSQL, "Lee / escribe estado comercial", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcDatosMaestros, Volarte.CloudSQL, "Lee / escribe datos maestros", $techn="Cloud SQL Connector · TLS", $tags="", $link="")
+Rel(Volarte.SvcAsignaciónOptimización, Volarte.SvcOperación, "Lee estado dinámico de equipos / operadores", $techn="HTTPS · ID Token (IAM Invoker)", $tags="", $link="")
+Rel(Volarte.BFFWeb.APIRouterControllers, Volarte.BFFWeb.MiddlewaredeAutenticación, "Valida", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.MiddlewaredeAutenticación, Volarte.BFFWeb.ServiciodeAutorización, "Resuelve rol", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ServiciodeAutorización, Volarte.BFFWeb.ClientedeCache, "Lee / escribe cache", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.ServiciodeAutorización, Volarte.BFFWeb.OrquestadordeDominio, "Autorizado →", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.OrquestadordeDominio, Volarte.BFFWeb.ClientedeSecretos, "Lee secretos", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.OrquestadordeDominio, Volarte.BFFWeb.ClientesdeServicios, "Orquesta", $techn="Llamada in-process (Python)", $tags="", $link="")
+Rel(Volarte.BFFWeb.OrquestadordeDominio, Volarte.BFFWeb.ServiciodeConciliación, "Resolución de conciliación", $techn="Llamada in-process (Python)", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

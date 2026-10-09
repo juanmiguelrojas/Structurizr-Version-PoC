@@ -1,0 +1,75 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - BFF Web - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    11["<div style='font-weight: bold'>Internal Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GCP Cloud Load Balancing<br />interno. Re-cifra TLS y<br />enruta hacia la instancia<br />proxy de Apigee y hacia los<br />BFF en Cloud Run.</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    13["<div style='font-weight: bold'>GCP Secret Manager</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Almacena secretos de todos<br />los servicios (credenciales<br />DB, API keys, client<br />secrets). Acceso vía Service<br />Account (IAM). Rotación<br />automática y audit log.</div>"]
+    style 13 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    104("<div style='font-weight: bold'>Svc: Usuarios / Auth</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S01: roles, permisos, perfil<br />y GroupToRoleMapping.<br />Sincroniza grupos con Entra<br />ID (Microsoft Graph).<br />Auditoría de decisiones de<br />autorización.</div>")
+    style 104 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    117("<div style='font-weight: bold'>Svc: Datos Maestros</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S02: Customer,<br />AircraftOperator,<br />AircraftType,<br />AircraftRegistration,<br />FuellingEquipment,<br />NegotiationProfile, geocercas<br />(HU-145).</div>")
+    style 117 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    118("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider) y crédito<br />disponible. Suscriptor de<br />operacion-cerrada para<br />actualizar saldo/crédito.</div>")
+    style 118 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    131("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición e inventario de<br />calidad. Suscriptor de<br />tracking-eventos y<br />conciliacion-resuelta.</div>")
+    style 131 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    147("<div style='font-weight: bold'>Svc: Asignación / Optimización</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · MILP Solver · GKE]</div><div style='font-size: 80%; margin-top:10px'>S06: motor MILP +<br />recomendación Skypredict con<br />degradación controlada. GKE<br />por cómputo sostenido (P-025<br />PENDING: owner/runtime final<br />los confirma Arquitectura).</div>")
+    style 147 fill:#23a2d9,stroke:#f59e0b,color:#ffffff
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    180[("<div style='font-weight: bold'>Memorystore</div><div style='font-size: 70%; margin-top: 0px'>[Container: Redis · Memorystore]</div><div style='font-size: 80%; margin-top:10px'>Cache de sesiones, tokens,<br />queries, decisiones de<br />autorización (TTL corto) y<br />llaves de idempotencia por<br />UUID.</div>")]
+    style 180 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 66 ["BFF Web"]
+      style 66 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      67["<div style='font-weight: bold'>API Router / Controllers</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints REST por feature.<br />Punto de entrada del<br />contenedor (detrás de<br />Apigee).</div>"]
+      style 67 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      68["<div style='font-weight: bold'>Middleware de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: JWT Middleware (FastAPI)]</div><div style='font-size: 80%; margin-top:10px'>Valida<br />issuer/audience/expiración<br />del token (segunda validación<br />tras Apigee).</div>"]
+      style 68 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      69["<div style='font-weight: bold'>Servicio de Autorización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Resuelve GroupToRoleMapping →<br />Role/Permission/Capability.</div>"]
+      style 69 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      70["<div style='font-weight: bold'>Cliente de Cache</div><div style='font-size: 70%; margin-top: 0px'>[Component: Redis SDK]</div><div style='font-size: 80%; margin-top:10px'>Cache de decisión de<br />autorización (TTL corto).</div>"]
+      style 70 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      71["<div style='font-weight: bold'>Orquestador de Dominio</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Enruta la petición al<br />servicio de dominio<br />correspondiente.</div>"]
+      style 71 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      72["<div style='font-weight: bold'>Cliente de Secretos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Secret Manager SDK]</div><div style='font-size: 80%; margin-top:10px'>Obtiene credenciales de<br />servicios downstream.</div>"]
+      style 72 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      73["<div style='font-weight: bold'>Clientes de Servicios</div><div style='font-size: 70%; margin-top: 0px'>[Component: HTTP + ID Token (IAM Invoker)]</div><div style='font-size: 80%; margin-top:10px'>Clientes tipados hacia cada<br />servicio interno (Cloud Run →<br />Cloud Run) con ID Token IAM.</div>"]
+      style 73 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      74["<div style='font-weight: bold'>Servicio de Conciliación</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python · Pub/Sub Publisher]</div><div style='font-size: 80%; margin-top:10px'>Revisión manual HU-050: el<br />supervisor confirma o anula<br />operaciones PENDING_REVIEW y<br />se publica<br />conciliacion-resuelta.</div>"]
+      style 74 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    11-. "<div>Resuelve peticiones Web (JWT<br />ya validado por Apigee)</div><div style='font-size: 70%'>[HTTPS · TLS]</div>" .->67
+    70-. "<div>Cache de decisión de<br />autorización</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    72-. "<div>Lee secretos (IAM Service<br />Account)</div><div style='font-size: 70%'>[gRPC · TLS · IAM]</div>" .->13
+    73-. "<div>Consulta roles / mapping</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->104
+    73-. "<div>Consulta datos maestros</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    73-. "<div>Consulta elegibilidad, precio<br />y crédito</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->118
+    73-. "<div>Consulta estado de operación<br />/ turnos</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    73-. "<div>Solicita recomendación de<br />asignación</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->147
+    71-. "<div>Consultas varias (Proxy SQL)</div><div style='font-size: 70%'>[Cloud SQL Auth Proxy · TLS]</div>" .->179
+    74-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    160-. "<div>Push: actualiza saldo /<br />crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->118
+    160-. "<div>Push: finaliza / anula<br />operación pendiente</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->131
+    104-. "<div>Invalida decisiones cacheadas</div><div style='font-size: 70%'>[Redis RESP · TLS (in-transit encryption)]</div>" .->180
+    104-. "<div>Lee / escribe usuarios, roles<br />y mapping</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    131-. "<div>Consulta geocerca (S02 /<br />HU-145)</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->117
+    131-. "<div>Lee / escribe tablas<br />operacionales</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    118-. "<div>Lee / escribe estado<br />comercial</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    117-. "<div>Lee / escribe datos maestros</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+    147-. "<div>Lee estado dinámico de<br />equipos / operadores</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->131
+    67-. "<div>Valida</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->68
+    68-. "<div>Resuelve rol</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->69
+    69-. "<div>Lee / escribe cache</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->70
+    69-. "<div>Autorizado →</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->71
+    71-. "<div>Lee secretos</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->72
+    71-. "<div>Orquesta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->73
+    71-. "<div>Resolución de conciliación</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->74
+  end

@@ -1,0 +1,45 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["Volarte - Svc: Comercial - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    25["<div style='font-weight: bold'>PriceProvider Externo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente autoritativa de<br />precios de combustible<br />(decisión P-072 PENDING).<br />Volarte no inventa la fuente<br />de precio.</div>"]
+    style 25 fill:#8c8496,stroke:#f59e0b,color:#ffffff
+    66("<div style='font-weight: bold'>BFF Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Python · FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>BFF — Backend Volarte. Valida<br />JWT (issuer/audience, 2a<br />validación), resuelve<br />GroupToRoleMapping →<br />Role/Permission/Capability y<br />orquesta los servicios de<br />dominio. Publica<br />conciliacion-resuelta.<br />Auto-scaling · pay-per-use.</div>")
+    style 66 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    160["<div style='font-weight: bold'>Cola de Mensajería</div><div style='font-size: 70%; margin-top: 0px'>[Container: Google Cloud Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry + DLQ),<br />operacion-cerrada (fan-out a<br />3 suscriptores),<br />conciliacion-resuelta<br />(HU-050) y tracking-eventos<br />(ingesta asíncrona de alta<br />frecuencia).</div>"]
+    style 160 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    179[("<div style='font-weight: bold'>Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Container: PostgreSQL · Cloud SQL]</div><div style='font-size: 80%; margin-top:10px'>Base transaccional: usuarios,<br />roles, registry, tablas<br />operacionales, tablas de<br />Sincronización<br />(offline_actions_log) y<br />metadata/numeración<br />documental. Cifrado CMEK.</div>")]
+    style 179 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 118 ["Svc: Comercial"]
+      style 118 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      119["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints de elegibilidad,<br />precio y crédito.</div>"]
+      style 119 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      120["<div style='font-weight: bold'>Motor de Elegibilidad</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S04/HU-128]</div><div style='font-size: 80%; margin-top:10px'>Cliente activo, acuerdo<br />vigente, negociación<br />existente (S02 → S04,<br />HU-128).</div>"]
+      style 120 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      121["<div style='font-weight: bold'>Resolutor PriceProvider</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — P-072 PENDING]</div><div style='font-size: 80%; margin-top:10px'>No inventa fuente de precio;<br />delega a la autoridad cuando<br />se confirme (P-072 PENDING).</div>"]
+      style 121 fill:#63bef2,stroke:#f59e0b,color:#ffffff
+      122["<div style='font-weight: bold'>Servicio de Crédito Disponible</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S04]</div><div style='font-size: 80%; margin-top:10px'>Calcula crédito disponible<br />según saldo y órdenes<br />abiertas.</div>"]
+      style 122 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      123["<div style='font-weight: bold'>Suscriptor operacion-cerrada</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub push endpoint]</div><div style='font-size: 80%; margin-top:10px'>Actualiza saldo/crédito tras<br />cada cierre de operación.</div>"]
+      style 123 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      124["<div style='font-weight: bold'>Cliente de Base de Datos</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Estado comercial y<br />persistencia.</div>"]
+      style 124 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    119-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->120
+    119-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->121
+    119-. "<div>Enruta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->122
+    123-. "<div>Actualiza saldo</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->122
+    122-. "<div>Persiste</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->124
+    120-. "<div>Consulta</div><div style='font-size: 70%'>[Llamada in-process (Python)]</div>" .->124
+    66-. "<div>Consulta elegibilidad, precio<br />y crédito</div><div style='font-size: 70%'>[HTTPS · ID Token (IAM Invoker)]</div>" .->119
+    66-. "<div>Consultas varias (Proxy SQL)</div><div style='font-size: 70%'>[Cloud SQL Auth Proxy · TLS]</div>" .->179
+    66-. "<div>Publica resolución del<br />supervisor (HU-050)</div><div style='font-size: 70%'>[Pub/Sub API · gRPC TLS]</div>" .->160
+    160-. "<div>Push: actualiza saldo /<br />crédito</div><div style='font-size: 70%'>[HTTPS push · OIDC token]</div>" .->123
+    121-. "<div>Consulta precio (cuando se<br />confirme P-072)</div><div style='font-size: 70%'>[REST · HTTPS]</div>" .->25
+    124-. "<div>Lee / escribe estado<br />comercial</div><div style='font-size: 70%'>[Cloud SQL Connector · TLS]</div>" .->179
+  end

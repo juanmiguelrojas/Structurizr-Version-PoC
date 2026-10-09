@@ -1,0 +1,15 @@
+{
+  "proyecto": "volarte",
+  "nombre": "Arquitectura Volarte",
+  "version": "v1",
+  "estado": "reemplazada",
+  "fecha": "2026-10-08",
+  "basadaEn": null,
+  "reemplazadaPor": "v2",
+  "autores": ["Kevin Montoya (Draw.io origen)", "Juan Miguel Rojas (@juanmiguelrojas)"],
+  "aprobadores": [],
+  "fuente": "fuente/Arquitectura_volarte_1.drawio",
+  "workspace": "dsl/workspace.dsl",
+  "changelog": ["AAC-20261008-01"],
+  "descripcion": "Conversión inicial del Draw.io Volarte v1 (13 páginas) a Structurizr DSL con estilos propios por tag. Congelada: se conserva como evidencia histórica; reemplazada por v2 por no seguir la leyenda oficial C4."
+}

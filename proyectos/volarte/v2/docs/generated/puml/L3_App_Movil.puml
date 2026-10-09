@@ -1,0 +1,49 @@
+@startuml
+set separator none
+title Volarte - App Móvil - Components
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+Person(OperariodeEquipoAbastecedor, "Operario de Equipo Abastecedor", $descr="Único rol que usa la app móvil. Opera en campo (plataforma/rampa) con o sin cobertura de red.", $tags="", $link="")
+System(MicrosoftEntraID, "Microsoft Entra ID", $descr="Proveedor de identidad corporativo (empleados y operarios). SSO · MFA · RBAC por grupos. OIDC / OAuth 2.0 + PKCE. Transversal al hub.", $tags="", $link="")
+System(ZTNANetskope, "ZTNA Netskope", $descr="Acceso Zero Trust para dispositivos gestionados: posture check (Intune), GlobalProtect/Zscaler, split tunneling controlado. Único camino de red de la app móvil.", $tags="", $link="")
+Container(Volarte.BFFMóvil, "BFF Móvil", $techn="Python · FastAPI · Cloud Run", $descr="Consumidor único: App móvil (operarios). Respuestas ultra-livianas, vistas exclusivas de operación en campo (no comparte payloads con BFF Web). Resuelve sync offline: delta + cola + reconciliación HU-050.", $tags="", $link="")
+
+Container_Boundary("Volarte.AppMóvil_boundary", "App Móvil", $tags="") {
+  Component(Volarte.AppMóvil.Navegación, "Navegación", $techn="React Navigation", $descr="Pantallas del operario: turnos, checklist, PQDA, firma, historial.", $tags="", $link="")
+  Component(Volarte.AppMóvil.MódulodeAutenticación, "Módulo de Autenticación", $techn="MSAL", $descr="Flujo OAuth2 Authorization Code + PKCE (solo Entra ID). Token en memoria (no localStorage).", $tags="", $link="")
+  ComponentDb(Volarte.AppMóvil.BasedeDatosLocal, "Base de Datos Local", $techn="WatermelonDB (SQLite)", $descr="Réplica funcional: turnos, operaciones, catálogos. Fuente de verdad offline.", $tags="", $link="")
+  Component(Volarte.AppMóvil.CifradoLocalenReposo, "Cifrado Local en Reposo", $techn="SQLCipher + Android Keystore", $descr="Cifra la base local. Clave derivada del hardware del dispositivo, no exportable. Protege datos si el dispositivo se pierde o es robado.", $tags="", $link="")
+  Component(Volarte.AppMóvil.MotordeSincronización, "Motor de Sincronización", $techn="Cola + UUID (TypeScript)", $descr="Cola de escritura local con UUID por acción. Delta pull / push al reconectar. Aplica HU-050.", $tags="", $link="")
+  Component(Volarte.AppMóvil.GestordeEstadosdeSincronización, "Gestor de Estados de Sincronización", $techn="State Machine (local)", $descr="Por ítem de cola: PENDIENTE → ENVIANDO → CONFIRMADO | CONFLICTO | ERROR. Backoff exponencial (base 5 s, máx 5 min).", $tags="", $link="")
+  Component(Volarte.AppMóvil.DetectordeConflictosLocales, "Detector de Conflictos Locales", $techn="Kotlin/TS — reglas locales", $descr="Antes de reenviar detecta turno reasignado, recurso bloqueado o catálogo desactualizado. Marca CONFLICTO_LOCAL sin descartar el dato (hecho físico) y espera resolución.", $tags="", $link="")
+  Component(Volarte.AppMóvil.CapturadeEvidencia, "Captura de Evidencia", $techn="Cámara + canvas táctil", $descr="Fotos PQDA/checklist y firma. Guardado primero en filesystem local.", $tags="", $link="")
+  Component(Volarte.AppMóvil.DisparadordeSync, "Disparador de Sync", $techn="NetInfo listener", $descr="Detecta reconexión y dispara el Motor de Sincronización.", $tags="", $link="")
+  Component(Volarte.AppMóvil.ClienteAPI, "Cliente API", $techn="Fetch + Resumable Upload", $descr="Sube la cola pendiente, descarga delta y sube media con reanudación.", $tags="", $link="")
+  Component(Volarte.AppMóvil.NetskopeClientZTNA, "Netskope Client (ZTNA)", $techn="Netskope Agent", $descr="Agente ZTNA / perfil de dispositivo. Verifica posture (Intune) antes de habilitar el túnel hacia el BFF Móvil. Sin él no hay salida de red.", $tags="", $link="")
+}
+
+Rel(OperariodeEquipoAbastecedor, Volarte.AppMóvil.Navegación, "Opera en campo: turnos, checklist, PQDA, firma", $techn="UI nativa Android", $tags="", $link="")
+Rel(Volarte.AppMóvil.MódulodeAutenticación, MicrosoftEntraID, "Login SSO (solo Entra ID)", $techn="OIDC · HTTPS", $tags="", $link="")
+Rel(Volarte.AppMóvil.NetskopeClientZTNA, ZTNANetskope, "Túnel gestionado (MDM / posture Intune)", $techn="ZTNA · mTLS", $tags="", $link="")
+Rel(Volarte.AppMóvil.NetskopeClientZTNA, Volarte.BFFMóvil, "Sync, delta y media (lógico: Netskope → Apigee → ILB)", $techn="REST/JSON · JWT · mTLS", $tags="", $link="")
+Rel(Volarte.AppMóvil.Navegación, Volarte.AppMóvil.MódulodeAutenticación, "Usa", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.Navegación, Volarte.AppMóvil.BasedeDatosLocal, "Lee / escribe", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.CapturadeEvidencia, Volarte.AppMóvil.BasedeDatosLocal, "Referencia archivo", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.BasedeDatosLocal, Volarte.AppMóvil.CifradoLocalenReposo, "Cifra en reposo", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.BasedeDatosLocal, Volarte.AppMóvil.MotordeSincronización, "Cola pendiente", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.DisparadordeSync, Volarte.AppMóvil.MotordeSincronización, "Dispara sync", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.DisparadordeSync, Volarte.AppMóvil.CapturadeEvidencia, "Notifica conectividad", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.MotordeSincronización, Volarte.AppMóvil.GestordeEstadosdeSincronización, "Actualiza estado / backoff exponencial", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.MotordeSincronización, Volarte.AppMóvil.DetectordeConflictosLocales, "Detecta conflicto local", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.DetectordeConflictosLocales, Volarte.AppMóvil.GestordeEstadosdeSincronización, "Bloquea reintento hasta revisión", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.MotordeSincronización, Volarte.AppMóvil.ClienteAPI, "Al reconectar", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+Rel(Volarte.AppMóvil.ClienteAPI, Volarte.AppMóvil.NetskopeClientZTNA, "Sync (online)", $techn="Llamada in-process (TypeScript)", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml
