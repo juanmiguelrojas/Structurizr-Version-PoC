@@ -1,0 +1,615 @@
+{
+ "vista": "L3_Svc_Operacion",
+ "pagina": "L3 · Svc Operacion",
+ "titulo": "L3 · Svc Operación — Diagrama de componentes",
+ "boundaries": [
+  {
+   "drawioId": "VjbdOoTlSY0fwUCftGFM-1",
+   "nombre": "Diagrama Componente",
+   "etiqueta": "Volarte\nAutor: Kevin Montoya\nTERPEL - DIRECCION DE ARQUITECTURA\nVersion: 1\nFase: I\nFecha: 17/08/2026",
+   "tipo": "ContainerScopeBoundary",
+   "x": 20.0,
+   "y": 20.0,
+   "w": 1250.0,
+   "h": 770.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];strokeWidth=3;"
+  }
+ ],
+ "nodos": [
+  {
+   "ref": "so_apiRouter",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-1",
+   "x": 300.0,
+   "y": 40.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "/roles · /permissions ·\n/mapping · /audit"
+  },
+  {
+   "ref": "so_rastreadorDePosicion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-2",
+   "x": 690.0,
+   "y": 80.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Determina posición del\nequipo vs. geocerca de\nDatos Maestros."
+  },
+  {
+   "ref": "so_inventarioDeCalidad",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-3",
+   "x": 630.0,
+   "y": 300.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Decremento de insumos\n(pastillas PQDA) por\nprueba ejecutada."
+  },
+  {
+   "ref": "so_clienteDeBaseDeDatos",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-4",
+   "x": 360.0,
+   "y": 470.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Estado dinámico,\npersistencia."
+  },
+  {
+   "ref": "so_gestorDeTurnos",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-5",
+   "x": 170.0,
+   "y": 280.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Ventana de inicio,\nautorización de excepción\npor supervisor."
+  },
+  {
+   "ref": "so_suscriptorDeTracking",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-7",
+   "x": 960.0,
+   "y": 440.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Procesa eventos de\ntracking entrantes, si el\ntopic está activo."
+  },
+  {
+   "ref": "ce_bffWebBffMovil",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-1",
+   "x": 370.0,
+   "y": 650.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Consumidores"
+  },
+  {
+   "ref": "vo_colaDeMensajeria",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-2",
+   "x": 700.0,
+   "y": 590.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Suscripción: tracking-eventos (si aplica)",
+   "texto": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscripción: tracking-eventos (si aplica)"
+   }
+  },
+  {
+   "ref": "vo_svcDatosMaestros",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-3",
+   "x": 990.0,
+   "y": 90.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "VjbdOoTlSY0fwUCftGFM-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Geocerca (S02/HU-145)",
+   "texto": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Geocerca (S02/HU-145)"
+   }
+  }
+ ],
+ "notas": [
+  {
+   "drawioId": null,
+   "x": 300.0,
+   "y": 40.0,
+   "w": 240.0,
+   "h": 120.0,
+   "texto": "",
+   "fill": "#63BEF2",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  }
+ ],
+ "conectores": [
+  {
+   "drawioId": "ops-e1",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-1",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-5",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_apiRouter",
+     "destino": "so_gestorDeTurnos",
+     "descripcion": "enruta",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "enruta",
+   "etiquetaLineas": "enruta",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 290.0,
+     "y": 90.0
+    },
+    "targetPoint": {
+     "x": 270.0,
+     "y": 280.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0;exitY=0.408;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "ops-e2",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-1",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_apiRouter",
+     "destino": "so_rastreadorDePosicion",
+     "descripcion": "enruta",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "enruta",
+   "etiquetaLineas": "enruta",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 605.0,
+     "y": 100.0
+    },
+    {
+     "x": 605.0,
+     "y": 50.0
+    },
+    {
+     "x": 748.0,
+     "y": 50.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 472.0,
+     "y": 140.0
+    },
+    "targetPoint": {
+     "x": 748.0,
+     "y": 80.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "ops-e3",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-1",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-3",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_apiRouter",
+     "destino": "so_inventarioDeCalidad",
+     "descripcion": "enruta",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "enruta",
+   "etiquetaLineas": "enruta",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 368.0,
+     "y": 140.0
+    },
+    "targetPoint": {
+     "x": 760.0,
+     "y": 300.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "ops-e4",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-2",
+   "origenTipo": "element",
+   "destino": "i--iAFYeRP1RJYZK3LzI-3",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_rastreadorDePosicion",
+     "destino": "vo_svcDatosMaestros",
+     "descripcion": "consulta geocerca",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "consulta geocerca",
+   "etiquetaLineas": "consulta geocerca",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 865.0,
+     "y": 80.0
+    },
+    "targetPoint": {
+     "x": 1120.0,
+     "y": 80.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.554;exitY=-0.008;exitDx=0;exitDy=0;entryX=0.567;entryY=-0.008;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "ops-e5",
+   "origen": "i--iAFYeRP1RJYZK3LzI-2",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-7",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "so_suscriptorDeTracking",
+     "descripcion": "recibe eventos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "recibe eventos",
+   "etiquetaLineas": "recibe eventos",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 820.0,
+     "y": 750.0
+    },
+    {
+     "x": 1090.0,
+     "y": 750.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 820.0,
+     "y": 710.0
+    },
+    "targetPoint": {
+     "x": 1090.0,
+     "y": 560.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;",
+   "inferido": [
+    "source",
+    "target"
+   ]
+  },
+  {
+   "drawioId": "ops-e6",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-7",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_suscriptorDeTracking",
+     "destino": "so_rastreadorDePosicion",
+     "descripcion": "actualiza",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "actualiza",
+   "etiquetaLineas": "actualiza",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 960.0,
+     "y": 510.0
+    },
+    "targetPoint": {
+     "x": 930.0,
+     "y": 130.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.004;entryY=0.65;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": [
+    "source"
+   ]
+  },
+  {
+   "drawioId": "ops-e7",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-5",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-4",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_gestorDeTurnos",
+     "destino": "so_clienteDeBaseDeDatos",
+     "descripcion": "persiste",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "persiste",
+   "etiquetaLineas": "persiste",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 218.0,
+     "y": 380.0
+    },
+    "targetPoint": {
+     "x": 428.0,
+     "y": 470.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "ops-e8",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-3",
+   "origenTipo": "element",
+   "destino": "y6BNUnCm-LO4T1uQHbZl-4",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_inventarioDeCalidad",
+     "destino": "so_clienteDeBaseDeDatos",
+     "descripcion": "persiste",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "persiste",
+   "etiquetaLineas": "persiste",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 630.0,
+     "y": 350.0
+    },
+    "targetPoint": {
+     "x": 610.0,
+     "y": 500.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": [
+    "source"
+   ]
+  },
+  {
+   "drawioId": "ops-e9",
+   "origen": "y6BNUnCm-LO4T1uQHbZl-4",
+   "origenTipo": "element",
+   "destino": "i--iAFYeRP1RJYZK3LzI-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "so_clienteDeBaseDeDatos",
+     "destino": "ce_bffWebBffMovil",
+     "descripcion": "consultado por",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "consultado por",
+   "etiquetaLineas": "consultado por",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 480.0,
+     "y": 570.0
+    },
+    "targetPoint": {
+     "x": 170.0,
+     "y": 660.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": [
+    "source"
+   ]
+  }
+ ]
+}

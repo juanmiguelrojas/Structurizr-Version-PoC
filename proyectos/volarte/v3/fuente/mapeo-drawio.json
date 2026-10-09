@@ -1,0 +1,437 @@
+{
+  "_descripcion": "Mapa curado Draw.io -> Structurizr para Volarte v3. Lo consume scripts/drawio2structurizr.py. Cada decisión aquí es trazable en REVISION.md (IDs REV-NN).",
+  "fuente": "../../v1/fuente/Arquitectura_volarte_1.drawio",
+  "sistemas": {
+    "portal": {
+      "pagina": "L1 · Context",
+      "nombreDrawio": "Portal",
+      "nota": "Sistema central del L1 (y dueño de los contenedores del L0 · Referencia). Ver REV-01."
+    },
+    "volarte": {
+      "nombre": "Volarte",
+      "descripcion": "Sistema Volarte: contenedores del L2 · Container y componentes de los L3. El nombre proviene del marco 'Diagrama Contenedores [Volarte]' del Draw.io.",
+      "tipo": "Software System",
+      "nota": "No existe como caja en el Draw.io; se toma del marco del L2. Ver REV-01."
+    }
+  },
+  "paginas": {
+    "L0 · Referencia": {
+      "vista": "L0_Referencia",
+      "tipo": "container",
+      "alcance": "portal",
+      "titulo": "L0 · Referencia — Vista global de integración",
+      "descripcion": "Página 'L0 · Referencia' del Draw.io: arquitectura de referencia del HUB / Portal y plataforma transversal."
+    },
+    "L1 · Context": {
+      "vista": "L1_Context",
+      "tipo": "systemContext",
+      "alcance": "portal",
+      "titulo": "L1 · Context — Diagrama de contexto",
+      "descripcion": "Página 'L1 · Context' del Draw.io."
+    },
+    "L2 · Container": {
+      "vista": "L2_Container",
+      "tipo": "container",
+      "alcance": "volarte",
+      "titulo": "L2 · Container — Diagrama de contenedores",
+      "descripcion": "Página 'L2 · Container' del Draw.io."
+    },
+    "L3 · Frontend Web": {
+      "vista": "L3_Frontend_Web",
+      "tipo": "component",
+      "alcance": "Frontend Web",
+      "titulo": "L3 · Frontend Web — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Frontend Web' del Draw.io."
+    },
+    "L3 · App Movil": {
+      "vista": "L3_App_Movil",
+      "tipo": "component",
+      "alcance": "App móvil",
+      "titulo": "L3 · App Móvil — Diagrama de componentes",
+      "descripcion": "Página 'L3 · App Movil' del Draw.io."
+    },
+    "L3 · BFF Web": {
+      "vista": "L3_BFF_Web",
+      "tipo": "component",
+      "alcance": "BFF — Backend Volarte",
+      "titulo": "L3 · BFF Web — Diagrama de componentes",
+      "descripcion": "Página 'L3 · BFF Web' del Draw.io."
+    },
+    "L3 · BFF Movil": {
+      "vista": "L3_BFF_Movil",
+      "tipo": "component",
+      "alcance": "BFF Móvil",
+      "titulo": "L3 · BFF Móvil — Diagrama de componentes",
+      "descripcion": "Página 'L3 · BFF Movil' del Draw.io."
+    },
+    "L3 · Pub-Sub": {
+      "vista": "L3_Pub_Sub",
+      "tipo": "component",
+      "alcance": "Cola de mensajeria",
+      "titulo": "L3 · Pub-Sub — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Pub-Sub' del Draw.io."
+    },
+    "L3 · Documentos GCS": {
+      "vista": "L3_Documentos_GCS",
+      "tipo": "component",
+      "alcance": "Documentos (GCS)",
+      "titulo": "L3 · Documentos GCS — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Documentos GCS' del Draw.io."
+    },
+    "L3 · Svc Usuarios Auth": {
+      "vista": "L3_Svc_Usuarios_Auth",
+      "tipo": "component",
+      "alcance": "Svc: Usuarios / Auth",
+      "titulo": "L3 · Svc Usuarios / Auth — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Svc Usuarios Auth' del Draw.io."
+    },
+    "L3 · Gestor Documental": {
+      "vista": "L3_Gestor_Documental",
+      "tipo": "component",
+      "alcance": "Gestor Documental",
+      "titulo": "L3 · Gestor Documental — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Gestor Documental' del Draw.io."
+    },
+    "L3 · Svc Operacion": {
+      "vista": "L3_Svc_Operacion",
+      "tipo": "component",
+      "alcance": "Svc: Operación",
+      "titulo": "L3 · Svc Operación — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Svc Operacion' del Draw.io."
+    },
+    "L3 · Svc Comercial": {
+      "vista": "L3_Svc_Comercial",
+      "tipo": "component",
+      "alcance": "Svc: Comercial",
+      "titulo": "L3 · Svc Comercial — Diagrama de componentes",
+      "descripcion": "Página 'L3 · Svc Comercial' del Draw.io."
+    }
+  },
+  "_comentario_compartidos": "Elementos que aparecen en varias páginas y representan el MISMO elemento del modelo. Clave = nombre normalizado en el Draw.io; valor = identificador. 'ambito' limita el alias a ciertas páginas. Ver REV-03.",
+  "compartidos": [
+    {
+      "ref": "entraId",
+      "nombres": [
+        "EntraID / CIAM",
+        "EntraID / Azure AD",
+        "EntraID"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "apigee",
+      "nombres": [
+        "ApiGee",
+        "API Management",
+        "Apigee"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "proxyApigee",
+      "nombres": [
+        "Proxy instance"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "ilbTransversal",
+      "nombres": [
+        "Internal Load Balancer"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "ztna",
+      "nombres": [
+        "ZTNA"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "cloudflare",
+      "nombres": [
+        "Cloudflare"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "firewall",
+      "nombres": [
+        "Firewall"
+      ],
+      "ambito": "*",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "datalake",
+      "nombres": [
+        "Datalake"
+      ],
+      "ambito": "*",
+      "canonica": "L0 · Referencia"
+    },
+    {
+      "ref": "vo_bffMovil",
+      "nombres": [
+        "BFF Móvil"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_bffBackendVolarte",
+      "nombres": [
+        "BFF Web"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_gestorDocumental",
+      "nombres": [
+        "Gestor Documental"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_documentosGcs",
+      "nombres": [
+        "Documentos (GCS)"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_colaDeMensajeria",
+      "nombres": [
+        "Cola de mensajería"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_cloudSqlPostgresql",
+      "nombres": [
+        "Cloud SQL",
+        "Cloud SQL / metadata"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_memorystore",
+      "nombres": [
+        "Memorystore"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_svcOperacion",
+      "nombres": [
+        "Svc: Operación"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_svcComercial",
+      "nombres": [
+        "Svc: Comercial"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "vo_svcDatosMaestros",
+      "nombres": [
+        "Svc: Datos Maestros"
+      ],
+      "ambito": "L3",
+      "canonica": "L2 · Container"
+    },
+    {
+      "ref": "ce_bffWebBffMovil",
+      "nombres": [
+        "BFF Web / BFF Móvil"
+      ],
+      "ambito": "L3",
+      "tipoModelo": "custom"
+    },
+    {
+      "ref": "ce_serviciosDeDominio",
+      "nombres": [
+        "Servicios de dominio"
+      ],
+      "ambito": "L3",
+      "tipoModelo": "custom"
+    }
+  ],
+  "_comentario_porElemento": "Excepciones puntuales por (página|id Draw.io). Ver REV-04.",
+  "porElemento": {
+    "L2 · Container|p8cCmguKJE-8GRD_PWvh-33": {
+      "ref": "vo_internalLoadBalancer",
+      "tipoModelo": "container",
+      "padre": "volarte",
+      "motivo": "Segundo 'Internal Load Balancer' del L2, dentro del proyecto terpel-org-col-volarte-AMB: recurso propio de Volarte (el otro ILB es plataforma compartida)."
+    },
+    "L0 · Referencia|sR61ePaMgubpxd_IzPhU-116": {
+      "tipoModelo": "container",
+      "padre": "portal",
+      "motivo": "App Móvil del HUB: cliente del Portal (React Native) dibujado en gris; semánticamente es un contenedor del Portal."
+    },
+    "L0 · Referencia|sR61ePaMgubpxd_IzPhU-68": {
+      "nombreModelo": "Backend — HUB Web (Móvil)",
+      "motivo": "Hay dos cajas 'Backend — HUB Web' en el L0 (web y móvil). Structurizr exige nombres únicos por sistema: el modelo distingue la variante móvil y la vista conserva el texto del Draw.io."
+    }
+  },
+  "_comentario_reglasL0": "En el L0 los elementos tipo Component de los boundaries de borde y API Management son plataforma corporativa compartida (softwareSystem); el resto de Container/Component son contenedores del Portal.",
+  "boundariesPlataformaL0": [
+    "Ingress Corporativo",
+    "Api Management y Seguridad"
+  ],
+  "notasComoElemento": {
+    "L1 · Context": {
+      "#fffde7": {
+        "ref": "ce_capacidadesTransversales",
+        "tag": "Nota"
+      }
+    }
+  },
+  "expansiones": {
+    "_comentario": "Conectores del Draw.io que terminan en un boundary: se expanden a relaciones con los elementos de ese boundary. Ver REV-05.",
+    "L2 · Container": {
+      "orquesta cada servicio que no va por PUB/SUB": "Servicios de dominio"
+    }
+  },
+  "tagsSemanticos": {
+    "_comentario": "Tags semánticos (forma / reglas del Agente Revisor). No asignan color (regla R7).",
+    "vo_frontendWeb": [
+      "Frontend",
+      "WebBrowser"
+    ],
+    "vo_appMovil": [
+      "Frontend",
+      "Mobile"
+    ],
+    "po_hubFront": [
+      "Frontend",
+      "WebBrowser"
+    ],
+    "po_appMovil": [
+      "Frontend",
+      "Mobile"
+    ],
+    "vo_bffBackendVolarte": [
+      "BFF"
+    ],
+    "vo_bffMovil": [
+      "BFF"
+    ],
+    "po_backendHubWeb": [
+      "BFF"
+    ],
+    "po_backendHubWebMovil": [
+      "BFF"
+    ],
+    "vo_svcUsuariosAuth": [
+      "DomainService"
+    ],
+    "vo_svcDatosMaestros": [
+      "DomainService"
+    ],
+    "vo_svcComercial": [
+      "DomainService"
+    ],
+    "vo_svcOperacion": [
+      "DomainService"
+    ],
+    "vo_svcAsignacionOptimizacion": [
+      "DomainService",
+      "Pending"
+    ],
+    "vo_gestorDocumental": [
+      "DomainService"
+    ],
+    "vo_cloudSqlPostgresql": [
+      "Database"
+    ],
+    "vo_memorystore": [
+      "Database",
+      "Cache"
+    ],
+    "vo_documentosGcs": [
+      "Database",
+      "Storage"
+    ],
+    "vo_colaDeMensajeria": [
+      "Queue"
+    ],
+    "po_cloudSqlPostgresql": [
+      "Database"
+    ],
+    "po_database": [
+      "Database"
+    ],
+    "po_storage": [
+      "Database",
+      "Storage"
+    ],
+    "po_search": [
+      "Database"
+    ],
+    "po_memorystoreRedis": [
+      "Database",
+      "Cache"
+    ],
+    "po_memorystoreRedisFree": [
+      "Database",
+      "Cache"
+    ],
+    "po_colaDeMensajeria": [
+      "Queue"
+    ],
+    "datalake": [
+      "Database"
+    ],
+    "po_otelCollector": [
+      "Observability"
+    ],
+    "ss_dynatraceTenantTerpel": [
+      "Observability"
+    ],
+    "po_cloudMonitoring": [
+      "Observability"
+    ],
+    "po_cloudLogging": [
+      "Observability"
+    ],
+    "ss_priceproviderExterno": [
+      "Pending"
+    ],
+    "entraId": [
+      "IdentityProvider"
+    ],
+    "ss_ciam": [
+      "IdentityProvider"
+    ],
+    "apigee": [
+      "APIGateway"
+    ]
+  },
+  "enriquecimiento": {
+    "_comentario": "Datos que el modelo necesita (reglas R1/R2) y que el Draw.io no trae. El modelo los incorpora; la vista sigue mostrando exactamente lo que dibuja el Draw.io (texto de presentación). Ver REV-08.",
+    "ss_zenput": {
+      "descripcion": "Sistema corporativo referenciado en la página L0 sin descripción en el Draw.io (pendiente de confirmar por Arquitectura).",
+      "motivo": "R1: todo sistema requiere descripción; el Draw.io la deja vacía."
+    }
+  }
+}

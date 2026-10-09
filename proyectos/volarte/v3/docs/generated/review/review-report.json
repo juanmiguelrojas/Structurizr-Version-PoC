@@ -1,0 +1,324 @@
+{
+  "stats": {
+    "version_dir": "proyectos/volarte/v3",
+    "generated_at": "2026-10-09 01:48:09",
+    "elements": 140,
+    "explicit_relationships": 191,
+    "counts": {
+      "ERROR": 0,
+      "WARN": 40,
+      "INFO": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L0_Referencia",
+      "message": "37 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): ApiGee → Proxy instance; Internal Load Balancer → Proxy instance; Cloudflare → Global Load Balancer; ZTNA → Global Load Balancer; … (+33).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L1_Context",
+      "message": "3 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): Portal → + Sistemas Externos Futuros; Portal → Google Cloud Platform; Portal → Datalake.",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L2_Container",
+      "message": "34 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): ApiGee → Internal Load Balancer (sin etiqueta); External Regional Load Balancer → Cloudflare; External Regional Load Balancer → Firewall; Firewall → Internal Load Balancer; … (+30).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_App_Movil",
+      "message": "13 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): Modulo de Autenticacion → EntraID / CIAM; Navegación → Modulo de Autenticacion; Navegación → Base de Datos local; Base de Datos local → Motor de Sincronización; … (+9).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_BFF_Movil",
+      "message": "16 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): ApiGee → API Router / Controllers; Cola de mensajeria → Svc: Operación; Cola de mensajeria → Documentos (GCS); Servicio de Autorización → Motor de Reconciliación; … (+12).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_BFF_Web",
+      "message": "7 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): ApiGee → API Router / Controllers; API Router / Controllers → Middleware de Autenticación; Middleware de Autenticación → Servicio de Autorización; Servicio de Autorización → Cliente de Cache; … (+3).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Documentos_GCS",
+      "message": "5 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): Gestor Documental → Estructura de carpetas; Estructura de carpetas → Política de ciclo de vida; Estructura de carpetas → IAM del bucket; Política de ciclo de vida → Versionado / WORM; … (+1).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Frontend_Web",
+      "message": "7 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): App Shell / Router → Modulo de Autenticacion; App Shell / Router → Vistas por rol; Vistas por rol → Cliente API; Vistas por rol → Error Boundary / Telemetría; … (+3).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Gestor_Documental",
+      "message": "8 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): Asignador de Numeración → Cloud SQL (PostgreSQL); Suscriptor Pub/Sub → Generador de Documento; Generador de Documento → Motor de Plantillas; Generador de Documento → Asignador de Numeración; … (+4).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Pub_Sub",
+      "message": "11 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): BFF — Backend Volarte → Topic: conciliacion-resuelta; Sub: comercial-sub → Svc: Comercial; Sub: comercial-sub → Dead Letter Topic; Topic: operacion-cerrada → Sub: gestor-documental-sub; … (+7).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Svc_Comercial",
+      "message": "8 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): API Router → Motor de Elegibilidad; API Router → Resolutor PriceProvider; API Router → Servicio de Crédito Disponible; Cliente de base de datos → BFF — Backend Volarte; … (+4).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Svc_Operacion",
+      "message": "8 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): API Router → Gestor de Turnos; API Router → Rastreador de Posición; API Router → Inventario de Calidad; Rastreador de Posición → Svc: Datos Maestros; … (+4).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Cifrado",
+      "severity": "WARN",
+      "element": "L3_Svc_Usuarios_Auth",
+      "message": "8 relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): API Router → Resolver GroupToRoleMapping; Resolver GroupToRoleMapping → Adaptador de sincronización Entra ID; Resolver GroupToRoleMapping → Auditor; Adaptador de sincronización Entra ID → EntraID / CIAM; … (+4).",
+      "recommendation": "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Portal › Backend — HUB Web",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Portal › Backend — HUB Web (Móvil)",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › App móvil",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › BFF Móvil",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › BFF — Backend Volarte",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Frontend Web",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Gestor Documental",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Asignación / Optimización",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Comercial",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Datos Maestros",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Operación",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R5-Observabilidad",
+      "severity": "WARN",
+      "element": "Volarte › Svc: Usuarios / Auth",
+      "message": "Contenedor sin relación hacia OTel Collector / Dynatrace.",
+      "recommendation": "Instrumente con OpenTelemetry (OTLP → OTel Collector → Dynatrace) según la política 'OTel First'."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "+ Portales Externos Futuros",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "+ Webapps Externos Futuros",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "ApiGee",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Cloud KMS",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Datalake",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "External Regional Load Balancer",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Global Load Balancer",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Google Cloud Platform",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Identity-Aware Proxy (IAP)",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Internal Load Balancer",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Power BI Service",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Proxy instance",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "SAP ERP",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "Secret Manager",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R7-Leyenda C4",
+      "severity": "WARN",
+      "element": "ZTNA",
+      "message": "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
+      "recommendation": "Si está fuera del alcance del proyecto, agregue el tag \"External Software System\"."
+    },
+    {
+      "rule": "R4-Trazabilidad",
+      "severity": "INFO",
+      "element": "proyectos/volarte/CHANGELOG_DSL.md",
+      "message": "Sin cambios en proyectos/volarte/v3/dsl/ para este diff.",
+      "recommendation": ""
+    },
+    {
+      "rule": "R5-Decisión Pendiente",
+      "severity": "INFO",
+      "element": "PriceProvider externo",
+      "message": "Elemento marcado como decisión PENDING.",
+      "recommendation": "Cierre la decisión con un ADR (Accepted) y retire el tag Pending."
+    },
+    {
+      "rule": "R5-Decisión Pendiente",
+      "severity": "INFO",
+      "element": "Volarte › Svc: Asignación / Optimización",
+      "message": "Elemento marcado como decisión PENDING.",
+      "recommendation": "Cierre la decisión con un ADR (Accepted) y retire el tag Pending."
+    },
+    {
+      "rule": "R9-Fidelidad Draw.io",
+      "severity": "INFO",
+      "element": "proyectos/volarte/v3",
+      "message": "13 vistas · elementos 182/182 · conectores 190/190 · fidelidad mínima 100.0% · 30 textos de presentación (alias) · 3 anotaciones sin relación de modelo.",
+      "recommendation": ""
+    }
+  ],
+  "ai_review": null
+}

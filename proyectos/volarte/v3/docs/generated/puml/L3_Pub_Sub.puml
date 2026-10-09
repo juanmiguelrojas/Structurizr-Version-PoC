@@ -1,0 +1,40 @@
+@startuml
+set separator none
+title L3 · Pub-Sub — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+Container(Volarte.BFFBackendVolarte, "BFF — Backend Volarte", $techn="FastAPI · Cloud Run", $descr="Valida JWT (issuer/audience) Resuelve GroupToRoleMapping → Role/Permission/Capability Orquesta servicios de dominio Auto-scaling · Pay-per-use", $tags="", $link="")
+Container(Volarte.GestorDocumental, "Gestor Documental", $techn="FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación. Retorna ID inmutable vinculado. Cola + reintento, sin duplicar (HU-055). S07: contenido y numeración del documento canónico. El Gestor Documental solo lo publica.", $tags="", $link="")
+Container(Volarte.SvcComercial, "Svc: Comercial", $techn="FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider), crédito disponible.", $tags="", $link="")
+Container(Volarte.SvcOperación, "Svc: Operación", $techn="FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición, inventario calidad.", $tags="", $link="")
+Container(Volarte.BFFMóvil, "BFF Móvil", $techn="FastAPI · Cloud Run", $descr="Consumidor: App móvil (operarios), única. Respuestas ultra-livianas, vistas exclusivas de operación en campo — no comparte payloads con BFF Web. Resuelve sync offline: delta + cola.", $tags="", $link="")
+
+Container_Boundary("Volarte.Colademensajeria_boundary", "Cola de mensajeria", $tags="") {
+  Component(Volarte.Colademensajeria.DeadLetterTopic, "Dead Letter Topic", $techn="Pub/Sub DLQ", $descr="Mensajes que agotaron reintentos. Requiere revisión manual.", $tags="", $link="")
+  Component(Volarte.Colademensajeria.Subcomercialsub, "Sub: comercial-sub", $techn="Push · retry + DLQ", $descr="Actualiza saldo/crédito tras el cierre.", $tags="", $link="")
+  Component(Volarte.Colademensajeria.Topicoperacioncerrada, "Topic: operacion-cerrada", $techn="Pub/Sub Topic", $descr="Se dispara al cerrar una operación en campo.", $tags="", $link="")
+  Component(Volarte.Colademensajeria.Subgestordocumentalsub, "Sub: gestor-documental-sub", $techn="Push · retry + DLQ", $descr="Dispara generación y publicación del documento (HU-055).", $tags="", $link="")
+  Component(Volarte.Colademensajeria.Topicconciliacionresuelta, "Topic: conciliacion-resuelta", $techn="Pub/Sub Topic", $descr="Se publica cuando un supervisor resuelve desde la Web una operación PENDING_REVIEW (HU-050): confirmar o anular.", $tags="", $link="")
+  Component(Volarte.Colademensajeria.Suboperacionconciliacionsub, "Sub: operacion-conciliacion-sub", $techn="Push · retry + DLQ", $descr="Aplica la resolución (finaliza o anula) sobre la operación en Tablas: operacionales.", $tags="", $link="")
+}
+
+Rel(Volarte.BFFMóvil, Volarte.Colademensajeria.Topicoperacioncerrada, "publica", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Topicoperacioncerrada, Volarte.Colademensajeria.Subgestordocumentalsub, "entrega", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Topicoperacioncerrada, Volarte.Colademensajeria.Subcomercialsub, "entrega", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Subgestordocumentalsub, Volarte.GestorDocumental, "dispara", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Subcomercialsub, Volarte.SvcComercial, "dispara", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Subgestordocumentalsub, Volarte.Colademensajeria.DeadLetterTopic, "tras 5 reintentos (backoff 10s-600s)", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Subcomercialsub, Volarte.Colademensajeria.DeadLetterTopic, "tras 5 reintentos (backoff 10s-600s)", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.Colademensajeria.Topicconciliacionresuelta, "publica (supervisor resuelve)", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Topicconciliacionresuelta, Volarte.Colademensajeria.Suboperacionconciliacionsub, "entrega", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Suboperacionconciliacionsub, Volarte.SvcOperación, "finaliza / anula operación pendiente", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria.Suboperacionconciliacionsub, Volarte.Colademensajeria.DeadLetterTopic, "tras 5 reintentos (backoff 10s-600s)", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

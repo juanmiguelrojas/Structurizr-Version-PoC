@@ -19,6 +19,8 @@ diff de Git para aplicar las reglas de gobierno de arquitectura:
   R7  Leyenda C4      Solo los 6 tags de la leyenda oficial C4 definen colores, con los valores
                       corporativos; personas y sistemas externos usan sus tags de leyenda.       [ERROR]
   R8  Metadatos       version.json existe, tiene los campos obligatorios y un estado válido.     [ERROR]
+  R9  Fidelidad       Si la versión declara una fuente Draw.io (version.json 'fidelidad'), cada página
+                      debe reproducirse sin diferencias: elementos, textos, colores, conectores.  [ERROR]
 
 Opcional (--ai): si hay credenciales de la API de Anthropic, envía un resumen del
 modelo + hallazgos a Claude para una revisión narrativa (no bloqueante).
@@ -306,6 +308,11 @@ def rule_c4_legend(workspace: dict, elements):
             yield Finding("R7-Leyenda C4", "ERROR", f'estilo "{tag}"',
                           f"El fondo debe ser {expected} (leyenda oficial C4) y es '{actual or 'no definido'}'.",
                           "Incluya estandares/c4/estilos-c4.dsl en el bloque views y no redefina colores.")
+    person_style = by_tag.get("Person", {})
+    if person_style and person_style.get("shape") != "Person":
+        yield Finding("R7-Leyenda C4", "ERROR", 'estilo "Person"',
+                      f"Las personas deben dibujarse con silueta de actor (shape Person) y el estilo usa '{person_style.get('shape')}'.",
+                      "Use shape Person en el estilo del tag Person (estandares/c4/estilos-c4.dsl).")
     for style in styles:
         tag = style.get("tag")
         if tag in COLOR_ALLOWED_TAGS:
@@ -325,6 +332,37 @@ def rule_c4_legend(workspace: dict, elements):
                 yield Finding("R7-Leyenda C4", "WARN", el.path,
                               "Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance.",
                               'Si está fuera del alcance del proyecto, agregue el tag "External Software System".')
+
+
+def rule_drawio_fidelity(version_dir: str, report_path: Path | None = None):
+    meta_path = ROOT / version_dir / "version.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
+    if not meta.get("fidelidad"):
+        return
+    path = report_path or ROOT / version_dir / "docs" / "generated" / "fidelidad" / "fidelidad-drawio.json"
+    if not path.exists():
+        yield Finding("R9-Fidelidad Draw.io", "WARN", version_dir,
+                      "La versión declara fuente Draw.io pero no hay informe de fidelidad.",
+                      f"Ejecute scripts/aac-build.sh {version_dir} --validate-only para generarlo.")
+        return
+    report = json.loads(path.read_text(encoding="utf-8"))
+    for vista in report:
+        for d in vista["diferencias"]:
+            if d.get("tipo") == "ERROR":
+                yield Finding("R9-Fidelidad Draw.io", "ERROR", f"{vista['vista']} · {d.get('drawioId', '')}",
+                              f"{d.get('campo', d.get('regla'))}: Draw.io '{d.get('drawio', '')}' ≠ modelo "
+                              f"'{d.get('modelo', d.get('detalle', ''))}'.",
+                              "Corrija el DSL o el layout para que la vista reproduzca la página del Draw.io.")
+    tot_el = sum(v["elementos"] for v in report)
+    tot_c = sum(v["conectores"] for v in report)
+    ok_el = sum(v["elementosPresentes"] for v in report)
+    ok_c = sum(v["conectoresPresentes"] for v in report)
+    alias = sum(v["alias"] for v in report)
+    ann = sum(v["anotaciones"] for v in report)
+    minimo = min((v["fidelidad"] for v in report), default=100)
+    yield Finding("R9-Fidelidad Draw.io", "INFO", version_dir,
+                  f"{len(report)} vistas · elementos {ok_el}/{tot_el} · conectores {ok_c}/{tot_c} · fidelidad mínima {minimo}% · "
+                  f"{alias} textos de presentación (alias) · {ann} anotaciones sin relación de modelo.")
 
 
 def rule_version_metadata(version_dir: str):
@@ -380,14 +418,22 @@ def rule_suggestions(elements, relationships, deployment_nodes):
                           "Configure HA regional (Cloud SQL HA, Memorystore Standard Tier, réplicas) y declare "
                           'la propiedad "ha" "true" en el deploymentNode.')
 
-    # --- 5b. Conexiones no cifradas
+    # --- 5b. Conexiones no cifradas (agrupadas por vista / origen para que el log sea legible)
+    groups: dict[str, list[str]] = {}
     for r in explicit:
         if r.source.type == "Person":
             continue
-        if not r.technology or not ENCRYPTED_PATTERN.search(r.technology):
-            yield Finding("R5-Cifrado", "WARN", f"{r.source.path} → {r.destination.path}",
-                          f"Tramo sin cifrado explícito en la tecnología: '{r.technology or 'N/D'}'.",
-                          "Declare el protocolo seguro (TLS 1.2+, mTLS, IAM) o documente la excepción en un ADR.")
+        text = f"{r.technology} {r.description}".strip()
+        if text and ENCRYPTED_PATTERN.search(text):
+            continue
+        pages = sorted(t.split(":", 1)[1] for t in r.tags if t.startswith("pagina:"))
+        key = pages[0] if pages else (r.source.container().path if r.source.container() else r.source.path)
+        groups.setdefault(key, []).append(f"{r.source.name} → {r.destination.name}" + ("" if text else " (sin etiqueta)"))
+    for key, items in sorted(groups.items()):
+        sample = "; ".join(items[:4]) + (f"; … (+{len(items) - 4})" if len(items) > 4 else "")
+        yield Finding("R5-Cifrado", "WARN", key,
+                      f"{len(items)} relación(es) sin protocolo seguro explícito (TLS/HTTPS/mTLS/IAM/OIDC): {sample}.",
+                      "Declare la tecnología con su cifrado en la relación o documente la excepción en un ADR.")
 
     # --- 5c. Observabilidad
     observed: set[str] = set()
@@ -504,7 +550,8 @@ def write_reports(out_dir: Path, findings: list[Finding], stats: dict, ai_text: 
         "| R5-* (Sugerencias) | WARN/INFO | SPOF, cifrado, observabilidad, DLQ, decisiones pendientes |",
         "| R6-Inmutabilidad | ERROR | Versiones aprobadas / reemplazadas / obsoletas no se modifican |",
         "| R7-Leyenda C4 | ERROR | Colores solo desde la leyenda oficial C4; tags External Person / External Software System |",
-        "| R8-Metadatos | ERROR | `version.json` completo y con estado válido |", "",
+        "| R8-Metadatos | ERROR | `version.json` completo y con estado válido |",
+        "| R9-Fidelidad Draw.io | ERROR | Si hay fuente Draw.io declarada, cada vista la reproduce sin diferencias |", "",
         "## Hallazgos", "",
         "| # | Severidad | Regla | Elemento | Hallazgo | Recomendación |", "|---|---|---|---|---|---|",
     ]
@@ -559,6 +606,7 @@ def main() -> int:
             *rule_traceability(version_dir, files, args.base, args.skip_traceability),
             *rule_immutability(version_dir, files, args.base),
             *rule_c4_legend(workspace, elements),
+            *rule_drawio_fidelity(version_dir),
             *rule_suggestions(elements, relationships, deployment_nodes),
         ]
     findings.sort(key=lambda f: (SEVERITY_ORDER[f.severity], f.rule, f.element))

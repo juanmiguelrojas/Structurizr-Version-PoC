@@ -1,0 +1,35 @@
+@startuml
+set separator none
+title L3 · Gestor Documental — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+ContainerDb(Volarte.CloudSQLPostgreSQL, "Cloud SQL (PostgreSQL)", $techn="Database", $descr="Usuarios · Roles · Registry", $tags="", $link="")
+Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Cloud Storage", $descr="Almacenamiento WORM/versionado. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+ContainerQueue(Volarte.Colademensajeria, "Cola de mensajeria", $techn="Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry+DLQ), operacion-cerrada (fan-out a 3 suscriptores), tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+
+Container_Boundary("Volarte.GestorDocumental_boundary", "Gestor Documental", $tags="") {
+  Component(Volarte.GestorDocumental.AsignadordeNumeración, "Asignador de Numeración", $techn="Python", $descr="Numeración secuencial, única, auditable.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.SuscriptorPubSub, "Suscriptor Pub/Sub", $techn="Push endpoint", $descr="Recibe el evento operacion-cerrada. Retry + DLQ.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.GeneradordeDocumento, "Generador de Documento", $techn="Python — ex S07", $descr="Ensambla contenido: partes, cantidades, firmas, datos de la operación.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.MotordePlantillas, "Motor de Plantillas", $techn="PDF / AIDX XML", $descr="Renderiza el formato final según lo que el cliente requiera.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.Publicador, "Publicador", $techn="Python — HU-055", $descr="Idempotente: un reintento no genera un segundo documento. Retorna ID inmutable.", $tags="", $link="")
+  Component(Volarte.GestorDocumental.ClienteGCS, "Cliente GCS", $techn="Resumable Upload", $descr="Sube el documento final al bucket.", $tags="", $link="")
+}
+
+Rel(Volarte.Colademensajeria, Volarte.GestorDocumental.SuscriptorPubSub, "recibe evento", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.SuscriptorPubSub, Volarte.GestorDocumental.GeneradordeDocumento, "genera", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.GeneradordeDocumento, Volarte.GestorDocumental.MotordePlantillas, "renderiza", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.GeneradordeDocumento, Volarte.GestorDocumental.AsignadordeNumeración, "asigna número", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.AsignadordeNumeración, Volarte.CloudSQLPostgreSQL, "persiste número", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.MotordePlantillas, Volarte.GestorDocumental.Publicador, "publica", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.Publicador, Volarte.GestorDocumental.ClienteGCS, "sube", $techn="", $tags="", $link="")
+Rel(Volarte.GestorDocumental.ClienteGCS, Volarte.DocumentosGCS, "", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

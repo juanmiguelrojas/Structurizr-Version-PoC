@@ -1,0 +1,39 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Gestor Documental — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    75[("<div style='font-weight: bold'>Cloud SQL (PostgreSQL)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Database]</div><div style='font-size: 80%; margin-top:10px'>Usuarios · Roles · Registry</div>")]
+    style 75 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    92["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado. Retención<br />según política vigente.<br />Recuperable por operación y<br />cliente.</div>"]
+    style 92 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    114["<div style='font-weight: bold'>Cola de mensajeria</div><div style='font-size: 70%; margin-top: 0px'>[Container: Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry+DLQ), operacion-cerrada<br />(fan-out a 3 suscriptores),<br />tracking-eventos (ingesta<br />asíncrona de alta<br />frecuencia).</div>"]
+    style 114 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 85 ["Gestor Documental"]
+      style 85 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      86["<div style='font-weight: bold'>Asignador de Numeración</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Numeración secuencial, única,<br />auditable.</div>"]
+      style 86 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      87["<div style='font-weight: bold'>Suscriptor Pub/Sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push endpoint]</div><div style='font-size: 80%; margin-top:10px'>Recibe el evento<br />operacion-cerrada. Retry +<br />DLQ.</div>"]
+      style 87 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      88["<div style='font-weight: bold'>Generador de Documento</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — ex S07]</div><div style='font-size: 80%; margin-top:10px'>Ensambla contenido: partes,<br />cantidades, firmas, datos de<br />la operación.</div>"]
+      style 88 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      89["<div style='font-weight: bold'>Motor de Plantillas</div><div style='font-size: 70%; margin-top: 0px'>[Component: PDF / AIDX XML]</div><div style='font-size: 80%; margin-top:10px'>Renderiza el formato final<br />según lo que el cliente<br />requiera.</div>"]
+      style 89 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      90["<div style='font-weight: bold'>Publicador</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — HU-055]</div><div style='font-size: 80%; margin-top:10px'>Idempotente: un reintento no<br />genera un segundo documento.<br />Retorna ID inmutable.</div>"]
+      style 90 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      91["<div style='font-weight: bold'>Cliente GCS</div><div style='font-size: 70%; margin-top: 0px'>[Component: Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Sube el documento final al<br />bucket.</div>"]
+      style 91 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    114-. "<div>recibe evento</div><div style='font-size: 70%'></div>" .->87
+    87-. "<div>genera</div><div style='font-size: 70%'></div>" .->88
+    88-. "<div>renderiza</div><div style='font-size: 70%'></div>" .->89
+    88-. "<div>asigna número</div><div style='font-size: 70%'></div>" .->86
+    86-. "<div>persiste número</div><div style='font-size: 70%'></div>" .->75
+    89-. "<div>publica</div><div style='font-size: 70%'></div>" .->90
+    90-. "<div>sube</div><div style='font-size: 70%'></div>" .->91
+    91-. "<div></div><div style='font-size: 70%'></div>" .->92
+  end

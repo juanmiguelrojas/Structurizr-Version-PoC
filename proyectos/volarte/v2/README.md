@@ -1,6 +1,8 @@
-# Arquitectura Volarte · v2 (en revisión)
+# Arquitectura Volarte · v2 (reemplazada)
 
-- **Estado:** 🟠 en-revision · **Fecha:** 2026-10-09 · **Basada en:** [`v1`](../v1/) · **Bitácora:** `AAC-20261009-01`
+> ⚪ **Versión congelada.** Reemplazada por [v3](../v3/) (réplica fiel del Draw.io: colores por página y personas con silueta). Se conserva sin cambios como evidencia (regla R6).
+
+- **Estado:** ⚪ reemplazada por `v3` · **Fecha:** 2026-10-09 · **Basada en:** [`v1`](../v1/) · **Bitácora:** `AAC-20261009-01`
 - **Especificación:** [`docs/generated/Arquitectura_Volarte_v2_Architecture_Specification.pdf`](docs/generated/Arquitectura_Volarte_v2_Architecture_Specification.pdf)
 - **Reporte de compilación:** [`docs/generated/BUILD_REPORT.md`](docs/generated/BUILD_REPORT.md) ·
   **Agente Revisor:** [`docs/generated/review/review-report.md`](docs/generated/review/review-report.md)

@@ -1,0 +1,35 @@
+@startuml
+set separator none
+title L3 · Svc Comercial — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(PriceProviderexterno, "PriceProvider externo", $descr="Fuente de precio — P-072 PENDING", $tags="", $link="")
+Container(Volarte.BFFBackendVolarte, "BFF — Backend Volarte", $techn="FastAPI · Cloud Run", $descr="Valida JWT (issuer/audience) Resuelve GroupToRoleMapping → Role/Permission/Capability Orquesta servicios de dominio Auto-scaling · Pay-per-use", $tags="", $link="")
+ContainerQueue(Volarte.Colademensajeria, "Cola de mensajeria", $techn="Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry+DLQ), operacion-cerrada (fan-out a 3 suscriptores), tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcComercial_boundary", "Svc: Comercial", $tags="") {
+  Component(Volarte.SvcComercial.APIRouter, "API Router", $techn="FastAPI", $descr="/roles · /permissions · /mapping · /audit", $tags="", $link="")
+  Component(Volarte.SvcComercial.Clientedebasededatos, "Cliente de base de datos", $techn="SQLAlchemy", $descr="Estado dinámico, persistencia.", $tags="", $link="")
+  Component(Volarte.SvcComercial.Suscriptoroperacioncerrada, "Suscriptor operacion-cerrada", $techn="Pub/Sub push", $descr="Actualiza saldo/crédito tras cada cierre de operación.", $tags="", $link="")
+  Component(Volarte.SvcComercial.ServiciodeCréditoDisponible, "Servicio de Crédito Disponible", $techn="Python — S04", $descr="Calcula crédito disponible según saldo y órdenes abiertas.", $tags="", $link="")
+  Component(Volarte.SvcComercial.MotordeElegibilidad, "Motor de Elegibilidad", $techn="Python — S04/HU-128", $descr="Cliente activo, acuerdo vigente, negociación existente (S02 → S04).", $tags="", $link="")
+  Component(Volarte.SvcComercial.ResolutorPriceProvider, "Resolutor PriceProvider", $techn="Python — P-072 PENDING", $descr="No inventa fuente de precio; delega a la autoridad cuando se confirme.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.MotordeElegibilidad, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.ResolutorPriceProvider, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.APIRouter, Volarte.SvcComercial.ServiciodeCréditoDisponible, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.ResolutorPriceProvider, PriceProviderexterno, "consulta (cuando se confirme)", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.SvcComercial.Suscriptoroperacioncerrada, "recibe evento", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.Suscriptoroperacioncerrada, Volarte.SvcComercial.ServiciodeCréditoDisponible, "actualiza", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.ServiciodeCréditoDisponible, Volarte.SvcComercial.Clientedebasededatos, "persiste", $techn="", $tags="", $link="")
+Rel(Volarte.SvcComercial.Clientedebasededatos, Volarte.BFFBackendVolarte, "consultado por", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

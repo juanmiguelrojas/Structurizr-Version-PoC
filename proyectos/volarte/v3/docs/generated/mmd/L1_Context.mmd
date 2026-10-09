@@ -1,0 +1,41 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L1 · Context — Diagrama de contexto"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>Empleado Interno</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario corporativo que<br />accede a la wiki, lanza web<br />apps y navega a portales<br />externos desde un único punto<br />de entrada</div>"]
+    style 1 fill:#083f75,stroke:#052e57,color:#ffffff
+    11["<div style='font-weight: bold'>EntraID / CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo. SSO · MFA ·<br />RBAC. Transversal al hub</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    19[("<div style='font-weight: bold'>Datalake</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Repositorio analítico y<br />estructurado de datos<br />tabulares. Recibe información<br />transformada por los ETL.</div>")]
+    style 19 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    2["<div style='font-weight: bold'>Usuario externo</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario que no esta dentro<br />del tenant de terpel</div>"]
+    style 2 fill:#6c6477,stroke:#4d4756,color:#ffffff
+    26["<div style='font-weight: bold'>Google Cloud Platform</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Cloud Run · Cloud SQL ·<br />Firestore GCS · BigQuery ·<br />Secret Manager Cloudflare CDN<br />/ WAF</div>"]
+    style 26 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    27["<div style='font-weight: bold'>+ Sistemas Externos Futuros</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>SAP · SALESFORCE · COUPA o<br />cualquier sistema<br />transaccional que necesite el<br />portal</div>"]
+    style 27 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    28["<div style='font-weight: bold'>+ Webapps Externos Futuros</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>sistemas o cualquier portal<br />que acepte federación SAML<br />2.0 / OIDC o comunicacion API<br />REST</div>"]
+    style 28 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    29["<div style='font-weight: bold'>CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestiona la identidad y<br />acceso de usuarios externos,<br />proporcionando autenticación,<br />autorización, registro de<br />usuarios y gestión del ciclo<br />de vida de identidades.</div>"]
+    style 29 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    30["<div style='font-weight: bold'>Capacidades Transversales</div><div style='font-size: 70%; margin-top: 0px'>[Nota]</div><div style='font-size: 80%; margin-top:10px'>Aplicables a todos los<br />portales del ecosistema. •<br />Seguridad: OAuth2/OIDC ·<br />RBAC/ABAC · Zero Trust •<br />Observabilidad: Logs ·<br />Tracing · Métricas · SLOs •<br />Resiliencia: Circuit Breaker<br />· Retry · Timeout •<br />Escalabilidad: Auto-scaling ·<br />Event-driven • Gobernanza:<br />API versioning · Data<br />contracts · ADRs</div>"]
+    style 30 fill:#dddddd,stroke:#9a9a9a,color:#ffffff
+    34["<div style='font-weight: bold'>Portal</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Portal interno/externo<br />corporativo con: • Wiki de<br />conocimiento • Catálogo de<br />Web Apps • SSO federado a<br />portales externos • Shell +<br />módulos independientes</div>"]
+    style 34 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    4["<div style='font-weight: bold'>Admin / Dev Team</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Gestiona módulos, publica web<br />apps, administra permisos,<br />monitorea uso y registra<br />nuevas herramientas</div>"]
+    style 4 fill:#083f75,stroke:#052e57,color:#ffffff
+
+    4-. "<div>Administra módulos y permisos</div><div style='font-size: 70%'></div>" .->34
+    34-. "<div>Delega autenticación</div><div style='font-size: 70%'>[OIDC / OAuth 2.0]</div>" .->11
+    34-. "<div>Consulta / Actualiza REST API</div><div style='font-size: 70%'></div>" .->27
+    34-. "<div>Desplegado en GCP</div><div style='font-size: 70%'>[Cloud Run · SQL · GCS · BigQuery]</div>" .->26
+    34-. "<div>Federa sesión (SSO seamless)</div><div style='font-size: 70%'>[SAML 2.0 / OIDC token exchange]</div>" .->28
+    27-. "<div>Todos los portales cumplen<br />con</div><div style='font-size: 70%'></div>" .->30
+    28-. "<div>Todos los portales cumplen<br />con</div><div style='font-size: 70%'></div>" .->30
+    2-. "<div>Accede al portal (HTTPS)<br />Navega wiki, lanza apps,<br />federa</div><div style='font-size: 70%'></div>" .->34
+    34-. "<div>Delega autenticación</div><div style='font-size: 70%'>[OIDC / OAuth 2.0]</div>" .->29
+    34-. "<div>Fuente de datos/ Entrega de<br />data</div><div style='font-size: 70%'></div>" .->19
+    1-. "<div>Accede al portal SSO (HTTPS)<br />Navega wiki, lanza apps,<br />federa</div><div style='font-size: 70%'></div>" .->34
+  end
