@@ -1,7 +1,7 @@
 # Reporte del Agente Revisor de Arquitectura · proyectos/volarte/v3
 
 - **Resultado:** ✅ APROBADO
-- **Fecha (UTC):** 2026-10-09 01:48:09
+- **Fecha (UTC):** 2026-10-13 00:40:50
 - **Elementos analizados:** 140 · **Relaciones explícitas:** 191
 - **Hallazgos:** 0 errores · 40 advertencias · 4 informativos
 
@@ -63,7 +63,7 @@
 | 38 | WARN | R7-Leyenda C4 | SAP ERP | Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance. | Si está fuera del alcance del proyecto, agregue el tag "External Software System". |
 | 39 | WARN | R7-Leyenda C4 | Secret Manager | Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance. | Si está fuera del alcance del proyecto, agregue el tag "External Software System". |
 | 40 | WARN | R7-Leyenda C4 | ZTNA | Sistema sin contenedores y sin el tag 'External Software System': se mostrará como sistema en alcance. | Si está fuera del alcance del proyecto, agregue el tag "External Software System". |
-| 41 | INFO | R4-Trazabilidad | proyectos/volarte/CHANGELOG_DSL.md | Sin cambios en proyectos/volarte/v3/dsl/ para este diff. |  |
+| 41 | INFO | R4-Trazabilidad | proyectos/volarte/CHANGELOG_DSL.md | Regla de trazabilidad omitida (--skip-traceability). |  |
 | 42 | INFO | R5-Decisión Pendiente | PriceProvider externo | Elemento marcado como decisión PENDING. | Cierre la decisión con un ADR (Accepted) y retire el tag Pending. |
 | 43 | INFO | R5-Decisión Pendiente | Volarte › Svc: Asignación / Optimización | Elemento marcado como decisión PENDING. | Cierre la decisión con un ADR (Accepted) y retire el tag Pending. |
 | 44 | INFO | R9-Fidelidad Draw.io | proyectos/volarte/v3 | 13 vistas · elementos 182/182 · conectores 190/190 · fidelidad mínima 100.0% · 30 textos de presentación (alias) · 3 anotaciones sin relación de modelo. |  |

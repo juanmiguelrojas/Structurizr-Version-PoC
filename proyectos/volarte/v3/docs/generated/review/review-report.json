@@ -1,7 +1,7 @@
 {
   "stats": {
     "version_dir": "proyectos/volarte/v3",
-    "generated_at": "2026-10-09 01:48:09",
+    "generated_at": "2026-10-13 00:40:50",
     "elements": 140,
     "explicit_relationships": 191,
     "counts": {
@@ -295,7 +295,7 @@
       "rule": "R4-Trazabilidad",
       "severity": "INFO",
       "element": "proyectos/volarte/CHANGELOG_DSL.md",
-      "message": "Sin cambios en proyectos/volarte/v3/dsl/ para este diff.",
+      "message": "Regla de trazabilidad omitida (--skip-traceability).",
       "recommendation": ""
     },
     {
