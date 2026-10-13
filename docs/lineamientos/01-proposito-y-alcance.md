@@ -15,7 +15,8 @@ Su objetivo es que, para cada proyecto, cualquier persona pueda responder con ev
 | ¿**Por qué** se decidió así? | ADRs de cada versión (`docs/adr/`) y campo *Contexto & Justificación* de la bitácora |
 | ¿**Quién** lo cambió, cuándo y por qué ticket? | Bitácora (autor, fecha UTC/COT, HU/Jira) + historial Git + PR |
 | ¿Qué **tecnologías** y protocolos se usan? | `docs/workspace/` de la versión, fichas técnicas y catálogo de tecnologías del PDF |
-| ¿Fue **revisado y aprobado**? | `version.json` (estado, aprobadores), PR aprobado, reporte del Agente Revisor |
+| ¿Fue **revisado y aprobado**? | `version.json` (estado, aprobadores), PR aprobado, `REVISION.md`, reporte del Agente Revisor |
+| ¿Coincide con el **diagrama aprobado** (Draw.io)? | Informe de fidelidad (R9) y página de referencia Draw.io junto a cada vista del PDF |
 | ¿Cumple los **estándares**? | Agente Revisor (reglas R1–R8) ejecutado en cada PR |
 
 ## Principios
@@ -54,8 +55,9 @@ ni documentación funcional de negocio (solo se referencia por HU / Jira).
 │       └── v<N>/
 │           ├── version.json          # Metadatos y estado de la versión
 │           ├── README.md             # Notas de la versión
-│           ├── fuente/               # (opcional) insumos originales
-│           ├── dsl/                  # Modelo Structurizr DSL
+│           ├── REVISION.md           # Comentarios de validación REV-NN de la versión
+│           ├── fuente/               # (opcional) insumos originales, inventario y trazabilidad Draw.io
+│           ├── dsl/                  # Modelo Structurizr DSL (+ layout/ si replica un Draw.io)
 │           └── docs/{adr,workspace,generated}/
 ├── scripts/                          # aac-build, Agente Revisor, render, versionamiento
 └── .github/                          # Pipeline CI/CD, plantilla de PR, CODEOWNERS
@@ -65,4 +67,4 @@ ni documentación funcional de negocio (solo se referencia por HU / Jira).
 
 | Proyecto | Versión vigente | Estado | Carpeta |
 |---|---|---|---|
-| Arquitectura Volarte | v2 | en-revision | [`proyectos/volarte`](../../proyectos/volarte/) |
+| Arquitectura Volarte | v3 | en-revision | [`proyectos/volarte`](../../proyectos/volarte/) |

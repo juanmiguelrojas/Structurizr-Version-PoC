@@ -1,0 +1,21 @@
+{
+  "proyecto": "volarte",
+  "nombre": "Arquitectura Volarte",
+  "version": "v3",
+  "estado": "en-revision",
+  "fecha": "2026-10-09",
+  "basadaEn": "v2",
+  "reemplazadaPor": null,
+  "autores": ["Juan Miguel Rojas (@juanmiguelrojas)"],
+  "aprobadores": [],
+  "fuente": "../v1/fuente/Arquitectura_volarte_1.drawio",
+  "workspace": "dsl/workspace.dsl",
+  "render": "c4-drawio",
+  "fidelidad": {
+    "fuente": "../v1/fuente/Arquitectura_volarte_1.drawio",
+    "mapeo": "fuente/mapeo-drawio.json",
+    "importador": "scripts/drawio2structurizr.py"
+  },
+  "changelog": ["AAC-20261009-02"],
+  "descripcion": "Réplica fiel del Draw.io (13 páginas → 13 vistas): mismos elementos, textos, colores por página según la leyenda C4, personas con silueta de actor, boundaries, conectores y disposición. Modelo C4 deduplicado y trazable a cada forma del Draw.io; fidelidad validada automáticamente (R9) y decisiones documentadas en REVISION.md."
+}

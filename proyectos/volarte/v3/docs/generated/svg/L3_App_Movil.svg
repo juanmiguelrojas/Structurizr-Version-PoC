@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1426" viewBox="-10 10 1220 1426" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="-10" y="10" width="1220" height="1426" fill="#ffffff"/>
+<rect x="20" y="40" width="1160" height="1090" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="30" y="1037.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Componente</text><text x="30" y="1051.25" font-size="11"  fill="#333333">[Volarte</text><text x="30" y="1065" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="30" y="1078.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="30" y="1092.5" font-size="11"  fill="#333333">Version: 1</text><text x="30" y="1106.25" font-size="11"  fill="#333333">Fase: I</text><text x="30" y="1120" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="260" y="370" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+
+<path d="M1040,410 L1040,240" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M567.04,280.96000000000004 L567.04,315.48 Q567.04,325.48 557.04,325.48 L390,325.48 Q380,325.48 380,335.48 L380,370" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M260,430 L170,430 Q160,430 160,420 L160,350 Q160,340 170,340 L330,340 Q340,340 340,330 L340,190 Q340,180 330,180 L215,180 Q210,180 210,185 L210,190" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M655.12,283.96 L655.12,349.54 Q655.12,356.98 662.56,356.98 L662.56,356.98 Q670,356.98 670,364.42 L670,430" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M790.96,505.96000000000004 L795.48,505.98 Q800,506 800,510.52004424757104 L800,560 Q800,570 790,570 L530,570 Q520,570 520,580 L520,640 Q520,650 530,650 L550,650" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M881.2,203.51999999999998 L845.6,203.51999999999998 Q835.6,203.51999999999998 835.6,213.51999999999998 L835.6,450 Q835.6,460 825.6,460 L790,460" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M920,440 L865,440 Q855,440 855,450 L855,610 Q855,620 845,620 L790,620" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M670,710 L670,750" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M546.16,816.84 L555.9150010663253,816.8329515888249 Q560,816.83 560,820.915 L560,820.915 Q560,825 560,829.085 L560,872.5 Q560,882.5 550,882.5 L420,882.5 Q410,882.5 410,892.5 L410,940" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M290,1010 L297.5,1010 Q305,1010 305,1002.5 L305,837.5 Q305,830 312.5,830 L320,830" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M790,650 L910,650" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M790,680 L840,680 Q850,680 850,690 L850,990 Q850,1000 860,1000 L910,1000" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1030,940 L1030,740" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M550,520 L260,520 Q250,520 250,530 L250,580" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<rect x="260" y="370" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="380" y="401.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Modulo de Autenticacion</text>
+<text x="380" y="417.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: MSAL.js]</text>
+<text x="380" y="443.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Flujo OAuth2 Authorization</text>
+<text x="380" y="457.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">Code + PKCE. Token en</text>
+<text x="380" y="470.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">memoria (no localStorage).</text>
+<rect x="490" y="160" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="610" y="191.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Navegación</text>
+<text x="610" y="207.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: React Navigation]</text>
+<text x="610" y="233.896" font-size="11"  fill="#ffffff" text-anchor="middle">Pantallas del operario:</text>
+<text x="610" y="247.09599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">turnos, checklist, PQDA,</text>
+<text x="610" y="260.296" font-size="11"  fill="#ffffff" text-anchor="middle">firma, historial.</text>
+<rect x="550" y="430" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="670" y="461.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Base de Datos local</text>
+<text x="670" y="477.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: WatermelonDB (SQLite)]</text>
+<text x="670" y="503.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Réplica funcional: turnos,</text>
+<text x="670" y="517.096" font-size="11"  fill="#ffffff" text-anchor="middle">operaciones, catálogos.</text>
+<text x="670" y="530.296" font-size="11"  fill="#ffffff" text-anchor="middle">Fuente de verdad offline.</text>
+<rect x="550" y="590" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="670" y="621.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Motor de Sincronización</text>
+<text x="670" y="637.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Cola + UUID]</text>
+<text x="670" y="663.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Cola de escritura local.</text>
+<text x="670" y="677.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Delta pull / push al</text>
+<text x="670" y="690.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">reconectar. Aplica HU-050.</text>
+<rect x="550" y="750" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="670" y="781.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cliente API</text>
+<text x="670" y="797.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Fetch + Resumable Upload]</text>
+<text x="670" y="823.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Sube cola pendiente,</text>
+<text x="670" y="837.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">descarga delta, sube</text>
+<text x="670" y="850.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">media con reanudación.</text>
+<rect x="880" y="120" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1000" y="151.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Captura de Evidencia</text>
+<text x="1000" y="167.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Cámara + canvas Tactil]</text>
+<text x="1000" y="193.896" font-size="11"  fill="#ffffff" text-anchor="middle">Fotos PQDA/checklist y</text>
+<text x="1000" y="207.09599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">firma. Guardado en</text>
+<text x="1000" y="220.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">filesystem local primero.</text>
+<rect x="920" y="410" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1040" y="441.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Disparador de Sync</text>
+<text x="1040" y="457.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Netinfo listener]</text>
+<text x="1040" y="483.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Detecta reconexión y</text>
+<text x="1040" y="497.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">dispara el Motor de</text>
+<text x="1040" y="510.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">Sincronización.</text>
+<rect x="80" y="770" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="200" y="808.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">BFF Móvil</text>
+<text x="200" y="823.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Software System]</text>
+<text x="200" y="850.4960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Vía Netskope/ZTNA (fuera de este</text>
+<text x="200" y="863.6960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">contenedor)</text>
+<rect x="90" y="190" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="210" y="234.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">EntraID</text>
+<text x="210" y="250.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Software System]</text>
+<text x="210" y="277.096" font-size="11"  fill="#cccccc" text-anchor="middle">Login SSO (solo Entra ID)</text>
+<rect x="290" y="940" width="240" height="140" rx="8.4" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="410" y="961.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Netskope Client (ZTNA)</text>
+<text x="410" y="977.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Netskope Agent]</text>
+<text x="410" y="1004.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Agente ZTNA embebido/</text>
+<text x="410" y="1017.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">perfil de dispositivo.</text>
+<text x="410" y="1030.496" font-size="11"  fill="#ffffff" text-anchor="middle">Verifica posture (Intune)</text>
+<text x="410" y="1043.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">antes de habilitar túnel</text>
+<text x="410" y="1056.8960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">hacia BFF Móvil. Sin esto</text>
+<text x="410" y="1070.0960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">no hay salida de red.</text>
+<rect x="130" y="580" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="250" y="596.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cifrado Local en Reposo</text>
+<text x="250" y="612.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: SQLCipher + Android</text>
+<text x="250" y="626.832" font-size="12"  fill="#ffffff" text-anchor="middle">Keystore]</text>
+<text x="250" y="653.4960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Cifra la Base de Datos local (WatermelonDB).</text>
+<text x="250" y="666.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Clave derivada del hardware del dispositivo,</text>
+<text x="250" y="679.8960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">no exportable. Protege datos operacionales si</text>
+<text x="250" y="693.0960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">el</text>
+<text x="250" y="706.2960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">dispositivo se pierde o es robado</text>
+<rect x="910" y="620" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1030" y="636.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Gestor de Estados de</text>
+<text x="1030" y="656.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Sincronización</text>
+<text x="1030" y="671.6320000000001" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: State Machine (local)]</text>
+<text x="1030" y="698.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Por cada ítem de la cola: PENDIENTE →</text>
+<text x="1030" y="711.4960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">ENVIANDO → CONFIRMADO | CONFLICTO |</text>
+<text x="1030" y="724.6960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">ERROR. Reintento con backoff exponencial</text>
+<text x="1030" y="737.8960000000003" font-size="11"  fill="#ffffff" text-anchor="middle">(base 5s, máx 5 min)</text>
+<rect x="910" y="940" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1030" y="965.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Component name</text>
+<text x="1030" y="980.6320000000001" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Kotlin/TS — reglas locales]</text>
+<text x="1030" y="1007.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Detecta antes de reenviar: turno reasignado,</text>
+<text x="1030" y="1020.4960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">recurso bloqueado, catálogo desactualizado.</text>
+<text x="1030" y="1033.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Marca CONFLICTO_LOCAL, no descarta el</text>
+<text x="1030" y="1046.8960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">dato (hecho físico) y espera resolución.</text>
+<rect x="465.07078125" y="319.68" width="16.8984375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="473.52" y="327.28000000000003" font-size="8" fill="#7C2D12" text-anchor="middle">usa</text>
+<rect x="258.09375" y="334.2" width="93.8125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="305" y="341.8" font-size="8" fill="#4D4D4D" text-anchor="middle">login SSO (solo Entra ID)</text>
+<rect x="641.21625" y="351.18" width="42.6875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="662.56" y="358.78000000000003" font-size="8" fill="#7C2D12" text-anchor="middle">lee/escribe</text>
+<rect x="613.498559872571" y="564.2" width="56.04296875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="641.520044247571" y="571.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">cola pendiente</text>
+<rect x="801.80703125" y="325.96" width="67.5859375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="835.6" y="333.56" font-size="8" fill="#831843" text-anchor="middle">referencia archivo</text>
+<rect x="830.544921875" y="524.2" width="48.91015625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="855" y="531.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">dispara sync</text>
+<rect x="644.876953125" y="724.2" width="50.24609375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="670" y="731.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">al reconectar</text>
+<rect x="471.32922055635817" y="876.7" width="49.3515625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="496.00500180635817" y="884.3000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">sync (online)</text>
+<rect x="278.5546875" y="914.2" width="52.890625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="305" y="921.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">ZTNA / mTLS</text>
+<rect x="812.71484375" y="639.4" width="74.5703125" height="21.2" fill="#ffffff" opacity="0.92"/>
+<text x="850" y="647" font-size="8" fill="#7C2D12" text-anchor="middle">actualiza estado /</text>
+<text x="850" y="656.6" font-size="8" fill="#7C2D12" text-anchor="middle">backoff exponencial</text>
+<rect x="809.755859375" y="834.2" width="80.48828125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="850" y="841.8000000000001" font-size="8" fill="#7C2D12" text-anchor="middle">detecta conflicto local</text>
+<rect x="971.294921875" y="834.2" width="117.41015625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1030" y="841.8000000000001" font-size="8" fill="#4D4D4D" text-anchor="middle">bloquea reintento hasta revisión</text>
+<rect x="341.541015625" y="514.2" width="56.91796875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="370" y="521.8000000000001" font-size="8" fill="#831843" text-anchor="middle">cifra en reposo</text>
+<text x="940" y="1212" font-size="16" font-weight="bold" fill="#4D4D4D">Legend</text>
+<rect x="940" y="1224" width="260" height="30" fill="#083F75"/>
+<text x="950" y="1244" font-size="13" fill="#ffffff">Person</text>
+<rect x="940" y="1254" width="260" height="30" fill="#1061B0"/>
+<text x="950" y="1274" font-size="13" fill="#ffffff">Software System</text>
+<rect x="940" y="1284" width="260" height="30" fill="#23A2D9"/>
+<text x="950" y="1304" font-size="13" fill="#ffffff">Container</text>
+<rect x="940" y="1314" width="260" height="30" fill="#63BEF2"/>
+<text x="950" y="1334" font-size="13" fill="#ffffff">Component</text>
+<rect x="940" y="1344" width="260" height="30" fill="#6C6477"/>
+<text x="950" y="1364" font-size="13" fill="#ffffff">External Person</text>
+<rect x="940" y="1374" width="260" height="30" fill="#8C8496"/>
+<text x="950" y="1394" font-size="13" fill="#ffffff">External Software System</text>
+<text x="0" y="1427" font-size="11" fill="#9CA3AF">Arquitectura Volarte v3 · Structurizr · vista L3_App_Movil · fuente Draw.io: 'L3 · App Movil'</text>
+</svg>

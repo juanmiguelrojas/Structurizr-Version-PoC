@@ -1,0 +1,46 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Pub-Sub — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    66("<div style='font-weight: bold'>BFF — Backend Volarte</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Valida JWT (issuer/audience)<br />Resuelve GroupToRoleMapping →<br />Role/Permission/Capability<br />Orquesta servicios de dominio<br />Auto-scaling · Pay-per-use</div>")
+    style 66 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    85("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación. Retorna ID<br />inmutable vinculado. Cola +<br />reintento, sin duplicar<br />(HU-055). S07: contenido y<br />numeración del documento<br />canónico. El Gestor<br />Documental solo lo publica.</div>")
+    style 85 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    99("<div style='font-weight: bold'>Svc: Comercial</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S04: elegibilidad, precio<br />(PriceProvider), crédito<br />disponible.</div>")
+    style 99 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    106("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición, inventario calidad.</div>")
+    style 106 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    133("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor: App móvil<br />(operarios), única.<br />Respuestas ultra-livianas,<br />vistas exclusivas de<br />operación en campo — no<br />comparte payloads con BFF<br />Web. Resuelve sync offline:<br />delta + cola.</div>")
+    style 133 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 114 ["Cola de mensajeria"]
+      style 114 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      115["<div style='font-weight: bold'>Dead Letter Topic</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub DLQ]</div><div style='font-size: 80%; margin-top:10px'>Mensajes que agotaron<br />reintentos. Requiere revisión<br />manual.</div>"]
+      style 115 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      116["<div style='font-weight: bold'>Sub: comercial-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Actualiza saldo/crédito tras<br />el cierre.</div>"]
+      style 116 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      117["<div style='font-weight: bold'>Topic: operacion-cerrada</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Se dispara al cerrar una<br />operación en campo.</div>"]
+      style 117 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      118["<div style='font-weight: bold'>Sub: gestor-documental-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Dispara generación y<br />publicación del documento<br />(HU-055).</div>"]
+      style 118 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      119["<div style='font-weight: bold'>Topic: conciliacion-resuelta</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Topic]</div><div style='font-size: 80%; margin-top:10px'>Se publica cuando un<br />supervisor resuelve desde la<br />Web una operación<br />PENDING_REVIEW (HU-050):<br />confirmar o anular.</div>"]
+      style 119 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      120["<div style='font-weight: bold'>Sub: operacion-conciliacion-sub</div><div style='font-size: 70%; margin-top: 0px'>[Component: Push · retry + DLQ]</div><div style='font-size: 80%; margin-top:10px'>Aplica la resolución<br />(finaliza o anula) sobre la<br />operación en Tablas:<br />operacionales.</div>"]
+      style 120 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    133-. "<div>publica</div><div style='font-size: 70%'></div>" .->117
+    117-. "<div>entrega</div><div style='font-size: 70%'></div>" .->118
+    117-. "<div>entrega</div><div style='font-size: 70%'></div>" .->116
+    118-. "<div>dispara</div><div style='font-size: 70%'></div>" .->85
+    116-. "<div>dispara</div><div style='font-size: 70%'></div>" .->99
+    118-. "<div>tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'></div>" .->115
+    116-. "<div>tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'></div>" .->115
+    66-. "<div>publica (supervisor resuelve)</div><div style='font-size: 70%'></div>" .->119
+    119-. "<div>entrega</div><div style='font-size: 70%'></div>" .->120
+    120-. "<div>finaliza / anula operación<br />pendiente</div><div style='font-size: 70%'></div>" .->106
+    120-. "<div>tras 5 reintentos (backoff<br />10s-600s)</div><div style='font-size: 70%'></div>" .->115
+  end

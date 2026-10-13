@@ -1,0 +1,35 @@
+@startuml
+set separator none
+title L3 · Svc Usuarios / Auth — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+System(EntraIDCIAM, "EntraID / CIAM", $descr="Proveedor de identidad corporativo. SSO · MFA · RBAC. Transversal al hub", $tags="", $link="")
+ContainerDb(Volarte.Memorystore, "Memorystore", $techn="Cache", $descr="Sesiones · Tokens · Queries", $tags="", $link="")
+ContainerDb(Volarte.CloudSQLPostgreSQL, "Cloud SQL (PostgreSQL)", $techn="Database", $descr="Usuarios · Roles · Registry", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcUsuariosAuth_boundary", "Svc: Usuarios / Auth", $tags="") {
+  Component(Volarte.SvcUsuariosAuth.APIRouter, "API Router", $techn="FastAPI", $descr="/roles · /permissions · /mapping · /audit", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, "Resolver GroupToRoleMapping", $techn="Python", $descr="Deriva rol efectivo desde grupo(s) de Entra ID. RN-007/RN-008.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.AdaptadordesincronizaciónEntraID, "Adaptador de sincronización Entra ID", $techn="Microsoft Graph API", $descr="Consulta pertenencia a grupos cuando el claim 'groups' se trunca.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.InvalidadordeCache, "Invalidador de Cache", $techn="Python", $descr="Notifica a Redis cuando cambia un rol — no espera al TTL.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.ClienteCloudSQL, "Cliente Cloud SQL", $techn="SQLAlchemy", $descr="Acceso a datos de usuarios/roles/mapping.", $tags="", $link="")
+  Component(Volarte.SvcUsuariosAuth.Auditor, "Auditor", $techn="Python", $descr="Registra toda decisión de autorización, concedida o denegada.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcUsuariosAuth.APIRouter, Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, "resuelve", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, Volarte.SvcUsuariosAuth.AdaptadordesincronizaciónEntraID, "consulta grupos", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.AdaptadordesincronizaciónEntraID, EntraIDCIAM, "sincroniza", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ResolverGroupToRoleMapping, Volarte.SvcUsuariosAuth.Auditor, "registra", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.Auditor, Volarte.SvcUsuariosAuth.InvalidadordeCache, "invalida en cambio de rol", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.InvalidadordeCache, Volarte.Memorystore, "notifica", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.Auditor, Volarte.SvcUsuariosAuth.ClienteCloudSQL, "persiste", $techn="", $tags="", $link="")
+Rel(Volarte.SvcUsuariosAuth.ClienteCloudSQL, Volarte.CloudSQLPostgreSQL, "lee/escribe", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

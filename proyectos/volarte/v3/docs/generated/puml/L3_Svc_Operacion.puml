@@ -1,0 +1,34 @@
+@startuml
+set separator none
+title L3 · Svc Operación — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+Container(Volarte.SvcDatosMaestros, "Svc: Datos Maestros", $techn="FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile...", $tags="", $link="")
+ContainerQueue(Volarte.Colademensajeria, "Cola de mensajeria", $techn="Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry+DLQ), operacion-cerrada (fan-out a 3 suscriptores), tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+
+Container_Boundary("Volarte.SvcOperación_boundary", "Svc: Operación", $tags="") {
+  Component(Volarte.SvcOperación.APIRouter, "API Router", $techn="FastAPI", $descr="/roles · /permissions · /mapping · /audit", $tags="", $link="")
+  Component(Volarte.SvcOperación.RastreadordePosición, "Rastreador de Posición", $techn="Python — HU-044/HU-145", $descr="Determina posición del equipo vs. geocerca de Datos Maestros.", $tags="", $link="")
+  Component(Volarte.SvcOperación.InventariodeCalidad, "Inventario de Calidad", $techn="Python — IR-06 reservada", $descr="Decremento de insumos (pastillas PQDA) por prueba ejecutada.", $tags="", $link="")
+  Component(Volarte.SvcOperación.Clientedebasededatos, "Cliente de base de datos", $techn="SQLAlchemy", $descr="Estado dinámico, persistencia.", $tags="", $link="")
+  Component(Volarte.SvcOperación.GestordeTurnos, "Gestor de Turnos", $techn="Python — S05/S08 HU-056", $descr="Ventana de inicio, autorización de excepción por supervisor.", $tags="", $link="")
+  Component(Volarte.SvcOperación.SuscriptordeTracking, "Suscriptor de Tracking", $techn="Pub/Sub push", $descr="Procesa eventos de tracking entrantes, si el topic está activo.", $tags="", $link="")
+}
+
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.GestordeTurnos, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.RastreadordePosición, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.APIRouter, Volarte.SvcOperación.InventariodeCalidad, "enruta", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.RastreadordePosición, Volarte.SvcDatosMaestros, "consulta geocerca", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.SvcOperación.SuscriptordeTracking, "recibe eventos", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.SuscriptordeTracking, Volarte.SvcOperación.RastreadordePosición, "actualiza", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.GestordeTurnos, Volarte.SvcOperación.Clientedebasededatos, "persiste", $techn="", $tags="", $link="")
+Rel(Volarte.SvcOperación.InventariodeCalidad, Volarte.SvcOperación.Clientedebasededatos, "persiste", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

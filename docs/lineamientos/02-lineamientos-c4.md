@@ -85,7 +85,18 @@ dsl/
 - La documentación de la versión se embebe con `!docs ../docs/workspace` y `!adrs ../docs/adr`.
 - `structurizr inspect` debe reportar 0 observaciones de severidad *error*.
 
-## 6. Consistencia entre niveles
+## 6. Presentación de vistas que replican un Draw.io
+
+Cuando una versión se importa de un Draw.io (`drawio2structurizr.py`), además del modelo existe `dsl/layout/<vista>.json`:
+
+- **Modelo**: una cosa real = un elemento (Entra ID existe una vez aunque aparezca en 6 páginas con nombres distintos).
+- **Presentación**: posición, boundaries, notas y, por cada forma, la clase de color y el texto que muestra esa página.
+- Se permiten *elementos de referencia* (`element`, tag del color de leyenda) solo para cajas del Draw.io que agrupan
+  varios elementos (p. ej. "BFF Web / BFF Móvil [Contenedores externos]").
+- Los conectores que en el Draw.io terminan en un boundary se expanden a relaciones reales o quedan como anotaciones
+  de presentación documentadas en `REVISION.md`.
+
+## 7. Consistencia entre niveles
 
 - Un contenedor de L2 que tenga vista L3 debe tener **todas** sus integraciones externas modeladas en sus componentes.
 - Los nombres de elementos son idénticos en todos los niveles (el modelo es único, no se duplica).

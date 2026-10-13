@@ -1,0 +1,211 @@
+ERROR  | workspace.scope                    | This workspace has no defined scope. It is recommended that the workspace scope is set to "Landscape" or "SoftwareSystem".
+ERROR  | workspace.scope                    | This workspace describes the internal details of 2 software systems. It is recommended that a workspace contains the model, views, and documentation for a single software system only.
+ERROR  | model.relationship.technology      | The relationship between the person "Empleado Interno" and the container "Portal.HUB Front" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Empleado Interno" and the container "Portal.App Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Empleado Interno" and the software system "Portal" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Empleado Interno" and the software system "Cloudflare" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Usuario externo" and the container "Portal.App Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Usuario externo" and the container "Portal.HUB Front" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Usuario externo" and the software system "Portal" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Usuario externo" and the software system "Cloudflare" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Operario de equipo abastecedor" and the container "Volarte.App móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the person "Admin  Dev Team" and the software system "Portal" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "ApiGee" and the software system "Proxy instance" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the software system "ApiGee" and the container "Volarte.Internal Load Balancer" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the software system "ApiGee" and the container "Volarte.Internal Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "ApiGee" and the component "Volarte.BFF — Backend Volarte.API Router  Controllers" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "ApiGee" and the component "Volarte.BFF Móvil.API Router  Controllers" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "External Regional Load Balancer" and the software system "Cloudflare" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "External Regional Load Balancer" and the software system "Firewall" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Firewall" and the software system "Internal Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Internal Load Balancer" and the software system "Proxy instance" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Internal Load Balancer" and the software system "Proxy instance" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Proxy instance" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Cloudflare" and the software system "Global Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "EntraID  CIAM" and the container "Portal.Svc: Usuarios  Auth" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "ZTNA" and the software system "Global Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "ZTNA" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Global Load Balancer" and the container "Portal.HUB Front" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Identity-Aware Proxy (IAP)" and the container "Portal.HUB Front" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Identity-Aware Proxy (IAP)" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Cloud KMS" and the container "Portal.Storage" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Secret Manager" and the software system "Cloud KMS" is missing a technology.
+ERROR  | model.element.disconnected         | The software system "Cloud Data Fusion" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.element.disconnected         | The software system "SalesForce" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.element.disconnected         | The software system "SAP ERP" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.element.disconnected         | The software system "ZENPUT" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.element.disconnected         | The software system "GuruSoft" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.relationship.technology      | The relationship between the software system "+ Sistemas Externos Futuros" and the nota "Capacidades Transversales" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "+ Webapps Externos Futuros" and the nota "Capacidades Transversales" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the contenedores externos "BFF Web  BFF Móvil" and the component "Volarte.Svc: Usuarios  Auth.API Router" is missing a technology.
+ERROR  | model.softwaresystem.documentation | The software system "Portal" has containers, but is missing documentation.
+ERROR  | model.softwaresystem.decisions     | The software system "Portal" has containers, but is missing decisions.
+ERROR  | model.relationship.technology      | The relationship between the software system "Portal" and the software system "+ Sistemas Externos Futuros" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the software system "Portal" and the software system "Datalake" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Cloud SQL (PostgreSQL)" and the software system "Cloud KMS" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Wiki" and the container "Portal.Database" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Wiki" and the container "Portal.Search" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Wiki" and the container "Portal.Storage" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Wiki" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Usuarios  Auth" and the container "Portal.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Usuarios  Auth" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web" and the container "Portal.Memorystore (Redis)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web" and the software system "Secret Manager" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the container "Portal.Backend — HUB Web" and the software system "Internal Load Balancer" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web" and the software system "Internal Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.HUB Front" and the container "Portal.Backend — HUB Web" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.HUB Front" and the software system "Identity-Aware Proxy (IAP)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.HUB Front" and the container "Portal.Portales Remote Modulo" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.HUB Front" and the container "Portal.Federation Bridge" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.HUB Front" and the software system "Dynatrace (Tenant Terpel)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Cloud Logging" and the container "Portal.Cloud Monitoring" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Portales Remote Modulo" and the container "Portal.Backend — HUB Web" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Portales Remote Modulo" and the container "Portal.Federation Bridge" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Federation Bridge" and the software system "+ Portales Externos Futuros" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Power BI Proxy" and the software system "Power BI Service" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Power BI Proxy" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the container "Portal.Backend — HUB Web (Móvil)" and the software system "Internal Load Balancer" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web (Móvil)" and the software system "Internal Load Balancer" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web (Móvil)" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Backend — HUB Web (Móvil)" and the container "Portal.Memorystore (Redis free)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Analitica" and the software system "Datalake" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Analitica" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Notificacion" and the container "Portal.Svc: Pagos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Svc: Pagos" and the container "Portal.Cola de mensajeria" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Cola de mensajeria" and the container "Portal.Svc: Notificacion" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the container "Portal.Cola de mensajeria" and the software system "Datalake" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.Cola de mensajeria" and the software system "Datalake" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.App Móvil" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.App Móvil" and the software system "Dynatrace (Tenant Terpel)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.App Móvil" and the container "Portal.Backend — HUB Web (Móvil)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Portal.OTel Collector" and the software system "Dynatrace (Tenant Terpel)" is missing a technology.
+ERROR  | model.element.disconnected         | The software system "Volarte" is disconnected - add a relationship to/from it, or consider removing it from the model.
+ERROR  | model.element.noview               | The software system named "Volarte" is not included on any views - add it to a view.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Frontend Web" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Frontend Web" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.App Shell  Router" and the component "Volarte.Frontend Web.Modulo de Autenticacion" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.App Shell  Router" and the component "Volarte.Frontend Web.Vistas por rol" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.Vistas por rol" and the component "Volarte.Frontend Web.Cliente API" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.Vistas por rol" and the component "Volarte.Frontend Web.Error Boundary  Telemetría" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.Cliente API" and the software system "ApiGee" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.Cliente API" and the component "Volarte.Frontend Web.Cache de estado servidor" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Frontend Web.Modulo de Autenticacion" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Memorystore" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Secret Manager" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Svc: Usuarios  Auth" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Gestor Documental" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Svc: Datos Maestros" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Svc: Comercial" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Svc: Operación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Svc: Asignación  Optimización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the container "Volarte.Cola de mensajeria" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF — Backend Volarte" and the component "Volarte.Cola de mensajeria.Topic: conciliacion-resuelta" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.API Router  Controllers" and the component "Volarte.BFF — Backend Volarte.Middleware de Autenticación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Middleware de Autenticación" and the component "Volarte.BFF — Backend Volarte.Servicio de Autorización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Servicio de Autorización" and the component "Volarte.BFF — Backend Volarte.Cliente de Cache" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Servicio de Autorización" and the component "Volarte.BFF — Backend Volarte.Orquestador de Dominio" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Orquestador de Dominio" and the component "Volarte.BFF — Backend Volarte.Cliente de Secretos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Orquestador de Dominio" and the component "Volarte.BFF — Backend Volarte.Clientes de Servicios" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF — Backend Volarte.Clientes de Servicios" and the contenedores externos "Servicios de dominio" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Internal Load Balancer" and the container "Volarte.BFF Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Internal Load Balancer" and the container "Volarte.BFF — Backend Volarte" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cloud SQL (PostgreSQL)" and the container "Volarte.Cloud KMS" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.API Router" and the component "Volarte.Svc: Usuarios  Auth.Resolver GroupToRoleMapping" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Resolver GroupToRoleMapping" and the component "Volarte.Svc: Usuarios  Auth.Adaptador de sincronización Entra ID" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Resolver GroupToRoleMapping" and the component "Volarte.Svc: Usuarios  Auth.Auditor" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Adaptador de sincronización Entra ID" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Invalidador de Cache" and the container "Volarte.Memorystore" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Cliente Cloud SQL" and the container "Volarte.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Auditor" and the contenedores externos "BFF Web  BFF Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Auditor" and the component "Volarte.Svc: Usuarios  Auth.Invalidador de Cache" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Usuarios  Auth.Auditor" and the component "Volarte.Svc: Usuarios  Auth.Cliente Cloud SQL" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Secret Manager" and the container "Volarte.Cloud KMS" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Gestor Documental" and the component "Volarte.Documentos (GCS).Estructura de carpetas" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Asignador de Numeración" and the container "Volarte.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Suscriptor PubSub" and the component "Volarte.Gestor Documental.Generador de Documento" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Generador de Documento" and the component "Volarte.Gestor Documental.Motor de Plantillas" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Generador de Documento" and the component "Volarte.Gestor Documental.Asignador de Numeración" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Motor de Plantillas" and the component "Volarte.Gestor Documental.Publicador" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Publicador" and the component "Volarte.Gestor Documental.Cliente GCS" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the component "Volarte.Gestor Documental.Cliente GCS" and the container "Volarte.Documentos (GCS)" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Gestor Documental.Cliente GCS" and the container "Volarte.Documentos (GCS)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Documentos (GCS).Estructura de carpetas" and the component "Volarte.Documentos (GCS).Política de ciclo de vida" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Documentos (GCS).Estructura de carpetas" and the component "Volarte.Documentos (GCS).IAM del bucket" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Documentos (GCS).Política de ciclo de vida" and the component "Volarte.Documentos (GCS).Versionado  WORM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Documentos (GCS).IAM del bucket" and the component "Volarte.Documentos (GCS).Cifrado en reposo" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.API Router" and the component "Volarte.Svc: Comercial.Motor de Elegibilidad" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.API Router" and the component "Volarte.Svc: Comercial.Resolutor PriceProvider" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.API Router" and the component "Volarte.Svc: Comercial.Servicio de Crédito Disponible" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.Cliente de base de datos" and the container "Volarte.BFF — Backend Volarte" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.Suscriptor operacion-cerrada" and the component "Volarte.Svc: Comercial.Servicio de Crédito Disponible" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.Servicio de Crédito Disponible" and the component "Volarte.Svc: Comercial.Cliente de base de datos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Comercial.Resolutor PriceProvider" and the software system "PriceProvider externo" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.API Router" and the component "Volarte.Svc: Operación.Gestor de Turnos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.API Router" and the component "Volarte.Svc: Operación.Rastreador de Posición" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.API Router" and the component "Volarte.Svc: Operación.Inventario de Calidad" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.Rastreador de Posición" and the container "Volarte.Svc: Datos Maestros" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.Inventario de Calidad" and the component "Volarte.Svc: Operación.Cliente de base de datos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.Cliente de base de datos" and the contenedores externos "BFF Web  BFF Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.Gestor de Turnos" and the component "Volarte.Svc: Operación.Cliente de base de datos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Svc: Operación.Suscriptor de Tracking" and the component "Volarte.Svc: Operación.Rastreador de Posición" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the container "Volarte.Gestor Documental" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the container "Volarte.Svc: Comercial" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the container "Volarte.Svc: Operación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the container "Volarte.Svc: Operación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the container "Volarte.Documentos (GCS)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the component "Volarte.Gestor Documental.Suscriptor PubSub" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the component "Volarte.Svc: Operación.Suscriptor de Tracking" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.Cola de mensajeria" and the component "Volarte.Svc: Comercial.Suscriptor operacion-cerrada" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: comercial-sub" and the container "Volarte.Svc: Comercial" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: comercial-sub" and the component "Volarte.Cola de mensajeria.Dead Letter Topic" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Topic: operacion-cerrada" and the component "Volarte.Cola de mensajeria.Sub: gestor-documental-sub" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Topic: operacion-cerrada" and the component "Volarte.Cola de mensajeria.Sub: comercial-sub" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: gestor-documental-sub" and the container "Volarte.Gestor Documental" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: gestor-documental-sub" and the component "Volarte.Cola de mensajeria.Dead Letter Topic" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Topic: conciliacion-resuelta" and the component "Volarte.Cola de mensajeria.Sub: operacion-conciliacion-sub" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: operacion-conciliacion-sub" and the container "Volarte.Svc: Operación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.Cola de mensajeria.Sub: operacion-conciliacion-sub" and the component "Volarte.Cola de mensajeria.Dead Letter Topic" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.App móvil" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.App móvil" and the software system "ZTNA" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Modulo de Autenticacion" and the software system "EntraID  CIAM" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Navegación" and the component "Volarte.App móvil.Modulo de Autenticacion" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Navegación" and the component "Volarte.App móvil.Base de Datos local" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Base de Datos local" and the component "Volarte.App móvil.Motor de Sincronización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Base de Datos local" and the component "Volarte.App móvil.Cifrado Local en Reposo" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Motor de Sincronización" and the component "Volarte.App móvil.Cliente API" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Motor de Sincronización" and the component "Volarte.App móvil.Gestor de Estados de Sincronización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Motor de Sincronización" and the component "Volarte.App móvil.Component name" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Cliente API" and the component "Volarte.App móvil.Netskope Client (ZTNA)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Captura de Evidencia" and the component "Volarte.App móvil.Base de Datos local" is missing a technology.
+ERROR  | model.relationship.description     | The relationship between the component "Volarte.App móvil.Disparador de Sync" and the component "Volarte.App móvil.Captura de Evidencia" is missing a description.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Disparador de Sync" and the component "Volarte.App móvil.Captura de Evidencia" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Disparador de Sync" and the component "Volarte.App móvil.Motor de Sincronización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Netskope Client (ZTNA)" and the container "Volarte.BFF Móvil" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.App móvil.Component name" and the component "Volarte.App móvil.Gestor de Estados de Sincronización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Cola de mensajeria" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Secret Manager" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Svc: Usuarios  Auth" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Gestor Documental" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Svc: Datos Maestros" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Svc: Comercial" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Svc: Operación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Svc: Asignación  Optimización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the container "Volarte.Memorystore" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the container "Volarte.BFF Móvil" and the component "Volarte.Cola de mensajeria.Topic: operacion-cerrada" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Servicio de Autorización" and the component "Volarte.BFF Móvil.Motor de Reconciliación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Middleware de Autenticación" and the component "Volarte.BFF Móvil.Servicio de Autorización" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.API Router  Controllers" and the component "Volarte.BFF Móvil.Middleware de Autenticación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Servicio de Idempotencia" and the component "Volarte.BFF Móvil.Validador de OrdenSecuencia" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Publicador de Eventos" and the container "Volarte.Cola de mensajeria" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Manejador de Subida" and the component "Volarte.BFF Móvil.Publicador de Eventos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Motor de Reconciliación" and the component "Volarte.BFF Móvil.Servicio de Idempotencia" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Motor de Reconciliación" and the component "Volarte.BFF Móvil.Proveedor de Delta" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Motor de Reconciliación" and the component "Volarte.BFF Móvil.Manejador de Subida" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Motor de Reconciliación" and the component "Volarte.BFF Móvil.Publicador de Eventos" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Motor de Reconciliación" and the component "Volarte.BFF Móvil.Cliente Cloud SQL" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Validador de OrdenSecuencia" and the component "Volarte.BFF Móvil.Motor de Reconciliación" is missing a technology.
+ERROR  | model.relationship.technology      | The relationship between the component "Volarte.BFF Móvil.Cliente Cloud SQL" and the container "Volarte.Cloud SQL (PostgreSQL)" is missing a technology.
+ERROR  | workspace.scope                    | Container views exist for 2 software systems. It is recommended that a workspace includes container views for a single software system only.

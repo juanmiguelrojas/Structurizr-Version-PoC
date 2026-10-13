@@ -1,0 +1,53 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · App Móvil — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    11["<div style='font-weight: bold'>EntraID / CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo. SSO · MFA ·<br />RBAC. Transversal al hub</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    133("<div style='font-weight: bold'>BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Consumidor: App móvil<br />(operarios), única.<br />Respuestas ultra-livianas,<br />vistas exclusivas de<br />operación en campo — no<br />comparte payloads con BFF<br />Web. Resuelve sync offline:<br />delta + cola.</div>")
+    style 133 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 121 ["App móvil"]
+      style 121 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      122["<div style='font-weight: bold'>Modulo de Autenticacion</div><div style='font-size: 70%; margin-top: 0px'>[Component: MSAL.js]</div><div style='font-size: 80%; margin-top:10px'>Flujo OAuth2 Authorization<br />Code + PKCE. Token en memoria<br />(no localStorage).</div>"]
+      style 122 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      123["<div style='font-weight: bold'>Navegación</div><div style='font-size: 70%; margin-top: 0px'>[Component: React Navigation]</div><div style='font-size: 80%; margin-top:10px'>Pantallas del operario:<br />turnos, checklist, PQDA,<br />firma, historial.</div>"]
+      style 123 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      124["<div style='font-weight: bold'>Base de Datos local</div><div style='font-size: 70%; margin-top: 0px'>[Component: WatermelonDB (SQLite)]</div><div style='font-size: 80%; margin-top:10px'>Réplica funcional: turnos,<br />operaciones, catálogos.<br />Fuente de verdad offline.</div>"]
+      style 124 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      125["<div style='font-weight: bold'>Motor de Sincronización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cola + UUID]</div><div style='font-size: 80%; margin-top:10px'>Cola de escritura local.<br />Delta pull / push al<br />reconectar. Aplica HU-050.</div>"]
+      style 125 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      126["<div style='font-weight: bold'>Cliente API</div><div style='font-size: 70%; margin-top: 0px'>[Component: Fetch + Resumable Upload]</div><div style='font-size: 80%; margin-top:10px'>Sube cola pendiente, descarga<br />delta, sube media con<br />reanudación.</div>"]
+      style 126 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      127["<div style='font-weight: bold'>Captura de Evidencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cámara + canvas Tactil]</div><div style='font-size: 80%; margin-top:10px'>Fotos PQDA/checklist y firma.<br />Guardado en filesystem local<br />primero.</div>"]
+      style 127 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      128["<div style='font-weight: bold'>Disparador de Sync</div><div style='font-size: 70%; margin-top: 0px'>[Component: Netinfo listener]</div><div style='font-size: 80%; margin-top:10px'>Detecta reconexión y dispara<br />el Motor de Sincronización.</div>"]
+      style 128 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      129["<div style='font-weight: bold'>Netskope Client (ZTNA)</div><div style='font-size: 70%; margin-top: 0px'>[Component: Netskope Agent]</div><div style='font-size: 80%; margin-top:10px'>Agente ZTNA embebido/ perfil<br />de dispositivo. Verifica<br />posture (Intune) antes de<br />habilitar túnel hacia BFF<br />Móvil. Sin esto no hay salida<br />de red.</div>"]
+      style 129 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      130["<div style='font-weight: bold'>Cifrado Local en Reposo</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLCipher + Android Keystore]</div><div style='font-size: 80%; margin-top:10px'>Cifra la Base de Datos local<br />(WatermelonDB). Clave<br />derivada del hardware del<br />dispositivo, no exportable.<br />Protege datos operacionales<br />si el dispositivo se pierde o<br />es robado</div>"]
+      style 130 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      131["<div style='font-weight: bold'>Gestor de Estados de Sincronización</div><div style='font-size: 70%; margin-top: 0px'>[Component: State Machine (local)]</div><div style='font-size: 80%; margin-top:10px'>Por cada ítem de la cola:<br />PENDIENTE → ENVIANDO →<br />CONFIRMADO | CONFLICTO |<br />ERROR. Reintento con backoff<br />exponencial (base 5s, máx 5<br />min)</div>"]
+      style 131 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      132["<div style='font-weight: bold'>Component name</div><div style='font-size: 70%; margin-top: 0px'>[Component: Kotlin/TS — reglas locales]</div><div style='font-size: 80%; margin-top:10px'>Detecta antes de reenviar:<br />turno reasignado, recurso<br />bloqueado, catálogo<br />desactualizado. Marca<br />CONFLICTO_LOCAL, no descarta<br />el dato (hecho físico) y<br />espera resolución.</div>"]
+      style 132 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    128-. "<div></div><div style='font-size: 70%'></div>" .->127
+    123-. "<div>usa</div><div style='font-size: 70%'></div>" .->122
+    122-. "<div>login SSO (solo Entra ID)</div><div style='font-size: 70%'></div>" .->11
+    123-. "<div>lee/escribe</div><div style='font-size: 70%'></div>" .->124
+    124-. "<div>cola pendiente</div><div style='font-size: 70%'></div>" .->125
+    127-. "<div>referencia archivo</div><div style='font-size: 70%'></div>" .->124
+    128-. "<div>dispara sync</div><div style='font-size: 70%'></div>" .->125
+    125-. "<div>al reconectar</div><div style='font-size: 70%'></div>" .->126
+    126-. "<div>sync (online)</div><div style='font-size: 70%'></div>" .->129
+    129-. "<div>ZTNA / mTLS</div><div style='font-size: 70%'></div>" .->133
+    125-. "<div>actualiza estado / backoff<br />exponencial</div><div style='font-size: 70%'></div>" .->131
+    125-. "<div>detecta conflicto local</div><div style='font-size: 70%'></div>" .->132
+    132-. "<div>bloquea reintento hasta<br />revisión</div><div style='font-size: 70%'></div>" .->131
+    124-. "<div>cifra en reposo</div><div style='font-size: 70%'></div>" .->130
+  end

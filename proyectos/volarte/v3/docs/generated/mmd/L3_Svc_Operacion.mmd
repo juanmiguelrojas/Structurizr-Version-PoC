@@ -1,0 +1,40 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Svc Operación — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    32["<div style='font-weight: bold'>BFF Web / BFF Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Contenedores externos]</div><div style='font-size: 80%; margin-top:10px'>Consumidores</div>"]
+    style 32 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    98("<div style='font-weight: bold'>Svc: Datos Maestros</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S02: Customer,<br />AircraftOperator,<br />AircraftType,<br />AircraftRegistration,<br />FuellingEquipment,<br />NegotiationProfile...</div>")
+    style 98 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    114["<div style='font-weight: bold'>Cola de mensajeria</div><div style='font-size: 70%; margin-top: 0px'>[Container: Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry+DLQ), operacion-cerrada<br />(fan-out a 3 suscriptores),<br />tracking-eventos (ingesta<br />asíncrona de alta<br />frecuencia).</div>"]
+    style 114 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 106 ["Svc: Operación"]
+      style 106 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      107["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>/roles · /permissions ·<br />/mapping · /audit</div>"]
+      style 107 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      108["<div style='font-weight: bold'>Rastreador de Posición</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — HU-044/HU-145]</div><div style='font-size: 80%; margin-top:10px'>Determina posición del equipo<br />vs. geocerca de Datos<br />Maestros.</div>"]
+      style 108 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      109["<div style='font-weight: bold'>Inventario de Calidad</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — IR-06 reservada]</div><div style='font-size: 80%; margin-top:10px'>Decremento de insumos<br />(pastillas PQDA) por prueba<br />ejecutada.</div>"]
+      style 109 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      110["<div style='font-weight: bold'>Cliente de base de datos</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Estado dinámico,<br />persistencia.</div>"]
+      style 110 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      111["<div style='font-weight: bold'>Gestor de Turnos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S05/S08 HU-056]</div><div style='font-size: 80%; margin-top:10px'>Ventana de inicio,<br />autorización de excepción por<br />supervisor.</div>"]
+      style 111 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      112["<div style='font-weight: bold'>Suscriptor de Tracking</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub push]</div><div style='font-size: 80%; margin-top:10px'>Procesa eventos de tracking<br />entrantes, si el topic está<br />activo.</div>"]
+      style 112 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    107-. "<div>enruta</div><div style='font-size: 70%'></div>" .->111
+    107-. "<div>enruta</div><div style='font-size: 70%'></div>" .->108
+    107-. "<div>enruta</div><div style='font-size: 70%'></div>" .->109
+    108-. "<div>consulta geocerca</div><div style='font-size: 70%'></div>" .->98
+    114-. "<div>recibe eventos</div><div style='font-size: 70%'></div>" .->112
+    112-. "<div>actualiza</div><div style='font-size: 70%'></div>" .->108
+    111-. "<div>persiste</div><div style='font-size: 70%'></div>" .->110
+    109-. "<div>persiste</div><div style='font-size: 70%'></div>" .->110
+    110-. "<div>consultado por</div><div style='font-size: 70%'></div>" .->32
+  end

@@ -1,0 +1,39 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Svc Comercial — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    33["<div style='font-weight: bold'>PriceProvider externo</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente de precio — P-072<br />PENDING</div>"]
+    style 33 fill:#8c8496,stroke:#f59e0b,color:#ffffff
+    66("<div style='font-weight: bold'>BFF — Backend Volarte</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Valida JWT (issuer/audience)<br />Resuelve GroupToRoleMapping →<br />Role/Permission/Capability<br />Orquesta servicios de dominio<br />Auto-scaling · Pay-per-use</div>")
+    style 66 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    114["<div style='font-weight: bold'>Cola de mensajeria</div><div style='font-size: 70%; margin-top: 0px'>[Container: Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry+DLQ), operacion-cerrada<br />(fan-out a 3 suscriptores),<br />tracking-eventos (ingesta<br />asíncrona de alta<br />frecuencia).</div>"]
+    style 114 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 99 ["Svc: Comercial"]
+      style 99 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      100["<div style='font-weight: bold'>API Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>/roles · /permissions ·<br />/mapping · /audit</div>"]
+      style 100 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      101["<div style='font-weight: bold'>Cliente de base de datos</div><div style='font-size: 70%; margin-top: 0px'>[Component: SQLAlchemy]</div><div style='font-size: 80%; margin-top:10px'>Estado dinámico,<br />persistencia.</div>"]
+      style 101 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      102["<div style='font-weight: bold'>Suscriptor operacion-cerrada</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub push]</div><div style='font-size: 80%; margin-top:10px'>Actualiza saldo/crédito tras<br />cada cierre de operación.</div>"]
+      style 102 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      103["<div style='font-weight: bold'>Servicio de Crédito Disponible</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S04]</div><div style='font-size: 80%; margin-top:10px'>Calcula crédito disponible<br />según saldo y órdenes<br />abiertas.</div>"]
+      style 103 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      104["<div style='font-weight: bold'>Motor de Elegibilidad</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — S04/HU-128]</div><div style='font-size: 80%; margin-top:10px'>Cliente activo, acuerdo<br />vigente, negociación<br />existente (S02 → S04).</div>"]
+      style 104 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      105["<div style='font-weight: bold'>Resolutor PriceProvider</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — P-072 PENDING]</div><div style='font-size: 80%; margin-top:10px'>No inventa fuente de precio;<br />delega a la autoridad cuando<br />se confirme.</div>"]
+      style 105 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    100-. "<div>enruta</div><div style='font-size: 70%'></div>" .->104
+    100-. "<div>enruta</div><div style='font-size: 70%'></div>" .->105
+    100-. "<div>enruta</div><div style='font-size: 70%'></div>" .->103
+    105-. "<div>consulta (cuando se confirme)</div><div style='font-size: 70%'></div>" .->33
+    114-. "<div>recibe evento</div><div style='font-size: 70%'></div>" .->102
+    102-. "<div>actualiza</div><div style='font-size: 70%'></div>" .->103
+    103-. "<div>persiste</div><div style='font-size: 70%'></div>" .->101
+    101-. "<div>consultado por</div><div style='font-size: 70%'></div>" .->66
+  end

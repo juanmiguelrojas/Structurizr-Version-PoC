@@ -1,0 +1,2106 @@
+{
+ "vista": "L2_Container",
+ "pagina": "L2 · Container",
+ "titulo": "L2 · Container — Diagrama de contenedores",
+ "boundaries": [
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-1",
+   "nombre": "Google Cloud Platform",
+   "etiqueta": "Cloud Terpel",
+   "tipo": "SystemScopeBoundary",
+   "x": -770.0,
+   "y": 62.3,
+   "w": 2370.0,
+   "h": 1100.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-9",
+   "nombre": "terpel-gtic-apigee-AMB (dev-qa-prd)",
+   "etiqueta": "Proyecto",
+   "tipo": "ContainerScopeBoundary",
+   "x": -710.0,
+   "y": 92.3,
+   "w": 680.0,
+   "h": 190.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-15",
+   "nombre": "terpel-infra-vpc-transversal",
+   "etiqueta": "Proyecto",
+   "tipo": "ContainerScopeBoundary",
+   "x": -710.0,
+   "y": 592.3,
+   "w": 310.0,
+   "h": 470.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-16",
+   "nombre": "terpel-gtic-front-AMB (dev,qa y prd)",
+   "etiqueta": "Proyecto",
+   "tipo": "ContainerScopeBoundary",
+   "x": -710.0,
+   "y": 332.3,
+   "w": 310.0,
+   "h": 240.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-27",
+   "nombre": "terpel-org-col-volarte-AMB (Dev, qa y prd)",
+   "etiqueta": "Proyecto",
+   "tipo": "ContainerScopeBoundary",
+   "x": -340.0,
+   "y": 306.2,
+   "w": 1860.0,
+   "h": 812.3,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-50",
+   "nombre": "Servicios de dominio",
+   "etiqueta": "Región lógica dentro del mismo proyecto",
+   "tipo": "ContainerScopeBoundary",
+   "x": 860.0,
+   "y": 344.7,
+   "w": 620.0,
+   "h": 587.7,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#999999;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-62",
+   "nombre": "Datos",
+   "etiqueta": "GCS/BD",
+   "tipo": "SystemScopeBoundary",
+   "x": 190.0,
+   "y": 744.7,
+   "w": 600.0,
+   "h": 310.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  },
+  {
+   "drawioId": "3SSV2FneGBA_VnJHeDQL-1",
+   "nombre": "Diagrama Contenedores",
+   "etiqueta": "Volarte\nAutor: Kevin Montoya\nTERPEL - DIRECCION DE ARQUITECTURA\nVersion: 1\nFase: I\nFecha: 17/08/2026",
+   "tipo": "ContainerScopeBoundary",
+   "x": -1630.0,
+   "y": 27.3,
+   "w": 3230.0,
+   "h": 1132.7,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];strokeWidth=3;"
+  }
+ ],
+ "nodos": [
+  {
+   "ref": "apigee",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-2",
+   "x": -306.0,
+   "y": 112.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-9",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Plataforma de administración de API nativa de Google Cloud. Valida firma/issuer/audience del JWT contra el JWKS de Entra ID."
+  },
+  {
+   "ref": "ss_externalRegionalLoadBalancer",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-4",
+   "x": -685.0,
+   "y": 652.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-15",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "SSL/TLS terminado en el borde.\nEnrutamiento al IAP y Cloud Run."
+  },
+  {
+   "ref": "firewall",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-10",
+   "x": -685.0,
+   "y": 872.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-15",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Firewall de red encargado de inspeccionar y controlar el tráfico de entrada y salida, aplicando políticas de seguridad y NAT según las reglas definidas."
+  },
+  {
+   "ref": "ilbTransversal",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-18",
+   "x": -685.0,
+   "y": 372.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-16",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "SSL/TLS terminado en el borde.\nEnrutamiento al IAP y Cloud Run."
+  },
+  {
+   "ref": "proxyApigee",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-19",
+   "x": -685.0,
+   "y": 112.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-9",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Puente de conexion"
+  },
+  {
+   "ref": "vo_frontendWeb",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-22",
+   "x": -306.0,
+   "y": 372.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Sin MFE: un solo bundle, code-\nsplitting por módulo (React.lazy).\nLogin SSO vía MSAL.js contra\nEntra ID. Deploy: CDN Cloudflare + GCS"
+  },
+  {
+   "ref": "vo_memorystore",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-25",
+   "x": 361.0,
+   "y": 767.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "cilindro",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-62",
+   "style": "shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Sesiones · Tokens · Queries"
+  },
+  {
+   "ref": "vo_bffBackendVolarte",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-26",
+   "x": 241.0,
+   "y": 506.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Valida JWT (issuer/audience)\nResuelve GroupToRoleMapping →\nRole/Permission/Capability\nOrquesta servicios de dominio\nAuto-scaling · Pay-per-use"
+  },
+  {
+   "ref": "vo_internalLoadBalancer",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-33",
+   "x": 272.0,
+   "y": 324.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "SSL/TLS terminado en el borde.\nEnrutamiento al IAP y Cloud Run."
+  },
+  {
+   "ref": "vo_cloudSqlPostgresql",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-38",
+   "x": 221.0,
+   "y": 894.7,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "cilindro",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-62",
+   "style": "shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Usuarios · Roles · Registry"
+  },
+  {
+   "ref": "vo_svcUsuariosAuth",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-39",
+   "x": 910.0,
+   "y": 386.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Roles · Permisos · Perfil\nSincroniza con Azure AD"
+  },
+  {
+   "ref": "vo_cloudKms",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-40",
+   "x": -225.0,
+   "y": 887.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Gestión de claves de cifrado (CMEK).\nCifra: Cloud SQL · GCS · Firestore.\nCifra secretos en Secret Manager.\nHSM · rotación de claves."
+  },
+  {
+   "ref": "vo_secretManager",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-43",
+   "x": -225.0,
+   "y": 684.7,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Almacena secretos de todos los servicios:\ncredenciales DB · API keys · client secrets.\nAcceso via Service Account (IAM).\nRotación automática · audit log."
+  },
+  {
+   "ref": "vo_gestorDocumental",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-48",
+   "x": 910.0,
+   "y": 532.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Publica el documento de entrega al cierre de operación. Retorna ID inmutable vinculado. Cola + reintento, sin duplicar (HU-055). S07: contenido y numeración del documento canónico. El Gestor Documental solo lo publica."
+  },
+  {
+   "ref": "vo_documentosGcs",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-49",
+   "x": 512.0,
+   "y": 894.7,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "cilindro",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-62",
+   "style": "shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Almacenamiento WORM/versionado.\nRetención según política vigente.\nRecuperable por operación y cliente."
+  },
+  {
+   "ref": "vo_svcDatosMaestros",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-51",
+   "x": 1200.0,
+   "y": 390.5,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "S02: Customer, AircraftOperator,\nAircraftType, AircraftRegistration,\nFuellingEquipment, NegotiationProfile..."
+  },
+  {
+   "ref": "vo_svcComercial",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-52",
+   "x": 1200.0,
+   "y": 699.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "S04: elegibilidad, precio\n(PriceProvider), crédito disponible."
+  },
+  {
+   "ref": "vo_svcOperacion",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-53",
+   "x": 1200.0,
+   "y": 532.9,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "S05: estado dinámico equipo/operador,\nturnos, posición, inventario calidad."
+  },
+  {
+   "ref": "vo_svcAsignacionOptimizacion",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-54",
+   "x": 910.0,
+   "y": 699.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-50",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "S06: motor MILP + recomendación\nSkypredict, degradación controlada.\nGKE por cómputo sostenido; owner/\nruntime final los confirma Arquitectura."
+  },
+  {
+   "ref": "vo_colaDeMensajeria",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-56",
+   "x": 575.0,
+   "y": 487.7,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "cilindro",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Pub/Sub. Topics: doc-publicacion\n(HU-055, retry+DLQ), operacion-cerrada\n(fan-out a 3 suscriptores), tracking-eventos\n(ingesta asíncrona de alta frecuencia)."
+  },
+  {
+   "ref": "pe_empleadoInterno",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-63",
+   "x": -1095.0,
+   "y": 697.3,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "Person",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "shape=mxgraph.c4.person2;html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;align=center;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 14,
+    "tipoPx": 10,
+    "descPx": 9,
+    "color": "#FFFFFF",
+    "colorTipo": "#BBDEFB",
+    "colorDesc": "#E0E0E0"
+   },
+   "descripcionDrawio": "Usuario corporativo que accede a la wiki,\nlanza web apps y navega a portales externos\ndesde un único punto de entrada"
+  },
+  {
+   "ref": "pe_usuarioExterno",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-65",
+   "x": -1230.0,
+   "y": 505.0,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "External Person",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#6C6477;strokeColor=#4D4D4D;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Usuario que no esta dentro del tenant de terpel"
+  },
+  {
+   "ref": "cloudflare",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-68",
+   "x": -1114.0,
+   "y": 243.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=6;strokeColor=none;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Plataforma de protección de tráfico y optimización de acceso web para servicios externos."
+  },
+  {
+   "ref": "entraId",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-69",
+   "x": -1160.0,
+   "y": 1007.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#FFFFFF;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#FFFFFF",
+    "colorTipo": "#FFFFFF",
+    "colorDesc": "#FFFFFF"
+   },
+   "descripcionDrawio": "Proveedor de identidad corporativo.\nSSO · MFA · RBAC.\nTransversal al hub"
+  },
+  {
+   "ref": "pe_operarioDeEquipoAbastecedor",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-70",
+   "x": -1550.0,
+   "y": 657.3,
+   "w": 200.0,
+   "h": 180.0,
+   "forma": "persona",
+   "clase": "Person",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "shape=mxgraph.c4.person2;html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;align=center;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 14,
+    "tipoPx": 10,
+    "descPx": 9,
+    "color": "#FFFFFF",
+    "colorTipo": "#BBDEFB",
+    "colorDesc": "#E0E0E0"
+   },
+   "descripcionDrawio": "Único rol que usa la app móvil.\nOpera en campo, con o sin cobertura."
+  },
+  {
+   "ref": "vo_appMovil",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-71",
+   "x": -1410.0,
+   "y": 77.3,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Offline-first: SQLite local (WatermelonDB)\n+ cola de escritura con UUID por acción.\nFotos/firma van al filesystem local.\nSync bidireccional al reconectar (delta\n+ resumable upload). Solo operarios;\ndistribución vía Intune/Managed Play."
+  },
+  {
+   "ref": "ztna",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-75",
+   "x": -1105.0,
+   "y": 77.3,
+   "w": 220.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "3SSV2FneGBA_VnJHeDQL-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "GlobalProtect · Zscaler\nDevice posture check · Intune\nSplit tunneling controlado\nSolo acceso desde red corporativa"
+  },
+  {
+   "ref": "vo_bffMovil",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-77",
+   "x": -40.0,
+   "y": 373.2,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Container",
+   "boundary": "p8cCmguKJE-8GRD_PWvh-27",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fontSize=11;labelBackgroundColor=none;fillColor=#23A2D9;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0E7DAD;metaEdit=1;resizable=0;",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 11,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#E6E6E6"
+   },
+   "descripcionDrawio": "Consumidor: App móvil (operarios), única.\nRespuestas ultra-livianas, vistas exclusivas\nde operación en campo — no comparte\npayloads con BFF Web. Resuelve sync offline: delta + cola."
+  }
+ ],
+ "notas": [
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-3",
+   "x": -695.0,
+   "y": 642.3,
+   "w": 260.0,
+   "h": 140.0,
+   "texto": "",
+   "fill": "#ffe6cc",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-17",
+   "x": -695.0,
+   "y": 362.3,
+   "w": 260.0,
+   "h": 140.0,
+   "texto": "",
+   "fill": "#ffe6cc",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;"
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-67",
+   "x": -1125.0,
+   "y": 233.2,
+   "w": 260.0,
+   "h": 140.0,
+   "texto": "",
+   "fill": "#ffe6cc",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;"
+  }
+ ],
+ "conectores": [
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-5",
+   "origen": "p8cCmguKJE-8GRD_PWvh-4",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-68",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "ss_externalRegionalLoadBalancer",
+     "destino": "cloudflare",
+     "descripcion": "DNS apunta a IP del LB externo pass trougth",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "DNS apunta a IP del LB externo pass trougth",
+   "etiquetaLineas": "DNS apunta a IP\ndel LB externo\npass trougth",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -744.0,
+     "y": 712.3299999999999
+    },
+    {
+     "x": -744.0,
+     "y": 303.33
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -829.0,
+     "y": 360.5442857142853
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.1703,
+    "y": -2.0,
+    "dx": -9.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-7",
+   "origen": "p8cCmguKJE-8GRD_PWvh-4",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-10",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "ss_externalRegionalLoadBalancer",
+     "destino": "firewall",
+     "descripcion": "Resuelve los NAT Respectivos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Resuelve los NAT Respectivos",
+   "etiquetaLineas": "Resuelve los NAT\nRespectivos",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -625.0,
+     "y": 862.3299999999999
+    },
+    {
+     "x": -625.0,
+     "y": 862.3299999999999
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -565.0,
+     "y": 717.9342857142856
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.0333,
+    "y": 1.0,
+    "dx": 4.0,
+    "dy": 12.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-11",
+   "origen": "p8cCmguKJE-8GRD_PWvh-10",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-18",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "firewall",
+     "destino": "ilbTransversal",
+     "descripcion": "Reenvia el trafico",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Reenvia el trafico",
+   "etiquetaLineas": "Reenvia el trafico",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -364.0,
+     "y": 903.3299999999999
+    },
+    {
+     "x": -364.0,
+     "y": 432.33
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -370.0,
+     "y": 792.3299999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.3888,
+    "y": -6.0,
+    "dx": -9.0,
+    "dy": -216.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-13",
+   "origen": "p8cCmguKJE-8GRD_PWvh-19",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "proxyApigee",
+     "destino": "apigee",
+     "descripcion": "Reenvia trafico",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Reenvia trafico",
+   "etiquetaLineas": "Reenvia trafico",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -375.0,
+     "y": 172.32999999999998
+    },
+    {
+     "x": -375.0,
+     "y": 172.32999999999998
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": -0.0621,
+    "y": -2.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-20",
+   "origen": "p8cCmguKJE-8GRD_PWvh-18",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-19",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "ilbTransversal",
+     "destino": "proxyApigee",
+     "descripcion": "Reenvia trafico",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Reenvia trafico",
+   "etiquetaLineas": "Reenvia trafico",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": -560.0,
+     "y": 385.33
+    },
+    "targetPoint": {
+     "x": -560.0,
+     "y": 312.33
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.0621,
+    "y": -2.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-23",
+   "origen": "p8cCmguKJE-8GRD_PWvh-22",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_frontendWeb",
+     "destino": "apigee",
+     "descripcion": "REST/JSON · JWT (API, sin caché)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "REST/JSON · JWT (API, sin caché)",
+   "etiquetaLineas": "REST/JSON · JWT (API, sin caché)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": -186.0,
+     "y": 282.33
+    },
+    {
+     "x": -186.0,
+     "y": 282.33
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-24",
+   "origen": "p8cCmguKJE-8GRD_PWvh-26",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-25",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_memorystore",
+     "descripcion": "Redis SDK",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Redis SDK",
+   "etiquetaLineas": "Redis SDK",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": 361.0,
+     "y": 702.3299999999999
+    },
+    {
+     "x": 575.0,
+     "y": 702.3299999999999
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 328.8899999999999,
+     "y": 821.1700000000001
+    },
+    "targetPoint": {
+     "x": 743.8899999999999,
+     "y": 846.1700000000001
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.2137,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#831843;fontSize=8;html=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.893;entryY=0.032;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-28",
+   "origen": "p8cCmguKJE-8GRD_PWvh-2",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-33",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "apigee",
+     "destino": "vo_internalLoadBalancer",
+     "descripcion": "",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "",
+   "etiquetaLineas": "",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 330.0,
+     "y": 202.32999999999998
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-29",
+   "origen": "p8cCmguKJE-8GRD_PWvh-33",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-77",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_internalLoadBalancer",
+     "destino": "vo_bffMovil",
+     "descripcion": "Resuelve peticiones Moviles",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Resuelve peticiones Moviles",
+   "etiquetaLineas": "Resuelve peticiones\nMoviles",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.1011,
+    "y": 2.0,
+    "dx": 12.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-34",
+   "origen": "p8cCmguKJE-8GRD_PWvh-33",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-26",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_internalLoadBalancer",
+     "destino": "vo_bffBackendVolarte",
+     "descripcion": "Resuelve peticiones Web",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Resuelve peticiones Web",
+   "etiquetaLineas": "Resuelve peticiones\nWeb",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 250.0,
+     "y": 384.33
+    },
+    {
+     "x": 250.0,
+     "y": 488.33
+    },
+    {
+     "x": 361.0,
+     "y": 488.33
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.1168,
+    "y": -4.0,
+    "dx": 0.0,
+    "dy": -10.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-36",
+   "origen": "p8cCmguKJE-8GRD_PWvh-26",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-38",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_cloudSqlPostgresql",
+     "descripcion": "Consultas varias Proxy SQL",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Consultas varias Proxy SQL",
+   "etiquetaLineas": "Consultas varias\nProxy SQL",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 301.0,
+     "y": 792.3299999999999
+    },
+    {
+     "x": 301.0,
+     "y": 792.3299999999999
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 301.0,
+     "y": 896.3299999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-37",
+   "origen": "p8cCmguKJE-8GRD_PWvh-22",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-69",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_frontendWeb",
+     "destino": "entraId",
+     "descripcion": "login SSO / tokens (PKCE)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "login SSO / tokens (PKCE)",
+   "etiquetaLineas": "login SSO / tokens (PKCE)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -320.0,
+     "y": 402.33
+    },
+    {
+     "x": -320.0,
+     "y": 1074.33
+    },
+    {
+     "x": -920.0,
+     "y": 1074.33
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -830.0,
+     "y": 1074.6599999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;fontColor=#4D4D4D;fontSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-41",
+   "origen": "p8cCmguKJE-8GRD_PWvh-38",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-40",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_cloudSqlPostgresql",
+     "destino": "vo_cloudKms",
+     "descripcion": "Lee client secrets · IAM SA",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Lee client secrets · IAM SA",
+   "etiquetaLineas": "Lee client secrets · IAM SA",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 8
+   },
+   "puntos": [
+    {
+     "x": 341.0,
+     "y": 1054.6599999999999
+    },
+    {
+     "x": -46.0,
+     "y": 1054.6599999999999
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 3251.8900000000003,
+     "y": -30.32999999999987
+    },
+    "targetPoint": {
+     "x": 2752.8900000000003,
+     "y": -490.3300000000001
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.1711,
+    "y": 1.0,
+    "dx": -50.0,
+    "dy": -1.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=1;startArrow=classic;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-44",
+   "origen": "p8cCmguKJE-8GRD_PWvh-43",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-40",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_secretManager",
+     "destino": "vo_cloudKms",
+     "descripcion": "Cifra secretos con CMEK",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Cifra secretos con CMEK",
+   "etiquetaLineas": "Cifra secretos\ncon CMEK",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 8
+   },
+   "puntos": [],
+   "extremos": {
+    "targetPoint": {
+     "x": 693.8899999999999,
+     "y": 1069.67
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.3868,
+    "y": -2.0,
+    "dx": -67.0,
+    "dy": -7.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-46",
+   "origen": "p8cCmguKJE-8GRD_PWvh-26",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-43",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_secretManager",
+     "descripcion": "Lee secretos · IAM SA",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Lee secretos · IAM SA",
+   "etiquetaLineas": "Lee secretos\n· IAM SA",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 8
+   },
+   "puntos": [
+    {
+     "x": -165.0,
+     "y": 566.3299999999999
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 279.8899999999999,
+     "y": 476.17000000000013
+    },
+    "targetPoint": {
+     "x": 425.8899999999999,
+     "y": 571.1700000000001
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.172,
+    "y": 4.0,
+    "dx": -58.0,
+    "dy": -4.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+   "origen": "p8cCmguKJE-8GRD_PWvh-26",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-50",
+   "destinoTipo": "boundary",
+   "relaciones": [
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_svcUsuariosAuth",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_gestorDocumental",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_svcDatosMaestros",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_svcComercial",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_svcOperacion",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_svcAsignacionOptimizacion",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "orquesta cada servicio que no va por PUB/SUB",
+   "etiquetaLineas": "orquesta cada servicio que no va\npor PUB/SUB",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 421.0,
+     "y": 672.3299999999999
+    },
+    {
+     "x": 635.0,
+     "y": 672.3299999999999
+    },
+    {
+     "x": 635.0,
+     "y": 844.3299999999999
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 860.0,
+     "y": 844.6599999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.528,
+    "y": 0.0,
+    "dx": -1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-57",
+   "origen": "p8cCmguKJE-8GRD_PWvh-77",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-56",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_colaDeMensajeria",
+     "descripcion": "Publica y consume Topics",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Publica y consume Topics",
+   "etiquetaLineas": "Publica y consume\nTopics",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 80.0,
+     "y": 272.33
+    },
+    {
+     "x": 635.0,
+     "y": 272.33
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-58",
+   "origen": "p8cCmguKJE-8GRD_PWvh-56",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-48",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "vo_gestorDocumental",
+     "descripcion": "suscripción (retry + DLQ)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "suscripción (retry + DLQ)",
+   "etiquetaLineas": "suscripción (retry + DLQ)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 743.0,
+     "y": 644.6599999999999
+    },
+    {
+     "x": 850.0,
+     "y": 644.6599999999999
+    },
+    {
+     "x": 850.0,
+     "y": 568.6599999999999
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-59",
+   "origen": "p8cCmguKJE-8GRD_PWvh-26",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-56",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffBackendVolarte",
+     "destino": "vo_colaDeMensajeria",
+     "descripcion": "Publica y consume Topics",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Publica y consume Topics",
+   "etiquetaLineas": "Publica y consume\nTopics",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 528.0,
+     "y": 590.6599999999999
+    },
+    {
+     "x": 528.0,
+     "y": 634.6599999999999
+    },
+    {
+     "x": 635.0,
+     "y": 634.6599999999999
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-60",
+   "origen": "p8cCmguKJE-8GRD_PWvh-56",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-52",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "vo_svcComercial",
+     "descripcion": "suscripción",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "suscripción",
+   "etiquetaLineas": "suscripción",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 690.0,
+     "y": 607.6599999999999
+    },
+    {
+     "x": 690.0,
+     "y": 674.6599999999999
+    },
+    {
+     "x": 1320.0,
+     "y": 674.6599999999999
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-61",
+   "origen": "p8cCmguKJE-8GRD_PWvh-56",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-53",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "vo_svcOperacion",
+     "descripcion": "suscripción: tracking-eventos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "suscripción: tracking-eventos",
+   "etiquetaLineas": "suscripción: tracking-eventos",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 755.0,
+     "y": 364.6599999999999
+    },
+    {
+     "x": 1495.0,
+     "y": 364.6599999999999
+    },
+    {
+     "x": 1495.0,
+     "y": 592.6599999999999
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-64",
+   "origen": "p8cCmguKJE-8GRD_PWvh-63",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-68",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_empleadoInterno",
+     "destino": "cloudflare",
+     "descripcion": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+   "etiquetaLineas": "Accede al portal SSO (HTTPS)\nNavega wiki, lanza apps, federa",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": -994.0,
+     "y": 699.3299999999999
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -1335.0,
+     "y": 1866.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.5215,
+    "y": 0.0,
+    "dx": 1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=9;html=1;exitX=0.467;exitY=0.013;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-66",
+   "origen": "p8cCmguKJE-8GRD_PWvh-65",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-68",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_usuarioExterno",
+     "destino": "cloudflare",
+     "descripcion": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+   "etiquetaLineas": "Accede al portal (HTTPS)\nNavega wiki, lanza apps, federa",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": -1130.0,
+     "y": 457.33
+    },
+    {
+     "x": -1190.0,
+     "y": 457.33
+    },
+    {
+     "x": -1190.0,
+     "y": 273.33
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": -695.0,
+     "y": 2065.0
+    },
+    "sourcePoint": {
+     "x": -1345.0,
+     "y": 2000.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0564,
+    "y": -4.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=9;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-72",
+   "origen": "p8cCmguKJE-8GRD_PWvh-70",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-71",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "pe_operarioDeEquipoAbastecedor",
+     "destino": "vo_appMovil",
+     "descripcion": "Accede a la APP Movil",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Accede a la APP Movil",
+   "etiquetaLineas": "Accede a la APP\nMovil",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -1446.0,
+     "y": 113.32999999999998
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=9;html=1;exitX=0.518;exitY=0.019;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-73",
+   "origen": "p8cCmguKJE-8GRD_PWvh-71",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-69",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_appMovil",
+     "destino": "entraId",
+     "descripcion": "login SSO (solo Entra ID)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "login SSO (solo Entra ID)",
+   "etiquetaLineas": "login SSO (solo Entra ID)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -1260.0,
+     "y": 1147.33
+    },
+    {
+     "x": -1040.0,
+     "y": 1147.33
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;fontColor=#4D4D4D;fontSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-74",
+   "origen": "p8cCmguKJE-8GRD_PWvh-71",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-75",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_appMovil",
+     "destino": "ztna",
+     "descripcion": "tráfico gestionado (túnel MDM)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "tráfico gestionado (túnel MDM)",
+   "etiquetaLineas": "tráfico gestionado (túnel MDM)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -1130.0,
+     "y": 127.32999999999998
+    },
+    {
+     "x": -1130.0,
+     "y": 217.32999999999998
+    },
+    {
+     "x": -995.0,
+     "y": 217.32999999999998
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": -1140.0,
+     "y": 137.32999999999998
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-76",
+   "origen": "p8cCmguKJE-8GRD_PWvh-75",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "ztna",
+     "destino": "apigee",
+     "descripcion": "acceso privado (ZTNA) — sin Cloudflare",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "acceso privado (ZTNA) — sin Cloudflare",
+   "etiquetaLineas": "acceso privado (ZTNA) — sin Cloudflare",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": -995.0,
+     "y": 50.329999999999984
+    },
+    {
+     "x": -186.0,
+     "y": 50.329999999999984
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": -650.0,
+     "y": 42.329999999999984
+    },
+    "targetPoint": {
+     "x": 114.0,
+     "y": 50.329999999999984
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-78",
+   "origen": "p8cCmguKJE-8GRD_PWvh-77",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-43",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_secretManager",
+     "descripcion": "Lee secretos · IAM SA",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Lee secretos · IAM SA",
+   "etiquetaLineas": "Lee secretos\n· IAM SA",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {
+    "px": 8
+   },
+   "puntos": [
+    {
+     "x": 20.0,
+     "y": 532.3299999999999
+    },
+    {
+     "x": -270.0,
+     "y": 532.3299999999999
+    },
+    {
+     "x": -270.0,
+     "y": 744.3299999999999
+    }
+   ],
+   "extremos": {},
+   "posEtiqueta": {
+    "x": -0.1904,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-80",
+   "origen": "p8cCmguKJE-8GRD_PWvh-77",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-38",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_cloudSqlPostgresql",
+     "descripcion": "Consultas varias Proxy SQL",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Consultas varias Proxy SQL",
+   "etiquetaLineas": "Consultas varias\nProxy SQL",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 140.0,
+     "y": 954.3299999999999
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 151.0,
+     "y": 1010.3299999999999
+    },
+    "sourcePoint": {
+     "x": 171.0,
+     "y": 622.3299999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;jumpStyle=arc;",
+   "inferido": []
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+   "origen": "p8cCmguKJE-8GRD_PWvh-77",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-27",
+   "destinoTipo": "boundary",
+   "relaciones": [
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_svcUsuariosAuth",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_gestorDocumental",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_svcDatosMaestros",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_svcComercial",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_svcOperacion",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    },
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_svcAsignacionOptimizacion",
+     "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "orquesta cada servicio que no va por PUB/SUB",
+   "etiquetaLineas": "orquesta cada servicio que no va\npor PUB/SUB",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 20.0,
+     "y": 218.32999999999998
+    },
+    {
+     "x": 980.0,
+     "y": 218.32999999999998
+    }
+   ],
+   "extremos": {
+    "targetPoint": {
+     "x": 980.0,
+     "y": 342.33
+    },
+    "sourcePoint": {
+     "x": 150.0,
+     "y": 132.32999999999998
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.1702,
+    "y": 0.0,
+    "dx": 1.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;jumpStyle=arc;",
+   "inferido": [
+    "target"
+   ]
+  },
+  {
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-82",
+   "origen": "p8cCmguKJE-8GRD_PWvh-77",
+   "origenTipo": "element",
+   "destino": "p8cCmguKJE-8GRD_PWvh-25",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_bffMovil",
+     "destino": "vo_memorystore",
+     "descripcion": "Redis SDK",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Redis SDK",
+   "etiquetaLineas": "Redis SDK",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {
+    "color": "#000000"
+   },
+   "puntos": [
+    {
+     "x": 80.0,
+     "y": 722.3299999999999
+    },
+    {
+     "x": 481.0,
+     "y": 722.3299999999999
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 40.0,
+     "y": 652.3299999999999
+    },
+    "targetPoint": {
+     "x": 430.0,
+     "y": 760.3299999999999
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.2137,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#831843;fontSize=8;html=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;jumpStyle=arc;",
+   "inferido": []
+  }
+ ]
+}

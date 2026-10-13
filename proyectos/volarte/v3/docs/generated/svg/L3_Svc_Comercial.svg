@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1310" height="1071" viewBox="-10 -20 1310 1071" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="-10" y="-20" width="1310" height="1071" fill="#ffffff"/>
+<rect x="20" y="10" width="1250" height="735" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="30" y="652.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Componente</text><text x="30" y="666.25" font-size="11"  fill="#333333">[Volarte</text><text x="30" y="680" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="30" y="693.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="30" y="707.5" font-size="11"  fill="#333333">Version: 1</text><text x="30" y="721.25" font-size="11"  fill="#333333">Fase: I</text><text x="30" y="735" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="600" y="28" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+
+<path d="M600,88 L480,88 Q470,88 470,98 L470,140" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M840,88 L1070,88 Q1080,88 1080,98 L1080,180" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M672,148 L672,229.48 Q672,239.48 682,239.48 L718.0799999999999,239.48 Q728.0799999999999,239.48 728.0799999999999,249.48 L728.0799999999999,330.96" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M1080,300 L1080,450" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M180,190 L180,265 Q180,270 185,270 L185,270 Q190,270 190,275 L190,350" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M250,350 L252.5,350 Q255,350 255,347.5 L255,290 Q255,280 265,280 L655,280 Q665,280 655,280 L650,280 Q640,280 640,290 L640,330" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M700,450 L700,466.5 Q700,476.5 690,476.5 L460,476.5 Q450,476.5 450,486.5 L450,503" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M402,623 L402,660 Q402,670 412,670 L418,670 Q428,670 438,670 L610,670" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<rect x="600" y="28" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="720" y="66.37599999999999" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">API Router</text>
+<text x="720" y="81.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: FastAPI]</text>
+<text x="720" y="108.49600000000001" font-size="11"  fill="#ffffff" text-anchor="middle">/roles · /permissions ·</text>
+<text x="720" y="121.69600000000001" font-size="11"  fill="#ffffff" text-anchor="middle">/mapping · /audit</text>
+<rect x="330" y="503" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="450" y="541.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cliente de base de datos</text>
+<text x="450" y="556.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: SQLAlchemy]</text>
+<text x="450" y="583.4960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Estado dinámico,</text>
+<text x="450" y="596.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">persistencia.</text>
+<rect x="70" y="350" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="190" y="381.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Suscriptor operacion-cerrada</text>
+<text x="190" y="397.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Pub/Sub push]</text>
+<text x="190" y="423.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Actualiza saldo/crédito</text>
+<text x="190" y="437.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">tras cada cierre de</text>
+<text x="190" y="450.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">operación.</text>
+<rect x="580" y="330" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="700" y="352.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Servicio de Crédito</text>
+<text x="700" y="371.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Disponible</text>
+<text x="700" y="386.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Python — S04]</text>
+<text x="700" y="413.4959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Calcula crédito</text>
+<text x="700" y="426.6959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">disponible según saldo</text>
+<text x="700" y="439.8959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">y órdenes abiertas.</text>
+<rect x="350" y="140" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="470" y="171.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Motor de Elegibilidad</text>
+<text x="470" y="187.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Python — S04/HU-128]</text>
+<text x="470" y="213.896" font-size="11"  fill="#ffffff" text-anchor="middle">Cliente activo, acuerdo</text>
+<text x="470" y="227.09599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">vigente, negociación</text>
+<text x="470" y="240.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">existente (S02 → S04).</text>
+<rect x="960" y="180" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="1080" y="205.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Resolutor PriceProvider</text>
+<text x="1080" y="220.63199999999998" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Python — P-072 PENDING]</text>
+<text x="1080" y="247.29599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">No inventa fuente de</text>
+<text x="1080" y="260.496" font-size="11"  fill="#ffffff" text-anchor="middle">precio; delega a la</text>
+<text x="1080" y="273.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">autoridad cuando se</text>
+<text x="1080" y="286.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">confirme.</text>
+<rect x="980" y="450" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="1100" y="494.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">PriceProvider externo</text>
+<text x="1100" y="510.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Sistema externo]</text>
+<text x="1100" y="537.0960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Fuente de precio — P-072 PENDING</text>
+<rect x="610" y="610" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="730" y="654.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">BFF Web</text>
+<text x="730" y="670.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedores externos]</text>
+<text x="730" y="697.0960000000001" font-size="11"  fill="#cccccc" text-anchor="middle">Consumidor Principal</text>
+<rect x="60" y="70" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="180" y="114.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cola de mensajería</text>
+<text x="180" y="130.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="180" y="157.09599999999998" font-size="11"  fill="#cccccc" text-anchor="middle">Suscripción: operacion-cerrada</text>
+<rect x="495.658203125" y="82.2" width="26.68359375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="509" y="89.8" font-size="8" fill="#7C2D12" text-anchor="middle">enruta</text>
+<rect x="992.658203125" y="82.2" width="26.68359375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1006" y="89.8" font-size="8" fill="#7C2D12" text-anchor="middle">enruta</text>
+<rect x="686.698203125" y="233.67999999999998" width="26.68359375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="700.04" y="241.27999999999997" font-size="8" fill="#7C2D12" text-anchor="middle">enruta</text>
+<rect x="1024.41796875" y="369.2" width="111.1640625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="1080" y="376.8" font-size="8" fill="#4D4D4D" text-anchor="middle">consulta (cuando se confirme)</text>
+<rect x="158.984375" y="264.2" width="52.03125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="185" y="271.8" font-size="8" fill="#1E3A8A" text-anchor="middle">recibe evento</text>
+<rect x="442.212890625" y="274.2" width="35.57421875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="460" y="281.8" font-size="8" fill="#4D4D4D" text-anchor="middle">actualiza</text>
+<rect x="558.994140625" y="470.7" width="32.01171875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="575" y="478.3" font-size="8" fill="#7C2D12" text-anchor="middle">persiste</text>
+<rect x="454.259765625" y="664.2" width="56.48046875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="482.5" y="671.8000000000001" font-size="8" fill="#1E3A8A" text-anchor="middle">consultado por</text>
+<text x="1030" y="827" font-size="16" font-weight="bold" fill="#4D4D4D">Legend</text>
+<rect x="1030" y="839" width="260" height="30" fill="#083F75"/>
+<text x="1040" y="859" font-size="13" fill="#ffffff">Person</text>
+<rect x="1030" y="869" width="260" height="30" fill="#1061B0"/>
+<text x="1040" y="889" font-size="13" fill="#ffffff">Software System</text>
+<rect x="1030" y="899" width="260" height="30" fill="#23A2D9"/>
+<text x="1040" y="919" font-size="13" fill="#ffffff">Container</text>
+<rect x="1030" y="929" width="260" height="30" fill="#63BEF2"/>
+<text x="1040" y="949" font-size="13" fill="#ffffff">Component</text>
+<rect x="1030" y="959" width="260" height="30" fill="#6C6477"/>
+<text x="1040" y="979" font-size="13" fill="#ffffff">External Person</text>
+<rect x="1030" y="989" width="260" height="30" fill="#8C8496"/>
+<text x="1040" y="1009" font-size="13" fill="#ffffff">External Software System</text>
+<text x="0" y="1042" font-size="11" fill="#9CA3AF">Arquitectura Volarte v3 · Structurizr · vista L3_Svc_Comercial · fuente Draw.io: 'L3 · Svc Comercial'</text>
+</svg>

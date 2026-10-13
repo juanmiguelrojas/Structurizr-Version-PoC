@@ -76,7 +76,8 @@ class ReviewerRules(unittest.TestCase):
 
 
     def test_r7_legend_ok_and_wrong_color(self):
-        good = [{"tag": t, "background": c} for t, c in ar.C4_LEGEND.items()] + [{"tag": "Database", "shape": "Cylinder"}]
+        good = [{"tag": t, "background": c, **({"shape": "Person"} if t == "Person" else {})}
+                for t, c in ar.C4_LEGEND.items()] + [{"tag": "Database", "shape": "Cylinder"}]
         elements, _, _ = run(workspace([]))
         errors = [f for f in ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": good}}}}, elements) if f.severity == "ERROR"]
         self.assertEqual(errors, [])
@@ -85,7 +86,8 @@ class ReviewerRules(unittest.TestCase):
         self.assertTrue(any(f.rule == "R7-Leyenda C4" and f.severity == "ERROR" for f in findings))
 
     def test_r7_pending_may_only_set_stroke(self):
-        styles = [{"tag": t, "background": c} for t, c in ar.C4_LEGEND.items()] + [{"tag": "Pending", "stroke": "#F59E0B"}]
+        styles = [{"tag": t, "background": c, **({"shape": "Person"} if t == "Person" else {})}
+                  for t, c in ar.C4_LEGEND.items()] + [{"tag": "Pending", "stroke": "#F59E0B"}]
         elements, _, _ = run(workspace([]))
         errors = [f for f in ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": styles}}}}, elements) if f.severity == "ERROR"]
         self.assertEqual(errors, [])
@@ -96,6 +98,12 @@ class ReviewerRules(unittest.TestCase):
         elements, _, _ = run(ws)
         findings = list(ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": styles}}}}, elements))
         self.assertTrue(any("External Person" in f.message for f in findings))
+
+    def test_r7_person_must_be_silhouette(self):
+        styles = [{"tag": t, "background": c, **({"shape": "Box"} if t == "Person" else {})} for t, c in ar.C4_LEGEND.items()]
+        elements, _, _ = run(workspace([]))
+        findings = list(ar.rule_c4_legend({"views": {"configuration": {"styles": {"elements": styles}}}}, elements))
+        self.assertTrue(any("silueta" in f.message and f.severity == "ERROR" for f in findings))
 
     def test_r6_locked_version_rejects_changes(self):
         original = ar.aac_versions.meta_at

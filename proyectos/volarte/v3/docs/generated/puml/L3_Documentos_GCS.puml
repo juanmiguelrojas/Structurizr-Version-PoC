@@ -1,0 +1,29 @@
+@startuml
+set separator none
+title L3 · Documentos GCS — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+!include <C4/C4_Component>
+
+Container(Volarte.GestorDocumental, "Gestor Documental", $techn="FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación. Retorna ID inmutable vinculado. Cola + reintento, sin duplicar (HU-055). S07: contenido y numeración del documento canónico. El Gestor Documental solo lo publica.", $tags="", $link="")
+
+Container_Boundary("Volarte.DocumentosGCS_boundary", "Documentos (GCS)", $tags="") {
+  Component(Volarte.DocumentosGCS.Estructuradecarpetas, "Estructura de carpetas", $techn="gs://.../{anio}/{mes}/{op_id}", $descr="Organización por año, mes y ID de operación.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.Políticadeciclodevida, "Política de ciclo de vida", $techn="GCS Lifecycle Rules", $descr="Transición a Nearline/ Coldline según antigüedad. Retención definida por política vigente.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.VersionadoWORM, "Versionado / WORM", $techn="GCS Object Versioning", $descr="Inmutabilidad: un objeto nunca se sobrescribe.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.IAMdelbucket, "IAM del bucket", $techn="Service Account bindings", $descr="Write: SA Gestor Documental. Read: signed URLs temporales.", $tags="", $link="")
+  Component(Volarte.DocumentosGCS.Cifradoenreposo, "Cifrado en reposo", $techn="CMEK (Cloud KMS)", $descr="Cada objeto cifrado con clave gestionada por Terpel, no por Google.", $tags="", $link="")
+}
+
+Rel(Volarte.GestorDocumental, Volarte.DocumentosGCS.Estructuradecarpetas, "escribe", $techn="", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.Estructuradecarpetas, Volarte.DocumentosGCS.Políticadeciclodevida, "organiza", $techn="", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.Políticadeciclodevida, Volarte.DocumentosGCS.VersionadoWORM, "aplica", $techn="", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.Estructuradecarpetas, Volarte.DocumentosGCS.IAMdelbucket, "controla acceso", $techn="", $tags="", $link="")
+Rel(Volarte.DocumentosGCS.IAMdelbucket, Volarte.DocumentosGCS.Cifradoenreposo, "cifra", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

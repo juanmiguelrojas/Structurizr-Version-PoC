@@ -1,0 +1,5766 @@
+{
+ "elementos": [
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-2",
+   "nombreDrawio": "ApiGee",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Container",
+   "ref": "apigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ApiGee",
+   "regla": "compartido (ApiGee, API Management, Apigee)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-4",
+   "nombreDrawio": "External Regional Load Balancer",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ss_externalRegionalLoadBalancer",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "External Regional Load Balancer",
+   "regla": "L2: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-10",
+   "nombreDrawio": "Firewall",
+   "tipoDrawio": "Palo alto",
+   "claseDrawio": "External Software System",
+   "ref": "firewall",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Firewall",
+   "regla": "compartido (Firewall)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-18",
+   "nombreDrawio": "Internal Load Balancer",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ilbTransversal",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Internal Load Balancer",
+   "regla": "compartido (Internal Load Balancer)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-19",
+   "nombreDrawio": "Proxy instance",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "proxyApigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Proxy instance",
+   "regla": "compartido (Proxy instance)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-22",
+   "nombreDrawio": "Frontend Web",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_frontendWeb",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Frontend Web",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-25",
+   "nombreDrawio": "Memorystore",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_memorystore",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Memorystore",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-26",
+   "nombreDrawio": "BFF — Backend Volarte",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_bffBackendVolarte",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF — Backend Volarte",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-33",
+   "nombreDrawio": "Internal Load Balancer",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "vo_internalLoadBalancer",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Internal Load Balancer",
+   "regla": "excepción mapeo: Segundo 'Internal Load Balancer' del L2, dentro del proyecto terpel-org-col-volarte-AMB: recurso propio de Volarte (el otro ILB es plataforma compartida).",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-38",
+   "nombreDrawio": "Cloud SQL (PostgreSQL)",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_cloudSqlPostgresql",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cloud SQL (PostgreSQL)",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-39",
+   "nombreDrawio": "Svc: Usuarios / Auth",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_svcUsuariosAuth",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Usuarios / Auth",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-40",
+   "nombreDrawio": "Cloud KMS",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_cloudKms",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cloud KMS",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-43",
+   "nombreDrawio": "Secret Manager",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_secretManager",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Secret Manager",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-48",
+   "nombreDrawio": "Gestor Documental",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_gestorDocumental",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Gestor Documental",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-49",
+   "nombreDrawio": "Documentos (GCS)",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_documentosGcs",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Documentos (GCS)",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-51",
+   "nombreDrawio": "Svc: Datos Maestros",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_svcDatosMaestros",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Datos Maestros",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-52",
+   "nombreDrawio": "Svc: Comercial",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_svcComercial",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Comercial",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-53",
+   "nombreDrawio": "Svc: Operación",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_svcOperacion",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Operación",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-54",
+   "nombreDrawio": "Svc: Asignación / Optimización",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_svcAsignacionOptimizacion",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Asignación / Optimización",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-56",
+   "nombreDrawio": "Cola de mensajeria",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-63",
+   "nombreDrawio": "Empleado Interno",
+   "tipoDrawio": "Persona",
+   "claseDrawio": "Person",
+   "ref": "pe_empleadoInterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Empleado Interno",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-65",
+   "nombreDrawio": "Usuario externo",
+   "tipoDrawio": "Person",
+   "claseDrawio": "External Person",
+   "ref": "pe_usuarioExterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Usuario externo",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-68",
+   "nombreDrawio": "Cloudflare",
+   "tipoDrawio": "Component",
+   "claseDrawio": "External Software System",
+   "ref": "cloudflare",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Cloudflare",
+   "regla": "compartido (Cloudflare)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-69",
+   "nombreDrawio": "EntraID / CIAM",
+   "tipoDrawio": "Sistema Externo — Identidad",
+   "claseDrawio": "External Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-70",
+   "nombreDrawio": "Operario de equipo abastecedor",
+   "tipoDrawio": "Persona",
+   "claseDrawio": "Person",
+   "ref": "pe_operarioDeEquipoAbastecedor",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Operario de equipo abastecedor",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-71",
+   "nombreDrawio": "App móvil",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_appMovil",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "App móvil",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-75",
+   "nombreDrawio": "ZTNA",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ztna",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ZTNA",
+   "regla": "compartido (ZTNA)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L2 · Container",
+   "drawioId": "p8cCmguKJE-8GRD_PWvh-77",
+   "nombreDrawio": "BFF Móvil",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "vo_bffMovil",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF Móvil",
+   "regla": "L2: contenedor de Volarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-11",
+   "nombreDrawio": "Search",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_search",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Search",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-12",
+   "nombreDrawio": "Storage",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_storage",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Storage",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-13",
+   "nombreDrawio": "Database",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_database",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Database",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-14",
+   "nombreDrawio": "Cloud SQL (PostgreSQL)",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_cloudSqlPostgresql",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Cloud SQL (PostgreSQL)",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-15",
+   "nombreDrawio": "Memorystore (Redis)",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_memorystoreRedis",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Memorystore (Redis)",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-16",
+   "nombreDrawio": "Svc: Wiki",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Component",
+   "ref": "po_svcWiki",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Wiki",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-17",
+   "nombreDrawio": "Svc: Usuarios / Auth",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Component",
+   "ref": "po_svcUsuariosAuth",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Usuarios / Auth",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-18",
+   "nombreDrawio": "+ Portales Externos Futuros",
+   "tipoDrawio": "[Sistemas Externos — Portales]",
+   "claseDrawio": "Software System",
+   "ref": "ss_portalesExternosFuturos",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "+ Portales Externos Futuros",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-20",
+   "nombreDrawio": "Backend — HUB Web",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_backendHubWeb",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Backend — HUB Web",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-22",
+   "nombreDrawio": "HUB Front",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_hubFront",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "HUB Front",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-23",
+   "nombreDrawio": "EntraID / CIAM",
+   "tipoDrawio": "Sistema Externo — Identidad",
+   "claseDrawio": "External Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-24",
+   "nombreDrawio": "ZTNA",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ztna",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ZTNA",
+   "regla": "compartido (ZTNA)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-25",
+   "nombreDrawio": "Global Load Balancer",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ss_globalLoadBalancer",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Global Load Balancer",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-26",
+   "nombreDrawio": "Identity-Aware Proxy (IAP)",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ss_identityAwareProxyIap",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Identity-Aware Proxy (IAP)",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-34",
+   "nombreDrawio": "Cloud Monitoring",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_cloudMonitoring",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Cloud Monitoring",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-35",
+   "nombreDrawio": "Cloud Logging",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_cloudLogging",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Cloud Logging",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-39",
+   "nombreDrawio": "Cloud KMS",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "ss_cloudKms",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Cloud KMS",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-40",
+   "nombreDrawio": "Secret Manager",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "ss_secretManager",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Secret Manager",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-50",
+   "nombreDrawio": "Cloudflare",
+   "tipoDrawio": "Component",
+   "claseDrawio": "External Software System",
+   "ref": "cloudflare",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Cloudflare",
+   "regla": "compartido (Cloudflare)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-52",
+   "nombreDrawio": "Portales Remote Modulo",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "po_portalesRemoteModulo",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Portales Remote Modulo",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-53",
+   "nombreDrawio": "Federation Bridge",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "po_federationBridge",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Federation Bridge",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-60",
+   "nombreDrawio": "Power BI Service",
+   "tipoDrawio": "Sistema Externo — Microsoft",
+   "claseDrawio": "Software System",
+   "ref": "ss_powerBiService",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Power BI Service",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-62",
+   "nombreDrawio": "Svc: Power BI Proxy",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "po_svcPowerBiProxy",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Power BI Proxy",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-68",
+   "nombreDrawio": "Backend — HUB Web",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_backendHubWebMovil",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Backend — HUB Web (Móvil)",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {
+    "nombre": "Backend — HUB Web"
+   }
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-71",
+   "nombreDrawio": "Datalake",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "datalake",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Datalake",
+   "regla": "compartido (Datalake)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-72",
+   "nombreDrawio": "Svc: Analitica",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Component",
+   "ref": "po_svcAnalitica",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Analitica",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-73",
+   "nombreDrawio": "API Management",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "apigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ApiGee",
+   "regla": "compartido (ApiGee, API Management, Apigee)",
+   "textoPresentacion": {
+    "nombre": "API Management",
+    "tecnologia": "ApiGee",
+    "descripcion": "Plataforma de administración de API nativa de Google Cloud"
+   }
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-84",
+   "nombreDrawio": "Firewall",
+   "tipoDrawio": "Palo alto",
+   "claseDrawio": "External Software System",
+   "ref": "firewall",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Firewall",
+   "regla": "compartido (Firewall)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-85",
+   "nombreDrawio": "Cloud Data Fusion",
+   "tipoDrawio": "Container",
+   "claseDrawio": "External Software System",
+   "ref": "ss_cloudDataFusion",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Cloud Data Fusion",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-86",
+   "nombreDrawio": "SalesForce",
+   "tipoDrawio": "Component",
+   "claseDrawio": "External Software System",
+   "ref": "ss_salesforce",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "SalesForce",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-87",
+   "nombreDrawio": "SAP ERP",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Software System",
+   "ref": "ss_sapErp",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "SAP ERP",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-88",
+   "nombreDrawio": "ZENPUT",
+   "tipoDrawio": "Component",
+   "claseDrawio": "External Software System",
+   "ref": "ss_zenput",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ZENPUT",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {
+    "descripcion": ""
+   }
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-89",
+   "nombreDrawio": "GuruSoft",
+   "tipoDrawio": "Servicio externo",
+   "claseDrawio": "External Software System",
+   "ref": "ss_gurusoft",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "GuruSoft",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-90",
+   "nombreDrawio": "Svc: Notificacion",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Component",
+   "ref": "po_svcNotificacion",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Notificacion",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-91",
+   "nombreDrawio": "Svc: Pagos",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Component",
+   "ref": "po_svcPagos",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Svc: Pagos",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-94",
+   "nombreDrawio": "Cola de mensajeria",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-101",
+   "nombreDrawio": "Memorystore (Redis free)",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_memorystoreRedisFree",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "Memorystore (Redis free)",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-102",
+   "nombreDrawio": "Internal Load Balancer",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ilbTransversal",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Internal Load Balancer",
+   "regla": "compartido (Internal Load Balancer)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-103",
+   "nombreDrawio": "Proxy instance",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "proxyApigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Proxy instance",
+   "regla": "compartido (Proxy instance)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-110",
+   "nombreDrawio": "Empleado Interno",
+   "tipoDrawio": "Persona",
+   "claseDrawio": "Person",
+   "ref": "pe_empleadoInterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Empleado Interno",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-116",
+   "nombreDrawio": "App Móvil",
+   "tipoDrawio": "React native — Cliente",
+   "claseDrawio": "External Software System",
+   "ref": "po_appMovil",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "App Móvil",
+   "regla": "excepción mapeo: App Móvil del HUB: cliente del Portal (React Native) dibujado en gris; semánticamente es un contenedor del Portal.",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-119",
+   "nombreDrawio": "Usuario externo",
+   "tipoDrawio": "Person",
+   "claseDrawio": "External Person",
+   "ref": "pe_usuarioExterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Usuario externo",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-126",
+   "nombreDrawio": "Dynatrace (Tenant Terpel)",
+   "tipoDrawio": "SaaS Dynatrace",
+   "claseDrawio": "External Software System",
+   "ref": "ss_dynatraceTenantTerpel",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Dynatrace (Tenant Terpel)",
+   "regla": "L0: plataforma / sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-128",
+   "nombreDrawio": "OTel Collector",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "po_otelCollector",
+   "tipoModelo": "container",
+   "padre": "portal",
+   "nombreModelo": "OTel Collector",
+   "regla": "L0: contenedor del Portal",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-1",
+   "nombreDrawio": "Admin / Dev Team",
+   "tipoDrawio": "Persona",
+   "claseDrawio": "Person",
+   "ref": "pe_adminDevTeam",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Admin / Dev Team",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-6",
+   "nombreDrawio": "Google Cloud Platform",
+   "tipoDrawio": "Sistema Externo — Infra",
+   "claseDrawio": "Software System",
+   "ref": "ss_googleCloudPlatform",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Google Cloud Platform",
+   "regla": "L1: sistema",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-7",
+   "nombreDrawio": "+ Sistemas Externos Futuros",
+   "tipoDrawio": "Sistemas Externos",
+   "claseDrawio": "External Software System",
+   "ref": "ss_sistemasExternosFuturos",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "+ Sistemas Externos Futuros",
+   "regla": "L1: sistema",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-8",
+   "nombreDrawio": "Portal",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "Software System",
+   "ref": "portal",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Portal",
+   "regla": "L1: sistema en alcance",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-9",
+   "nombreDrawio": "EntraID / Azure AD",
+   "tipoDrawio": "Sistema Externo — Identidad",
+   "claseDrawio": "Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {
+    "nombre": "EntraID / Azure AD"
+   }
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-12",
+   "nombreDrawio": "+ Webapps Externos Futuros",
+   "tipoDrawio": "Sistemas internos — Portales/ aplicaciones",
+   "claseDrawio": "Software System",
+   "ref": "ss_webappsExternosFuturos",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "+ Webapps Externos Futuros",
+   "regla": "L1: sistema",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-31",
+   "nombreDrawio": "Usuario externo",
+   "tipoDrawio": "Person",
+   "claseDrawio": "External Person",
+   "ref": "pe_usuarioExterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Usuario externo",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-34",
+   "nombreDrawio": "CIAM",
+   "tipoDrawio": "Ping Identity",
+   "claseDrawio": "External Software System",
+   "ref": "ss_ciam",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "CIAM",
+   "regla": "L1: sistema",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-38",
+   "nombreDrawio": "Datalake",
+   "tipoDrawio": "Container",
+   "claseDrawio": "Container",
+   "ref": "datalake",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "Datalake",
+   "regla": "compartido (Datalake)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-39",
+   "nombreDrawio": "Empleado Interno",
+   "tipoDrawio": "Persona",
+   "claseDrawio": "Person",
+   "ref": "pe_empleadoInterno",
+   "tipoModelo": "person",
+   "padre": null,
+   "nombreModelo": "Empleado Interno",
+   "regla": "persona (compartida por nombre)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L1 · Context",
+   "drawioId": "jBqDDpGHMn_ggPszUGn9-15",
+   "nombreDrawio": "Capacidades Transversales",
+   "tipoDrawio": "Nota",
+   "claseDrawio": null,
+   "ref": "ce_capacidadesTransversales",
+   "tipoModelo": "custom",
+   "padre": null,
+   "nombreModelo": "Capacidades Transversales",
+   "regla": "nota del Draw.io modelada como elemento",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-1",
+   "nombreDrawio": "App Shell / Router",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_appShellRouter",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "App Shell / Router",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-2",
+   "nombreDrawio": "Vistas por rol",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_vistasPorRol",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "Vistas por rol",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-3",
+   "nombreDrawio": "Cliente API",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_clienteApi",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "Cliente API",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-4",
+   "nombreDrawio": "Cache de estado servidor",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_cacheDeEstadoServidor",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "Cache de estado servidor",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-5",
+   "nombreDrawio": "Error Boundary / Telemetría",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_errorBoundaryTelemetria",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "Error Boundary / Telemetría",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "JWy8FgxPE3tA-0hkP3Wm-6",
+   "nombreDrawio": "Modulo de Autenticacion",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "fw_moduloDeAutenticacion",
+   "tipoModelo": "component",
+   "padre": "vo_frontendWeb",
+   "nombreModelo": "Modulo de Autenticacion",
+   "regla": "L3: componente de vo_frontendWeb",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "K3x9ieyRvBXn8_fBmudi-1",
+   "nombreDrawio": "EntraID / CIAM",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "External Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {
+    "tipo": "Software System",
+    "descripcion": "Login SSO (MSAL.js, PKCE)"
+   }
+  },
+  {
+   "pagina": "L3 · Frontend Web",
+   "drawioId": "K3x9ieyRvBXn8_fBmudi-2",
+   "nombreDrawio": "Apigee",
+   "tipoDrawio": "Componente externo",
+   "claseDrawio": "External Software System",
+   "ref": "apigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ApiGee",
+   "regla": "compartido (ApiGee, API Management, Apigee)",
+   "textoPresentacion": {
+    "nombre": "Apigee",
+    "tipo": "Componente externo",
+    "tecnologia": "",
+    "descripcion": "Gateway API (fuera de este contenedor)"
+   }
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "tE5uz-bxcUuAfPVDgkf5-1",
+   "nombreDrawio": "Modulo de Autenticacion",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_moduloDeAutenticacion",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Modulo de Autenticacion",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "UOg2JrxTDASzVybLAq_5-2",
+   "nombreDrawio": "Navegación",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_navegacion",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Navegación",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "UOg2JrxTDASzVybLAq_5-3",
+   "nombreDrawio": "Base de Datos local",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_baseDeDatosLocal",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Base de Datos local",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "UOg2JrxTDASzVybLAq_5-4",
+   "nombreDrawio": "Motor de Sincronización",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_motorDeSincronizacion",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Motor de Sincronización",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "FF5uxJXjgTfR0MfS2Fa0-1",
+   "nombreDrawio": "Cliente API",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_clienteApi",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Cliente API",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "FF5uxJXjgTfR0MfS2Fa0-2",
+   "nombreDrawio": "Captura de Evidencia",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_capturaDeEvidencia",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Captura de Evidencia",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "FF5uxJXjgTfR0MfS2Fa0-3",
+   "nombreDrawio": "Disparador de Sync",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_disparadorDeSync",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Disparador de Sync",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "IJ51pq0J-d0GQBmwbhIP-1",
+   "nombreDrawio": "BFF Móvil",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "External Software System",
+   "ref": "vo_bffMovil",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF Móvil",
+   "regla": "compartido (BFF Móvil)",
+   "textoPresentacion": {
+    "tipo": "Software System",
+    "tecnologia": "",
+    "descripcion": "Vía Netskope/ZTNA (fuera de este contenedor)"
+   }
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "IJ51pq0J-d0GQBmwbhIP-2",
+   "nombreDrawio": "EntraID",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "External Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {
+    "nombre": "EntraID",
+    "tipo": "Software System",
+    "descripcion": "Login SSO (solo Entra ID)"
+   }
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "mob-netskope-1",
+   "nombreDrawio": "Netskope Client (ZTNA)",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_netskopeClientZtna",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Netskope Client (ZTNA)",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "I06DCVj82Mg0p9T_tGyF-1",
+   "nombreDrawio": "Cifrado Local en Reposo",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_cifradoLocalEnReposo",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Cifrado Local en Reposo",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "I06DCVj82Mg0p9T_tGyF-2",
+   "nombreDrawio": "Gestor de Estados de Sincronización",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_gestorDeEstadosDeSincronizacion",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Gestor de Estados de Sincronización",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · App Movil",
+   "drawioId": "I06DCVj82Mg0p9T_tGyF-4",
+   "nombreDrawio": "Component name",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "am_componentName",
+   "tipoModelo": "component",
+   "padre": "vo_appMovil",
+   "nombreModelo": "Component name",
+   "regla": "L3: componente de vo_appMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-1",
+   "nombreDrawio": "API Router / Controllers",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_apiRouterControllers",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "API Router / Controllers",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-2",
+   "nombreDrawio": "Middleware de Autenticación",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_middlewareDeAutenticacion",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Middleware de Autenticación",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-3",
+   "nombreDrawio": "Servicio de Autorización",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_servicioDeAutorizacion",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Servicio de Autorización",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-6",
+   "nombreDrawio": "Orquestador de Dominio",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_orquestadorDeDominio",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Orquestador de Dominio",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-8",
+   "nombreDrawio": "Clientes de Servicios",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_clientesDeServicios",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Clientes de Servicios",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-9",
+   "nombreDrawio": "Cliente de Secretos",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_clienteDeSecretos",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Cliente de Secretos",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-10",
+   "nombreDrawio": "Cliente de Cache",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bw_clienteDeCache",
+   "tipoModelo": "component",
+   "padre": "vo_bffBackendVolarte",
+   "nombreModelo": "Cliente de Cache",
+   "regla": "L3: componente de vo_bffBackendVolarte",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "m82-UoYV6cME8UAHcOga-1",
+   "nombreDrawio": "Servicios de dominio",
+   "tipoDrawio": "Contenedores externos",
+   "claseDrawio": "External Software System",
+   "ref": "ce_serviciosDeDominio",
+   "tipoModelo": "custom",
+   "padre": null,
+   "nombreModelo": "Servicios de dominio",
+   "regla": "compartido (Servicios de dominio)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Web",
+   "drawioId": "m82-UoYV6cME8UAHcOga-2",
+   "nombreDrawio": "Apigee",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "External Software System",
+   "ref": "apigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ApiGee",
+   "regla": "compartido (ApiGee, API Management, Apigee)",
+   "textoPresentacion": {
+    "nombre": "Apigee",
+    "tipo": "Software System",
+    "tecnologia": "",
+    "descripcion": "Entrada, ya valida firma/issuer del JWT"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "1zkQ9IaikqJmL66ETiHT-1",
+   "nombreDrawio": "Servicio de Autorización",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_servicioDeAutorizacion",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Servicio de Autorización",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "SELEylk7Q_GAH_jisJpw-1",
+   "nombreDrawio": "Middleware de Autenticación",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_middlewareDeAutenticacion",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Middleware de Autenticación",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "bxV1-kFdc_Y-09Kx5JXH-1",
+   "nombreDrawio": "API Router / Controllers",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_apiRouterControllers",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "API Router / Controllers",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "D_LV-Y4hSz6o_uYIQ-JI-1",
+   "nombreDrawio": "Servicio de Idempotencia",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_servicioDeIdempotencia",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Servicio de Idempotencia",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-1",
+   "nombreDrawio": "Publicador de Eventos",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_publicadorDeEventos",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Publicador de Eventos",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-4",
+   "nombreDrawio": "Manejador de Subida",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_manejadorDeSubida",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Manejador de Subida",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-5",
+   "nombreDrawio": "Proveedor de Delta",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_proveedorDeDelta",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Proveedor de Delta",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-1",
+   "nombreDrawio": "Apigee",
+   "tipoDrawio": "Software System",
+   "claseDrawio": "External Software System",
+   "ref": "apigee",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "ApiGee",
+   "regla": "compartido (ApiGee, API Management, Apigee)",
+   "textoPresentacion": {
+    "nombre": "Apigee",
+    "tipo": "Software System",
+    "tecnologia": "",
+    "descripcion": "Entrada vía Netskope/ZTNA"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-2",
+   "nombreDrawio": "Documentos (GCS)",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_documentosGcs",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Documentos (GCS)",
+   "regla": "compartido (Documentos (GCS))",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Fuera de este contenedor"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-3",
+   "nombreDrawio": "Cola de mensajería",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "compartido (Cola de mensajería)",
+   "textoPresentacion": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Pub/Sub (fuera de este contenedor)"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-4",
+   "nombreDrawio": "Svc: Operación",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_svcOperacion",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Operación",
+   "regla": "compartido (Svc: Operación)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Fuera de este contenedor"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "bffm-sql-ext-1",
+   "nombreDrawio": "Cloud SQL",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_cloudSqlPostgresql",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cloud SQL (PostgreSQL)",
+   "regla": "compartido (Cloud SQL, Cloud SQL / metadata)",
+   "textoPresentacion": {
+    "nombre": "Cloud SQL",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Tablas: Sincronizacion (fuera de este contenedor)"
+   }
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-2",
+   "nombreDrawio": "Motor de Reconciliación",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_motorDeReconciliacion",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Motor de Reconciliación",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "E34e5Gi3vuo780vgvwd1-4",
+   "nombreDrawio": "Validador de Orden/Secuencia",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_validadorDeOrdenSecuencia",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Validador de Orden/Secuencia",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · BFF Movil",
+   "drawioId": "E34e5Gi3vuo780vgvwd1-5",
+   "nombreDrawio": "Cliente Cloud SQL",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "bm_clienteCloudSql",
+   "tipoModelo": "component",
+   "padre": "vo_bffMovil",
+   "nombreModelo": "Cliente Cloud SQL",
+   "regla": "L3: componente de vo_bffMovil",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "1qreaHeSFc16h1s6TYu0-6",
+   "nombreDrawio": "Dead Letter Topic",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_deadLetterTopic",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Dead Letter Topic",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "1qreaHeSFc16h1s6TYu0-7",
+   "nombreDrawio": "Sub: comercial-sub",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_subComercialSub",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Sub: comercial-sub",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "1qreaHeSFc16h1s6TYu0-8",
+   "nombreDrawio": "Topic: operacion-cerrada",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_topicOperacionCerrada",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Topic: operacion-cerrada",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "1qreaHeSFc16h1s6TYu0-9",
+   "nombreDrawio": "Sub: gestor-documental-sub",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_subGestorDocumentalSub",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Sub: gestor-documental-sub",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "NJPMC4rQsjvtd9-BpX4p-1",
+   "nombreDrawio": "Svc: Comercial",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_svcComercial",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Comercial",
+   "regla": "compartido (Svc: Comercial)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscriptor"
+   }
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "NJPMC4rQsjvtd9-BpX4p-2",
+   "nombreDrawio": "BFF Móvil",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_bffMovil",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF Móvil",
+   "regla": "compartido (BFF Móvil)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Publicador principal"
+   }
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "NJPMC4rQsjvtd9-BpX4p-3",
+   "nombreDrawio": "Gestor Documental",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_gestorDocumental",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Gestor Documental",
+   "regla": "compartido (Gestor Documental)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscriptor"
+   }
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "ps-bffw-1",
+   "nombreDrawio": "BFF Web",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_bffBackendVolarte",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF — Backend Volarte",
+   "regla": "compartido (BFF Web)",
+   "textoPresentacion": {
+    "nombre": "BFF Web",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Publicador — Servicio de Conciliación (revisión manual HU-050)"
+   }
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "ps-conc-topic-1",
+   "nombreDrawio": "Topic: conciliacion-resuelta",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_topicConciliacionResuelta",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Topic: conciliacion-resuelta",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "ps-ops-ext-1",
+   "nombreDrawio": "Svc: Operación",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_svcOperacion",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Operación",
+   "regla": "compartido (Svc: Operación)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscriptor"
+   }
+  },
+  {
+   "pagina": "L3 · Pub-Sub",
+   "drawioId": "_5laymvxx4AvxF7kTuUS-1",
+   "nombreDrawio": "Sub: operacion-conciliacion-sub",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "ps_subOperacionConciliacionSub",
+   "tipoModelo": "component",
+   "padre": "vo_colaDeMensajeria",
+   "nombreModelo": "Sub: operacion-conciliacion-sub",
+   "regla": "L3: componente de vo_colaDeMensajeria",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "_c_TmdJeJUtrgmQ7S9uW-1",
+   "nombreDrawio": "Estructura de carpetas",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "dg_estructuraDeCarpetas",
+   "tipoModelo": "component",
+   "padre": "vo_documentosGcs",
+   "nombreModelo": "Estructura de carpetas",
+   "regla": "L3: componente de vo_documentosGcs",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "_c_TmdJeJUtrgmQ7S9uW-2",
+   "nombreDrawio": "Política de ciclo de vida",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "dg_politicaDeCicloDeVida",
+   "tipoModelo": "component",
+   "padre": "vo_documentosGcs",
+   "nombreModelo": "Política de ciclo de vida",
+   "regla": "L3: componente de vo_documentosGcs",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "_c_TmdJeJUtrgmQ7S9uW-3",
+   "nombreDrawio": "Versionado / WORM",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "dg_versionadoWorm",
+   "tipoModelo": "component",
+   "padre": "vo_documentosGcs",
+   "nombreModelo": "Versionado / WORM",
+   "regla": "L3: componente de vo_documentosGcs",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "_c_TmdJeJUtrgmQ7S9uW-4",
+   "nombreDrawio": "IAM del bucket",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "dg_iamDelBucket",
+   "tipoModelo": "component",
+   "padre": "vo_documentosGcs",
+   "nombreModelo": "IAM del bucket",
+   "regla": "L3: componente de vo_documentosGcs",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "_c_TmdJeJUtrgmQ7S9uW-5",
+   "nombreDrawio": "Cifrado en reposo",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "dg_cifradoEnReposo",
+   "tipoModelo": "component",
+   "padre": "vo_documentosGcs",
+   "nombreModelo": "Cifrado en reposo",
+   "regla": "L3: componente de vo_documentosGcs",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Documentos GCS",
+   "drawioId": "7glqgnJFogUP_nQTeCRp-2",
+   "nombreDrawio": "Gestor Documental",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_gestorDocumental",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Gestor Documental",
+   "regla": "compartido (Gestor Documental)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Único escritor (SA con permiso write)"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-1",
+   "nombreDrawio": "API Router",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_apiRouter",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "API Router",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-2",
+   "nombreDrawio": "Resolver GroupToRoleMapping",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_resolverGrouptorolemapping",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "Resolver GroupToRoleMapping",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-3",
+   "nombreDrawio": "Adaptador de sincronización Entra ID",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_adaptadorDeSincronizacionEntraId",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "Adaptador de sincronización Entra ID",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-4",
+   "nombreDrawio": "Invalidador de Cache",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_invalidadorDeCache",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "Invalidador de Cache",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-5",
+   "nombreDrawio": "Cliente Cloud SQL",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_clienteCloudSql",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "Cliente Cloud SQL",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "t-WAN_PF45m8JnTnU6Eb-6",
+   "nombreDrawio": "Auditor",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "su_auditor",
+   "tipoModelo": "component",
+   "padre": "vo_svcUsuariosAuth",
+   "nombreModelo": "Auditor",
+   "regla": "L3: componente de vo_svcUsuariosAuth",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "QJXrHxYRZstZZbYl4sQt-1",
+   "nombreDrawio": "BFF Web / BFF Móvil",
+   "tipoDrawio": "Contenedores externos",
+   "claseDrawio": "External Software System",
+   "ref": "ce_bffWebBffMovil",
+   "tipoModelo": "custom",
+   "padre": null,
+   "nombreModelo": "BFF Web / BFF Móvil",
+   "regla": "compartido (BFF Web / BFF Móvil)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "QJXrHxYRZstZZbYl4sQt-2",
+   "nombreDrawio": "Cloud SQL",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_cloudSqlPostgresql",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cloud SQL (PostgreSQL)",
+   "regla": "compartido (Cloud SQL, Cloud SQL / metadata)",
+   "textoPresentacion": {
+    "nombre": "Cloud SQL",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Persistencia"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "QJXrHxYRZstZZbYl4sQt-3",
+   "nombreDrawio": "Memorystore",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_memorystore",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Memorystore",
+   "regla": "compartido (Memorystore)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Invalidación de cache"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Usuarios Auth",
+   "drawioId": "QJXrHxYRZstZZbYl4sQt-4",
+   "nombreDrawio": "EntraID",
+   "tipoDrawio": "Sistema externo",
+   "claseDrawio": "External Software System",
+   "ref": "entraId",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "EntraID / CIAM",
+   "regla": "compartido (EntraID / CIAM, EntraID / Azure AD, EntraID)",
+   "textoPresentacion": {
+    "nombre": "EntraID",
+    "tipo": "Sistema externo",
+    "descripcion": "Fuente de identidad/grupos"
+   }
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "w7r6QkDVoiiIa6xH4-3E-1",
+   "nombreDrawio": "Asignador de Numeración",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_asignadorDeNumeracion",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Asignador de Numeración",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "LfrINowvB_6pj9qjwHhb-1",
+   "nombreDrawio": "Suscriptor Pub/Sub",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_suscriptorPubSub",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Suscriptor Pub/Sub",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "LfrINowvB_6pj9qjwHhb-3",
+   "nombreDrawio": "Generador de Documento",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_generadorDeDocumento",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Generador de Documento",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "LfrINowvB_6pj9qjwHhb-4",
+   "nombreDrawio": "Motor de Plantillas",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_motorDePlantillas",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Motor de Plantillas",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "LfrINowvB_6pj9qjwHhb-5",
+   "nombreDrawio": "Publicador",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_publicador",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Publicador",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "7EeqbbmK745T4Ry1vtSA-1",
+   "nombreDrawio": "Cliente GCS",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "gd_clienteGcs",
+   "tipoModelo": "component",
+   "padre": "vo_gestorDocumental",
+   "nombreModelo": "Cliente GCS",
+   "regla": "L3: componente de vo_gestorDocumental",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "p3czn_rpy_i9IkPloGag-1",
+   "nombreDrawio": "Cola de mensajería",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "compartido (Cola de mensajería)",
+   "textoPresentacion": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscripción: operacion-cerrada"
+   }
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "p3czn_rpy_i9IkPloGag-2",
+   "nombreDrawio": "Cloud SQL / metadata",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_cloudSqlPostgresql",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cloud SQL (PostgreSQL)",
+   "regla": "compartido (Cloud SQL, Cloud SQL / metadata)",
+   "textoPresentacion": {
+    "nombre": "Cloud SQL / metadata",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Numeración secuencial"
+   }
+  },
+  {
+   "pagina": "L3 · Gestor Documental",
+   "drawioId": "p3czn_rpy_i9IkPloGag-3",
+   "nombreDrawio": "Documentos (GCS)",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_documentosGcs",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Documentos (GCS)",
+   "regla": "compartido (Documentos (GCS))",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Almacenamiento final"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-1",
+   "nombreDrawio": "API Router",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_apiRouter",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "API Router",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-2",
+   "nombreDrawio": "Rastreador de Posición",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_rastreadorDePosicion",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "Rastreador de Posición",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-3",
+   "nombreDrawio": "Inventario de Calidad",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_inventarioDeCalidad",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "Inventario de Calidad",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-4",
+   "nombreDrawio": "Cliente de base de datos",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_clienteDeBaseDeDatos",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "Cliente de base de datos",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-5",
+   "nombreDrawio": "Gestor de Turnos",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_gestorDeTurnos",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "Gestor de Turnos",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "y6BNUnCm-LO4T1uQHbZl-7",
+   "nombreDrawio": "Suscriptor de Tracking",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "so_suscriptorDeTracking",
+   "tipoModelo": "component",
+   "padre": "vo_svcOperacion",
+   "nombreModelo": "Suscriptor de Tracking",
+   "regla": "L3: componente de vo_svcOperacion",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-1",
+   "nombreDrawio": "BFF Web / BFF Móvil",
+   "tipoDrawio": "Contenedores externos",
+   "claseDrawio": "External Software System",
+   "ref": "ce_bffWebBffMovil",
+   "tipoModelo": "custom",
+   "padre": null,
+   "nombreModelo": "BFF Web / BFF Móvil",
+   "regla": "compartido (BFF Web / BFF Móvil)",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-2",
+   "nombreDrawio": "Cola de mensajería",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "compartido (Cola de mensajería)",
+   "textoPresentacion": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscripción: tracking-eventos (si aplica)"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Operacion",
+   "drawioId": "i--iAFYeRP1RJYZK3LzI-3",
+   "nombreDrawio": "Svc: Datos Maestros",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_svcDatosMaestros",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Svc: Datos Maestros",
+   "regla": "compartido (Svc: Datos Maestros)",
+   "textoPresentacion": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Geocerca (S02/HU-145)"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "SysJojknCBub14QhnpdS-1",
+   "nombreDrawio": "API Router",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_apiRouter",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "API Router",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "Wf-JDKIvJJDLsy6hbBwl-1",
+   "nombreDrawio": "Cliente de base de datos",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_clienteDeBaseDeDatos",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "Cliente de base de datos",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "xXJvcLVGKZx-Wk_l2KEW-1",
+   "nombreDrawio": "Suscriptor operacion-cerrada",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_suscriptorOperacionCerrada",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "Suscriptor operacion-cerrada",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "xXJvcLVGKZx-Wk_l2KEW-2",
+   "nombreDrawio": "Servicio de Crédito Disponible",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_servicioDeCreditoDisponible",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "Servicio de Crédito Disponible",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "xXJvcLVGKZx-Wk_l2KEW-3",
+   "nombreDrawio": "Motor de Elegibilidad",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_motorDeElegibilidad",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "Motor de Elegibilidad",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "xXJvcLVGKZx-Wk_l2KEW-4",
+   "nombreDrawio": "Resolutor PriceProvider",
+   "tipoDrawio": "Component",
+   "claseDrawio": "Component",
+   "ref": "sc_resolutorPriceprovider",
+   "tipoModelo": "component",
+   "padre": "vo_svcComercial",
+   "nombreModelo": "Resolutor PriceProvider",
+   "regla": "L3: componente de vo_svcComercial",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "H-s8rk4Q10PAkRIC20Ai-1",
+   "nombreDrawio": "PriceProvider externo",
+   "tipoDrawio": "Sistema externo",
+   "claseDrawio": "External Software System",
+   "ref": "ss_priceproviderExterno",
+   "tipoModelo": "softwareSystem",
+   "padre": null,
+   "nombreModelo": "PriceProvider externo",
+   "regla": "L3: sistema externo",
+   "textoPresentacion": {}
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "b-RN_Ccwwt3KFX2f4dkP-1",
+   "nombreDrawio": "BFF Web",
+   "tipoDrawio": "Contenedores externos",
+   "claseDrawio": "External Software System",
+   "ref": "vo_bffBackendVolarte",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "BFF — Backend Volarte",
+   "regla": "compartido (BFF Web)",
+   "textoPresentacion": {
+    "nombre": "BFF Web",
+    "tipo": "Contenedores externos",
+    "tecnologia": "",
+    "descripcion": "Consumidor Principal"
+   }
+  },
+  {
+   "pagina": "L3 · Svc Comercial",
+   "drawioId": "b-RN_Ccwwt3KFX2f4dkP-2",
+   "nombreDrawio": "Cola de mensajería",
+   "tipoDrawio": "Contenedor externo",
+   "claseDrawio": "External Software System",
+   "ref": "vo_colaDeMensajeria",
+   "tipoModelo": "container",
+   "padre": "volarte",
+   "nombreModelo": "Cola de mensajeria",
+   "regla": "compartido (Cola de mensajería)",
+   "textoPresentacion": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Suscripción: operacion-cerrada"
+   }
+  }
+ ],
+ "relaciones": [
+  {
+   "origen": "po_hubFront",
+   "destino": "po_backendHubWeb",
+   "descripcion": "REST/JSON · JWT",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_portalesRemoteModulo",
+   "destino": "po_backendHubWeb",
+   "descripcion": "REST · JWT",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-2",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWeb",
+   "destino": "apigee",
+   "descripcion": "gRPC / REST",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-3",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcUsuariosAuth",
+   "destino": "po_cloudSqlPostgresql",
+   "descripcion": "SQL",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcWiki",
+   "destino": "po_database",
+   "descripcion": "Firestore SDK",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcWiki",
+   "destino": "po_search",
+   "descripcion": "Elasticsearch API",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWeb",
+   "destino": "po_memorystoreRedis",
+   "descripcion": "Redis SDK",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "entraId",
+   "destino": "po_svcUsuariosAuth",
+   "descripcion": "OIDC / SCIM sync",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcWiki",
+   "destino": "po_storage",
+   "descripcion": "Almacen de data no estructurada",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-9",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_hubFront",
+   "destino": "ss_identityAwareProxyIap",
+   "descripcion": "Verifica Autenticacion",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-27",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ztna",
+   "destino": "ss_globalLoadBalancer",
+   "descripcion": "Sync Red Corporativa Privada",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-29",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_globalLoadBalancer",
+   "destino": "po_hubFront",
+   "descripcion": "HTTPS · TLS 1.3",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-30",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_identityAwareProxyIap",
+   "destino": "po_hubFront",
+   "descripcion": "Sirve SPA + JWT",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-31",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_identityAwareProxyIap",
+   "destino": "entraId",
+   "descripcion": "OIDC redirect",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-33",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_cloudLogging",
+   "destino": "po_cloudMonitoring",
+   "descripcion": "Métricas · alertas",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-36",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_secretManager",
+   "destino": "ss_cloudKms",
+   "descripcion": "Cifra secretos con CMEK",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-41",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_cloudSqlPostgresql",
+   "destino": "ss_cloudKms",
+   "descripcion": "Lee client secrets · IAM SA",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-43",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_cloudKms",
+   "destino": "po_storage",
+   "descripcion": "CMEK cifrado en reposo",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-45",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWeb",
+   "destino": "ss_secretManager",
+   "descripcion": "Lee secretos · IAM SA",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-47",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "cloudflare",
+   "destino": "ss_globalLoadBalancer",
+   "descripcion": "Sync Red Publica",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-49",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_portalesRemoteModulo",
+   "destino": "po_federationBridge",
+   "descripcion": "Redirect + token hint",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-54",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_hubFront",
+   "destino": "po_portalesRemoteModulo",
+   "descripcion": "Enruta al modulo",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-56",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_hubFront",
+   "destino": "po_federationBridge",
+   "descripcion": "POST /federar {token, destino: \"portal\"}",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-57",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_federationBridge",
+   "destino": "ss_portalesExternosFuturos",
+   "descripcion": "Redirect + JWT (token relay)",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-59",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcPowerBiProxy",
+   "destino": "ss_powerBiService",
+   "descripcion": "Power BI REST API · AAD",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-61",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_appMovil",
+   "destino": "entraId",
+   "descripcion": "Verifica Autenticacion",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-64",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWebMovil",
+   "destino": "ilbTransversal",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-67",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcAnalitica",
+   "destino": "datalake",
+   "descripcion": "Fuente de datos/ Entrega de data",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-69",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcUsuariosAuth",
+   "destino": "apigee",
+   "descripcion": "Expone",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-74",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcWiki",
+   "destino": "apigee",
+   "descripcion": "Expone",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-76",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcAnalitica",
+   "destino": "apigee",
+   "descripcion": "Expone",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-78",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcPowerBiProxy",
+   "destino": "apigee",
+   "descripcion": "Expone",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-80",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcNotificacion",
+   "destino": "po_svcPagos",
+   "descripcion": "Notifica",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-92",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_svcPagos",
+   "destino": "po_colaDeMensajeria",
+   "descripcion": "Consume y publica topics",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-95",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_colaDeMensajeria",
+   "destino": "po_svcNotificacion",
+   "descripcion": "Consume y publica topics",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-97",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWebMovil",
+   "destino": "apigee",
+   "descripcion": "gRPC / REST",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-99",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWebMovil",
+   "destino": "po_memorystoreRedisFree",
+   "descripcion": "Redis SDK",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-100",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ilbTransversal",
+   "destino": "proxyApigee",
+   "descripcion": "Enruta la comunicacion",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-104",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "apigee",
+   "destino": "proxyApigee",
+   "descripcion": "Enruta la comunicacion",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-106",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_empleadoInterno",
+   "destino": "po_hubFront",
+   "descripcion": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-111",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_empleadoInterno",
+   "destino": "po_appMovil",
+   "descripcion": "Accede desde la app en el movil por sso",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-112",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "po_appMovil",
+   "destino": "ss_dynatraceTenantTerpel",
+   "descripcion": "RUM Agent",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-114",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_usuarioExterno",
+   "destino": "po_appMovil",
+   "descripcion": "Accede desde la app en el movil por sso",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-117",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_usuarioExterno",
+   "destino": "po_hubFront",
+   "descripcion": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-120",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_appMovil",
+   "destino": "po_backendHubWebMovil",
+   "descripcion": "HTTPS · Bearer JWT (sin IAP)",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-121",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_colaDeMensajeria",
+   "destino": "datalake",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-125",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_otelCollector",
+   "destino": "ss_dynatraceTenantTerpel",
+   "descripcion": "OTLP HTTPS Api Token",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-129",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_hubFront",
+   "destino": "ss_dynatraceTenantTerpel",
+   "descripcion": "OTLP gRPC Auth: IAM Invoker",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-132",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "po_backendHubWeb",
+   "destino": "ilbTransversal",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L0_Referencia"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L0 · Referencia",
+     "drawioId": "sR61ePaMgubpxd_IzPhU-134",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_adminDevTeam",
+   "destino": "portal",
+   "descripcion": "Administra módulos y permisos",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "entraId",
+   "descripcion": "Delega autenticación",
+   "tecnologia": "OIDC / OAuth 2.0",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-3",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "ss_sistemasExternosFuturos",
+   "descripcion": "Consulta / Actualiza REST API",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "ss_googleCloudPlatform",
+   "descripcion": "Desplegado en GCP",
+   "tecnologia": "Cloud Run · SQL · GCS · BigQuery",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "ss_webappsExternosFuturos",
+   "descripcion": "Federa sesión (SSO seamless)",
+   "tecnologia": "SAML 2.0 / OIDC token exchange",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-10",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_sistemasExternosFuturos",
+   "destino": "ce_capacidadesTransversales",
+   "descripcion": "Todos los portales cumplen con",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-13",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_webappsExternosFuturos",
+   "destino": "ce_capacidadesTransversales",
+   "descripcion": "Todos los portales cumplen con",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-16",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_usuarioExterno",
+   "destino": "portal",
+   "descripcion": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-32",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "ss_ciam",
+   "descripcion": "Delega autenticación",
+   "tecnologia": "OIDC / OAuth 2.0",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-35",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "portal",
+   "destino": "datalake",
+   "descripcion": "Fuente de datos/ Entrega de data",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-36",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_empleadoInterno",
+   "destino": "portal",
+   "descripcion": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L1_Context"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L1 · Context",
+     "drawioId": "jBqDDpGHMn_ggPszUGn9-40",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_externalRegionalLoadBalancer",
+   "destino": "cloudflare",
+   "descripcion": "DNS apunta a IP del LB externo pass trougth",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ss_externalRegionalLoadBalancer",
+   "destino": "firewall",
+   "descripcion": "Resuelve los NAT Respectivos",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "firewall",
+   "destino": "ilbTransversal",
+   "descripcion": "Reenvia el trafico",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-11",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "proxyApigee",
+   "destino": "apigee",
+   "descripcion": "Reenvia trafico",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-13",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ilbTransversal",
+   "destino": "proxyApigee",
+   "descripcion": "Reenvia trafico",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-20",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_frontendWeb",
+   "destino": "apigee",
+   "descripcion": "REST/JSON · JWT (API, sin caché)",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-23",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_memorystore",
+   "descripcion": "Redis SDK",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-24",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "apigee",
+   "destino": "vo_internalLoadBalancer",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-28",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_internalLoadBalancer",
+   "destino": "vo_bffMovil",
+   "descripcion": "Resuelve peticiones Moviles",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-29",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_internalLoadBalancer",
+   "destino": "vo_bffBackendVolarte",
+   "descripcion": "Resuelve peticiones Web",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-34",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_cloudSqlPostgresql",
+   "descripcion": "Consultas varias Proxy SQL",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-36",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_frontendWeb",
+   "destino": "entraId",
+   "descripcion": "login SSO / tokens (PKCE)",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-37",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_cloudSqlPostgresql",
+   "destino": "vo_cloudKms",
+   "descripcion": "Lee client secrets · IAM SA",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-41",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_secretManager",
+   "destino": "vo_cloudKms",
+   "descripcion": "Cifra secretos con CMEK",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-44",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_secretManager",
+   "descripcion": "Lee secretos · IAM SA",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-46",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_svcUsuariosAuth",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_gestorDocumental",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_svcDatosMaestros",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_svcComercial",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_svcOperacion",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_svcAsignacionOptimizacion",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-55",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_colaDeMensajeria",
+   "descripcion": "Publica y consume Topics",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-57",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "vo_gestorDocumental",
+   "descripcion": "suscripción (retry + DLQ)",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-58",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "vo_colaDeMensajeria",
+   "descripcion": "Publica y consume Topics",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-59",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "vo_svcComercial",
+   "descripcion": "suscripción",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-60",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "vo_svcOperacion",
+   "descripcion": "suscripción: tracking-eventos",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-61",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_empleadoInterno",
+   "destino": "cloudflare",
+   "descripcion": "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-64",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_usuarioExterno",
+   "destino": "cloudflare",
+   "descripcion": "Accede al portal (HTTPS) Navega wiki, lanza apps, federa",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-66",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "pe_operarioDeEquipoAbastecedor",
+   "destino": "vo_appMovil",
+   "descripcion": "Accede a la APP Movil",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-72",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_appMovil",
+   "destino": "entraId",
+   "descripcion": "login SSO (solo Entra ID)",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-73",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_appMovil",
+   "destino": "ztna",
+   "descripcion": "tráfico gestionado (túnel MDM)",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-74",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ztna",
+   "destino": "apigee",
+   "descripcion": "acceso privado (ZTNA) — sin Cloudflare",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-76",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_secretManager",
+   "descripcion": "Lee secretos · IAM SA",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-78",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_cloudSqlPostgresql",
+   "descripcion": "Consultas varias Proxy SQL",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-80",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_svcUsuariosAuth",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_gestorDocumental",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_svcDatosMaestros",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_svcComercial",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_svcOperacion",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_svcAsignacionOptimizacion",
+   "descripcion": "orquesta cada servicio que no va por PUB/SUB",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-81",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "vo_memorystore",
+   "descripcion": "Redis SDK",
+   "tecnologia": "",
+   "vistas": [
+    "L2_Container"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L2 · Container",
+     "drawioId": "p8cCmguKJE-8GRD_PWvh-82",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_appShellRouter",
+   "destino": "fw_moduloDeAutenticacion",
+   "descripcion": "usa",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_moduloDeAutenticacion",
+   "destino": "entraId",
+   "descripcion": "login SSO/tokens (PKCE)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_appShellRouter",
+   "destino": "fw_vistasPorRol",
+   "descripcion": "autenticado →",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e3",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_vistasPorRol",
+   "destino": "fw_clienteApi",
+   "descripcion": "solicita datos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_clienteApi",
+   "destino": "apigee",
+   "descripcion": "REST/JSON · JWT",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_clienteApi",
+   "destino": "fw_cacheDeEstadoServidor",
+   "descripcion": "cachea respuestas",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "fw_vistasPorRol",
+   "destino": "fw_errorBoundaryTelemetria",
+   "descripcion": "reporta errores",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Frontend_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Frontend Web",
+     "drawioId": "fw-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_disparadorDeSync",
+   "destino": "am_capturaDeEvidencia",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "FF5uxJXjgTfR0MfS2Fa0-4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_navegacion",
+   "destino": "am_moduloDeAutenticacion",
+   "descripcion": "usa",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_moduloDeAutenticacion",
+   "destino": "entraId",
+   "descripcion": "login SSO (solo Entra ID)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_navegacion",
+   "destino": "am_baseDeDatosLocal",
+   "descripcion": "lee/escribe",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e3",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "am_baseDeDatosLocal",
+   "destino": "am_motorDeSincronizacion",
+   "descripcion": "cola pendiente",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_capturaDeEvidencia",
+   "destino": "am_baseDeDatosLocal",
+   "descripcion": "referencia archivo",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_disparadorDeSync",
+   "destino": "am_motorDeSincronizacion",
+   "descripcion": "dispara sync",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_motorDeSincronizacion",
+   "destino": "am_clienteApi",
+   "descripcion": "al reconectar",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_clienteApi",
+   "destino": "am_netskopeClientZtna",
+   "descripcion": "sync (online)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_netskopeClientZtna",
+   "destino": "vo_bffMovil",
+   "descripcion": "ZTNA / mTLS",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e9",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_motorDeSincronizacion",
+   "destino": "am_gestorDeEstadosDeSincronizacion",
+   "descripcion": "actualiza estado / backoff exponencial",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e10",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_motorDeSincronizacion",
+   "destino": "am_componentName",
+   "descripcion": "detecta conflicto local",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e11",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_componentName",
+   "destino": "am_gestorDeEstadosDeSincronizacion",
+   "descripcion": "bloquea reintento hasta revisión",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e12",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "am_baseDeDatosLocal",
+   "destino": "am_cifradoLocalEnReposo",
+   "descripcion": "cifra en reposo",
+   "tecnologia": "",
+   "vistas": [
+    "L3_App_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · App Movil",
+     "drawioId": "mob-e13",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "apigee",
+   "destino": "bw_apiRouterControllers",
+   "descripcion": "recibe petición",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e1",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "bw_apiRouterControllers",
+   "destino": "bw_middlewareDeAutenticacion",
+   "descripcion": "valida",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_middlewareDeAutenticacion",
+   "destino": "bw_servicioDeAutorizacion",
+   "descripcion": "resuelve rol",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e3",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_servicioDeAutorizacion",
+   "destino": "bw_clienteDeCache",
+   "descripcion": "lee/escribe cache",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_servicioDeAutorizacion",
+   "destino": "bw_orquestadorDeDominio",
+   "descripcion": "autorizado →",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_orquestadorDeDominio",
+   "destino": "bw_clienteDeSecretos",
+   "descripcion": "lee secretos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_orquestadorDeDominio",
+   "destino": "bw_clientesDeServicios",
+   "descripcion": "orquesta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bw_clientesDeServicios",
+   "destino": "ce_serviciosDeDominio",
+   "descripcion": "llama (IAM Invoker)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Web"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Web",
+     "drawioId": "bffw-e8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_manejadorDeSubida",
+   "destino": "bm_publicadorDeEventos",
+   "descripcion": "Publica eventos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "9QahTo7XVIhn2NQbdA9p-4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "apigee",
+   "destino": "bm_apiRouterControllers",
+   "descripcion": "recibe sync",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_apiRouterControllers",
+   "destino": "bm_middlewareDeAutenticacion",
+   "descripcion": "valida",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_middlewareDeAutenticacion",
+   "destino": "bm_servicioDeAutorizacion",
+   "descripcion": "resuelve rol",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e3",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_servicioDeAutorizacion",
+   "destino": "bm_motorDeReconciliacion",
+   "descripcion": "reconcilia",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_motorDeReconciliacion",
+   "destino": "bm_servicioDeIdempotencia",
+   "descripcion": "dedupe",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_motorDeReconciliacion",
+   "destino": "bm_proveedorDeDelta",
+   "descripcion": "catálogos/turnos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "vo_svcOperacion",
+   "descripcion": "orquesta operación",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_motorDeReconciliacion",
+   "destino": "bm_manejadorDeSubida",
+   "descripcion": "fotos/firma",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "vo_documentosGcs",
+   "descripcion": "resumable upload",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e9",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_motorDeReconciliacion",
+   "destino": "bm_publicadorDeEventos",
+   "descripcion": "al cerrar operación",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e10",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_publicadorDeEventos",
+   "destino": "vo_colaDeMensajeria",
+   "descripcion": "publica",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e11",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_servicioDeIdempotencia",
+   "destino": "bm_validadorDeOrdenSecuencia",
+   "descripcion": "aplica en orden (timestamp captura)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e12",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_validadorDeOrdenSecuencia",
+   "destino": "bm_motorDeReconciliacion",
+   "descripcion": "secuencia validada",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e13",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_motorDeReconciliacion",
+   "destino": "bm_clienteCloudSql",
+   "descripcion": "persiste offline_actions_log / PENDING_REVIEW",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e14",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "bm_clienteCloudSql",
+   "destino": "vo_cloudSqlPostgresql",
+   "descripcion": "escribe/lee",
+   "tecnologia": "",
+   "vistas": [
+    "L3_BFF_Movil"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · BFF Movil",
+     "drawioId": "bffm-e15",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffMovil",
+   "destino": "ps_topicOperacionCerrada",
+   "descripcion": "publica",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e1",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "ps_topicOperacionCerrada",
+   "destino": "ps_subGestorDocumentalSub",
+   "descripcion": "entrega",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_topicOperacionCerrada",
+   "destino": "ps_subComercialSub",
+   "descripcion": "entrega",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e3",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "ps_subGestorDocumentalSub",
+   "destino": "vo_gestorDocumental",
+   "descripcion": "dispara",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_subComercialSub",
+   "destino": "vo_svcComercial",
+   "descripcion": "dispara",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_subGestorDocumentalSub",
+   "destino": "ps_deadLetterTopic",
+   "descripcion": "tras 5 reintentos (backoff 10s-600s)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e6",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "ps_subComercialSub",
+   "destino": "ps_deadLetterTopic",
+   "descripcion": "tras 5 reintentos (backoff 10s-600s)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_bffBackendVolarte",
+   "destino": "ps_topicConciliacionResuelta",
+   "descripcion": "publica (supervisor resuelve)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_topicConciliacionResuelta",
+   "destino": "ps_subOperacionConciliacionSub",
+   "descripcion": "entrega",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e9",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_subOperacionConciliacionSub",
+   "destino": "vo_svcOperacion",
+   "descripcion": "finaliza / anula operación pendiente",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e10",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "ps_subOperacionConciliacionSub",
+   "destino": "ps_deadLetterTopic",
+   "descripcion": "tras 5 reintentos (backoff 10s-600s)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Pub_Sub"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Pub-Sub",
+     "drawioId": "ps-e11",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_gestorDocumental",
+   "destino": "dg_estructuraDeCarpetas",
+   "descripcion": "escribe",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Documentos_GCS"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Documentos GCS",
+     "drawioId": "gcs-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "dg_estructuraDeCarpetas",
+   "destino": "dg_politicaDeCicloDeVida",
+   "descripcion": "organiza",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Documentos_GCS"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Documentos GCS",
+     "drawioId": "gcs-e2",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "dg_politicaDeCicloDeVida",
+   "destino": "dg_versionadoWorm",
+   "descripcion": "aplica",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Documentos_GCS"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Documentos GCS",
+     "drawioId": "gcs-e3",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "dg_estructuraDeCarpetas",
+   "destino": "dg_iamDelBucket",
+   "descripcion": "controla acceso",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Documentos_GCS"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Documentos GCS",
+     "drawioId": "gcs-e4",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "dg_iamDelBucket",
+   "destino": "dg_cifradoEnReposo",
+   "descripcion": "cifra",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Documentos_GCS"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Documentos GCS",
+     "drawioId": "gcs-e6",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_auditor",
+   "destino": "ce_bffWebBffMovil",
+   "descripcion": "consulta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e1",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "ce_bffWebBffMovil",
+   "destino": "su_apiRouter",
+   "descripcion": "recibe petición",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_apiRouter",
+   "destino": "su_resolverGrouptorolemapping",
+   "descripcion": "resuelve",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e3",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "su_resolverGrouptorolemapping",
+   "destino": "su_adaptadorDeSincronizacionEntraId",
+   "descripcion": "consulta grupos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_adaptadorDeSincronizacionEntraId",
+   "destino": "entraId",
+   "descripcion": "sincroniza",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e5",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_resolverGrouptorolemapping",
+   "destino": "su_auditor",
+   "descripcion": "registra",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e6",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "su_auditor",
+   "destino": "su_invalidadorDeCache",
+   "descripcion": "invalida en cambio de rol",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e7",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_invalidadorDeCache",
+   "destino": "vo_memorystore",
+   "descripcion": "notifica",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e8",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "su_auditor",
+   "destino": "su_clienteCloudSql",
+   "descripcion": "persiste",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e9",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "su_clienteCloudSql",
+   "destino": "vo_cloudSqlPostgresql",
+   "descripcion": "lee/escribe",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Usuarios_Auth"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Usuarios Auth",
+     "drawioId": "auth-e10",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "gd_suscriptorPubSub",
+   "descripcion": "recibe evento",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "gd_suscriptorPubSub",
+   "destino": "gd_generadorDeDocumento",
+   "descripcion": "genera",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "gd_generadorDeDocumento",
+   "destino": "gd_motorDePlantillas",
+   "descripcion": "renderiza",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e3",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "gd_generadorDeDocumento",
+   "destino": "gd_asignadorDeNumeracion",
+   "descripcion": "asigna número",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "gd_asignadorDeNumeracion",
+   "destino": "vo_cloudSqlPostgresql",
+   "descripcion": "persiste número",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e5",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "gd_motorDePlantillas",
+   "destino": "gd_publicador",
+   "descripcion": "publica",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e6",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "gd_publicador",
+   "destino": "gd_clienteGcs",
+   "descripcion": "sube",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "doc-e7",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "gd_clienteGcs",
+   "destino": "vo_documentosGcs",
+   "descripcion": "",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Gestor_Documental"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Gestor Documental",
+     "drawioId": "p3czn_rpy_i9IkPloGag-4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "so_apiRouter",
+   "destino": "so_gestorDeTurnos",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e1",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "so_apiRouter",
+   "destino": "so_rastreadorDePosicion",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e2",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_apiRouter",
+   "destino": "so_inventarioDeCalidad",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e3",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_rastreadorDePosicion",
+   "destino": "vo_svcDatosMaestros",
+   "descripcion": "consulta geocerca",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e4",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "so_suscriptorDeTracking",
+   "descripcion": "recibe eventos",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e5",
+     "inferido": [
+      "source",
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_suscriptorDeTracking",
+   "destino": "so_rastreadorDePosicion",
+   "descripcion": "actualiza",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e6",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_gestorDeTurnos",
+   "destino": "so_clienteDeBaseDeDatos",
+   "descripcion": "persiste",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e7",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_inventarioDeCalidad",
+   "destino": "so_clienteDeBaseDeDatos",
+   "descripcion": "persiste",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e8",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "so_clienteDeBaseDeDatos",
+   "destino": "ce_bffWebBffMovil",
+   "descripcion": "consultado por",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Operacion"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Operacion",
+     "drawioId": "ops-e9",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_apiRouter",
+   "destino": "sc_motorDeElegibilidad",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e1",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_apiRouter",
+   "destino": "sc_resolutorPriceprovider",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e2",
+     "inferido": []
+    }
+   ]
+  },
+  {
+   "origen": "sc_apiRouter",
+   "destino": "sc_servicioDeCreditoDisponible",
+   "descripcion": "enruta",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e3",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_resolutorPriceprovider",
+   "destino": "ss_priceproviderExterno",
+   "descripcion": "consulta (cuando se confirme)",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e4",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "vo_colaDeMensajeria",
+   "destino": "sc_suscriptorOperacionCerrada",
+   "descripcion": "recibe evento",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e5",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_suscriptorOperacionCerrada",
+   "destino": "sc_servicioDeCreditoDisponible",
+   "descripcion": "actualiza",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e6",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_servicioDeCreditoDisponible",
+   "destino": "sc_clienteDeBaseDeDatos",
+   "descripcion": "persiste",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e7",
+     "inferido": [
+      "target"
+     ]
+    }
+   ]
+  },
+  {
+   "origen": "sc_clienteDeBaseDeDatos",
+   "destino": "vo_bffBackendVolarte",
+   "descripcion": "consultado por",
+   "tecnologia": "",
+   "vistas": [
+    "L3_Svc_Comercial"
+   ],
+   "conectoresDrawio": [
+    {
+     "pagina": "L3 · Svc Comercial",
+     "drawioId": "com-e8",
+     "inferido": [
+      "source"
+     ]
+    }
+   ]
+  }
+ ],
+ "anotaciones": [
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-19",
+   "etiqueta": "",
+   "motivo": "extremo en boundary 'Transversal'"
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-123",
+   "etiqueta": "Se integra",
+   "motivo": "extremo en boundary 'Transversal'"
+  },
+  {
+   "pagina": "L0 · Referencia",
+   "drawioId": "sR61ePaMgubpxd_IzPhU-127",
+   "etiqueta": "",
+   "motivo": "extremo en nota/texto libre"
+  }
+ ]
+}

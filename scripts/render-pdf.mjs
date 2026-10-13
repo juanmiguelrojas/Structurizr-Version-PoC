@@ -92,19 +92,47 @@ const groups = [
   ["Vistas Dinámicas", v.dynamicViews],
   ["Despliegue", v.deploymentViews],
 ];
-const views = groups.flatMap(([group, list]) => (list || []).map((view) => ({ group, ...view })));
+// Agrupación y orden por nivel C4 cuando la clave lo indica (L0_, L1_, L2_, L3_); si no, por tipo de vista.
+const LEVEL = { L0: "L0 · Vista Global de Integración", L1: "L1 · System Context", L2: "L2 · Contenedores", L3: "L3 · Componentes" };
+const views = groups.flatMap(([group, list]) => (list || []).map((view) => ({ group, ...view })))
+  .map((v, i) => { const m = /^(L[0-3])_/.exec(v.key); return { ...v, group: m ? LEVEL[m[1]] : v.group, _ord: (m ? Number(m[1][1]) : 9) * 1000 + i }; })
+  .sort((a, b) => a._ord - b._ord);
+// Fidelidad contra la fuente Draw.io (versiones con render c4-drawio)
+const generatedDir = path.join(versionDir, "docs", "generated");
+const refDir = path.join(generatedDir, "referencia-drawio", "svg");
+const fidPath = path.join(generatedDir, "fidelidad", "fidelidad-drawio.json");
+const fidelity = fs.existsSync(fidPath) ? Object.fromEntries(JSON.parse(fs.readFileSync(fidPath, "utf8")).map((r) => [r.vista, r])) : {};
+const svgImg = (file, alt) => fs.existsSync(file)
+  ? `<img src="data:image/svg+xml;base64,${fs.readFileSync(file).toString("base64")}" alt="${esc(alt)}"/>`
+  : `<p class="warn">Diagrama no generado.</p>`;
 const viewSections = views.map((view, i) => {
-  const svg = path.join(diagramDir, `${view.key}.svg`);
-  const img = fs.existsSync(svg)
-    ? `<img src="data:image/svg+xml;base64,${fs.readFileSync(svg).toString("base64")}" alt="${esc(view.key)}"/>`
-    : `<p class="warn">Diagrama no generado.</p>`;
+  const img = svgImg(path.join(diagramDir, `${view.key}.svg`), view.key);
+  const f = fidelity[view.key];
+  const ref = path.join(refDir, `${view.key}.svg`);
+  const pagina = (view.properties || {})["drawio.pagina"];
+  const fidRow = f ? `<p class="meta">Fidelidad vs Draw.io <strong>${f.fidelidad}%</strong> · elementos ${f.elementosPresentes}/${f.elementos} ·
+    textos ${f.textosIguales}/${f.elementos} · colores ${f.coloresIguales}/${f.elementos} · conectores ${f.conectoresPresentes}/${f.conectores} ·
+    etiquetas ${f.etiquetasIguales}/${f.conectores} · alias de presentación ${f.alias} · anotaciones ${f.anotaciones}</p>` : "";
+  const refSection = fs.existsSync(ref) ? `<section class="view">
+    <div class="group">${esc(view.group)} · referencia</div>
+    <h2>4.${i + 1}-R Página original del Draw.io: «${esc(pagina || view.key)}»</h2>
+    <p class="meta">Render de la fuente <code>Arquitectura_volarte_1.drawio</code> con el mismo motor, sin pasar por el modelo. Compárese con 4.${i + 1}.</p>
+    ${fidRow}
+    <div class="diagram">${svgImg(ref, view.key + " referencia")}</div>
+  </section>` : "";
   return `<section class="view">
     <div class="group">${esc(view.group)}</div>
     <h2>4.${i + 1} ${esc(view.title || view.key)}</h2>
     <p class="meta"><code>${esc(view.key)}</code> · ${esc(view.description || "")}</p>
+    ${fidRow}
     <div class="diagram">${img}</div>
-  </section>`;
+  </section>${refSection}`;
 }).join("\n");
+const extraSections = [
+  ["Revisión de la versión (comentarios de validación)", path.join(versionDir, "REVISION.md")],
+  ["Informe de fidelidad Structurizr vs Draw.io", path.join(generatedDir, "fidelidad", "fidelidad-drawio.md")],
+  ["Trazabilidad Draw.io → modelo", path.join(versionDir, "fuente", "TRAZABILIDAD.md")],
+].filter(([, p]) => fs.existsSync(p));
 
 // ------------------------------------------------------------------ Fichas técnicas
 const inScope = (ws.model.softwareSystems || []).filter((s) => (s.containers || []).length);
@@ -234,14 +262,15 @@ const html = `<!doctype html><html lang="es"><head><meta charset="utf-8"/>
 </div>
 <div class="page"><h2>Contenido</h2>
   <ol><li>Leyenda C4 y convenciones</li><li>Historial de versiones</li><li>Documentación de la arquitectura</li><li>Diagramas (${views.length} vistas)</li>
-  <li>Fichas técnicas por contenedor</li><li>Catálogo de tecnologías y protocolos</li><li>Catálogo del modelo</li><li>Bitácora de cambios</li><li>Architecture Decision Records</li><li>Reporte del Agente Revisor</li></ol>
+  <li>Fichas técnicas por contenedor</li><li>Catálogo de tecnologías y protocolos</li><li>Catálogo del modelo</li><li>Bitácora de cambios</li><li>Architecture Decision Records</li><li>Reporte del Agente Revisor</li>${extraSections.map(([t]) => `<li>${esc(t)}</li>`).join("")}</ol>
   <h3>Vistas</h3><ul class="toc">${toc}</ul></div>
 <div class="page"><h2>1. Leyenda C4 y convenciones</h2>
   <p>Todos los diagramas siguen la <strong>leyenda oficial C4</strong> adoptada por la Dirección de Arquitectura
   (<code>estandares/c4/estilos-c4.dsl</code>). El color identifica el <em>tipo</em> de elemento C4; las formas solo agregan semántica.</p>
   ${legendHtml}
   <h4>Convenciones adicionales</h4>
-  <ul><li><strong>Cilindro</strong>: almacén de datos (base de datos, cache, bucket).</li>
+  <ul><li><strong>Silueta de actor</strong>: persona (interna u externa); nunca una caja.</li>
+  <li><strong>Cilindro</strong>: almacén de datos (base de datos, cache, bucket).</li>
   <li><strong>Borde ámbar</strong>: decisión arquitectónica pendiente (tag <code>Pending</code>).</li>
   <li><strong>Flechas</strong>: dependencia / flujo, rotuladas con propósito y <code>[tecnología · protocolo]</code>.</li>
   <li><strong>Recuadros punteados</strong>: agrupaciones lógicas (dominios, proyectos GCP, capas).</li></ul></div>
@@ -261,6 +290,7 @@ ${viewSections}
 <div class="page"><h2>8. Bitácora de cambios</h2>${md(path.join(projectDir, "CHANGELOG_DSL.md"))}</div>
 <div class="page"><h2>9. Architecture Decision Records</h2>${adrs}</div>
 <div class="page"><h2>10. Reporte del Agente Revisor</h2>${md(path.join(versionDir, "docs", "generated", "review", "review-report.md"))}</div>
+${extraSections.map(([t, p], i) => `<div class="page"><h2>${11 + i}. ${esc(t)}</h2>${md(p)}</div>`).join("\n")}
 </body></html>`;
 
 const browser = await launchBrowser();

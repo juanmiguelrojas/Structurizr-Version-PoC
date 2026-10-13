@@ -14,6 +14,22 @@ Es la misma leyenda de la librería C4 que usa la Dirección de Arquitectura en 
 | **External Person** | `#6C6477` | `#4D4756` | blanco | `External Person` | Persona fuera de la organización |
 | **External Software System** | `#8C8496` | `#6B6474` | blanco | `External Software System` | Todo sistema fuera del alcance del proyecto |
 
+## Personas: silueta de actor (obligatorio)
+
+Toda persona (`Person` o `External Person`) se dibuja con **silueta de actor** (cabeza + cuerpo redondeado), igual que
+`mxgraph.c4.person2` de la librería C4 de Draw.io. Nunca como caja o rectángulo.
+
+- El estilo del tag `Person` usa `shape Person` (verificado por R7).
+- Los motores de render del repositorio respetan la silueta: `render-c4.mjs` (notación Draw.io C4, por defecto en
+  versiones nuevas). El render Mermaid de versiones antiguas (v1, v2 de Volarte) dibuja cajas y queda solo como evidencia.
+
+## Réplicas de un Draw.io: color por página
+
+Cuando una versión replica un Draw.io aprobado (`version.json` → `"render": "c4-drawio"`), el color de cada forma se toma
+de la página del Draw.io (p. ej. un contenedor vecino en gris como `[Contenedor externo]` en un L3, o Entra ID azul en el
+L1 y gris en el L2). Ese color se guarda en la **presentación de la vista** (`dsl/layout/<vista>.json`, campo `clase`) y
+debe ser siempre uno de los seis colores de la leyenda; el informe de fidelidad (R9) verifica que coincide con la fuente.
+
 ## Fuente única
 
 - Los estilos viven en [`estandares/c4/estilos-c4.dsl`](../../estandares/c4/estilos-c4.dsl). Cada versión de cada

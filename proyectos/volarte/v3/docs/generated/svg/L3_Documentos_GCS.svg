@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="876" viewBox="-20 0 1220 876" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="-20" y="0" width="1220" height="876" fill="#ffffff"/>
+<rect x="10" y="30" width="1160" height="540" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="20" y="477.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Componente</text><text x="20" y="491.25" font-size="11"  fill="#333333">[Volarte</text><text x="20" y="505" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="20" y="518.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="20" y="532.5" font-size="11"  fill="#333333">Version: 1</text><text x="20" y="546.25" font-size="11"  fill="#333333">Fase: I</text><text x="20" y="560" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="470" y="75" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+
+<path d="M240,215 L240,155 Q240,145 250,145 L520,145 Q530,145 530,135 L530,75" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M590,195 L590,205 Q590,215 580,215 L580,215 Q570,215 570,225 L570,235" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M570,355 L570,380 Q570,385 575,385 L575,385 Q580,385 580,390 L580,415" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M710,135 L740,135 Q750,135 750,145 L750,235 Q750,245 760,245 L790,245" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M850,305 L850,345 Q850,355 840,355 L840,355 Q830,355 830,365 L830,405" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<rect x="470" y="75" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="590" y="113.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Estructura de carpetas</text>
+<text x="590" y="128.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: gs://.../{anio}/{mes}/{op_id}]</text>
+<text x="590" y="155.49599999999998" font-size="11"  fill="#ffffff" text-anchor="middle">Organización por año, mes</text>
+<text x="590" y="168.69599999999997" font-size="11"  fill="#ffffff" text-anchor="middle">y ID de operación.</text>
+<rect x="450" y="235" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="570" y="260.176" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Política de ciclo de vida</text>
+<text x="570" y="275.63199999999995" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: GCS Lifecycle Rules]</text>
+<text x="570" y="302.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">Transición a Nearline/</text>
+<text x="570" y="315.4959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Coldline según antigüedad.</text>
+<text x="570" y="328.6959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Retención definida por</text>
+<text x="570" y="341.8959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">política vigente.</text>
+<rect x="460" y="415" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="580" y="453.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Versionado / WORM</text>
+<text x="580" y="468.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: GCS Object Versioning]</text>
+<text x="580" y="495.4959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Inmutabilidad: un objeto</text>
+<text x="580" y="508.6959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">nunca se sobrescribe.</text>
+<rect x="790" y="185" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="910" y="216.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">IAM del bucket</text>
+<text x="910" y="232.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Service Account bindings]</text>
+<text x="910" y="258.896" font-size="11"  fill="#ffffff" text-anchor="middle">Write: SA Gestor Documental.</text>
+<text x="910" y="272.096" font-size="11"  fill="#ffffff" text-anchor="middle">Read: signed URLs</text>
+<text x="910" y="285.296" font-size="11"  fill="#ffffff" text-anchor="middle">temporales.</text>
+<rect x="770" y="405" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="890" y="436.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cifrado en reposo</text>
+<text x="890" y="452.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: CMEK (Cloud KMS)]</text>
+<text x="890" y="478.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Cada objeto cifrado con</text>
+<text x="890" y="492.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">clave gestionada por</text>
+<text x="890" y="505.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">Terpel, no por Google.</text>
+<rect x="120" y="95" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="240" y="139.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Gestor Documental</text>
+<text x="240" y="155.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedor externo]</text>
+<text x="240" y="182.09599999999998" font-size="11"  fill="#cccccc" text-anchor="middle">Único escritor (SA con permiso write)</text>
+<rect x="370.10546875" y="139.2" width="29.7890625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="385" y="146.79999999999998" font-size="8" fill="#1E3A8A" text-anchor="middle">escribe</text>
+<rect x="562.65625" y="209.2" width="34.6875" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="580" y="216.79999999999998" font-size="8" fill="#7C2D12" text-anchor="middle">organiza</text>
+<rect x="562.548828125" y="379.2" width="24.90234375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="575" y="386.8" font-size="8" fill="#7C2D12" text-anchor="middle">aplica</text>
+<rect x="719.984375" y="184.2" width="60.03125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="750" y="191.79999999999998" font-size="8" fill="#7C2D12" text-anchor="middle">controla acceso</text>
+<rect x="830.443359375" y="349.2" width="19.11328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="840" y="356.8" font-size="8" fill="#4D4D4D" text-anchor="middle">cifra</text>
+<text x="930" y="652" font-size="16" font-weight="bold" fill="#4D4D4D">Legend</text>
+<rect x="930" y="664" width="260" height="30" fill="#083F75"/>
+<text x="940" y="684" font-size="13" fill="#ffffff">Person</text>
+<rect x="930" y="694" width="260" height="30" fill="#1061B0"/>
+<text x="940" y="714" font-size="13" fill="#ffffff">Software System</text>
+<rect x="930" y="724" width="260" height="30" fill="#23A2D9"/>
+<text x="940" y="744" font-size="13" fill="#ffffff">Container</text>
+<rect x="930" y="754" width="260" height="30" fill="#63BEF2"/>
+<text x="940" y="774" font-size="13" fill="#ffffff">Component</text>
+<rect x="930" y="784" width="260" height="30" fill="#6C6477"/>
+<text x="940" y="804" font-size="13" fill="#ffffff">External Person</text>
+<rect x="930" y="814" width="260" height="30" fill="#8C8496"/>
+<text x="940" y="834" font-size="13" fill="#ffffff">External Software System</text>
+<text x="-10" y="867" font-size="11" fill="#9CA3AF">Arquitectura Volarte v3 · Structurizr · vista L3_Documentos_GCS · fuente Draw.io: 'L3 · Documentos GCS'</text>
+</svg>

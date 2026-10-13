@@ -16,7 +16,8 @@ una corrección se registra como una nueva entrada que referencia la anterior.
 
 | Versión | Estado | Entradas | Resumen |
 |---|---|---|---|
-| [`v2`](v2/) | en-revision | AAC-20261009-01 | Leyenda oficial C4, observabilidad OTel completa, especificaciones y documentación ampliada |
+| [`v3`](v3/) | en-revision | AAC-20261009-02 | Réplica fiel del Draw.io: colores por página, siluetas de persona, disposición, trazabilidad forma a forma y fidelidad validada (R9) |
+| [`v2`](v2/) | reemplazada | AAC-20261009-01 | Leyenda oficial C4, observabilidad OTel completa, especificaciones y documentación ampliada |
 | [`v1`](v1/) | reemplazada | AAC-20261008-01 | Conversión inicial del Draw.io a Structurizr DSL (paleta propia, congelada) |
 
 ## Plantilla de entrada (copiar y completar)
@@ -48,6 +49,21 @@ una corrección se registra como una nueva entrada que referencia la anterior.
 ---
 
 ## Registro
+
+### [AAC-20261009-02] v3 · Réplica fiel del Draw.io (colores por página, siluetas de persona, disposición) con trazabilidad forma a forma
+
+| Campo | Valor |
+|---|---|
+| **Versión** | `v3` (nueva, basada en `v2`; `v2` pasa a `reemplazada`) |
+| **Fecha y Hora** | 2026-10-09 02:30 UTC · 2026-10-08 21:30 COT (UTC-5) |
+| **Autor / Arquitecto** | Juan Miguel Rojas (@juanmiguelrojas) · asistido por Claude Code |
+| **Ref (HU / Jira / Ticket)** | AAC-FIDELIDAD-DRAWIO · Revisión de la Dirección de Arquitectura sobre v2 (colores no coinciden con los diagramas; personas como cajas) |
+| **Módulo / Archivo .dsl** | `proyectos/volarte/v3/dsl/*` (generado por `scripts/drawio2structurizr.py` desde `proyectos/volarte/v1/fuente/Arquitectura_volarte_1.drawio` con el mapa `proyectos/volarte/v3/fuente/mapeo-drawio.json`) |
+| **Tipo de cambio** | Nueva versión · Estilo · Vista · Modificación |
+| **Contexto & Justificación** | v2 cumplía la leyenda C4 pero asignaba el color por tipo de elemento, distinto al de los diagramas aprobados en Draw.io, y el render Mermaid dibujaba las personas como cajas. v3 reproduce **las 13 páginas** del Draw.io como 13 vistas: mismos elementos, textos, tipos, color de cada forma en cada página (siempre de la leyenda C4), personas con silueta, boundaries (capas y proyectos GCP), resaltados, conectores con sus waypoints y bloque de título. El modelo C4 no duplica elementos: la diferencia entre páginas se guarda como presentación por vista (`dsl/layout/`). |
+| **Impacto Técnico / ADR asociado** | 143 elementos de modelo (2 sistemas en alcance: Portal y Volarte) · 182 formas Draw.io · 197 relaciones · 3 anotaciones de presentación. Fidelidad validada: 13/13 vistas, 182/182 formas y 190/190 conectores idénticos (regla R9). Nuevas herramientas: `drawio_inventory.py`, `drawio2structurizr.py`, `c4_scene.py`, `render-c4.mjs`. ADR `proyectos/volarte/v3/docs/adr/0007-replica-fiel-del-drawio-y-render-c4.md`. Las vistas de despliegue/dinámicas de v2 no pasan a v3 (REV-12). |
+| **Sugerencias del revisor** | Decisiones y observaciones documentadas en `proyectos/volarte/v3/REVISION.md` (REV-01 … REV-14). Abiertas para decisión de Arquitectura: nombre Portal/Volarte (REV-01), conectores a boundaries (REV-05), extremos inferidos (REV-06), tipo vs color (REV-07), erratas (REV-09), contenido de v2 fuera del Draw.io (REV-12), observabilidad y cifrado (REV-13). |
+| **Revisores** | Dirección de Arquitectura Terpel (pendiente) |
 
 ### [AAC-20261009-01] v2 · Leyenda oficial C4, observabilidad completa y especificaciones
 

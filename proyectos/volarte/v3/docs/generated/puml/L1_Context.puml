@@ -1,0 +1,32 @@
+@startuml
+set separator none
+title L1 · Context — Diagrama de contexto
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo que accede a la wiki, lanza web apps y navega a portales externos desde un único punto de entrada", $tags="", $link="")
+System(EntraIDCIAM, "EntraID / CIAM", $descr="Proveedor de identidad corporativo. SSO · MFA · RBAC. Transversal al hub", $tags="", $link="")
+System(Datalake, "Datalake", $descr="Repositorio analítico y estructurado de datos tabulares. Recibe información transformada por los ETL.", $tags="", $link="")
+Person(Usuarioexterno, "Usuario externo", $descr="Usuario que no esta dentro del tenant de terpel", $tags="", $link="")
+System(GoogleCloudPlatform, "Google Cloud Platform", $descr="Cloud Run · Cloud SQL · Firestore GCS · BigQuery · Secret Manager Cloudflare CDN / WAF", $tags="", $link="")
+System(SistemasExternosFuturos, "+ Sistemas Externos Futuros", $descr="SAP · SALESFORCE · COUPA o cualquier sistema transaccional que necesite el portal", $tags="", $link="")
+System(WebappsExternosFuturos, "+ Webapps Externos Futuros", $descr="sistemas o cualquier portal que acepte federación SAML 2.0 / OIDC o comunicacion API REST", $tags="", $link="")
+System(CIAM, "CIAM", $descr="Gestiona la identidad y acceso de usuarios externos, proporcionando autenticación, autorización, registro de usuarios y gestión del ciclo de vida de identidades.", $tags="", $link="")
+System(Portal, "Portal", $descr="Portal interno/externo corporativo con: • Wiki de conocimiento • Catálogo de Web Apps • SSO federado a portales externos • Shell + módulos independientes", $tags="", $link="")
+Person(AdminDevTeam, "Admin / Dev Team", $descr="Gestiona módulos, publica web apps, administra permisos, monitorea uso y registra nuevas herramientas", $tags="", $link="")
+
+Rel(AdminDevTeam, Portal, "Administra módulos y permisos", $techn="", $tags="", $link="")
+Rel(Portal, EntraIDCIAM, "Delega autenticación", $techn="OIDC / OAuth 2.0", $tags="", $link="")
+Rel(Portal, SistemasExternosFuturos, "Consulta / Actualiza REST API", $techn="", $tags="", $link="")
+Rel(Portal, GoogleCloudPlatform, "Desplegado en GCP", $techn="Cloud Run · SQL · GCS · BigQuery", $tags="", $link="")
+Rel(Portal, WebappsExternosFuturos, "Federa sesión (SSO seamless)", $techn="SAML 2.0 / OIDC token exchange", $tags="", $link="")
+Rel(Usuarioexterno, Portal, "Accede al portal (HTTPS) Navega wiki, lanza apps, federa", $techn="", $tags="", $link="")
+Rel(Portal, CIAM, "Delega autenticación", $techn="OIDC / OAuth 2.0", $tags="", $link="")
+Rel(Portal, Datalake, "Fuente de datos/ Entrega de data", $techn="", $tags="", $link="")
+Rel(EmpleadoInterno, Portal, "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

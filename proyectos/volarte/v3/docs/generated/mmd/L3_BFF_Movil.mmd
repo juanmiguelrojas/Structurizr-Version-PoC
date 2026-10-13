@@ -1,0 +1,59 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · BFF Móvil — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    5["<div style='font-weight: bold'>ApiGee</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de API nativa de Google<br />Cloud. Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID.</div>"]
+    style 5 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    75[("<div style='font-weight: bold'>Cloud SQL (PostgreSQL)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Database]</div><div style='font-size: 80%; margin-top:10px'>Usuarios · Roles · Registry</div>")]
+    style 75 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    92["<div style='font-weight: bold'>Documentos (GCS)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Storage]</div><div style='font-size: 80%; margin-top:10px'>Almacenamiento<br />WORM/versionado. Retención<br />según política vigente.<br />Recuperable por operación y<br />cliente.</div>"]
+    style 92 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    106("<div style='font-weight: bold'>Svc: Operación</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>S05: estado dinámico<br />equipo/operador, turnos,<br />posición, inventario calidad.</div>")
+    style 106 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    114["<div style='font-weight: bold'>Cola de mensajeria</div><div style='font-size: 70%; margin-top: 0px'>[Container: Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Pub/Sub. Topics:<br />doc-publicacion (HU-055,<br />retry+DLQ), operacion-cerrada<br />(fan-out a 3 suscriptores),<br />tracking-eventos (ingesta<br />asíncrona de alta<br />frecuencia).</div>"]
+    style 114 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 133 ["BFF Móvil"]
+      style 133 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      134["<div style='font-weight: bold'>Servicio de Autorización</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Resuelve GroupToRoleMapping →<br />Role/Permission/ Capability.</div>"]
+      style 134 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      135["<div style='font-weight: bold'>Middleware de Autenticación</div><div style='font-size: 70%; margin-top: 0px'>[Component: JWT Middleware]</div><div style='font-size: 80%; margin-top:10px'>Valida issuer/audience/<br />expiración del token (segunda<br />validación).</div>"]
+      style 135 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      136["<div style='font-weight: bold'>API Router / Controllers</div><div style='font-size: 70%; margin-top: 0px'>[Component: FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Endpoints REST por feature.<br />Punto de entrada del<br />contenedor.</div>"]
+      style 136 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      137["<div style='font-weight: bold'>Servicio de Idempotencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Redis (dedupe por UUID)]</div><div style='font-size: 80%; margin-top:10px'>Evita procesar dos veces la<br />misma acción reenviada.</div>"]
+      style 137 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      138["<div style='font-weight: bold'>Publicador de Eventos</div><div style='font-size: 70%; margin-top: 0px'>[Component: Pub/Sub Publisher]</div><div style='font-size: 80%; margin-top:10px'>Publica operacion-cerrada y<br />doc-publicacion.</div>"]
+      style 138 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      139["<div style='font-weight: bold'>Manejador de Subida</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Resumable Uploa]</div><div style='font-size: 80%; margin-top:10px'>Orquesta subida de<br />fotos/firma, tolera cortes de<br />red.</div>"]
+      style 139 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      140["<div style='font-weight: bold'>Proveedor de Delta</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — patrón HU-007]</div><div style='font-size: 80%; margin-top:10px'>Versión + diferencias de<br />catálogos/turnos para<br />descarga incremental.</div>"]
+      style 140 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      141["<div style='font-weight: bold'>Motor de Reconciliación</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python — regla HU-050]</div><div style='font-size: 80%; margin-top:10px'>Compara timestamp de captura<br />vs. histórico de revocación.<br />Auto-acepta o PENDING_REVIEW.</div>"]
+      style 141 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      142["<div style='font-weight: bold'>Validador de Orden/Secuencia</div><div style='font-size: 70%; margin-top: 0px'>[Component: Python]</div><div style='font-size: 80%; margin-top:10px'>Reordena acciones offline por<br />timestamp de captura (no de<br />llegada). Evita que una<br />acción vieja reenviada tarde<br />sobrescriba un estado más<br />reciente.</div>"]
+      style 142 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      143["<div style='font-weight: bold'>Cliente Cloud SQL</div><div style='font-size: 70%; margin-top: 0px'>[Component: Cloud SQL Connector]</div><div style='font-size: 80%; margin-top:10px'>Escribe la cola de acciones<br />offline recibidas y el estado<br />de conciliación<br />(PENDIENTE/CONFIRMADO/<br />PENDING_REVIEW) en Tablas:<br />Sincronizacion.</div>"]
+      style 143 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    139-. "<div>Publica eventos</div><div style='font-size: 70%'></div>" .->138
+    5-. "<div>recibe sync</div><div style='font-size: 70%'></div>" .->136
+    136-. "<div>valida</div><div style='font-size: 70%'></div>" .->135
+    135-. "<div>resuelve rol</div><div style='font-size: 70%'></div>" .->134
+    134-. "<div>reconcilia</div><div style='font-size: 70%'></div>" .->141
+    141-. "<div>dedupe</div><div style='font-size: 70%'></div>" .->137
+    141-. "<div>catálogos/turnos</div><div style='font-size: 70%'></div>" .->140
+    114-. "<div>orquesta operación</div><div style='font-size: 70%'></div>" .->106
+    141-. "<div>fotos/firma</div><div style='font-size: 70%'></div>" .->139
+    114-. "<div>resumable upload</div><div style='font-size: 70%'></div>" .->92
+    141-. "<div>al cerrar operación</div><div style='font-size: 70%'></div>" .->138
+    138-. "<div>publica</div><div style='font-size: 70%'></div>" .->114
+    137-. "<div>aplica en orden (timestamp<br />captura)</div><div style='font-size: 70%'></div>" .->142
+    142-. "<div>secuencia validada</div><div style='font-size: 70%'></div>" .->141
+    141-. "<div>persiste offline_actions_log<br />/ PENDING_REVIEW</div><div style='font-size: 70%'></div>" .->143
+    143-. "<div>escribe/lee</div><div style='font-size: 70%'></div>" .->75
+  end

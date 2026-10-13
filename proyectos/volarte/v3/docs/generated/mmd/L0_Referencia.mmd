@@ -1,0 +1,150 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L0 · Referencia — Vista global de integración"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>Empleado Interno</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario corporativo que<br />accede a la wiki, lanza web<br />apps y navega a portales<br />externos desde un único punto<br />de entrada</div>"]
+    style 1 fill:#083f75,stroke:#052e57,color:#ffffff
+    2["<div style='font-weight: bold'>Usuario externo</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div><div style='font-size: 80%; margin-top:10px'>Usuario que no esta dentro<br />del tenant de terpel</div>"]
+    style 2 fill:#6c6477,stroke:#4d4756,color:#ffffff
+    5["<div style='font-weight: bold'>ApiGee</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de API nativa de Google<br />Cloud. Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID.</div>"]
+    style 5 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    7["<div style='font-weight: bold'>Firewall</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Firewall de red encargado de<br />inspeccionar y controlar el<br />tráfico de entrada y salida,<br />aplicando políticas de<br />seguridad y NAT según las<br />reglas definidas.</div>"]
+    style 7 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    8["<div style='font-weight: bold'>Internal Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>SSL/TLS terminado en el<br />borde. Enrutamiento al IAP y<br />Cloud Run.</div>"]
+    style 8 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    9["<div style='font-weight: bold'>Proxy instance</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Puente de conexion</div>"]
+    style 9 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    10["<div style='font-weight: bold'>Cloudflare</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de protección de<br />tráfico y optimización de<br />acceso web para servicios<br />externos.</div>"]
+    style 10 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    11["<div style='font-weight: bold'>EntraID / CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo. SSO · MFA ·<br />RBAC. Transversal al hub</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    12["<div style='font-weight: bold'>ZTNA</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>GlobalProtect · Zscaler<br />Device posture check · Intune<br />Split tunneling controlado<br />Solo acceso desde red<br />corporativa</div>"]
+    style 12 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    13["<div style='font-weight: bold'>+ Portales Externos Futuros</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Cualquier portal que acepte<br />federación SAML 2.0 / OIDC</div>"]
+    style 13 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    14["<div style='font-weight: bold'>Global Load Balancer</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>SSL/TLS terminado en el<br />borde. Enrutamiento al IAP y<br />Cloud Run.</div>"]
+    style 14 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    15["<div style='font-weight: bold'>Identity-Aware Proxy (IAP)</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Capa de seguridad nativa GCP.<br />Valida identidad antes de<br />llegar a cualquier servicio<br />interno. Integrado con<br />EntraID via OIDC. Sin VPN<br />requerida para el acceso web.</div>"]
+    style 15 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    16["<div style='font-weight: bold'>Cloud KMS</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Gestión de claves de cifrado<br />(CMEK). Cifra: Cloud SQL ·<br />GCS · Firestore. Cifra<br />secretos en Secret Manager.<br />HSM · rotación de claves.</div>"]
+    style 16 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    17["<div style='font-weight: bold'>Secret Manager</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Almacena secretos de todos<br />los servicios: credenciales<br />DB · API keys · client<br />secrets. Acceso via Service<br />Account (IAM). Rotación<br />automática · audit log.</div>"]
+    style 17 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    18["<div style='font-weight: bold'>Power BI Service</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Servicio de BI en la nube.<br />Embed API · REST API<br />Dashboards · Reports ·<br />Datasets</div>"]
+    style 18 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    19[("<div style='font-weight: bold'>Datalake</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Repositorio analítico y<br />estructurado de datos<br />tabulares. Recibe información<br />transformada por los ETL.</div>")]
+    style 19 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    20["<div style='font-weight: bold'>Cloud Data Fusion</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Ingesta al datalake<br />corporativo</div>"]
+    style 20 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    21["<div style='font-weight: bold'>SalesForce</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Dato maestro de los clientes</div>"]
+    style 21 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    22["<div style='font-weight: bold'>SAP ERP</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>ERP de terpel</div>"]
+    style 22 fill:#1061b0,stroke:#0b4884,color:#ffffff
+    23["<div style='font-weight: bold'>ZENPUT</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Sistema corporativo<br />referenciado en la página L0<br />sin descripción en el Draw.io<br />(pendiente de confirmar por<br />Arquitectura).</div>"]
+    style 23 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    24["<div style='font-weight: bold'>GuruSoft</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Servicio de facturacion</div>"]
+    style 24 fill:#8c8496,stroke:#6b6474,color:#ffffff
+    25["<div style='font-weight: bold'>Dynatrace (Tenant Terpel)</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Fuente unica de verdad<br />corporativa (Politica de<br />Observabilidad Terpel). APM .<br />Infra Monitoring . DEM . RASP<br />. Business Analytics.</div>"]
+    style 25 fill:#8c8496,stroke:#6b6474,color:#ffffff
+
+    subgraph 34 ["Portal"]
+      style 34 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      35[("<div style='font-weight: bold'>Search</div><div style='font-size: 70%; margin-top: 0px'>[Container: Elasticsearch]</div><div style='font-size: 80%; margin-top:10px'>Full-text Wiki · Apps</div>")]
+      style 35 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      36["<div style='font-weight: bold'>Storage</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Storage (GCS)]</div><div style='font-size: 80%; margin-top:10px'>Adjuntos Wiki · MFE builds</div>"]
+      style 36 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      37[("<div style='font-weight: bold'>Database</div><div style='font-size: 70%; margin-top: 0px'>[Container: Firestore]</div><div style='font-size: 80%; margin-top:10px'>Páginas Wiki · Versiones</div>")]
+      style 37 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      38[("<div style='font-weight: bold'>Cloud SQL (PostgreSQL)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Database]</div><div style='font-size: 80%; margin-top:10px'>Usuarios · Roles · Registry</div>")]
+      style 38 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      39[("<div style='font-weight: bold'>Memorystore (Redis)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cache]</div><div style='font-size: 80%; margin-top:10px'>Sesiones · Tokens · Queries</div>")]
+      style 39 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      40["<div style='font-weight: bold'>Svc: Wiki</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>CRUD páginas · Versiones<br />Búsqueda Elasticsearch</div>"]
+      style 40 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      41["<div style='font-weight: bold'>Svc: Usuarios / Auth</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Roles · Permisos · Perfil<br />Sincroniza con Azure AD</div>"]
+      style 41 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      42("<div style='font-weight: bold'>Backend — HUB Web</div><div style='font-size: 70%; margin-top: 0px'>[Container: Node.js / FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Orquesta todas las llamadas<br />del Shell y los remotes MFE.<br />Agrega: Wiki API + Apps<br />Registry + User Profile<br />Valida JWT · Propaga tokens<br />Auto-scaling · Pay-per-use</div>")
+      style 42 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      43["<div style='font-weight: bold'>HUB Front</div><div style='font-size: 70%; margin-top: 0px'>[Container: React + Vite · SPA]</div><div style='font-size: 80%; margin-top:10px'>App contenedora MFE. Orquesta<br />routing global, layout,<br />navbar. Carga remotes MFE<br />según módulo. Inyecta JWT a<br />todos los remotes. Deploy:<br />CDN Cloudflare + GCS</div>"]
+      style 43 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      44["<div style='font-weight: bold'>Cloud Monitoring</div><div style='font-size: 70%; margin-top: 0px'>[Container: GCP Cloud Monitoring]</div><div style='font-size: 80%; margin-top:10px'>Métricas de todos los Cloud<br />Run. Alertas: errores ·<br />latencia · anomalías.<br />Dashboards operacionales.<br />Uptime checks · SLO tracking.</div>"]
+      style 44 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      45["<div style='font-weight: bold'>Cloud Logging</div><div style='font-size: 70%; margin-top: 0px'>[Container: GCP Cloud Logging]</div><div style='font-size: 80%; margin-top:10px'>Logs centralizados de todos<br />los servicios. Audit logs:<br />IAP · Secret Manager · KMS.<br />Request logs: BFF · Svc ·<br />Federation Bridge. Retención<br />configurable · alertas.</div>"]
+      style 45 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      46["<div style='font-weight: bold'>Portales Remote Modulo</div><div style='font-size: 70%; margin-top: 0px'>[Container: React + Vite · Module · Cloud run]</div><div style='font-size: 80%; margin-top:10px'>Catálogo de herramientas<br />internas. Lanza apps: iframe<br />/ sub-remote Estado: prod /<br />poc / draft / deprecated RBAC<br />por herramienta · Registry<br />API</div>"]
+      style 46 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      47["<div style='font-weight: bold'>Federation Bridge</div><div style='font-size: 70%; margin-top: 0px'>[Container: React + Vite · Module · Cloud run]</div><div style='font-size: 80%; margin-top:10px'>Adaptador de tokens para<br />portales externos. SAML 2.0<br />assertion · OIDC token<br />exchange On-Behalf-Of flow ·<br />SSO silencioso Propaga sesión<br />sin re-login</div>"]
+      style 47 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      48["<div style='font-weight: bold'>Svc: Power BI Proxy</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run · FastAPI]</div><div style='font-size: 80%; margin-top:10px'>Genera embed tokens via AAD.<br />Proxy seguro a Power BI REST<br />API. Controla acceso por<br />rol/workspace.</div>"]
+      style 48 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      49("<div style='font-weight: bold'>Backend — HUB Web (Móvil)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Node.js / FastAPI / Python · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Mismo patrón que BFF Web.<br />Orquesta Wiki API + Registry<br />+ Perfil. Payload<br />liviano/paginado para móvil.<br />Valida JWT · Propaga tokens.<br />Instancia Cloud Run<br />independiente.</div>")
+      style 49 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      50["<div style='font-weight: bold'>Svc: Analitica</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Entrega y consulta de data<br />analitica</div>"]
+      style 50 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      51["<div style='font-weight: bold'>Svc: Notificacion</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Gestiona notificaciones</div>"]
+      style 51 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      52["<div style='font-weight: bold'>Svc: Pagos</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Gestiona pagos</div>"]
+      style 52 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      53["<div style='font-weight: bold'>Cola de mensajeria</div><div style='font-size: 70%; margin-top: 0px'>[Container: Pub/Sub]</div><div style='font-size: 80%; margin-top:10px'>Serivico para subir las<br />solicitudes asincronas</div>"]
+      style 53 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      54[("<div style='font-weight: bold'>Memorystore (Redis free)</div><div style='font-size: 70%; margin-top: 0px'>[Container: Cache]</div><div style='font-size: 80%; margin-top:10px'>Sesiones · Tokens · Queries</div>")]
+      style 54 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+      55["<div style='font-weight: bold'>App Móvil</div><div style='font-size: 70%; margin-top: 0px'>[Container: iOS / Android · App Store / Play Store]</div><div style='font-size: 80%; margin-top:10px'>NO se despliega en GCP. Corre<br />en el dispositivo del<br />usuario. Se distribuye vía<br />tiendas de apps. Consume su<br />backend (BFF Mobile) por<br />HTTPS.</div>"]
+      style 55 fill:#8c8496,stroke:#6b6474,color:#ffffff
+      56["<div style='font-weight: bold'>OTel Collector</div><div style='font-size: 70%; margin-top: 0px'>[Container: OpenTelemetry Collector . Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Recibe OTLP (gRPC/HTTP) de<br />todos los servicios.<br />Enmascara datos personales<br />antes de exportar. Exporta<br />trazas, metricas y logs a<br />Dynatrace. Materializa la<br />estrategia 'OTel First' de la<br />politica.</div>"]
+      style 56 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    end
+
+    43-. "<div>REST/JSON · JWT</div><div style='font-size: 70%'></div>" .->42
+    46-. "<div>REST · JWT</div><div style='font-size: 70%'></div>" .->42
+    42-. "<div>gRPC / REST</div><div style='font-size: 70%'></div>" .->5
+    41-. "<div>SQL</div><div style='font-size: 70%'></div>" .->38
+    40-. "<div>Firestore SDK</div><div style='font-size: 70%'></div>" .->37
+    40-. "<div>Elasticsearch API</div><div style='font-size: 70%'></div>" .->35
+    42-. "<div>Redis SDK</div><div style='font-size: 70%'></div>" .->39
+    11-. "<div>OIDC / SCIM sync</div><div style='font-size: 70%'></div>" .->41
+    40-. "<div>Almacen de data no<br />estructurada</div><div style='font-size: 70%'></div>" .->36
+    43-. "<div>Verifica Autenticacion</div><div style='font-size: 70%'></div>" .->15
+    12-. "<div>Sync Red Corporativa Privada</div><div style='font-size: 70%'></div>" .->14
+    14-. "<div>HTTPS · TLS 1.3</div><div style='font-size: 70%'></div>" .->43
+    15-. "<div>Sirve SPA + JWT</div><div style='font-size: 70%'></div>" .->43
+    15-. "<div>OIDC redirect</div><div style='font-size: 70%'></div>" .->11
+    45-. "<div>Métricas · alertas</div><div style='font-size: 70%'></div>" .->44
+    17-. "<div>Cifra secretos con CMEK</div><div style='font-size: 70%'></div>" .->16
+    38-. "<div>Lee client secrets · IAM SA</div><div style='font-size: 70%'></div>" .->16
+    16-. "<div>CMEK cifrado en reposo</div><div style='font-size: 70%'></div>" .->36
+    42-. "<div>Lee secretos · IAM SA</div><div style='font-size: 70%'></div>" .->17
+    10-. "<div>Sync Red Publica</div><div style='font-size: 70%'></div>" .->14
+    46-. "<div>Redirect + token hint</div><div style='font-size: 70%'></div>" .->47
+    43-. "<div>Enruta al modulo</div><div style='font-size: 70%'></div>" .->46
+    43-. "<div>POST /federar {token,<br />destino: "portal"}</div><div style='font-size: 70%'></div>" .->47
+    47-. "<div>Redirect + JWT (token relay)</div><div style='font-size: 70%'></div>" .->13
+    48-. "<div>Power BI REST API · AAD</div><div style='font-size: 70%'></div>" .->18
+    55-. "<div>Verifica Autenticacion</div><div style='font-size: 70%'></div>" .->11
+    49-. "<div></div><div style='font-size: 70%'></div>" .->8
+    50-. "<div>Fuente de datos/ Entrega de<br />data</div><div style='font-size: 70%'></div>" .->19
+    41-. "<div>Expone</div><div style='font-size: 70%'></div>" .->5
+    40-. "<div>Expone</div><div style='font-size: 70%'></div>" .->5
+    50-. "<div>Expone</div><div style='font-size: 70%'></div>" .->5
+    48-. "<div>Expone</div><div style='font-size: 70%'></div>" .->5
+    51-. "<div>Notifica</div><div style='font-size: 70%'></div>" .->52
+    52-. "<div>Consume y publica topics</div><div style='font-size: 70%'></div>" .->53
+    53-. "<div>Consume y publica topics</div><div style='font-size: 70%'></div>" .->51
+    49-. "<div>gRPC / REST</div><div style='font-size: 70%'></div>" .->5
+    49-. "<div>Redis SDK</div><div style='font-size: 70%'></div>" .->54
+    8-. "<div>Enruta la comunicacion</div><div style='font-size: 70%'></div>" .->9
+    5-. "<div>Enruta la comunicacion</div><div style='font-size: 70%'></div>" .->9
+    1-. "<div>Accede al portal SSO (HTTPS)<br />Navega wiki, lanza apps,<br />federa</div><div style='font-size: 70%'></div>" .->43
+    1-. "<div>Accede desde la app en el<br />movil por sso</div><div style='font-size: 70%'></div>" .->55
+    55-. "<div>RUM Agent</div><div style='font-size: 70%'></div>" .->25
+    2-. "<div>Accede desde la app en el<br />movil por sso</div><div style='font-size: 70%'></div>" .->55
+    2-. "<div>Accede al portal (HTTPS)<br />Navega wiki, lanza apps,<br />federa</div><div style='font-size: 70%'></div>" .->43
+    55-. "<div>HTTPS · Bearer JWT (sin IAP)</div><div style='font-size: 70%'></div>" .->49
+    53-. "<div></div><div style='font-size: 70%'></div>" .->19
+    56-. "<div>OTLP HTTPS Api Token</div><div style='font-size: 70%'></div>" .->25
+    43-. "<div>OTLP gRPC Auth: IAM Invoker</div><div style='font-size: 70%'></div>" .->25
+    42-. "<div></div><div style='font-size: 70%'></div>" .->8
+  end

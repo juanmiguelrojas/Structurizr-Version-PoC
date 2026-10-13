@@ -1,0 +1,30 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Documentos GCS — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    85("<div style='font-weight: bold'>Gestor Documental</div><div style='font-size: 70%; margin-top: 0px'>[Container: FastAPI · Cloud Run]</div><div style='font-size: 80%; margin-top:10px'>Publica el documento de<br />entrega al cierre de<br />operación. Retorna ID<br />inmutable vinculado. Cola +<br />reintento, sin duplicar<br />(HU-055). S07: contenido y<br />numeración del documento<br />canónico. El Gestor<br />Documental solo lo publica.</div>")
+    style 85 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+
+    subgraph 92 ["Documentos (GCS)"]
+      style 92 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      93["<div style='font-weight: bold'>Estructura de carpetas</div><div style='font-size: 70%; margin-top: 0px'>[Component: gs://.../{anio}/{mes}/{op_id}]</div><div style='font-size: 80%; margin-top:10px'>Organización por año, mes y<br />ID de operación.</div>"]
+      style 93 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      94["<div style='font-weight: bold'>Política de ciclo de vida</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Lifecycle Rules]</div><div style='font-size: 80%; margin-top:10px'>Transición a Nearline/<br />Coldline según antigüedad.<br />Retención definida por<br />política vigente.</div>"]
+      style 94 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      95["<div style='font-weight: bold'>Versionado / WORM</div><div style='font-size: 70%; margin-top: 0px'>[Component: GCS Object Versioning]</div><div style='font-size: 80%; margin-top:10px'>Inmutabilidad: un objeto<br />nunca se sobrescribe.</div>"]
+      style 95 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      96["<div style='font-weight: bold'>IAM del bucket</div><div style='font-size: 70%; margin-top: 0px'>[Component: Service Account bindings]</div><div style='font-size: 80%; margin-top:10px'>Write: SA Gestor Documental.<br />Read: signed URLs temporales.</div>"]
+      style 96 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      97["<div style='font-weight: bold'>Cifrado en reposo</div><div style='font-size: 70%; margin-top: 0px'>[Component: CMEK (Cloud KMS)]</div><div style='font-size: 80%; margin-top:10px'>Cada objeto cifrado con clave<br />gestionada por Terpel, no por<br />Google.</div>"]
+      style 97 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    85-. "<div>escribe</div><div style='font-size: 70%'></div>" .->93
+    93-. "<div>organiza</div><div style='font-size: 70%'></div>" .->94
+    94-. "<div>aplica</div><div style='font-size: 70%'></div>" .->95
+    93-. "<div>controla acceso</div><div style='font-size: 70%'></div>" .->96
+    96-. "<div>cifra</div><div style='font-size: 70%'></div>" .->97
+  end

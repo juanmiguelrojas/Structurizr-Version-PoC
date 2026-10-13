@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1170" height="1246" viewBox="0 -10 1170 1246" font-family="Helvetica, Arial, sans-serif">
+<defs>
+    <marker id="aBlock" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+    <marker id="aClassic" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 L2.5,5 z" fill="context-stroke"/></marker>
+    <marker id="aOpen" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="context-stroke" stroke-width="1.4"/></marker>
+  </defs>
+<rect x="0" y="-10" width="1170" height="1246" fill="#ffffff"/>
+<rect x="30" y="20" width="1110" height="1160" rx="10" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="8,4"/>
+<text x="40" y="1087.5" font-size="16" font-weight="bold" fill="#333333">Diagrama Componente</text><text x="40" y="1101.25" font-size="11"  fill="#333333">[Volarte</text><text x="40" y="1115" font-size="11"  fill="#333333">Autor: Kevin Montoya</text><text x="40" y="1128.75" font-size="11"  fill="#333333">TERPEL - DIRECCION DE ARQUITECTURA</text><text x="40" y="1142.5" font-size="11"  fill="#333333">Version: 1</text><text x="40" y="1156.25" font-size="11"  fill="#333333">Fase: I</text><text x="40" y="1170" font-size="11"  fill="#333333">Fecha: 17/08/2026]</text>
+<rect x="475" y="190" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+
+<path d="M215,210 L215,205 Q215,200 220,200 L590,200 Q595,200 595,195 L595,190" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M595,310 L595,317.5 Q595,325 587.5,325 L267.5,325 Q260,325 260,332.5 L260,340" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M252.08,463.71999999999997 L252.04000000000002,471.86 Q252,480 260.14009827950497,480 L604.7782431174966,480 Q614,480 614.1800000000001,489.22 L614.36,498.44" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M725,560 L767.5,560 Q777.5,560 777.5,550 L777.5,360 Q777.5,350 787.5,350 L830,350" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M605,620 L605,642.64 Q605,652.64 595,652.64 L251.51999999999998,652.64 Q241.51999999999998,652.64 241.51999999999998,662.64 L241.51999999999998,685.28" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M380.48,763.16 L523.9200000000001,763.16 Q525.48,763.16 525.48,761.5999999999999 L525.48,761.5999999999999 Q525.48,760.04 527.04,760.04 L670.48,760.04" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#aClassic)" />
+<path d="M233.12,801.0799999999999 L233.12,840.54 Q233.12,850.54 243.12,850.54 L430,850.54 Q440,850.54 440,860.54 L440,900" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<path d="M440,1020 L440,1060 Q440,1070 450,1070 L725,1070" fill="none" stroke="#000000" stroke-width="1"  marker-end="url(#aClassic)" />
+<rect x="475" y="190" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="595" y="221.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">API Router / Controllers</text>
+<text x="595" y="237.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: FastAPI]</text>
+<text x="595" y="263.896" font-size="11"  fill="#ffffff" text-anchor="middle">Endpoints REST por</text>
+<text x="595" y="277.096" font-size="11"  fill="#ffffff" text-anchor="middle">feature. Punto de entrada</text>
+<text x="595" y="290.296" font-size="11"  fill="#ffffff" text-anchor="middle">del contenedor.</text>
+<rect x="140" y="340" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="260" y="371.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Middleware de Autenticación</text>
+<text x="260" y="387.23199999999997" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: JWT Middleware]</text>
+<text x="260" y="413.89599999999996" font-size="11"  fill="#ffffff" text-anchor="middle">Valida issuer/audience/</text>
+<text x="260" y="427.09599999999995" font-size="11"  fill="#ffffff" text-anchor="middle">expiración del token</text>
+<text x="260" y="440.29599999999994" font-size="11"  fill="#ffffff" text-anchor="middle">(segunda validación).</text>
+<rect x="485" y="500" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="605" y="531.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Servicio de Autorización</text>
+<text x="605" y="547.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Python]</text>
+<text x="605" y="573.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Resuelve GroupToRoleMapping</text>
+<text x="605" y="587.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">→ Role/Permission/</text>
+<text x="605" y="600.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Capability.</text>
+<rect x="140" y="680" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="260" y="711.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Orquestador de Dominio</text>
+<text x="260" y="727.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Python]</text>
+<text x="260" y="753.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Enruta la petición al</text>
+<text x="260" y="767.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">servicio de dominio</text>
+<text x="260" y="780.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">correspondiente.</text>
+<rect x="320" y="900" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="440" y="931.776" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Clientes de Servicios</text>
+<text x="440" y="947.232" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: HTTP + ID Token (IAM)]</text>
+<text x="440" y="973.8960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Clientes tipados hacia</text>
+<text x="440" y="987.0960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">cada Svc: interno.</text>
+<text x="440" y="1000.2960000000002" font-size="11"  fill="#ffffff" text-anchor="middle">Cloud Run → Cloud Run.</text>
+<rect x="670" y="710" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="790" y="748.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cliente de Secretos</text>
+<text x="790" y="763.832" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Secret Manager SDK]</text>
+<text x="790" y="790.4960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">Credenciales de servicios</text>
+<text x="790" y="803.6960000000001" font-size="11"  fill="#ffffff" text-anchor="middle">downstream.</text>
+<rect x="830" y="290" width="240" height="120" rx="7.2" fill="#63BEF2" stroke="#2086C9" stroke-width="1"/>
+<text x="950" y="328.376" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Cliente de Cache</text>
+<text x="950" y="343.83199999999994" font-size="12"  fill="#ffffff" text-anchor="middle">[Component: Redis SDK]</text>
+<text x="950" y="370.4959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">Cache de decisión de</text>
+<text x="950" y="383.6959999999999" font-size="11"  fill="#ffffff" text-anchor="middle">autorización (TTL corto).</text>
+<rect x="725" y="1010" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="845" y="1054.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Servicios de dominio</text>
+<text x="845" y="1070.4320000000002" font-size="12"  fill="#ffffff" text-anchor="middle">[Contenedores externos]</text>
+<text x="845" y="1097.0960000000002" font-size="11"  fill="#cccccc" text-anchor="middle">S02, S04, S06, S01 (fuera de este contenedor)</text>
+<rect x="95" y="90" width="240" height="120" rx="12" fill="#8C8496" stroke="#736782" stroke-width="1"/>
+<text x="215" y="134.976" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Apigee</text>
+<text x="215" y="150.432" font-size="12"  fill="#ffffff" text-anchor="middle">[Software System]</text>
+<text x="215" y="177.09599999999998" font-size="11"  fill="#cccccc" text-anchor="middle">Entrada, ya valida firma/issuer del JWT</text>
+<rect x="377.20703125" y="194.2" width="55.5859375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="405" y="201.79999999999998" font-size="8" fill="#1E3A8A" text-anchor="middle">recibe petición</text>
+<rect x="415.048828125" y="319.2" width="24.90234375" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="427.5" y="326.8" font-size="8" fill="#7C2D12" text-anchor="middle">valida</text>
+<rect x="411.40587735299846" y="474.2" width="45.3515625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="434.08165860299846" y="481.8" font-size="8" fill="#7C2D12" text-anchor="middle">resuelve rol</text>
+<rect x="744.37109375" y="449.2" width="66.2578125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="777.5" y="456.8" font-size="8" fill="#831843" text-anchor="middle">lee/escribe cache</text>
+<rect x="397.468984375" y="646.84" width="51.58203125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="423.26" y="654.44" font-size="8" fill="#7C2D12" text-anchor="middle">autorizado →</text>
+<rect x="501.91359375" y="755.8" width="47.1328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="525.48" y="763.4" font-size="8" fill="#4D4D4D" text-anchor="middle">lee secretos</text>
+<rect x="318.99359375" y="844.74" width="35.1328125" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="336.56" y="852.34" font-size="8" fill="#7C2D12" text-anchor="middle">orquesta</text>
+<rect x="520.826171875" y="1064.2" width="73.34765625" height="11.6" fill="#ffffff" opacity="0.92"/>
+<text x="557.5" y="1071.8" font-size="8" fill="#7C2D12" text-anchor="middle">llama (IAM Invoker)</text>
+<text x="10" y="1227" font-size="11" fill="#9CA3AF">Referencia: página 'L3 · BFF Web' del Draw.io original (render de la fuente, sin modelo).</text>
+</svg>

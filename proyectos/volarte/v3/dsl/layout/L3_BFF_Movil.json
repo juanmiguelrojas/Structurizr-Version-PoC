@@ -1,0 +1,1097 @@
+{
+ "vista": "L3_BFF_Movil",
+ "pagina": "L3 · BFF Movil",
+ "titulo": "L3 · BFF Móvil — Diagrama de componentes",
+ "boundaries": [
+  {
+   "drawioId": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "nombre": "Diagrama Componente",
+   "etiqueta": "Volarte\nAutor: Kevin Montoya\nTERPEL - DIRECCION DE ARQUITECTURA\nVersion: 1\nFase: I\nFecha: 17/08/2026",
+   "tipo": "ContainerScopeBoundary",
+   "x": 10.0,
+   "y": 20.0,
+   "w": 1270.0,
+   "h": 970.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];strokeWidth=3;"
+  }
+ ],
+ "nodos": [
+  {
+   "ref": "bm_servicioDeAutorizacion",
+   "drawioId": "1zkQ9IaikqJmL66ETiHT-1",
+   "x": 380.0,
+   "y": 280.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Resuelve GroupToRoleMapping\n→ Role/Permission/\nCapability."
+  },
+  {
+   "ref": "bm_middlewareDeAutenticacion",
+   "drawioId": "SELEylk7Q_GAH_jisJpw-1",
+   "x": 630.0,
+   "y": 100.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Valida issuer/audience/\nexpiración del token\n(segunda validación)."
+  },
+  {
+   "ref": "bm_apiRouterControllers",
+   "drawioId": "bxV1-kFdc_Y-09Kx5JXH-1",
+   "x": 330.0,
+   "y": 100.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Endpoints REST por\nfeature. Punto de entrada\ndel contenedor."
+  },
+  {
+   "ref": "bm_servicioDeIdempotencia",
+   "drawioId": "D_LV-Y4hSz6o_uYIQ-JI-1",
+   "x": 40.0,
+   "y": 470.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Evita procesar dos veces\nla misma acción reenviada."
+  },
+  {
+   "ref": "bm_publicadorDeEventos",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-1",
+   "x": 1010.0,
+   "y": 460.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Publica operacion-cerrada\ny doc-publicacion."
+  },
+  {
+   "ref": "bm_manejadorDeSubida",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-4",
+   "x": 720.0,
+   "y": 590.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Orquesta subida de\nfotos/firma, tolera cortes\nde red."
+  },
+  {
+   "ref": "bm_proveedorDeDelta",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-5",
+   "x": 60.0,
+   "y": 260.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Versión + diferencias de\ncatálogos/turnos para\ndescarga incremental."
+  },
+  {
+   "ref": "apigee",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-1",
+   "x": 60.0,
+   "y": 100.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Entrada vía Netskope/ZTNA",
+   "texto": {
+    "nombre": "Apigee",
+    "tipo": "Software System",
+    "tecnologia": "",
+    "descripcion": "Entrada vía Netskope/ZTNA"
+   }
+  },
+  {
+   "ref": "vo_documentosGcs",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-2",
+   "x": 360.0,
+   "y": 820.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Fuera de este contenedor",
+   "texto": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Fuera de este contenedor"
+   }
+  },
+  {
+   "ref": "vo_colaDeMensajeria",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-3",
+   "x": 690.0,
+   "y": 790.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Pub/Sub (fuera de este contenedor)",
+   "texto": {
+    "nombre": "Cola de mensajería",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Pub/Sub (fuera de este contenedor)"
+   }
+  },
+  {
+   "ref": "vo_svcOperacion",
+   "drawioId": "_G9imbh4nfA6h8SqaJqN-4",
+   "x": 360.0,
+   "y": 660.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Fuera de este contenedor",
+   "texto": {
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Fuera de este contenedor"
+   }
+  },
+  {
+   "ref": "vo_cloudSqlPostgresql",
+   "drawioId": "bffm-sql-ext-1",
+   "x": 960.0,
+   "y": 100.0,
+   "w": 260.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Tablas: Sincronizacion (fuera de este contenedor)",
+   "texto": {
+    "nombre": "Cloud SQL",
+    "tipo": "Contenedor externo",
+    "tecnologia": "",
+    "descripcion": "Tablas: Sincronizacion (fuera de este contenedor)"
+   }
+  },
+  {
+   "ref": "bm_motorDeReconciliacion",
+   "drawioId": "6K30jVCmdG1WcfRa9Mfz-2",
+   "x": 380.0,
+   "y": 450.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Compara timestamp de\ncaptura vs. histórico de\nrevocación. Auto-acepta\no PENDING_REVIEW."
+  },
+  {
+   "ref": "bm_validadorDeOrdenSecuencia",
+   "drawioId": "E34e5Gi3vuo780vgvwd1-4",
+   "x": 40.0,
+   "y": 690.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Reordena acciones offline por timestamp de captura (no de llegada). Evita que una acción vieja reenviada tarde sobrescriba un estado más reciente."
+  },
+  {
+   "ref": "bm_clienteCloudSql",
+   "drawioId": "E34e5Gi3vuo780vgvwd1-5",
+   "x": 840.0,
+   "y": 280.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "7nfrhGlU3jZWN3Cs_bT8-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Escribe la cola de acciones offline recibidas y el estado de conciliación (PENDIENTE/CONFIRMADO/\nPENDING_REVIEW) en Tablas: Sincronizacion."
+  }
+ ],
+ "notas": [
+  {
+   "drawioId": null,
+   "x": 380.0,
+   "y": 280.0,
+   "w": 240.0,
+   "h": 120.0,
+   "texto": "",
+   "fill": "#63BEF2",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  }
+ ],
+ "conectores": [
+  {
+   "drawioId": "9QahTo7XVIhn2NQbdA9p-4",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-4",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_manejadorDeSubida",
+     "destino": "bm_publicadorDeEventos",
+     "descripcion": "Publica eventos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "Publica eventos",
+   "etiquetaLineas": "Publica eventos",
+   "estiloEtiqueta": "edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 530.0,
+     "y": 690.0000000000002
+    },
+    "targetPoint": {
+     "x": 680.0,
+     "y": 690.0000000000002
+    }
+   },
+   "posEtiqueta": {
+    "x": -0.4867,
+    "y": -1.0,
+    "dx": 31.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.667;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e1",
+   "origen": "_G9imbh4nfA6h8SqaJqN-1",
+   "origenTipo": "element",
+   "destino": "bxV1-kFdc_Y-09Kx5JXH-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "apigee",
+     "destino": "bm_apiRouterControllers",
+     "descripcion": "recibe sync",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "recibe sync",
+   "etiquetaLineas": "recibe sync",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 180.0,
+     "y": 70.0
+    },
+    {
+     "x": 440.0,
+     "y": 70.0
+    },
+    {
+     "x": 440.0,
+     "y": 100.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 150.0,
+     "y": 120.0
+    },
+    "targetPoint": {
+     "x": 600.0,
+     "y": 70.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e2",
+   "origen": "bxV1-kFdc_Y-09Kx5JXH-1",
+   "origenTipo": "element",
+   "destino": "SELEylk7Q_GAH_jisJpw-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_apiRouterControllers",
+     "destino": "bm_middlewareDeAutenticacion",
+     "descripcion": "valida",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "valida",
+   "etiquetaLineas": "valida",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 600.0,
+     "y": 170.0
+    },
+    "targetPoint": {
+     "x": 830.0,
+     "y": 205.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e3",
+   "origen": "SELEylk7Q_GAH_jisJpw-1",
+   "origenTipo": "element",
+   "destino": "1zkQ9IaikqJmL66ETiHT-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_middlewareDeAutenticacion",
+     "destino": "bm_servicioDeAutorizacion",
+     "descripcion": "resuelve rol",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "resuelve rol",
+   "etiquetaLineas": "resuelve rol",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 750.0,
+     "y": 250.0
+    },
+    {
+     "x": 500.0,
+     "y": 250.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 830.0,
+     "y": 305.0
+    },
+    "targetPoint": {
+     "x": 480.0,
+     "y": 275.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e4",
+   "origen": "1zkQ9IaikqJmL66ETiHT-1",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_servicioDeAutorizacion",
+     "destino": "bm_motorDeReconciliacion",
+     "descripcion": "reconcilia",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "reconcilia",
+   "etiquetaLineas": "reconcilia",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 480.0,
+     "y": 375.0
+    },
+    "targetPoint": {
+     "x": 470.0,
+     "y": 465.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e5",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-2",
+   "origenTipo": "element",
+   "destino": "D_LV-Y4hSz6o_uYIQ-JI-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_motorDeReconciliacion",
+     "destino": "bm_servicioDeIdempotencia",
+     "descripcion": "dedupe",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "dedupe",
+   "etiquetaLineas": "dedupe",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 440.0,
+     "y": 580.0
+    },
+    {
+     "x": 330.0,
+     "y": 580.0
+    },
+    {
+     "x": 330.0,
+     "y": 450.0
+    },
+    {
+     "x": 160.0,
+     "y": 450.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 600.0,
+     "y": 515.0000000000002
+    },
+    "targetPoint": {
+     "x": 810.0,
+     "y": 415.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e6",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-2",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-5",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_motorDeReconciliacion",
+     "destino": "bm_proveedorDeDelta",
+     "descripcion": "catálogos/turnos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "catálogos/turnos",
+   "etiquetaLineas": "catálogos/turnos",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 350.0,
+     "y": 510.0
+    },
+    {
+     "x": 350.0,
+     "y": 400.0
+    },
+    {
+     "x": 180.0,
+     "y": 400.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 340.0,
+     "y": 515.0
+    },
+    "targetPoint": {
+     "x": 150.0,
+     "y": 410.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e7",
+   "origen": "_G9imbh4nfA6h8SqaJqN-3",
+   "origenTipo": "element",
+   "destino": "_G9imbh4nfA6h8SqaJqN-4",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "vo_svcOperacion",
+     "descripcion": "orquesta operación",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "orquesta operación",
+   "etiquetaLineas": "orquesta operación",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 630.0,
+     "y": 880.0
+    },
+    {
+     "x": 630.0,
+     "y": 720.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 700.0,
+     "y": 880.0
+    },
+    "targetPoint": {
+     "x": 230.0,
+     "y": 835.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e8",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-2",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-4",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_motorDeReconciliacion",
+     "destino": "bm_manejadorDeSubida",
+     "descripcion": "fotos/firma",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "fotos/firma",
+   "etiquetaLineas": "fotos/firma",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 700.0,
+     "y": 540.0
+    },
+    {
+     "x": 700.0,
+     "y": 650.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 470.0,
+     "y": 565.0000000000002
+    },
+    "targetPoint": {
+     "x": 270.0,
+     "y": 645.0000000000002
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e9",
+   "origen": "_G9imbh4nfA6h8SqaJqN-3",
+   "origenTipo": "element",
+   "destino": "_G9imbh4nfA6h8SqaJqN-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "vo_colaDeMensajeria",
+     "destino": "vo_documentosGcs",
+     "descripcion": "resumable upload",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "resumable upload",
+   "etiquetaLineas": "resumable upload",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 810.0,
+     "y": 950.0
+    },
+    {
+     "x": 480.0,
+     "y": 950.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 920.0,
+     "y": 880.0
+    },
+    "targetPoint": {
+     "x": 1111.0,
+     "y": 730.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e10",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-2",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_motorDeReconciliacion",
+     "destino": "bm_publicadorDeEventos",
+     "descripcion": "al cerrar operación",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "al cerrar operación",
+   "etiquetaLineas": "al cerrar operación",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 600.0,
+     "y": 540.0000000000002
+    },
+    "targetPoint": {
+     "x": 680.0,
+     "y": 645.0000000000002
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.003;entryY=0.421;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e11",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-1",
+   "origenTipo": "element",
+   "destino": "_G9imbh4nfA6h8SqaJqN-3",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_publicadorDeEventos",
+     "destino": "vo_colaDeMensajeria",
+     "descripcion": "publica",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "publica",
+   "etiquetaLineas": "publica",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 1106.0,
+     "y": 760.0
+    },
+    {
+     "x": 810.0,
+     "y": 760.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 810.0,
+     "y": 715.0000000000002
+    },
+    "targetPoint": {
+     "x": 810.0,
+     "y": 835.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.401;exitY=1.027;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e12",
+   "origen": "D_LV-Y4hSz6o_uYIQ-JI-1",
+   "origenTipo": "element",
+   "destino": "E34e5Gi3vuo780vgvwd1-4",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_servicioDeIdempotencia",
+     "destino": "bm_validadorDeOrdenSecuencia",
+     "descripcion": "aplica en orden (timestamp captura)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "aplica en orden (timestamp captura)",
+   "etiquetaLineas": "aplica en orden (timestamp captura)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 160.0,
+     "y": 630.0
+    },
+    {
+     "x": 160.0,
+     "y": 630.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 960.0,
+     "y": 450.0
+    },
+    "targetPoint": {
+     "x": 1000.0,
+     "y": 460.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e13",
+   "origen": "E34e5Gi3vuo780vgvwd1-4",
+   "origenTipo": "element",
+   "destino": "6K30jVCmdG1WcfRa9Mfz-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_validadorDeOrdenSecuencia",
+     "destino": "bm_motorDeReconciliacion",
+     "descripcion": "secuencia validada",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "secuencia validada",
+   "etiquetaLineas": "secuencia validada",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 330.0,
+     "y": 750.0
+    },
+    {
+     "x": 330.0,
+     "y": 620.0
+    },
+    {
+     "x": 560.0,
+     "y": 620.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 1000.0,
+     "y": 500.0
+    },
+    "targetPoint": {
+     "x": 600.0,
+     "y": 500.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e14",
+   "origen": "6K30jVCmdG1WcfRa9Mfz-2",
+   "origenTipo": "element",
+   "destino": "E34e5Gi3vuo780vgvwd1-5",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_motorDeReconciliacion",
+     "destino": "bm_clienteCloudSql",
+     "descripcion": "persiste offline_actions_log / PENDING_REVIEW",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "persiste offline_actions_log / PENDING_REVIEW",
+   "etiquetaLineas": "persiste offline_actions_log / PENDING_REVIEW",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 600.0,
+     "y": 480.0
+    },
+    "targetPoint": {
+     "x": 1000.0,
+     "y": 290.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffm-e15",
+   "origen": "E34e5Gi3vuo780vgvwd1-5",
+   "origenTipo": "element",
+   "destino": "bffm-sql-ext-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bm_clienteCloudSql",
+     "destino": "vo_cloudSqlPostgresql",
+     "descripcion": "escribe/lee",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "escribe/lee",
+   "etiquetaLineas": "escribe/lee",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 1120.0,
+     "y": 260.0
+    },
+    "targetPoint": {
+     "x": 1120.0,
+     "y": 260.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#000000;fontSize=8;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  }
+ ]
+}

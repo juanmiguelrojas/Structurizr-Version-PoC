@@ -1,0 +1,32 @@
+@startuml
+set separator none
+title L3 · BFF Web — Diagrama de componentes
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+System(ApiGee, "ApiGee", $descr="Plataforma de administración de API nativa de Google Cloud. Valida firma/issuer/audience del JWT contra el JWKS de Entra ID.", $tags="", $link="")
+
+Container_Boundary("Volarte.BFFBackendVolarte_boundary", "BFF — Backend Volarte", $tags="") {
+  Component(Volarte.BFFBackendVolarte.APIRouterControllers, "API Router / Controllers", $techn="FastAPI", $descr="Endpoints REST por feature. Punto de entrada del contenedor.", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.MiddlewaredeAutenticación, "Middleware de Autenticación", $techn="JWT Middleware", $descr="Valida issuer/audience/ expiración del token (segunda validación).", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.ServiciodeAutorización, "Servicio de Autorización", $techn="Python", $descr="Resuelve GroupToRoleMapping → Role/Permission/ Capability.", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.OrquestadordeDominio, "Orquestador de Dominio", $techn="Python", $descr="Enruta la petición al servicio de dominio correspondiente.", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.ClientesdeServicios, "Clientes de Servicios", $techn="HTTP + ID Token (IAM)", $descr="Clientes tipados hacia cada Svc: interno. Cloud Run → Cloud Run.", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.ClientedeSecretos, "Cliente de Secretos", $techn="Secret Manager SDK", $descr="Credenciales de servicios downstream.", $tags="", $link="")
+  Component(Volarte.BFFBackendVolarte.ClientedeCache, "Cliente de Cache", $techn="Redis SDK", $descr="Cache de decisión de autorización (TTL corto).", $tags="", $link="")
+}
+
+Rel(ApiGee, Volarte.BFFBackendVolarte.APIRouterControllers, "recibe petición", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.APIRouterControllers, Volarte.BFFBackendVolarte.MiddlewaredeAutenticación, "valida", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.MiddlewaredeAutenticación, Volarte.BFFBackendVolarte.ServiciodeAutorización, "resuelve rol", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.ServiciodeAutorización, Volarte.BFFBackendVolarte.ClientedeCache, "lee/escribe cache", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.ServiciodeAutorización, Volarte.BFFBackendVolarte.OrquestadordeDominio, "autorizado →", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.OrquestadordeDominio, Volarte.BFFBackendVolarte.ClientedeSecretos, "lee secretos", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte.OrquestadordeDominio, Volarte.BFFBackendVolarte.ClientesdeServicios, "orquesta", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

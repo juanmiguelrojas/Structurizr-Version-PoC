@@ -1,0 +1,36 @@
+graph TB
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["L3 · Frontend Web — Diagrama de componentes"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    5["<div style='font-weight: bold'>ApiGee</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Plataforma de administración<br />de API nativa de Google<br />Cloud. Valida<br />firma/issuer/audience del JWT<br />contra el JWKS de Entra ID.</div>"]
+    style 5 fill:#23a2d9,stroke:#0e7dad,color:#ffffff
+    11["<div style='font-weight: bold'>EntraID / CIAM</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div><div style='font-size: 80%; margin-top:10px'>Proveedor de identidad<br />corporativo. SSO · MFA ·<br />RBAC. Transversal al hub</div>"]
+    style 11 fill:#8c8496,stroke:#6b6474,color:#ffffff
+
+    subgraph 58 ["Frontend Web"]
+      style 58 fill:#ffffff,stroke:#0e7dad,color:#0e7dad
+
+      59["<div style='font-weight: bold'>App Shell / Router</div><div style='font-size: 70%; margin-top: 0px'>[Component: React Router]</div><div style='font-size: 80%; margin-top:10px'>Layout, navbar, enrutamiento<br />client-side. Punto de entrada<br />único de la SPA.</div>"]
+      style 59 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      60["<div style='font-weight: bold'>Vistas por rol</div><div style='font-size: 70%; margin-top: 0px'>[Component: React (code-splitting)]</div><div style='font-size: 80%; margin-top:10px'>Módulos cargados con<br />React.lazy() según rol:<br />comercial, supervisión,<br />admin.</div>"]
+      style 60 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      61["<div style='font-weight: bold'>Cliente API</div><div style='font-size: 70%; margin-top: 0px'>[Component: Fetch/Axios]</div><div style='font-size: 80%; margin-top:10px'>Inyecta Bearer token en cada<br />request. Reintentos con<br />backoff.</div>"]
+      style 61 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      62["<div style='font-weight: bold'>Cache de estado servidor</div><div style='font-size: 70%; margin-top: 0px'>[Component: React Query]</div><div style='font-size: 80%; margin-top:10px'>Cache y revalidación de datos<br />de servidor. Evita refetch<br />innecesario.</div>"]
+      style 62 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      63["<div style='font-weight: bold'>Error Boundary / Telemetría</div><div style='font-size: 70%; margin-top: 0px'>[Component: React ErrorBoundary]</div><div style='font-size: 80%; margin-top:10px'>Captura errores de render.<br />Envía eventos de uso/error.</div>"]
+      style 63 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+      64["<div style='font-weight: bold'>Modulo de Autenticacion</div><div style='font-size: 70%; margin-top: 0px'>[Component: MSAL.js]</div><div style='font-size: 80%; margin-top:10px'>Flujo OAuth2 Authorization<br />Code + PKCE. Token en memoria<br />(no localStorage).</div>"]
+      style 64 fill:#63bef2,stroke:#2e8bc9,color:#ffffff
+    end
+
+    59-. "<div>usa</div><div style='font-size: 70%'></div>" .->64
+    64-. "<div>login SSO/tokens (PKCE)</div><div style='font-size: 70%'></div>" .->11
+    59-. "<div>autenticado →</div><div style='font-size: 70%'></div>" .->60
+    60-. "<div>solicita datos</div><div style='font-size: 70%'></div>" .->61
+    61-. "<div>REST/JSON · JWT</div><div style='font-size: 70%'></div>" .->5
+    61-. "<div>cachea respuestas</div><div style='font-size: 70%'></div>" .->62
+    60-. "<div>reporta errores</div><div style='font-size: 70%'></div>" .->63
+  end

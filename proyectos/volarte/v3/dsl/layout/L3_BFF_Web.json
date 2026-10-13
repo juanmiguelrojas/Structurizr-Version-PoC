@@ -1,0 +1,546 @@
+{
+ "vista": "L3_BFF_Web",
+ "pagina": "L3 · BFF Web",
+ "titulo": "L3 · BFF Web — Diagrama de componentes",
+ "boundaries": [
+  {
+   "drawioId": "ShTRna0wSo55moB87zG2-1",
+   "nombre": "Diagrama Componente",
+   "etiqueta": "Volarte\nAutor: Kevin Montoya\nTERPEL - DIRECCION DE ARQUITECTURA\nVersion: 1\nFase: I\nFecha: 17/08/2026",
+   "tipo": "ContainerScopeBoundary",
+   "x": 30.0,
+   "y": 20.0,
+   "w": 1110.0,
+   "h": 1160.0,
+   "style": "rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];strokeWidth=3;"
+  }
+ ],
+ "nodos": [
+  {
+   "ref": "bw_apiRouterControllers",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-1",
+   "x": 475.0,
+   "y": 190.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Endpoints REST por\nfeature. Punto de entrada\ndel contenedor."
+  },
+  {
+   "ref": "bw_middlewareDeAutenticacion",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-2",
+   "x": 140.0,
+   "y": 340.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Valida issuer/audience/\nexpiración del token\n(segunda validación)."
+  },
+  {
+   "ref": "bw_servicioDeAutorizacion",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-3",
+   "x": 485.0,
+   "y": 500.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Resuelve GroupToRoleMapping\n→ Role/Permission/\nCapability."
+  },
+  {
+   "ref": "bw_orquestadorDeDominio",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-6",
+   "x": 140.0,
+   "y": 680.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Enruta la petición al\nservicio de dominio\ncorrespondiente."
+  },
+  {
+   "ref": "bw_clientesDeServicios",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-8",
+   "x": 320.0,
+   "y": 900.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Clientes tipados hacia\ncada Svc: interno.\nCloud Run → Cloud Run."
+  },
+  {
+   "ref": "bw_clienteDeSecretos",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-9",
+   "x": 670.0,
+   "y": 710.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Credenciales de servicios\ndownstream."
+  },
+  {
+   "ref": "bw_clienteDeCache",
+   "drawioId": "77-Ya6_qwyibhzLODzQj-10",
+   "x": 830.0,
+   "y": 290.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "Component",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#ffffff"
+   },
+   "descripcionDrawio": "Cache de decisión de\nautorización (TTL corto)."
+  },
+  {
+   "ref": "ce_serviciosDeDominio",
+   "drawioId": "m82-UoYV6cME8UAHcOga-1",
+   "x": 725.0,
+   "y": 1010.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "S02, S04, S06, S01 (fuera de este contenedor)"
+  },
+  {
+   "ref": "apigee",
+   "drawioId": "m82-UoYV6cME8UAHcOga-2",
+   "x": 95.0,
+   "y": 90.0,
+   "w": 240.0,
+   "h": 120.0,
+   "forma": "caja",
+   "clase": "External Software System",
+   "boundary": "ShTRna0wSo55moB87zG2-1",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];",
+   "fuentes": {
+    "nombrePx": 16,
+    "tipoPx": 12,
+    "descPx": 11,
+    "color": "#ffffff",
+    "colorTipo": "#ffffff",
+    "colorDesc": "#cccccc"
+   },
+   "descripcionDrawio": "Entrada, ya valida firma/issuer del JWT",
+   "texto": {
+    "nombre": "Apigee",
+    "tipo": "Software System",
+    "tecnologia": "",
+    "descripcion": "Entrada, ya valida firma/issuer del JWT"
+   }
+  }
+ ],
+ "notas": [
+  {
+   "drawioId": null,
+   "x": 475.0,
+   "y": 190.0,
+   "w": 240.0,
+   "h": 120.0,
+   "texto": "",
+   "fill": "#63BEF2",
+   "fuente": {},
+   "forma": "rounded",
+   "style": "rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];"
+  }
+ ],
+ "conectores": [
+  {
+   "drawioId": "bffw-e1",
+   "origen": "m82-UoYV6cME8UAHcOga-2",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "apigee",
+     "destino": "bw_apiRouterControllers",
+     "descripcion": "recibe petición",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "recibe petición",
+   "etiquetaLineas": "recibe petición",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 235.0,
+     "y": 160.0
+    },
+    "targetPoint": {
+     "x": 625.0,
+     "y": 230.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#1E3A8A;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;",
+   "inferido": [
+    "source"
+   ]
+  },
+  {
+   "drawioId": "bffw-e2",
+   "origen": "77-Ya6_qwyibhzLODzQj-1",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-2",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_apiRouterControllers",
+     "destino": "bw_middlewareDeAutenticacion",
+     "descripcion": "valida",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "valida",
+   "etiquetaLineas": "valida",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 625.0,
+     "y": 329.9999999999998
+    },
+    "targetPoint": {
+     "x": 455.0,
+     "y": 370.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e3",
+   "origen": "77-Ya6_qwyibhzLODzQj-2",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-3",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_middlewareDeAutenticacion",
+     "destino": "bw_servicioDeAutorizacion",
+     "descripcion": "resuelve rol",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "resuelve rol",
+   "etiquetaLineas": "resuelve rol",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [
+    {
+     "x": 252.0,
+     "y": 480.0
+    },
+    {
+     "x": 614.0,
+     "y": 480.0
+    }
+   ],
+   "extremos": {
+    "sourcePoint": {
+     "x": 455.0,
+     "y": 470.0
+    },
+    "targetPoint": {
+     "x": 625.0,
+     "y": 510.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.467;exitY=1.031;exitDx=0;exitDy=0;entryX=0.539;entryY=-0.013;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e4",
+   "origen": "77-Ya6_qwyibhzLODzQj-3",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-10",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_servicioDeAutorizacion",
+     "destino": "bw_clienteDeCache",
+     "descripcion": "lee/escribe cache",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "lee/escribe cache",
+   "etiquetaLineas": "lee/escribe cache",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 755.0,
+     "y": 560.0
+    },
+    "targetPoint": {
+     "x": 865.0,
+     "y": 490.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#831843;fontSize=8;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e5",
+   "origen": "77-Ya6_qwyibhzLODzQj-3",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-6",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_servicioDeAutorizacion",
+     "destino": "bw_orquestadorDeDominio",
+     "descripcion": "autorizado →",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "autorizado →",
+   "etiquetaLineas": "autorizado →",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 625.0,
+     "y": 610.0
+    },
+    "targetPoint": {
+     "x": 455.0,
+     "y": 710.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.423;entryY=0.044;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e6",
+   "origen": "77-Ya6_qwyibhzLODzQj-6",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-9",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_orquestadorDeDominio",
+     "destino": "bw_clienteDeSecretos",
+     "descripcion": "lee secretos",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "lee secretos",
+   "etiquetaLineas": "lee secretos",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 585.0,
+     "y": 760.0
+    },
+    "targetPoint": {
+     "x": 885.0,
+     "y": 760.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#000000;fontColor=#4D4D4D;fontSize=8;html=1;exitX=1.002;exitY=0.693;exitDx=0;exitDy=0;entryX=0.002;entryY=0.417;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e7",
+   "origen": "77-Ya6_qwyibhzLODzQj-6",
+   "origenTipo": "element",
+   "destino": "77-Ya6_qwyibhzLODzQj-8",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_orquestadorDeDominio",
+     "destino": "bw_clientesDeServicios",
+     "descripcion": "orquesta",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "orquesta",
+   "etiquetaLineas": "orquesta",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 455.0,
+     "y": 810.0
+    },
+    "targetPoint": {
+     "x": 625.0,
+     "y": 860.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.388;exitY=1.009;exitDx=0;exitDy=0;exitPerimeter=0;",
+   "inferido": []
+  },
+  {
+   "drawioId": "bffw-e8",
+   "origen": "77-Ya6_qwyibhzLODzQj-8",
+   "origenTipo": "element",
+   "destino": "m82-UoYV6cME8UAHcOga-1",
+   "destinoTipo": "element",
+   "relaciones": [
+    {
+     "origen": "bw_clientesDeServicios",
+     "destino": "ce_serviciosDeDominio",
+     "descripcion": "llama (IAM Invoker)",
+     "tecnologia": ""
+    }
+   ],
+   "etiqueta": "llama (IAM Invoker)",
+   "etiquetaLineas": "llama (IAM Invoker)",
+   "estiloEtiqueta": "",
+   "fuenteEtiqueta": {},
+   "puntos": [],
+   "extremos": {
+    "sourcePoint": {
+     "x": 625.0,
+     "y": 960.0
+    },
+    "targetPoint": {
+     "x": 285.0,
+     "y": 1000.0
+    }
+   },
+   "posEtiqueta": {
+    "x": 0.0,
+    "y": 0.0,
+    "dx": 0.0,
+    "dy": 0.0
+   },
+   "estilo": "edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#000000;fontColor=#7C2D12;fontSize=8;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;",
+   "inferido": []
+  }
+ ]
+}

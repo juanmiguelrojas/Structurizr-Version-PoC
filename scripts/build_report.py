@@ -43,6 +43,16 @@ for mmd in sorted((out / "mmd").glob("*.mmd")):
     rows.append(f"| `{n}` | {status} | {size(files[1])} | {size(files[2])} | {size(files[3])} |")
 
 c = review["stats"]["counts"]
+fid_path = out / "fidelidad" / "fidelidad-drawio.json"
+fid_row = ""
+if fid_path.exists():
+    fid = json.loads(fid_path.read_text(encoding="utf-8"))
+    errs = sum(1 for v in fid for d in v["diferencias"] if d.get("tipo") == "ERROR")
+    fid_row = (f"| Fidelidad vs Draw.io (R9) | {'✅' if errs == 0 else '❌'} {len(fid)} vistas · elementos "
+               f"{sum(v['elementosPresentes'] for v in fid)}/{sum(v['elementos'] for v in fid)} · conectores "
+               f"{sum(v['conectoresPresentes'] for v in fid)}/{sum(v['conectores'] for v in fid)} · fidelidad mínima "
+               f"{min(v['fidelidad'] for v in fid)}% (`fidelidad/fidelidad-drawio.md`) |\n")
+render = meta.get("render", "mermaid")
 report = f"""# Reporte de Compilación · {meta['nombre']} · {meta['version']}
 
 | Campo | Valor |
@@ -56,7 +66,8 @@ report = f"""# Reporte de Compilación · {meta['nombre']} · {meta['version']}
 | `structurizr inspect` | {inspect_issues} observación(es) (`inspect-report.txt`) |
 | Agente Revisor | {'✅ APROBADO' if c['ERROR'] == 0 else '❌ RECHAZADO'} · {c['ERROR']} errores · {c['WARN']} advertencias · {c['INFO']} info |
 | Leyenda C4 | Person · Software System · Container · Component · External Person · External Software System (en cada diagrama) |
-| Modelo | {counts['people']} personas · {counts['systems']} sistemas · {counts['containers']} contenedores · {counts['components']} componentes |
+| Motor de render | `{render}`{' (notación Draw.io C4, personas con silueta, referencia Draw.io en `referencia-drawio/`)' if render == 'c4-drawio' else ''} |
+{fid_row}| Modelo | {counts['people']} personas · {counts['systems']} sistemas · {counts['containers']} contenedores · {counts['components']} componentes |
 | PDF | `{pdf.name}` ({size(pdf)}) |
 
 ## Diagramas generados ({len(rows)} vistas)

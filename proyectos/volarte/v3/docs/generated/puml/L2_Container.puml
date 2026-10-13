@@ -1,0 +1,86 @@
+@startuml
+set separator none
+title L2 · Container — Diagrama de contenedores
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(EmpleadoInterno, "Empleado Interno", $descr="Usuario corporativo que accede a la wiki, lanza web apps y navega a portales externos desde un único punto de entrada", $tags="", $link="")
+Person(Usuarioexterno, "Usuario externo", $descr="Usuario que no esta dentro del tenant de terpel", $tags="", $link="")
+Person(Operariodeequipoabastecedor, "Operario de equipo abastecedor", $descr="Único rol que usa la app móvil. Opera en campo, con o sin cobertura.", $tags="", $link="")
+System(ApiGee, "ApiGee", $descr="Plataforma de administración de API nativa de Google Cloud. Valida firma/issuer/audience del JWT contra el JWKS de Entra ID.", $tags="", $link="")
+System(ExternalRegionalLoadBalancer, "External Regional Load Balancer", $descr="SSL/TLS terminado en el borde. Enrutamiento al IAP y Cloud Run.", $tags="", $link="")
+System(Firewall, "Firewall", $descr="Firewall de red encargado de inspeccionar y controlar el tráfico de entrada y salida, aplicando políticas de seguridad y NAT según las reglas definidas.", $tags="", $link="")
+System(InternalLoadBalancer, "Internal Load Balancer", $descr="SSL/TLS terminado en el borde. Enrutamiento al IAP y Cloud Run.", $tags="", $link="")
+System(Proxyinstance, "Proxy instance", $descr="Puente de conexion", $tags="", $link="")
+System(Cloudflare, "Cloudflare", $descr="Plataforma de protección de tráfico y optimización de acceso web para servicios externos.", $tags="", $link="")
+System(EntraIDCIAM, "EntraID / CIAM", $descr="Proveedor de identidad corporativo. SSO · MFA · RBAC. Transversal al hub", $tags="", $link="")
+System(ZTNA, "ZTNA", $descr="GlobalProtect · Zscaler Device posture check · Intune Split tunneling controlado Solo acceso desde red corporativa", $tags="", $link="")
+
+System_Boundary("Volarte_boundary", "Volarte", $tags="") {
+  Container(Volarte.SvcOperación, "Svc: Operación", $techn="FastAPI · Cloud Run", $descr="S05: estado dinámico equipo/operador, turnos, posición, inventario calidad.", $tags="", $link="")
+  Container(Volarte.SvcAsignaciónOptimización, "Svc: Asignación / Optimización", $techn="GKE (recomendado · P-025 PENDING)", $descr="S06: motor MILP + recomendación Skypredict, degradación controlada. GKE por cómputo sostenido; owner/ runtime final los confirma Arquitectura.", $tags="", $link="")
+  ContainerQueue(Volarte.Colademensajeria, "Cola de mensajeria", $techn="Pub/Sub", $descr="Pub/Sub. Topics: doc-publicacion (HU-055, retry+DLQ), operacion-cerrada (fan-out a 3 suscriptores), tracking-eventos (ingesta asíncrona de alta frecuencia).", $tags="", $link="")
+  Container(Volarte.Appmóvil, "App móvil", $techn="React Native · Android exclusivo", $descr="Offline-first: SQLite local (WatermelonDB) + cola de escritura con UUID por acción. Fotos/firma van al filesystem local. Sync bidireccional al reconectar (delta + resumable upload). Solo operarios; distribución vía Intune/Managed Play.", $tags="", $link="")
+  Container(Volarte.BFFMóvil, "BFF Móvil", $techn="FastAPI · Cloud Run", $descr="Consumidor: App móvil (operarios), única. Respuestas ultra-livianas, vistas exclusivas de operación en campo — no comparte payloads con BFF Web. Resuelve sync offline: delta + cola.", $tags="", $link="")
+  Container(Volarte.FrontendWeb, "Frontend Web", $techn="React (CSR) + Vite · SPA", $descr="Sin MFE: un solo bundle, code- splitting por módulo (React.lazy). Login SSO vía MSAL.js contra Entra ID. Deploy: CDN Cloudflare + GCS", $tags="", $link="")
+  ContainerDb(Volarte.Memorystore, "Memorystore", $techn="Cache", $descr="Sesiones · Tokens · Queries", $tags="", $link="")
+  Container(Volarte.BFFBackendVolarte, "BFF — Backend Volarte", $techn="FastAPI · Cloud Run", $descr="Valida JWT (issuer/audience) Resuelve GroupToRoleMapping → Role/Permission/Capability Orquesta servicios de dominio Auto-scaling · Pay-per-use", $tags="", $link="")
+  Container(Volarte.InternalLoadBalancer, "Internal Load Balancer", $techn="GCP Cloud Load Balancing", $descr="SSL/TLS terminado en el borde. Enrutamiento al IAP y Cloud Run.", $tags="", $link="")
+  ContainerDb(Volarte.CloudSQLPostgreSQL, "Cloud SQL (PostgreSQL)", $techn="Database", $descr="Usuarios · Roles · Registry", $tags="", $link="")
+  Container(Volarte.SvcUsuariosAuth, "Svc: Usuarios / Auth", $techn="Cloud Run", $descr="Roles · Permisos · Perfil Sincroniza con Azure AD", $tags="", $link="")
+  Container(Volarte.CloudKMS, "Cloud KMS", $techn="GCP Key Management Service", $descr="Gestión de claves de cifrado (CMEK). Cifra: Cloud SQL · GCS · Firestore. Cifra secretos en Secret Manager. HSM · rotación de claves.", $tags="", $link="")
+  Container(Volarte.SecretManager, "Secret Manager", $techn="GCP Secret Manager", $descr="Almacena secretos de todos los servicios: credenciales DB · API keys · client secrets. Acceso via Service Account (IAM). Rotación automática · audit log.", $tags="", $link="")
+  Container(Volarte.GestorDocumental, "Gestor Documental", $techn="FastAPI · Cloud Run", $descr="Publica el documento de entrega al cierre de operación. Retorna ID inmutable vinculado. Cola + reintento, sin duplicar (HU-055). S07: contenido y numeración del documento canónico. El Gestor Documental solo lo publica.", $tags="", $link="")
+  Container(Volarte.DocumentosGCS, "Documentos (GCS)", $techn="Cloud Storage", $descr="Almacenamiento WORM/versionado. Retención según política vigente. Recuperable por operación y cliente.", $tags="", $link="")
+  Container(Volarte.SvcDatosMaestros, "Svc: Datos Maestros", $techn="FastAPI · Cloud Run", $descr="S02: Customer, AircraftOperator, AircraftType, AircraftRegistration, FuellingEquipment, NegotiationProfile...", $tags="", $link="")
+  Container(Volarte.SvcComercial, "Svc: Comercial", $techn="FastAPI · Cloud Run", $descr="S04: elegibilidad, precio (PriceProvider), crédito disponible.", $tags="", $link="")
+}
+
+Rel(ExternalRegionalLoadBalancer, Cloudflare, "DNS apunta a IP del LB externo pass trougth", $techn="", $tags="", $link="")
+Rel(ExternalRegionalLoadBalancer, Firewall, "Resuelve los NAT Respectivos", $techn="", $tags="", $link="")
+Rel(Firewall, InternalLoadBalancer, "Reenvia el trafico", $techn="", $tags="", $link="")
+Rel(Proxyinstance, ApiGee, "Reenvia trafico", $techn="", $tags="", $link="")
+Rel(InternalLoadBalancer, Proxyinstance, "Reenvia trafico", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb, ApiGee, "REST/JSON · JWT (API, sin caché)", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.Memorystore, "Redis SDK", $techn="", $tags="", $link="")
+Rel(ApiGee, Volarte.InternalLoadBalancer, "", $techn="", $tags="", $link="")
+Rel(Volarte.InternalLoadBalancer, Volarte.BFFMóvil, "Resuelve peticiones Moviles", $techn="", $tags="", $link="")
+Rel(Volarte.InternalLoadBalancer, Volarte.BFFBackendVolarte, "Resuelve peticiones Web", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.CloudSQLPostgreSQL, "Consultas varias Proxy SQL", $techn="", $tags="", $link="")
+Rel(Volarte.FrontendWeb, EntraIDCIAM, "login SSO / tokens (PKCE)", $techn="", $tags="", $link="")
+Rel(Volarte.CloudSQLPostgreSQL, Volarte.CloudKMS, "Lee client secrets · IAM SA", $techn="", $tags="", $link="")
+Rel(Volarte.SecretManager, Volarte.CloudKMS, "Cifra secretos con CMEK", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SecretManager, "Lee secretos · IAM SA", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SvcUsuariosAuth, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.GestorDocumental, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SvcDatosMaestros, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SvcComercial, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SvcOperación, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.SvcAsignaciónOptimización, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.Colademensajeria, "Publica y consume Topics", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.GestorDocumental, "suscripción (retry + DLQ)", $techn="", $tags="", $link="")
+Rel(Volarte.BFFBackendVolarte, Volarte.Colademensajeria, "Publica y consume Topics", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.SvcComercial, "suscripción", $techn="", $tags="", $link="")
+Rel(Volarte.Colademensajeria, Volarte.SvcOperación, "suscripción: tracking-eventos", $techn="", $tags="", $link="")
+Rel(EmpleadoInterno, Cloudflare, "Accede al portal SSO (HTTPS) Navega wiki, lanza apps, federa", $techn="", $tags="", $link="")
+Rel(Usuarioexterno, Cloudflare, "Accede al portal (HTTPS) Navega wiki, lanza apps, federa", $techn="", $tags="", $link="")
+Rel(Operariodeequipoabastecedor, Volarte.Appmóvil, "Accede a la APP Movil", $techn="", $tags="", $link="")
+Rel(Volarte.Appmóvil, EntraIDCIAM, "login SSO (solo Entra ID)", $techn="", $tags="", $link="")
+Rel(Volarte.Appmóvil, ZTNA, "tráfico gestionado (túnel MDM)", $techn="", $tags="", $link="")
+Rel(ZTNA, ApiGee, "acceso privado (ZTNA) — sin Cloudflare", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SecretManager, "Lee secretos · IAM SA", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.CloudSQLPostgreSQL, "Consultas varias Proxy SQL", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcUsuariosAuth, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.GestorDocumental, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcDatosMaestros, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcComercial, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcOperación, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.SvcAsignaciónOptimización, "orquesta cada servicio que no va por PUB/SUB", $techn="", $tags="", $link="")
+Rel(Volarte.BFFMóvil, Volarte.Memorystore, "Redis SDK", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

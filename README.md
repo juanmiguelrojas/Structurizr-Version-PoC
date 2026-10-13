@@ -19,7 +19,7 @@ Detalle: [Propósito y alcance](docs/lineamientos/01-proposito-y-alcance.md).
 
 | Proyecto | Versión vigente | Estado | Versiones | Especificación |
 |---|---|---|---|---|
-| [Arquitectura Volarte](proyectos/volarte/) | v2 | 🟠 en-revision | [v1](proyectos/volarte/v1/) (reemplazada) · [v2](proyectos/volarte/v2/) | [PDF v2](proyectos/volarte/v2/docs/generated/Arquitectura_Volarte_v2_Architecture_Specification.pdf) |
+| [Arquitectura Volarte](proyectos/volarte/) | v3 | 🟠 en-revision | [v1](proyectos/volarte/v1/) (reemplazada) · [v2](proyectos/volarte/v2/) (reemplazada) · [v3](proyectos/volarte/v3/) | [PDF v3](proyectos/volarte/v3/docs/generated/Arquitectura_Volarte_v3_Architecture_Specification.pdf) |
 
 ## Leyenda C4 (obligatoria)
 
@@ -30,7 +30,14 @@ Detalle: [Propósito y alcance](docs/lineamientos/01-proposito-y-alcance.md).
 | `#083F75` | `#1061B0` | `#23A2D9` | `#63BEF2` | `#6C6477` | `#8C8496` |
 
 Fuente única: [`estandares/c4/estilos-c4.dsl`](estandares/c4/estilos-c4.dsl) · Lineamiento: [03 · Leyenda C4](docs/lineamientos/03-leyenda-c4.md).
-Cada diagrama generado incluye esta leyenda al pie.
+Cada diagrama generado incluye esta leyenda. Las **personas se dibujan siempre con silueta de actor**, nunca como caja.
+
+## Diagramas fieles al Draw.io
+
+Los proyectos que nacen de un Draw.io aprobado se importan con `scripts/drawio2structurizr.py`: cada página se convierte en
+una vista Structurizr que se ve igual al original (colores por página, siluetas, boundaries, disposición), el modelo C4 queda
+deduplicado y trazable forma a forma, y cada build valida la fidelidad contra la fuente (regla R9). Ejemplo:
+[Volarte v3](proyectos/volarte/v3/) · guía en [06 · Guía de uso de Structurizr §8](docs/lineamientos/06-guia-structurizr.md).
 
 ## Lineamientos
 
@@ -57,7 +64,8 @@ Cada diagrama generado incluye esta leyenda al pie.
 │       ├── README.md           # Ficha + historial de versiones + riesgos abiertos
 │       ├── CHANGELOG_DSL.md    # Bitácora del proyecto
 │       ├── v1/                 # reemplazada (congelada): Draw.io original + primera conversión
-│       └── v2/                 # en-revision: leyenda C4 + especificaciones
+│       ├── v2/                 # reemplazada (congelada): leyenda C4 + especificaciones
+│       └── v3/                 # en-revision: réplica fiel del Draw.io + REVISION.md
 ├── scripts/                    # aac-build, Agente Revisor, render, versionamiento, plantillas
 ├── .github/                    # Pipeline, plantilla de PR, CODEOWNERS
 └── CHANGELOG.md                # Cambios de lineamientos y herramientas
@@ -69,11 +77,11 @@ Requisitos: Java 17+, Python 3.10+, Node 18+.
 
 ```bash
 npm ci
-scripts/aac-build.sh proyectos/volarte/v2 --validate-only   # validación + Agente Revisor (~10 s)
-scripts/aac-build.sh proyectos/volarte/v2                   # diagramas con leyenda C4 + PDF (~3-4 min)
+scripts/aac-build.sh proyectos/volarte/v3 --validate-only   # validación + Agente Revisor + fidelidad Draw.io (~15 s)
+scripts/aac-build.sh proyectos/volarte/v3                   # diagramas notación Draw.io C4 + PDF (~2 min)
 scripts/aac-build.sh --all --validate-only                  # todas las versiones de todos los proyectos
 
-scripts/aac-nueva-version.sh proyectos/volarte              # crea v3 a partir de v2
+scripts/aac-nueva-version.sh proyectos/volarte              # crea v4 a partir de v3
 scripts/aac-nuevo-proyecto.sh portal-hub "Arquitectura Portal HUB"
 ```
 
@@ -83,9 +91,10 @@ Guía completa: [06 · Guía de uso de Structurizr](docs/lineamientos/06-guia-st
 
 1. Cambio en una rama → bitácora + ADR → `aac-build.sh` local → PR (plantilla con checklist C4).
 2. El pipeline valida el DSL, ejecuta el **Agente Revisor** (R1 descripciones · R2 tecnologías · R3 aislamiento de capas ·
-   R4 trazabilidad · R5 sugerencias · R6 inmutabilidad · R7 leyenda C4 · R8 metadatos), comenta el reporte en el PR y
-   compila diagramas y PDF.
-3. Un arquitecto revisor aprueba el PR; la Dirección de Arquitectura aprueba la versión (`version.json` → `aprobada`).
-4. Al fusionar en `main` se publican los artefactos y la versión aprobada queda congelada.
+   R4 trazabilidad · R5 sugerencias · R6 inmutabilidad · R7 leyenda C4 y siluetas · R8 metadatos · R9 fidelidad Draw.io),
+   comenta el reporte en el PR y compila diagramas y PDF.
+3. Las decisiones y observaciones del autor se registran como comentarios `REV-NN` en el `REVISION.md` de la versión.
+4. Un arquitecto revisor aprueba el PR; la Dirección de Arquitectura aprueba la versión (`version.json` → `aprobada`).
+5. Al fusionar en `main` se publican los artefactos y la versión aprobada queda congelada.
 
 Detalle: [05 · Revisión y aprobación](docs/lineamientos/05-revision-y-aprobacion.md).
